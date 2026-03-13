@@ -1,0 +1,136 @@
+# 周报数据预采集（强化版）
+
+- 日期：2026-03-13
+- 生成时间：2026-03-13 17:01:11 CST
+- 工作区：/home/bot/.openclaw/workspace-trader
+- 输出目标：reports/weekly/2026-03-13-weekly-data.txt
+
+- 当日记忆：存在（memory/2026-03-13.md）
+
+## 执行总览
+
+## 1. python3 scripts/data/market_cache.py save_market
+- 开始时间：2026-03-13 17:01:11 CST
+- 结束时间：2026-03-13 17:01:26 CST
+- 耗时：15 秒
+- 状态：成功
+- 核心结果：
+```text
+  ❌ 行业资金流失败: Length mismatch: Expected axis has 11 elements, new values have 8 elements
+  ❌ 概念资金流失败: Length mismatch: Expected axis has 11 elements, new values have 8 elements
+  ❌ 全市场快照失败: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+  ❌ 北向资金失败: module 'akshare' has no attribute 'stock_em_hsgt_board_sz'
+  ❌ 估值对比失败: 'result'
+   ⚠️ 部分数据失败（不影响主体）: 行业资金流: Length mismatch: Expected axis has 11 elements, new values have 8 elements; 概念资金流: Length mismatch: Expected axis has 11 elements, new values have 8 elements; 全市场快照: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')); 北向资金: module 'akshare' has no attribute 'stock_em_hsgt_board_sz'; 估值对比: 'result'
+```
+- 这组数据后续最适合回答什么问题：最适合回答：本周市场整体涨跌结构、主要指数与板块原始行情是否出现明显切换。
+- 原始输出保存：/tmp/weekly_raw_2026-03-13/cmd_1.log
+
+## 2. python3 scripts/data/deep_data.py snapshot
+- 开始时间：2026-03-13 17:01:26 CST
+- 结束时间：2026-03-13 17:01:55 CST
+- 耗时：29 秒
+- 状态：成功
+- 核心结果：
+```text
+  "stock_flow_top": [
+      "reason": "2家机构买入，成功率45.47%",
+      "reason": "3家机构买入，成功率28.77%",
+      "reason": "4家机构买入，成功率28.38%",
+      "reason": "1家机构买入，成功率27.96%",
+      "reason": "4家机构卖出，成功率43.81%",
+      "reason": "3家机构卖出，成功率8.53%",
+      "reason": "4家机构买入，成功率34.06%",
+      "reason": "1家机构卖出，成功率22.89%",
+      "reason": "1家机构卖出，成功率28.40%",
+      "reason": "主力做T，成功率39.03%",
+      "reason": "2家机构买入，成功率48.25%",
+      "reason": "2家机构卖出，成功率45.61%",
+      "reason": "普通席位卖出，成功率36.42%",
+      "reason": "4家机构买入，成功率43.80%",
+      "reason": "主力做T，成功率47.06%",
+      "reason": "1家机构买入，成功率49.85%",
+      "reason": "主力做T，成功率48.69%",
+      "reason": "2家机构买入，成功率52.92%",
+      "reason": "2家机构卖出，成功率28.67%",
+```
+- 这组数据后续最适合回答什么问题：最适合回答：周报开篇需要的全市场快照是否支持当前主线判断。
+- 原始输出保存：/tmp/weekly_raw_2026-03-13/cmd_2.log
+
+## 3. python3 scripts/data/deep_data.py industry
+- 开始时间：2026-03-13 17:01:55 CST
+- 结束时间：2026-03-13 17:01:56 CST
+- 耗时：1 秒
+- 状态：成功
+- 核心结果：
+```text
+[
+  {
+    "name": "建筑建材",
+    "category": "new_jzjc",
+    "net_inflow": 73.06,
+    "net_inflow_raw": 7306418799.3,
+    "inflow": 27256146790.84,
+    "outflow": 19949727991.54,
+    "avg_pct": "0.0109873"
+  },
+    "name": "农药化肥",
+```
+- 这组数据后续最适合回答什么问题：最适合回答：本周最强/最弱行业是谁，资金是否围绕特定产业链集中。
+- 原始输出保存：/tmp/weekly_raw_2026-03-13/cmd_3.log
+
+## 4. python3 scripts/data/deep_data.py concept
+- 开始时间：2026-03-13 17:01:56 CST
+- 结束时间：2026-03-13 17:01:57 CST
+- 耗时：1 秒
+- 状态：成功
+- 核心结果：
+```text
+[
+  {
+    "name": "风电",
+    "category": "gn_fd",
+    "net_inflow": 85.86,
+    "net_inflow_raw": 8585901024.04,
+    "inflow": 117406966896.1,
+    "outflow": 108821065872.06,
+    "avg_pct": "-0.012899"
+  },
+    "name": "光伏概念",
+```
+- 这组数据后续最适合回答什么问题：最适合回答：主题概念层面的主线扩散、轮动和题材持续性如何。
+- 原始输出保存：/tmp/weekly_raw_2026-03-13/cmd_4.log
+
+## 5. python3 scripts/data/deep_data.py north
+- 开始时间：2026-03-13 17:01:57 CST
+- 结束时间：2026-03-13 17:01:59 CST
+- 耗时：2 秒
+- 状态：成功
+- 核心结果：
+```text
+{
+  "data": [
+    {
+      "trade_date": "20260312",
+      "ggt_ss": 29192.47,
+      "ggt_sz": 23688.31,
+      "hgt": 136610.39,
+      "sgt": 159567.12,
+      "north_money": 296177.51,
+      "south_money": 52880.77
+    },
+```
+- 这组数据后续最适合回答什么问题：最适合回答：北向资金本周是风险偏好增强还是减弱，以及偏好哪些方向。
+- 原始输出保存：/tmp/weekly_raw_2026-03-13/cmd_5.log
+
+## 6. python3 scripts/data/deep_data.py hot
+- 开始时间：2026-03-13 17:02:00 CST
+- 结束时间：2026-03-13 17:02:02 CST
+- 耗时：2 秒
+- 状态：成功
+- 核心结果：
+```text
+{}
+```
+- 这组数据后续最适合回答什么问题：最适合回答：市场注意力集中在哪些高热度股票/方向，情绪是否过热。
+- 原始输出保存：/tmp/weekly_raw_2026-03-13/cmd_6.log

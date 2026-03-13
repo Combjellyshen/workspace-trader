@@ -1,0 +1,1267 @@
+{
+  "snapshot_time": "2026-03-11T16:06:13.959751",
+  "indices": [
+    {
+      "code": "sh000001",
+      "name": "上证指数",
+      "open": 4123.6663,
+      "pre_close": 4123.138,
+      "close": 4133.4331,
+      "high": 4135.8392,
+      "low": 4112.7998,
+      "volume": 707727169.0,
+      "amount": 1063600874394.0,
+      "date": "2026-03-11",
+      "time": "15:30:39",
+      "pct_chg": 0.25
+    },
+    {
+      "code": "sz399001",
+      "name": "深证成指",
+      "open": 14373.739,
+      "pre_close": 14354.073,
+      "close": 14465.41,
+      "high": 14531.023,
+      "low": 14373.011,
+      "volume": 77097377661.0,
+      "amount": 1444776810521.052,
+      "date": "2026-03-11",
+      "time": "15:00:03",
+      "pct_chg": 0.78
+    },
+    {
+      "code": "sz399006",
+      "name": "创业板指",
+      "open": 3318.413,
+      "pre_close": 3306.141,
+      "close": 3349.529,
+      "high": 3388.103,
+      "low": 3318.413,
+      "volume": 23556722041.0,
+      "amount": 659568608422.8,
+      "date": "2026-03-11",
+      "time": "15:00:03",
+      "pct_chg": 1.31
+    },
+    {
+      "code": "sh000688",
+      "name": "科创50",
+      "open": 1421.3515,
+      "pre_close": 1420.5388,
+      "close": 1401.0842,
+      "high": 1427.095,
+      "low": 1400.4468,
+      "volume": 12973679.0,
+      "amount": 65494494433.0,
+      "date": "2026-03-11",
+      "time": "16:19:35",
+      "pct_chg": -1.37
+    },
+    {
+      "code": "sh000300",
+      "name": "沪深300",
+      "open": 4681.0316,
+      "pre_close": 4674.7562,
+      "close": 4704.4959,
+      "high": 4711.8671,
+      "low": 4674.7088,
+      "volume": 270175443.0,
+      "amount": 579564397580.0,
+      "date": "2026-03-11",
+      "time": "16:19:59",
+      "pct_chg": 0.64
+    }
+  ],
+  "industry_flow": [
+    {
+      "name": "化工行业",
+      "category": "new_hghy",
+      "net_inflow": 80.83,
+      "net_inflow_raw": 8082776694.68,
+      "inflow": 47614044315.13,
+      "outflow": 39531267620.45,
+      "avg_pct": "0.0223423"
+    },
+    {
+      "name": "电器行业",
+      "category": "new_dqhy",
+      "net_inflow": 59.36,
+      "net_inflow_raw": 5935884548.89,
+      "inflow": 35159567801.45,
+      "outflow": 29223683252.56,
+      "avg_pct": "0.0290225"
+    },
+    {
+      "name": "建筑建材",
+      "category": "new_jzjc",
+      "net_inflow": 54.09,
+      "net_inflow_raw": 5408759497.68,
+      "inflow": 21782197520.68,
+      "outflow": 16373438023.0,
+      "avg_pct": "0.0128339"
+    },
+    {
+      "name": "电力行业",
+      "category": "new_dlhy",
+      "net_inflow": 52.42,
+      "net_inflow_raw": 5241968200.43,
+      "inflow": 26558333034.09,
+      "outflow": 21316364833.66,
+      "avg_pct": "0.0147988"
+    },
+    {
+      "name": "金融行业",
+      "category": "new_jrhy",
+      "net_inflow": 28.98,
+      "net_inflow_raw": 2898037034.78,
+      "inflow": 16876688088.56,
+      "outflow": 13978651053.78,
+      "avg_pct": "0.00656344"
+    },
+    {
+      "name": "化纤行业",
+      "category": "new_hqhy",
+      "net_inflow": 27.18,
+      "net_inflow_raw": 2718332350.09,
+      "inflow": 9610635543.85,
+      "outflow": 6892303193.76,
+      "avg_pct": "0.0245416"
+    },
+    {
+      "name": "综合行业",
+      "category": "new_zhhy",
+      "net_inflow": 21.73,
+      "net_inflow_raw": 2172555668.83,
+      "inflow": 5116497231.15,
+      "outflow": 2943941562.32,
+      "avg_pct": "0.00622116"
+    },
+    {
+      "name": "电子器件",
+      "category": "new_dzqj",
+      "net_inflow": 21.61,
+      "net_inflow_raw": 2160710527.34,
+      "inflow": 77831303919.74,
+      "outflow": 75670593392.4,
+      "avg_pct": "0.00524741"
+    },
+    {
+      "name": "煤炭行业",
+      "category": "new_mthy",
+      "net_inflow": 20.96,
+      "net_inflow_raw": 2095814205.31,
+      "inflow": 14886893997.96,
+      "outflow": 12791079792.65,
+      "avg_pct": "0.0318324"
+    },
+    {
+      "name": "农药化肥",
+      "category": "new_nyhf",
+      "net_inflow": 16.37,
+      "net_inflow_raw": 1636501294.35,
+      "inflow": 13556309277.34,
+      "outflow": 11919807982.99,
+      "avg_pct": "0.0204036"
+    },
+    {
+      "name": "家电行业",
+      "category": "new_jdhy",
+      "net_inflow": 15.0,
+      "net_inflow_raw": 1500372601.34,
+      "inflow": 9694776096.77,
+      "outflow": 8194403495.43,
+      "avg_pct": "0.00891903"
+    },
+    {
+      "name": "其它行业",
+      "category": "new_qtxy",
+      "net_inflow": 14.55,
+      "net_inflow_raw": 1455449358.908,
+      "inflow": 15421241749.079,
+      "outflow": 13965792390.171,
+      "avg_pct": "0.00379208"
+    },
+    {
+      "name": "仪器仪表",
+      "category": "new_yqyb",
+      "net_inflow": 14.15,
+      "net_inflow_raw": 1415018137.24,
+      "inflow": 16657955910.09,
+      "outflow": 15242937772.85,
+      "avg_pct": "0.00930081"
+    },
+    {
+      "name": "汽车制造",
+      "category": "new_qczz",
+      "net_inflow": 8.93,
+      "net_inflow_raw": 892991839.01,
+      "inflow": 25513721888.63,
+      "outflow": 24620730049.62,
+      "avg_pct": "0.00519859"
+    },
+    {
+      "name": "商业百货",
+      "category": "new_sybh",
+      "net_inflow": 8.75,
+      "net_inflow_raw": 874761890.45,
+      "inflow": 10764372332.03,
+      "outflow": 9889610441.58,
+      "avg_pct": "0.00315141"
+    },
+    {
+      "name": "造纸行业",
+      "category": "new_zzhy",
+      "net_inflow": 8.12,
+      "net_inflow_raw": 812374341.42,
+      "inflow": 5598717027.92,
+      "outflow": 4786342686.5,
+      "avg_pct": "0.0158814"
+    },
+    {
+      "name": "房地产",
+      "category": "new_fdc",
+      "net_inflow": 7.01,
+      "net_inflow_raw": 701200609.41,
+      "inflow": 10743166781.03,
+      "outflow": 10041966171.62,
+      "avg_pct": "0.00279029"
+    },
+    {
+      "name": "陶瓷行业",
+      "category": "new_tchy",
+      "net_inflow": 7.0,
+      "net_inflow_raw": 700194101.8,
+      "inflow": 2289132351.5,
+      "outflow": 1588938249.7,
+      "avg_pct": "0.0399014"
+    },
+    {
+      "name": "医疗器械",
+      "category": "new_ylqx",
+      "net_inflow": 6.35,
+      "net_inflow_raw": 635360109.25,
+      "inflow": 3598446066.12,
+      "outflow": 2963085956.87,
+      "avg_pct": "0.00190286"
+    },
+    {
+      "name": "农林牧渔",
+      "category": "new_nlmy",
+      "net_inflow": 5.68,
+      "net_inflow_raw": 567562686.55,
+      "inflow": 11997942384.91,
+      "outflow": 11430379698.36,
+      "avg_pct": "0.0127973"
+    }
+  ],
+  "concept_flow": [
+    {
+      "name": "风电",
+      "category": "gn_fd",
+      "net_inflow": 167.51,
+      "net_inflow_raw": 16751470841.31,
+      "inflow": 110630814997.06,
+      "outflow": 93879344155.75,
+      "avg_pct": "0.0155117"
+    },
+    {
+      "name": "融资融券",
+      "category": "gn_rzrq",
+      "net_inflow": 154.31,
+      "net_inflow_raw": 15430502813.01,
+      "inflow": 176472385348.94,
+      "outflow": 161041882535.93,
+      "avg_pct": "0.00601886"
+    },
+    {
+      "name": "光伏",
+      "category": "gn_gf",
+      "net_inflow": 153.2,
+      "net_inflow_raw": 15320252895.66,
+      "inflow": 151160526906.07,
+      "outflow": 135840274010.41,
+      "avg_pct": "0.0172264"
+    },
+    {
+      "name": "锂电池",
+      "category": "gn_ldc",
+      "net_inflow": 118.07,
+      "net_inflow_raw": 11806570360.51,
+      "inflow": 74045678323.64,
+      "outflow": 62239107963.13,
+      "avg_pct": "0.0164379"
+    },
+    {
+      "name": "股权激励",
+      "category": "gn_gqjl",
+      "net_inflow": 91.98,
+      "net_inflow_raw": 9198482754.97,
+      "inflow": 131147698361.44,
+      "outflow": 121949215606.47,
+      "avg_pct": "0.00914203"
+    },
+    {
+      "name": "业绩预升",
+      "category": "gn_yjys",
+      "net_inflow": 82.04,
+      "net_inflow_raw": 8204036664.85,
+      "inflow": 93420278900.81,
+      "outflow": 85216242235.96,
+      "avg_pct": "0.00703813"
+    },
+    {
+      "name": "参股金融",
+      "category": "gn_cgjr",
+      "net_inflow": 78.6,
+      "net_inflow_raw": 7860447810.35,
+      "inflow": 77165251659.66,
+      "outflow": 69304803849.31,
+      "avg_pct": "0.00588053"
+    },
+    {
+      "name": "碳中和",
+      "category": "gn_tzh",
+      "net_inflow": 70.06,
+      "net_inflow_raw": 7005888414.24,
+      "inflow": 45824158656.95,
+      "outflow": 38818270242.71,
+      "avg_pct": "0.0177325"
+    },
+    {
+      "name": "风能",
+      "category": "gn_fn",
+      "net_inflow": 68.24,
+      "net_inflow_raw": 6823612670.01,
+      "inflow": 45210481772.24,
+      "outflow": 38386869102.23,
+      "avg_pct": "0.016839"
+    },
+    {
+      "name": "固态电池",
+      "category": "gn_gtdc",
+      "net_inflow": 68.22,
+      "net_inflow_raw": 6822465254.13,
+      "inflow": 32366684338.66,
+      "outflow": 25544219084.53,
+      "avg_pct": "0.0406573"
+    },
+    {
+      "name": "特斯拉",
+      "category": "gn_tsl",
+      "net_inflow": 67.94,
+      "net_inflow_raw": 6793550009.26,
+      "inflow": 46383943480.06,
+      "outflow": 39590393470.8,
+      "avg_pct": "0.0140973"
+    },
+    {
+      "name": "分拆上市",
+      "category": "gn_fcss",
+      "net_inflow": 65.74,
+      "net_inflow_raw": 6574295776.18,
+      "inflow": 30545424311.85,
+      "outflow": 23971128535.67,
+      "avg_pct": "0.0121378"
+    },
+    {
+      "name": "社保重仓",
+      "category": "gn_sbzc",
+      "net_inflow": 64.32,
+      "net_inflow_raw": 6432193264.62,
+      "inflow": 42300132724.78,
+      "outflow": 35867939460.16,
+      "avg_pct": "0.0034901"
+    },
+    {
+      "name": "基金重仓",
+      "category": "gn_jjzc",
+      "net_inflow": 59.54,
+      "net_inflow_raw": 5954142645.66,
+      "inflow": 54766740214.03,
+      "outflow": 48812597568.37,
+      "avg_pct": "0.00741879"
+    },
+    {
+      "name": "充电桩",
+      "category": "gn_cdz",
+      "net_inflow": 57.77,
+      "net_inflow_raw": 5777464185.11,
+      "inflow": 36677478181.95,
+      "outflow": 30900013996.84,
+      "avg_pct": "0.0216471"
+    },
+    {
+      "name": "光伏概念",
+      "category": "gn_gfgn",
+      "net_inflow": 56.61,
+      "net_inflow_raw": 5661205264.2,
+      "inflow": 106654957364.95,
+      "outflow": 100993752100.75,
+      "avg_pct": "0.00634378"
+    },
+    {
+      "name": "含H股",
+      "category": "gn_hHg",
+      "net_inflow": 55.46,
+      "net_inflow_raw": 5545817351.47,
+      "inflow": 62786625666.59,
+      "outflow": 57240808315.12,
+      "avg_pct": "0.00837931"
+    },
+    {
+      "name": "锂矿",
+      "category": "gn_lk",
+      "net_inflow": 52.88,
+      "net_inflow_raw": 5288401478.41,
+      "inflow": 32335747177.08,
+      "outflow": 27047345698.67,
+      "avg_pct": "0.0148125"
+    },
+    {
+      "name": "保险重仓",
+      "category": "gn_bxzc",
+      "net_inflow": 51.48,
+      "net_inflow_raw": 5147989019.76,
+      "inflow": 58827607123.96,
+      "outflow": 53679618104.2,
+      "avg_pct": "0.00762853"
+    },
+    {
+      "name": "皖江区域",
+      "category": "gn_wjqy",
+      "net_inflow": 49.36,
+      "net_inflow_raw": 4935596545.12,
+      "inflow": 26429757721.23,
+      "outflow": 21494161176.11,
+      "avg_pct": "0.0204288"
+    }
+  ],
+  "stock_flow_top": [
+    {
+      "symbol": "sz300274",
+      "name": "阳光电源",
+      "net_inflow": 46.02
+    },
+    {
+      "symbol": "sh601868",
+      "name": "中国能建",
+      "net_inflow": 34.43
+    },
+    {
+      "symbol": "sh511260",
+      "name": "十年国债ETF",
+      "net_inflow": 32.09
+    },
+    {
+      "symbol": "sz300750",
+      "name": "宁德时代",
+      "net_inflow": 25.37
+    },
+    {
+      "symbol": "sz002015",
+      "name": "协鑫能科",
+      "net_inflow": 22.01
+    },
+    {
+      "symbol": "sz000988",
+      "name": "华工科技",
+      "net_inflow": 21.4
+    },
+    {
+      "symbol": "sz300014",
+      "name": "亿纬锂能",
+      "net_inflow": 19.28
+    },
+    {
+      "symbol": "sz002202",
+      "name": "金风科技",
+      "net_inflow": 18.56
+    },
+    {
+      "symbol": "sh600172",
+      "name": "黄河旋风",
+      "net_inflow": 16.98
+    },
+    {
+      "symbol": "sz000839",
+      "name": "国安股份",
+      "net_inflow": 16.58
+    },
+    {
+      "symbol": "sh601789",
+      "name": "宁波建工",
+      "net_inflow": 16.39
+    },
+    {
+      "symbol": "sh601869",
+      "name": "长飞光纤",
+      "net_inflow": 15.82
+    },
+    {
+      "symbol": "sz002709",
+      "name": "天赐材料",
+      "net_inflow": 15.81
+    },
+    {
+      "symbol": "sh601669",
+      "name": "中国电建",
+      "net_inflow": 11.88
+    },
+    {
+      "symbol": "sh600989",
+      "name": "宝丰能源",
+      "net_inflow": 11.72
+    },
+    {
+      "symbol": "sh511880",
+      "name": "银华日利ETF",
+      "net_inflow": 11.7
+    },
+    {
+      "symbol": "sh511360",
+      "name": "短融ETF海富通",
+      "net_inflow": 11.65
+    },
+    {
+      "symbol": "sz002594",
+      "name": "比亚迪",
+      "net_inflow": 11.19
+    },
+    {
+      "symbol": "sh600330",
+      "name": "天通股份",
+      "net_inflow": 11.16
+    },
+    {
+      "symbol": "sh511030",
+      "name": "公司债ETF",
+      "net_inflow": 11.07
+    }
+  ],
+  "dragon_tiger": [
+    {
+      "code": "601778",
+      "name": "晶科科技",
+      "close": 5.9,
+      "pct_chg": 5.1693,
+      "deal_amount": 2217504985.85,
+      "buy_amount": 1016534870.54,
+      "sell_amount": 1200970115.31,
+      "net": -1.84,
+      "reason": "普通席位买入，成功率48.21%",
+      "accum_amount": 23.233609298423
+    },
+    {
+      "code": "600410",
+      "name": "华胜天成",
+      "close": 32.68,
+      "pct_chg": 2.6704,
+      "deal_amount": 1915032495.61,
+      "buy_amount": 890056165.02,
+      "sell_amount": 1024976330.59,
+      "net": -1.35,
+      "reason": "买一主买，成功率48.67%",
+      "accum_amount": 13.973950267215
+    },
+    {
+      "code": "127075",
+      "name": "百川转2",
+      "close": 213.006,
+      "pct_chg": 16.503,
+      "deal_amount": 1786051181.07,
+      "buy_amount": 911305421.81,
+      "sell_amount": 874745759.26,
+      "net": 0.37,
+      "reason": null,
+      "accum_amount": 34.871105909761
+    },
+    {
+      "code": "002353",
+      "name": "杰瑞股份",
+      "close": 112.01,
+      "pct_chg": -6.5025,
+      "deal_amount": 1532862686.14,
+      "buy_amount": 651836500.74,
+      "sell_amount": 881026185.4,
+      "net": -2.29,
+      "reason": "3家机构卖出，成功率43.41%",
+      "accum_amount": 44.345693303894
+    },
+    {
+      "code": "600172",
+      "name": "黄河旋风",
+      "close": 11.09,
+      "pct_chg": 10.0198,
+      "deal_amount": 1392582482.6,
+      "buy_amount": 830239290.86,
+      "sell_amount": 562343191.74,
+      "net": 2.68,
+      "reason": "普通席位买入，成功率51.92%",
+      "accum_amount": 28.166440950707
+    },
+    {
+      "code": "000533",
+      "name": "顺钠股份",
+      "close": 17.87,
+      "pct_chg": 1.1891,
+      "deal_amount": 1071517788.08,
+      "buy_amount": 401826672.46,
+      "sell_amount": 669691115.62,
+      "net": -2.68,
+      "reason": "3家机构买入，成功率14.56%",
+      "accum_amount": 24.409664442405
+    },
+    {
+      "code": "301638",
+      "name": "南网数字",
+      "close": 35.25,
+      "pct_chg": 8.1288,
+      "deal_amount": 991720331.06,
+      "buy_amount": 404246208.7,
+      "sell_amount": 587474122.36,
+      "net": -1.83,
+      "reason": "3家机构买入，成功率6.67%",
+      "accum_amount": 26.308963341015
+    },
+    {
+      "code": "002432",
+      "name": "九安医疗",
+      "close": 58.52,
+      "pct_chg": 10,
+      "deal_amount": 938969417.87,
+      "buy_amount": 626751663.69,
+      "sell_amount": 312217754.18,
+      "net": 3.15,
+      "reason": "1家机构买入，成功率29.07%",
+      "accum_amount": 38.234459524621
+    },
+    {
+      "code": "601789",
+      "name": "宁波建工",
+      "close": 7.3,
+      "pct_chg": 9.9398,
+      "deal_amount": 886145262.6,
+      "buy_amount": 497762689.9,
+      "sell_amount": 388382572.7,
+      "net": 1.09,
+      "reason": "浙江资金买入，成功率47.01%",
+      "accum_amount": 23.59877789128
+    },
+    {
+      "code": "000537",
+      "name": "绿发电力",
+      "close": 11.37,
+      "pct_chg": 9.9613,
+      "deal_amount": 840147664.32,
+      "buy_amount": 377880732.68,
+      "sell_amount": 462266931.64,
+      "net": -0.84,
+      "reason": "主力做T，成功率35.59%",
+      "accum_amount": 41.600984570563
+    },
+    {
+      "code": "600108",
+      "name": "亚盛集团",
+      "close": 6.57,
+      "pct_chg": 10.0503,
+      "deal_amount": 826026659.8,
+      "buy_amount": 414415538.99,
+      "sell_amount": 411611120.81,
+      "net": 0.03,
+      "reason": "上海资金买入，成功率46.13%",
+      "accum_amount": 16.675823029224
+    },
+    {
+      "code": "600821",
+      "name": "金开新能",
+      "close": 9.88,
+      "pct_chg": 2.2774,
+      "deal_amount": 693542168.99,
+      "buy_amount": 256963669.83,
+      "sell_amount": 436578499.16,
+      "net": -1.8,
+      "reason": "普通席位买入，成功率39.61%",
+      "accum_amount": 13.159714303447
+    },
+    {
+      "code": "000839",
+      "name": "国安股份",
+      "close": 3.98,
+      "pct_chg": 9.9448,
+      "deal_amount": 691181237.28,
+      "buy_amount": 348144564.4,
+      "sell_amount": 343036672.88,
+      "net": 0.05,
+      "reason": "买一主买，成功率50.20%",
+      "accum_amount": 29.805716391451
+    },
+    {
+      "code": "601016",
+      "name": "节能风电",
+      "close": 4.03,
+      "pct_chg": 10.1093,
+      "deal_amount": 633596481.28,
+      "buy_amount": 454471260.8,
+      "sell_amount": 179125220.48,
+      "net": 2.75,
+      "reason": "买一主买，成功率48.57%",
+      "accum_amount": 28.578665659706
+    },
+    {
+      "code": "600726",
+      "name": "华电能源",
+      "close": 3.53,
+      "pct_chg": 9.9688,
+      "deal_amount": 613433040.71,
+      "buy_amount": 273543641.26,
+      "sell_amount": 339889399.45,
+      "net": -0.66,
+      "reason": "普通席位买入，成功率50.00%",
+      "accum_amount": 26.73446046378
+    },
+    {
+      "code": "002733",
+      "name": "雄韬股份",
+      "close": 27.05,
+      "pct_chg": 10.0041,
+      "deal_amount": 607457870.51,
+      "buy_amount": 299013761.74,
+      "sell_amount": 308444108.77,
+      "net": -0.09,
+      "reason": "主力做T，成功率17.73%",
+      "accum_amount": 29.26877004923
+    },
+    {
+      "code": "002969",
+      "name": "嘉美包装",
+      "close": 25.23,
+      "pct_chg": -2.6245,
+      "deal_amount": 590013704.33,
+      "buy_amount": 294881536.98,
+      "sell_amount": 295132167.35,
+      "net": -0.0,
+      "reason": "西藏自治区资金卖出，成功率27.70%",
+      "accum_amount": 14.228573802883
+    },
+    {
+      "code": "002177",
+      "name": "御银股份",
+      "close": 9.25,
+      "pct_chg": 9.9881,
+      "deal_amount": 574600262.36,
+      "buy_amount": 434722886.91,
+      "sell_amount": 139877375.45,
+      "net": 2.95,
+      "reason": "普通席位买入，成功率46.06%",
+      "accum_amount": 32.32767396157
+    },
+    {
+      "code": "002298",
+      "name": "中电鑫龙",
+      "close": 12.66,
+      "pct_chg": 2.0145,
+      "deal_amount": 567260359.84,
+      "buy_amount": 193525300.96,
+      "sell_amount": 373735058.88,
+      "net": -1.8,
+      "reason": "西藏自治区资金买入，成功率29.73%",
+      "accum_amount": 17.344379346328
+    },
+    {
+      "code": "600108",
+      "name": "亚盛集团",
+      "close": 6.57,
+      "pct_chg": 10.0503,
+      "deal_amount": 487415869.32,
+      "buy_amount": 265255316.78,
+      "sell_amount": 222160552.54,
+      "net": 0.43,
+      "reason": "上海资金买入，成功率43.25%",
+      "accum_amount": 20.456854294158
+    },
+    {
+      "code": "000833",
+      "name": "粤桂股份",
+      "close": 27.52,
+      "pct_chg": 9.992,
+      "deal_amount": 480790628.69,
+      "buy_amount": 294019184.09,
+      "sell_amount": 186771444.6,
+      "net": 1.07,
+      "reason": "1家机构买入，成功率40.35%",
+      "accum_amount": 34.388226082012
+    },
+    {
+      "code": "603061",
+      "name": "金海通",
+      "close": 244.26,
+      "pct_chg": -10,
+      "deal_amount": 477756418,
+      "buy_amount": 179754922,
+      "sell_amount": 298001496,
+      "net": -1.18,
+      "reason": "3家机构卖出，成功率44.67%",
+      "accum_amount": 42.027142886934
+    },
+    {
+      "code": "600873",
+      "name": "梅花生物",
+      "close": 12.62,
+      "pct_chg": 10.0262,
+      "deal_amount": 467494619.95,
+      "buy_amount": 196685210.93,
+      "sell_amount": 270809409.02,
+      "net": -0.74,
+      "reason": "2家机构买入，成功率43.31%",
+      "accum_amount": 32.158125096226
+    },
+    {
+      "code": "002575",
+      "name": "群兴玩具",
+      "close": 8.51,
+      "pct_chg": -3.5147,
+      "deal_amount": 437442805.62,
+      "buy_amount": 171548938.77,
+      "sell_amount": 265893866.85,
+      "net": -0.94,
+      "reason": "上海资金卖出，成功率28.97%",
+      "accum_amount": 22.602610439363
+    },
+    {
+      "code": "002931",
+      "name": "锋龙股份",
+      "close": 78.1,
+      "pct_chg": -6.813,
+      "deal_amount": 391877646.24,
+      "buy_amount": 142820700,
+      "sell_amount": 249056946.24,
+      "net": -1.06,
+      "reason": "3家机构卖出，成功率28.77%",
+      "accum_amount": 20.885301240732
+    },
+    {
+      "code": "600726",
+      "name": "华电能源",
+      "close": 3.53,
+      "pct_chg": 9.9688,
+      "deal_amount": 350587043.21,
+      "buy_amount": 101113928.96,
+      "sell_amount": 249473114.25,
+      "net": -1.48,
+      "reason": "普通席位买入，成功率44.55%",
+      "accum_amount": 26.923554743925
+    },
+    {
+      "code": "002903",
+      "name": "宇环数控",
+      "close": 29.15,
+      "pct_chg": -4.0171,
+      "deal_amount": 325518219.72,
+      "buy_amount": 121979931.38,
+      "sell_amount": 203538288.34,
+      "net": -0.82,
+      "reason": "5家机构卖出，成功率16.45%",
+      "accum_amount": 21.755698211733
+    },
+    {
+      "code": "002903",
+      "name": "宇环数控",
+      "close": 29.15,
+      "pct_chg": -4.0171,
+      "deal_amount": 325518219.72,
+      "buy_amount": 121979931.38,
+      "sell_amount": 203538288.34,
+      "net": -0.82,
+      "reason": "5家机构卖出，成功率16.45%",
+      "accum_amount": 21.755698211733
+    },
+    {
+      "code": "600227",
+      "name": "赤天化",
+      "close": 4.05,
+      "pct_chg": 5.7441,
+      "deal_amount": 290090206.21,
+      "buy_amount": 126385606.72,
+      "sell_amount": 163704599.49,
+      "net": -0.37,
+      "reason": "普通席位买入，成功率40.70%",
+      "accum_amount": 18.55038793902
+    },
+    {
+      "code": "001369",
+      "name": "双欣材料",
+      "close": 16.94,
+      "pct_chg": 10,
+      "deal_amount": 277173226.61,
+      "buy_amount": 192832406.98,
+      "sell_amount": 84340819.63,
+      "net": 1.08,
+      "reason": "买一主买，成功率49.24%",
+      "accum_amount": 22.964547753498
+    },
+    {
+      "code": "600769",
+      "name": "祥龙电业",
+      "close": 15.02,
+      "pct_chg": 10.0366,
+      "deal_amount": 276808970.65,
+      "buy_amount": 143074309.82,
+      "sell_amount": 133734660.83,
+      "net": 0.09,
+      "reason": "普通席位买入，成功率44.79%",
+      "accum_amount": 31.202453486864
+    },
+    {
+      "code": "600470",
+      "name": "六国化工",
+      "close": 8.66,
+      "pct_chg": 5.0971,
+      "deal_amount": 243178082.52,
+      "buy_amount": 77170324.05,
+      "sell_amount": 166007758.47,
+      "net": -0.89,
+      "reason": "1家机构买入，成功率34.98%",
+      "accum_amount": 22.046515508238
+    },
+    {
+      "code": "301658",
+      "name": "首航新能",
+      "close": 45.94,
+      "pct_chg": 20.0104,
+      "deal_amount": 236903396.49,
+      "buy_amount": 142949753.46,
+      "sell_amount": 93953643.03,
+      "net": 0.49,
+      "reason": "1家机构买入，成功率36.59%",
+      "accum_amount": 26.73392601338
+    },
+    {
+      "code": "301658",
+      "name": "首航新能",
+      "close": 45.94,
+      "pct_chg": 20.0104,
+      "deal_amount": 236903396.49,
+      "buy_amount": 142949753.46,
+      "sell_amount": 93953643.03,
+      "net": 0.49,
+      "reason": "1家机构买入，成功率36.59%",
+      "accum_amount": 26.73392601338
+    },
+    {
+      "code": "300504",
+      "name": "天邑股份",
+      "close": 19.32,
+      "pct_chg": 20,
+      "deal_amount": 225170385.04,
+      "buy_amount": 173106269.16,
+      "sell_amount": 52064115.88,
+      "net": 1.21,
+      "reason": "普通席位买入，成功率50.11%",
+      "accum_amount": 35.386431506292
+    },
+    {
+      "code": "300246",
+      "name": "宝莱特",
+      "close": 16.8,
+      "pct_chg": 20,
+      "deal_amount": 224171536.22,
+      "buy_amount": 100366325.5,
+      "sell_amount": 123805210.72,
+      "net": -0.23,
+      "reason": "4家机构买入，成功率18.97%",
+      "accum_amount": 45.846651370811
+    },
+    {
+      "code": "920088",
+      "name": "科力股份",
+      "close": 74.11,
+      "pct_chg": 5.2549,
+      "deal_amount": 223103800.88,
+      "buy_amount": 112003336.85,
+      "sell_amount": 111100464.03,
+      "net": 0.01,
+      "reason": "1家机构买入，成功率21.78%",
+      "accum_amount": 28.830907974628
+    },
+    {
+      "code": "603155",
+      "name": "新亚强",
+      "close": 18.49,
+      "pct_chg": -6.1421,
+      "deal_amount": 219674591.13,
+      "buy_amount": 98582195.73,
+      "sell_amount": 121092395.4,
+      "net": -0.23,
+      "reason": "浙江资金卖出，成功率36.33%",
+      "accum_amount": 31.923358211002
+    },
+    {
+      "code": "603803",
+      "name": "瑞斯康达",
+      "close": 12.1,
+      "pct_chg": 10,
+      "deal_amount": 214429216,
+      "buy_amount": 102815678,
+      "sell_amount": 111613538,
+      "net": -0.09,
+      "reason": "普通席位买入，成功率42.22%",
+      "accum_amount": 32.05711661105
+    },
+    {
+      "code": "600769",
+      "name": "祥龙电业",
+      "close": 15.02,
+      "pct_chg": 10.0366,
+      "deal_amount": 212070031.45,
+      "buy_amount": 111679736.82,
+      "sell_amount": 100390294.63,
+      "net": 0.11,
+      "reason": "普通席位买入，成功率44.63%",
+      "accum_amount": 35.903614864867
+    },
+    {
+      "code": "605268",
+      "name": "王力安防",
+      "close": 16.07,
+      "pct_chg": -4.6856,
+      "deal_amount": 202186851.29,
+      "buy_amount": 60320046.95,
+      "sell_amount": 141866804.34,
+      "net": -0.82,
+      "reason": "普通席位卖出，成功率37.26%",
+      "accum_amount": 23.524096727431
+    },
+    {
+      "code": "603121",
+      "name": "华培动力",
+      "close": 19.6,
+      "pct_chg": -5.8598,
+      "deal_amount": 192471014.25,
+      "buy_amount": 64788107.49,
+      "sell_amount": 127682906.76,
+      "net": -0.63,
+      "reason": "普通席位卖出，成功率25.73%",
+      "accum_amount": 32.861118613491
+    },
+    {
+      "code": "603421",
+      "name": "鼎信通讯",
+      "close": 10.13,
+      "pct_chg": 9.9891,
+      "deal_amount": 190169369.15,
+      "buy_amount": 83391254.6,
+      "sell_amount": 106778114.55,
+      "net": -0.23,
+      "reason": "上海资金买入，成功率44.30%",
+      "accum_amount": 16.16793383194
+    },
+    {
+      "code": "600545",
+      "name": "卓郎智能",
+      "close": 4.16,
+      "pct_chg": 5.0505,
+      "deal_amount": 170021238.47,
+      "buy_amount": 71114411.32,
+      "sell_amount": 98906827.15,
+      "net": -0.28,
+      "reason": "普通席位买入，成功率55.41%",
+      "accum_amount": 13.601864748313
+    },
+    {
+      "code": "601700",
+      "name": "风范股份",
+      "close": 6.9,
+      "pct_chg": 10.0478,
+      "deal_amount": 163304955.8,
+      "buy_amount": 131392339.8,
+      "sell_amount": 31912616,
+      "net": 0.99,
+      "reason": "普通席位买入，成功率39.41%",
+      "accum_amount": 38.907822241983
+    },
+    {
+      "code": "002512",
+      "name": "ST达华",
+      "close": 4.32,
+      "pct_chg": -2.4831,
+      "deal_amount": 157097772.5,
+      "buy_amount": 67590242.01,
+      "sell_amount": 89507530.49,
+      "net": -0.22,
+      "reason": "1家机构卖出，成功率41.05%",
+      "accum_amount": 14.475915352496
+    },
+    {
+      "code": "002512",
+      "name": "ST达华",
+      "close": 4.32,
+      "pct_chg": -2.4831,
+      "deal_amount": 156093706.59,
+      "buy_amount": 68928924.01,
+      "sell_amount": 87164782.58,
+      "net": -0.18,
+      "reason": "1家机构卖出，成功率37.82%",
+      "accum_amount": 15.485585362586
+    },
+    {
+      "code": "300243",
+      "name": "瑞丰高材",
+      "close": 14.15,
+      "pct_chg": 16.3651,
+      "deal_amount": 153672150.3,
+      "buy_amount": 82969457.6,
+      "sell_amount": 70702692.7,
+      "net": 0.12,
+      "reason": "4家机构买入，成功率41.94%",
+      "accum_amount": 33.561984129307
+    },
+    {
+      "code": "301361",
+      "name": "众智科技",
+      "close": 49.93,
+      "pct_chg": 14.5972,
+      "deal_amount": 131838240.55,
+      "buy_amount": 89508523.69,
+      "sell_amount": 42329716.86,
+      "net": 0.47,
+      "reason": "2家机构买入，成功率45.02%",
+      "accum_amount": 18.108664091957
+    },
+    {
+      "code": "301388",
+      "name": "欣灵电气",
+      "close": 42,
+      "pct_chg": 6.7344,
+      "deal_amount": 117871547.86,
+      "buy_amount": 54731457.72,
+      "sell_amount": 63140090.14,
+      "net": -0.08,
+      "reason": "2家机构买入，成功率8.84%",
+      "accum_amount": 22.77286719931
+    }
+  ],
+  "northbound": {
+    "data": [
+      {
+        "trade_date": "20260311",
+        "ggt_ss": 29130.96,
+        "ggt_sz": 23636.98,
+        "hgt": 134253.92,
+        "sgt": 169467.43,
+        "north_money": 303721.35,
+        "south_money": 52767.95
+      },
+      {
+        "trade_date": "20260310",
+        "ggt_ss": 29115.15,
+        "ggt_sz": 23618.32,
+        "hgt": 131793.97,
+        "sgt": 164687.59,
+        "north_money": 296481.56,
+        "south_money": 52733.46
+      },
+      {
+        "trade_date": "20260309",
+        "ggt_ss": 29228.37,
+        "ggt_sz": 23684.62,
+        "hgt": 164848.23,
+        "sgt": 196348.34,
+        "north_money": 361196.57,
+        "south_money": 52912.99
+      },
+      {
+        "trade_date": "20260306",
+        "ggt_ss": 28967.73,
+        "ggt_sz": 23573.13,
+        "hgt": 131754.09,
+        "sgt": 150892.65,
+        "north_money": 282646.74,
+        "south_money": 52540.86
+      },
+      {
+        "trade_date": "20260305",
+        "ggt_ss": 28982.37,
+        "ggt_sz": 23580.37,
+        "hgt": 147565.78,
+        "sgt": 168781.64,
+        "north_money": 316347.42,
+        "south_money": 52562.74
+      },
+      {
+        "trade_date": "20260304",
+        "ggt_ss": 29144.75,
+        "ggt_sz": 23695.34,
+        "hgt": 156625.09,
+        "sgt": 173156.92,
+        "north_money": 329782.01,
+        "south_money": 52840.09
+      },
+      {
+        "trade_date": "20260303",
+        "ggt_ss": 29155.66,
+        "ggt_sz": 23689.09,
+        "hgt": 195527.93,
+        "sgt": 218622.52,
+        "north_money": 414150.45,
+        "south_money": 52844.75
+      },
+      {
+        "trade_date": "20260302",
+        "ggt_ss": 29128.11,
+        "ggt_sz": 23655.83,
+        "hgt": 174618.01,
+        "sgt": 203888.25,
+        "north_money": 378506.26,
+        "south_money": 52783.94
+      },
+      {
+        "trade_date": "20260227",
+        "ggt_ss": 29047.03,
+        "ggt_sz": 23574.77,
+        "hgt": 161691.04,
+        "sgt": 179851.79,
+        "north_money": 341542.83,
+        "south_money": 52621.8
+      },
+      {
+        "trade_date": "20260226",
+        "ggt_ss": 28969.86,
+        "ggt_sz": 23501.96,
+        "hgt": 145059.34,
+        "sgt": 171790.43,
+        "north_money": 316849.77,
+        "south_money": 52471.83
+      }
+    ]
+  },
+  "watchlist_realtime": [
+    {
+      "code": "sz002475",
+      "name": "立讯精密",
+      "open": 49.45,
+      "pre_close": 49.39,
+      "close": 50.17,
+      "high": 50.88,
+      "low": 49.28,
+      "volume": 168648425.0,
+      "amount": 8476553856.34,
+      "date": "2026-03-11",
+      "time": "15:00:00",
+      "pct_chg": 1.58
+    },
+    {
+      "code": "sh560710",
+      "name": "船舶ETF",
+      "open": 1.114,
+      "pre_close": 1.113,
+      "close": 1.096,
+      "high": 1.118,
+      "low": 1.086,
+      "volume": 143310400.0,
+      "amount": 157107901.0,
+      "date": "2026-03-11",
+      "time": "15:00:03",
+      "pct_chg": -1.53
+    }
+  ]
+}

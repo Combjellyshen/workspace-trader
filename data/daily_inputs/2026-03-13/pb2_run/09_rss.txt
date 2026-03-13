@@ -1,0 +1,1329 @@
+/home/bot/.openclaw/workspace-trader/scripts/data/rss_aggregator.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "collected_at": datetime.utcnow().isoformat() + "Z",
+{
+  "meta": {
+    "collected_at": "2026-03-13T07:51:10.027978Z",
+    "total_items": 175,
+    "sources_ok": 10,
+    "sources_total": 19,
+    "source_stats": {
+      "财联社-备用": {
+        "count": 0,
+        "error": "parse error: <unknown>:2:0: syntax error"
+      },
+      "财联社快讯": {
+        "count": 20,
+        "error": null
+      },
+      "新浪财经": {
+        "count": 0,
+        "error": "parse error: text/html; charset=UTF-8 is not an XML media type"
+      },
+      "证券时报": {
+        "count": 0,
+        "error": "parse error: text/html; charset=UTF-8 is not an XML media type"
+      },
+      "CNBC": {
+        "count": 20,
+        "error": null
+      },
+      "MarketWatch": {
+        "count": 10,
+        "error": null
+      },
+      "上交所公告": {
+        "count": 0,
+        "error": "parse error: text/html; charset=UTF-8 is not an XML media type"
+      },
+      "ZeroHedge": {
+        "count": 20,
+        "error": null
+      },
+      "CoinDesk": {
+        "count": 20,
+        "error": null
+      },
+      "证监会新闻": {
+        "count": 0,
+        "error": "parse error: text/html; charset=UTF-8 is not an XML media type"
+      },
+      "Yahoo-Finance": {
+        "count": 20,
+        "error": null
+      },
+      "Reuters-Business": {
+        "count": 0,
+        "error": "parse error: <urlopen error [Errno -2] Name or service not known>"
+      },
+      "FT-Markets": {
+        "count": 20,
+        "error": null
+      },
+      "Bloomberg-Markets": {
+        "count": 20,
+        "error": null
+      },
+      "Investing-Commodities": {
+        "count": 10,
+        "error": null
+      },
+      "OilPrice": {
+        "count": 15,
+        "error": null
+      },
+      "华尔街见闻-A股": {
+        "count": 0,
+        "error": "The read operation timed out"
+      },
+      "华尔街见闻-全球": {
+        "count": 0,
+        "error": "The read operation timed out"
+      },
+      "第一财经": {
+        "count": 0,
+        "error": "The read operation timed out"
+      }
+    }
+  },
+  "categories": {
+    "央行/货币政策": [
+      {
+        "title": "Markets' hopes for Fed interest rate cuts are rapidly fading away",
+        "link": "https://www.cnbc.com/2026/03/12/markets-hopes-for-fed-interest-rate-cuts-are-rapidly-fading-away.html",
+        "published": "Thu, 12 Mar 2026 20:41:02 GMT",
+        "summary": "As both energy prices and inflation fears pop higher, expectations for cuts are sliding lower.",
+        "source": "CNBC"
+      },
+      {
+        "title": "Fed to loosen capital requirements for big US banks",
+        "link": "https://www.ft.com/content/a1c81f17-201f-4e3f-8e02-e0b304f1b6a1",
+        "published": "Thu, 12 Mar 2026 20:40:20 GMT",
+        "summary": "Wall Street cheers plans that would water down protections designed to avoid repeat of 2008 financial crisis",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "Treasuries Fear Gauge Surges to Nine-Month High on War Fallout",
+        "link": "https://www.bloomberg.com/news/articles/2026-03-13/treasuries-fear-gauge-surges-to-nine-month-high-on-war-risks",
+        "published": "Fri, 13 Mar 2026 03:20:04 GMT",
+        "summary": "US Treasuries volatility jumped to a nine-month high as the Iran war fanned inflation concerns and upended traders’ expectations on the Federal Reserve’s policy path.",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "Indian H1B Scammers Found Guilty In Multi-Million Dollar Fraud In Pennsylvania",
+        "link": "https://www.zerohedge.com/political/indian-h1b-scammers-found-guilty-multi-million-dollar-fraud-pennsylvania",
+        "published": "Fri, 13 Mar 2026 03:05:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Indian H1B Scammers Found Guilty In Multi-Million Dollar Fraud In Pennsylvania</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p dir=\"auto\"><strong>A federal jury in Philadelphia has delivered a resounding guilty verdict against two Pennsylvania brothers and a longtime associate</strong>, convicting them of masterminding one o",
+        "source": "ZeroHedge"
+      }
+    ],
+    "美股/全球": [
+      {
+        "title": "Jim Cramer: Don't let Iran war-induced market volatility scare you out of stocks",
+        "link": "https://www.cnbc.com/2026/03/12/jim-cramer-dont-let-iran-war-induced-market-volatility-scare-you-out-of-stocks.html",
+        "published": "Thu, 12 Mar 2026 23:23:55 GMT",
+        "summary": "\"Believe me, you'll be kicking yourself if you sell everything and then you have to watch this market rebound without you,\" CNBC Jim Cramer said Thursday.",
+        "source": "CNBC"
+      },
+      {
+        "title": "Ulta Beauty stock drops as company reports mixed earnings, gives 2026 guidance",
+        "link": "https://www.cnbc.com/2026/03/12/ulta-beauty-ulta-q4-earnings-2025.html",
+        "published": "Thu, 12 Mar 2026 22:42:32 GMT",
+        "summary": "Ulta Beauty reported fiscal fourth-quarter earnings Thursday that beat Wall Street revenue expectations but missed on earnings per share.",
+        "source": "CNBC"
+      },
+      {
+        "title": "The S&P 500 just broke a major support. Another 10% decline is likely.",
+        "link": "https://www.marketwatch.com/story/the-s-p-500-just-broke-a-major-support-another-10-decline-is-likely-8c890fb8?mod=mw_rss_topstories",
+        "published": "Thu, 12 Mar 2026 22:40:00 GMT",
+        "summary": "This is a good time to take risk off the table — and these stock-market charts prove it.",
+        "source": "MarketWatch"
+      },
+      {
+        "title": "Stock Selloff Eases Into Weekend as Oil Rally Ebbs: Markets Wrap",
+        "link": "https://www.bloomberg.com/news/articles/2026-03-12/asian-stocks-bonds-to-echo-us-drop-as-crude-rises-markets-wrap",
+        "published": "Thu, 12 Mar 2026 22:27:20 GMT",
+        "summary": "A selloff in global stocks eased as oil prices steadied after a volatile stretch, though investors remained wary of risks from the Iran war heading into the weekend.",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "Adobe Plunges To 7 Year Low On CEO Resignation, Muted Forecast",
+        "link": "https://www.zerohedge.com/markets/adobe-plunges-7-year-low-ceo-resignation-muted-forecast",
+        "published": "Thu, 12 Mar 2026 21:02:45 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Adobe Plunges To 7 Year Low On CEO Resignation, Muted Forecast</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p>Troubled SaaS icon Adobe tumbled after hours, sending its stock to 7 year lows after the company announced that CEO Shantanu Narayen will resign from the creative software giant amid deep skepticism about the compan",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "This company bought back stock in last month's software rout. It was a good move",
+        "link": "https://www.cnbc.com/2026/03/12/this-company-bought-back-stock-in-last-months-software-rout-it-was-a-good-move.html",
+        "published": "Thu, 12 Mar 2026 18:42:29 GMT",
+        "summary": "Every weekday, the Investing Club releases the Homestretch; an actionable afternoon update just in time for the last hour of trading.",
+        "source": "CNBC"
+      },
+      {
+        "title": "Only 3 U.S. Airlines Can Remain Profitable at Current Oil Prices",
+        "link": "https://oilprice.com/Energy/Energy-General/Only-3-US-Airlines-Can-Remain-Profitable-at-Current-Oil-Prices.html",
+        "published": "Thu, 12 Mar 2026 18:00:00 -0500",
+        "summary": "Wall Street analysts are warning that U.S. airlines could face a painful earnings squeeze as oil prices surge amid the escalating war with Iran. Crude prices jumped over 9% on Thursday as the conflict rattled energy markets and heightened fears of disruption around the Strait of Hormuz. Many U.S. carriers largely abandoned fuel hedging in recent years, leaving them far more exposed to sudden price spikes and raising the prospect that only a handful of airlines can remain profitable at current oi",
+        "source": "OilPrice"
+      },
+      {
+        "title": "Bitcoin holds $70,000 level as surging oil prices and credit issues have stocks tumbling",
+        "link": "https://www.coindesk.com/markets/2026/03/12/bitcoin-holds-usd70-000-level-as-surging-oil-prices-and-credit-issues-have-stocks-tumbling",
+        "published": "Thu, 12 Mar 2026 15:41:33 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "Circle’s outperformance highlights USDC’s staying power, says bullish Wall Street analyst",
+        "link": "https://www.coindesk.com/markets/2026/03/12/circle-s-outperformance-highlights-usdc-s-staying-power-says-bullish-wall-street-analyst",
+        "published": "Thu, 12 Mar 2026 15:00:52 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "Bitcoin's crash to $60,000 warned stocks first – now they're following",
+        "link": "https://www.coindesk.com/markets/2026/03/13/bitcoin-crashed-first-now-stocks-follow-cementing-btc-s-lead-indicator-cred",
+        "published": "Fri, 13 Mar 2026 07:24:03 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "Indian Stocks Near Rare Technical Breach as Oil Risks Rise",
+        "link": "https://www.bloomberg.com/news/articles/2026-03-13/indian-stocks-near-rare-technical-breach-as-oil-risks-rise",
+        "published": "Fri, 13 Mar 2026 06:54:07 GMT",
+        "summary": "India’s struggling equity market is facing a pivotal technical test, with the benchmark index close to breaking a key long-term support level, intensifying strain from surging oil prices.",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "The illicit Iranian oil hiding in plain sight",
+        "link": "https://www.ft.com/content/7f8e97fa-12e6-41e1-9ada-cc292961a4c8",
+        "published": "Fri, 13 Mar 2026 05:17:33 GMT",
+        "summary": "Shipments provide a vital source of income for Iran and allow China to stock up large reserves",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "Bitcoin above $71,000, ETH, SOL, ADA zoom higher as cryptos shrugs off stock weakness",
+        "link": "https://www.coindesk.com/markets/2026/03/13/bitcoin-above-usd71-000-eth-sol-ada-zoom-higher-as-cryptos-shrugs-off-stock-weakness",
+        "published": "Fri, 13 Mar 2026 04:39:17 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "Iran war tests Xi’s plan to build China’s stockpiles",
+        "link": "https://www.ft.com/content/afed783c-b076-4da9-b229-e3bc055bdb87",
+        "published": "Fri, 13 Mar 2026 04:35:38 GMT",
+        "summary": "Beijing has driven major increase in strategic commodity inventories but their scale remains unclear",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "Why Adobe’s stock is falling despite an earnings beat",
+        "link": "https://www.marketwatch.com/story/why-adobes-stock-is-falling-despite-an-earnings-beat-b6a67617?mod=mw_rss_topstories",
+        "published": "Fri, 13 Mar 2026 00:29:00 GMT",
+        "summary": "Adobe’s longtime CEO is stepping down, and the lack of acceleration on a key metric signaled that AI isn’t driving significant financial benefits yet.",
+        "source": "MarketWatch"
+      },
+      {
+        "title": "Ulta Beauty says it’s ‘increasingly mindful’ of effects that global conflicts have on shoppers, as profit forecast sinks stock",
+        "link": "https://www.marketwatch.com/story/ulta-beauty-says-its-increasingly-mindful-of-effects-that-global-conflicts-have-on-shoppers-as-profit-forecast-sinks-stock-b03cc1c3?mod=mw_rss_topstories",
+        "published": "Fri, 13 Mar 2026 00:27:00 GMT",
+        "summary": "Shares of Ulta Beauty slid after hours on Thursday after the cosmetics retailer forecast a profit and same-store sales for this year that were below Wall Street’s estimates, adding that it expects more selective consumer spending and that it was “increasingly mindful” of conflicts abroad.",
+        "source": "MarketWatch"
+      },
+      {
+        "title": "Asian stocks slide as Iran war keeps oil near $100, dents rate-cut bets",
+        "link": "https://www.investing.com/news/economy-news/asian-stocks-slide-as-iran-war-keeps-oil-near-100-dents-ratecut-bets-4558829",
+        "published": "2026-03-13 02:07:37",
+        "summary": "",
+        "source": "Investing-Commodities"
+      },
+      {
+        "title": "S&P 500 Index Profit Margins Tighten. Are Tariffs To Blame?",
+        "link": "https://www.investors.com/news/sp-500-index-profit-margins-spy-tariffs/?src=A00220&yptr=yahoo",
+        "published": "2026-03-11T20:04:39Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "China Stockpiles Soften the Blow of the Global Oil Shock",
+        "link": "https://finance.yahoo.com/news/china-stockpiles-soften-blow-global-200000733.html",
+        "published": "2026-03-11T20:00:00Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "Should Risk-Takers Roll the Dice on These 3 Penny Stocks at 52-Week Lows?",
+        "link": "https://finance.yahoo.com/news/risk-takers-roll-dice-3-195120574.html",
+        "published": "2026-03-11T19:51:20Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "Want Decades of Passive Income? 2 Stocks to Buy Now and Hold Forever",
+        "link": "https://finance.yahoo.com/news/want-decades-passive-income-2-195000032.html",
+        "published": "2026-03-11T19:50:00Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "Prediction: IonQ Will Be the First Quantum Stock to Prove the Bears Wrong",
+        "link": "https://finance.yahoo.com/news/prediction-ionq-first-quantum-stock-195000845.html",
+        "published": "2026-03-11T19:50:00Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "Stock market today: Dow, S&P 500 slip for second day, oil jumps as Iran war rages on",
+        "link": "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-slip-for-second-day-oil-jumps-as-iran-war-rages-on-200311229.html",
+        "published": "2026-03-11T18:33:16Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      }
+    ],
+    "大宗商品/能源": [
+      {
+        "title": "Trump is scrambling to quell the rise of $100 oil. But the market keeps circling one answer.",
+        "link": "https://www.marketwatch.com/story/trump-is-scrambling-to-quell-the-rise-of-100-oil-but-the-market-keeps-circling-one-answer-bf9abf20?mod=mw_rss_topstories",
+        "published": "Thu, 12 Mar 2026 22:50:00 GMT",
+        "summary": "Other efforts to coax oil down prices — now at $100 a barrel — are like putting a Band-Aid on a shotgun wound, says analyst",
+        "source": "MarketWatch"
+      },
+      {
+        "title": "Brent Oil Trades Above $100 as Iran Vows to Keep Hormuz Closed",
+        "link": "https://www.bloomberg.com/news/articles/2026-03-12/latest-oil-market-news-and-analysis-for-march-13",
+        "published": "Thu, 12 Mar 2026 22:05:31 GMT",
+        "summary": "Brent oil traded above $100 a barrel following one of the most volatile trading weeks ever, with investors bracing for more upheaval as Iran pledged to keep the Strait of Hormuz effectively shut.",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "Oil Prices Dip as U.S. Opens Brief Window for Stranded Russian Crude",
+        "link": "https://oilprice.com/Latest-Energy-News/World-News/Oil-Prices-Dip-as-US-Opens-Brief-Window-for-Stranded-Russian-Crude.html",
+        "published": "Thu, 12 Mar 2026 21:09:44 -0500",
+        "summary": "Oil prices edged lower in early Asian trade on Friday morning after the United States issued a temporary license allowing countries to purchase Russian crude and petroleum products currently stranded at sea. The move, which promises to provide some temporary relief to global oil markets, helped push Brent crude down 0.38% to $100.10 per barrel, while West Texas Intermediate futures dropped by 0.58% to $95.17 per barrel. The 30-day waiver, permitting the purchase of Russian oil cargoes already lo",
+        "source": "OilPrice"
+      },
+      {
+        "title": "Middle East war day 13 as it happened: Mojtaba Khamenei calls for Strait of Hormuz to ‘remain closed’, Oil closes above $100 for first time since 2022",
+        "link": "https://www.ft.com/content/87a06d69-7cb2-4aaf-82ff-da0bf8be43d4",
+        "published": "Thu, 12 Mar 2026 21:08:46 GMT",
+        "summary": "Latest round of strikes on tankers and Iranian supreme leaders comments fan fears of supply disruptions",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "Charts Show Middle East Shockwave Rippling Through Energy, Air Travel, And Freight Networks",
+        "link": "https://www.zerohedge.com/markets/charts-show-middle-east-shockwave-rippling-through-energy-air-travel-and-freight-networks",
+        "published": "Thu, 12 Mar 2026 20:50:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Charts Show Middle East Shockwave Rippling Through Energy, Air Travel, And Freight Networks</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p>The Middle East conflict has triggered what the International Energy Agency earlier <a href=\"https://www.zerohedge.com/geopolitical/two-more-tankers-hit-bringing-total-six-ships-oil-tops",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "Iran War: U.S. Navy will escort oil tankers through Strait of Hormuz when 'militarily possible,' Bessent tells Sky News",
+        "link": "https://www.cnbc.com/2026/03/12/iran-war-us-navy-strait-of-hormuz-oil-bessent.html",
+        "published": "Thu, 12 Mar 2026 20:28:45 GMT",
+        "summary": "The Strait of Hormuz has been effectively closed to shipping because of the war against Iran by the U.S. and Israel.",
+        "source": "CNBC"
+      },
+      {
+        "title": "Intervention in oil futures would be ‘biblical disaster’, CME warns",
+        "link": "https://www.ft.com/content/823657f2-4f8b-4325-88db-fbbdba6c9e17",
+        "published": "Thu, 12 Mar 2026 19:54:14 GMT",
+        "summary": "Terry Duffy says any attempt by the government to lower prices using derivatives market would erode confidence",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "Brent oil closes at $100 after Iran's new supreme leader says Strait of Hormuz must remain closed",
+        "link": "https://www.cnbc.com/2026/03/12/oil-prices-jump-iea-record-reserve-release-markets-doubt-relief.html",
+        "published": "Thu, 12 Mar 2026 19:42:49 GMT",
+        "summary": "Strategists said oil prices were trading higher because there appears to be no end in sight to oil supply disruptions through the Strait of Hormuz.",
+        "source": "CNBC"
+      },
+      {
+        "title": "Canadian Crude Cashes In on War Premium",
+        "link": "https://oilprice.com/Energy/Crude-Oil/Canadian-Crude-Cashes-In-on-War-Premium.html",
+        "published": "Thu, 12 Mar 2026 19:00:00 -0500",
+        "summary": "Just a month ago, Alberta’s finance ministry announced a budget featuring annual deficits for three years in a row on the back of low oil prices. Now, Canadian crude oil producers are set to “benefit disproportionately” from the war in the Middle East thanks to the fact that Canadian crude prices follow WTI closely—and WTI is spiking. When Minister Nate Horner presented the budget for Canada’s oil province, he said expectations were that oil prices would bottom out this year and start rising in",
+        "source": "OilPrice"
+      },
+      {
+        "title": "North Sea Drilling Won’t Protect Europe from Global Price Shocks",
+        "link": "https://oilprice.com/Energy/Natural-Gas/North-Sea-Drilling-Wont-Protect-Europe-from-Global-Price-Shocks.html",
+        "published": "Thu, 12 Mar 2026 17:00:00 -0500",
+        "summary": "When tensions around the Strait of Hormuz began rattling energy markets again, the reaction was entirely predictable. Tanker traffic slowed, insurance premiums rose, and oil and gas prices started climbing. But something else happened just as predictably. Across Europe, politicians and policy institutions began reviving familiar proposals: reopen gas fields, expand offshore drilling, reconsider domestic reserves that had previously been phased out. In the Netherlands, even the long-closed Gronin",
+        "source": "OilPrice"
+      },
+      {
+        "title": "Middle East War Revives Push for Domestic Energy",
+        "link": "https://oilprice.com/Energy/Energy-General/Middle-East-War-Revives-Push-for-Domestic-Energy.html",
+        "published": "Thu, 12 Mar 2026 16:00:00 -0500",
+        "summary": "The Middle East war and the mother of all oil shocks—the de facto closure of the Strait of Hormuz—have exposed the global dependence on oil and gas as buyers scramble for cargoes and consumers once again bear the brunt of spiking energy prices. Before the war, the world had just overcome the energy system disruption from the Russian invasion of Ukraine and the embargoes on Russian energy in most of the developed economies. Some thought this was the biggest energy shock this decade, and most gove",
+        "source": "OilPrice"
+      },
+      {
+        "title": "Here is what $100 oil means for Bitcoin network",
+        "link": "https://www.coindesk.com/markets/2026/03/12/here-is-what-usd100-oil-means-for-bitcoin-network",
+        "published": "Thu, 12 Mar 2026 15:57:54 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "Iran Warns Gulf Energy Assets Could Burn if Its Oil Facilities Are Targeted",
+        "link": "https://oilprice.com/Latest-Energy-News/World-News/Iran-Warns-Gulf-Energy-Assets-Could-Burn-if-Its-Oil-Facilities-Are-Targeted.html",
+        "published": "Thu, 12 Mar 2026 15:41:00 -0500",
+        "summary": "Iran’s Islamic Revolutionary Guard Corps (IRGC) warned Thursday that it could ignite a wider energy crisis across the Middle East if Iran’s own oil and gas infrastructure comes under attack. In a statement carried by state broadcaster IRIB, the IRGC said any strike on Iran’s energy facilities or ports would trigger a “crushing and devastating response.” The force warned that, in such a scenario, oil and gas infrastructure across the region linked to the United States and its Western allies would",
+        "source": "OilPrice"
+      },
+      {
+        "title": "Russia rakes in $150mn a day in extra revenue from surging oil prices",
+        "link": "https://www.ft.com/content/dd973148-b6a1-4096-97da-3090a058fe08",
+        "published": "Thu, 12 Mar 2026 15:24:51 GMT",
+        "summary": "Middle East conflict boosts Vladimir Putin’s war chest as tankers carrying Russian oil head to India",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "How Venezuela’s Oil Industry Killed Lake Maracaibo",
+        "link": "https://oilprice.com/Energy/Crude-Oil/How-Venezuelas-Oil-Industry-Killed-Lake-Maracaibo.html",
+        "published": "Thu, 12 Mar 2026 15:00:00 -0500",
+        "summary": "Venezuela’s Lake Maracaibo, South America’s largest and oldest waterbody, is at risk. The lake is situated in the heart of the Maracaibo Basin, one of the continent’s richest oil-producing regions. After the Zumaque 1 wildcat well found black gold on Lake Maracaibo’s eastern shore, Venezuela’s oil industry rapidly expanded, covering the ancient waterbody with persistently leaking pipelines, storage tanks, and derricks. This triggered a devastating environmental disaster, which could worsen after",
+        "source": "OilPrice"
+      },
+      {
+        "title": "‘Sitting ducks’: oil tankers trapped in Gulf as Iran widens attacks on shipping",
+        "link": "https://www.ft.com/content/f45188dd-57d4-4d5d-90e0-59190543b1ae",
+        "published": "Thu, 12 Mar 2026 14:43:48 GMT",
+        "summary": "Operators face growing risks whether they stay or flee through Strait of Hormuz",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "Why gold hasn’t moved since the Iran conflict — and where it could go next",
+        "link": "https://www.cnbc.com/2026/03/12/gold-iran-conflict-where-next-markets.html",
+        "published": "Thu, 12 Mar 2026 14:43:09 GMT",
+        "summary": "Though the war in Iran has continued for almost two weeks, the price of the yellow metal has barely moved.",
+        "source": "CNBC"
+      },
+      {
+        "title": "Trump Weighs Rare Jones Act Waiver as War Drives Fuel Prices Higher",
+        "link": "https://oilprice.com/Latest-Energy-News/World-News/Trump-Weighs-Rare-Jones-Act-Waiver-as-War-Drives-Fuel-Prices-Higher.html",
+        "published": "Thu, 12 Mar 2026 14:30:00 -0500",
+        "summary": "The Trump administration is weighing a rare suspension of the century-old Jones Act, an extraordinary step that Washington has historically taken only during major national emergencies such as hurricanes or severe supply disruptions. Officials are considering a roughly 30-day waiver of the maritime law as the war in the Middle East sends oil and fuel prices sharply higher and disrupts global shipping routes. If enacted, it would allow foreign tankers to move oil, gasoline, diesel, liquefied natu",
+        "source": "OilPrice"
+      },
+      {
+        "title": "The UAE’s Energy Playbook Is Paying Off Amid Global Turmoil",
+        "link": "https://oilprice.com/Energy/Crude-Oil/The-UAEs-Energy-Playbook-Is-Paying-Off-Amid-Global-Turmoil.html",
+        "published": "Thu, 12 Mar 2026 14:00:00 -0500",
+        "summary": "Energy markets have entered an unprecedented crisis, pushing the world to look instinctively toward the largest producers: Saudi Arabia, the United States, or Russia. However, in the background, but sometimes hitting already the headlines, of today’s geopolitical turbulence, especially due to the ongoing, escalating confrontation around Iran, showing the fragility of maritime chokepoints (Hormuz), another actor has already, for years, quietly become indispensable to the current and future stabil",
+        "source": "OilPrice"
+      },
+      {
+        "title": "Fujairah Oil Terminals Resume Operations After Drone Attack",
+        "link": "https://oilprice.com/Latest-Energy-News/World-News/Fujairah-Oil-Terminals-Resume-Operations-After-Drone-Attack.html",
+        "published": "Thu, 12 Mar 2026 13:00:00 -0500",
+        "summary": "Operations at the United Arab Emirates’ key oil storage and bunkering hub in Fujairah are gradually returning to normal after attacks earlier this week disrupted loading activities at several terminals. Most storage terminals and berths at the Fujairah Oil Tanker Terminal (FOTT) are now operating again, according to trade and shipping sources. Shipping agent reports show that all berths at Oil Terminal 1 and a very large crude carrier (VLCC) jetty are functioning, while several berths at Oil Ter",
+        "source": "OilPrice"
+      },
+      {
+        "title": "Ukraine Hits Major Oil Export Pipeline Hub in South Russia",
+        "link": "https://oilprice.com/Latest-Energy-News/World-News/Ukraine-Hits-Major-Oil-Export-Pipeline-Hub-in-South-Russia.html",
+        "published": "Thu, 12 Mar 2026 11:58:00 -0500",
+        "summary": "Ukraine on Thursday hit in a drone attack a key pipeline hub of Russia’s crude oil exports in the southern region of Krasnodar as Kyiv intensifies strikes on Russian energy and military infrastructure. The pipeline terminal at Tikhoretsk, which hosts a major oil depot and a pumping station, was hit and a large fire broke out as a result, a source with knowledge of the situation told Bloomberg. Tikhoretsk is a major oil transshipment and pumping station for Russian oil supply in it southern regio",
+        "source": "OilPrice"
+      },
+      {
+        "title": "Euro Hits Lowest Level Versus Dollar Since August on Oil Crisis",
+        "link": "https://www.bloomberg.com/news/articles/2026-03-13/euro-hits-lowest-level-versus-dollar-since-august-on-oil-crisis",
+        "published": "Fri, 13 Mar 2026 07:33:13 GMT",
+        "summary": "The euro fell to its lowest level since August amid broader dollar gains as the Middle East war escalates.",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "Asia-Pacific markets tumble as investors brace for a prolonged war in Middle East",
+        "link": "https://www.cnbc.com/2026/03/13/asia-pacific-markets-today-nikkei-225-kospi-hang-seng-csi300.html",
+        "published": "Fri, 13 Mar 2026 07:30:06 GMT",
+        "summary": "Iran's new Supreme Leader Mojtaba Khamenei said in a late Thursday speech that the Strait of Hormuz, a vital artery for global oil trade, should remain shut.",
+        "source": "CNBC"
+      },
+      {
+        "title": "财联社3月13日电，据上期所，本周铜库存增加8313吨，铝库存增加21927吨，锌库存增加12427吨，铅库存增加9220吨，镍库存增加1912吨，锡库存增加851吨，天然橡胶库...",
+        "link": "https://api3.cls.cn/share/article/2312007?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:24:43 GMT",
+        "summary": "财联社3月13日电，据上期所，本周铜库存增加8313吨，铝库存增加21927吨，锌库存增加12427吨，铅库存增加9220吨，镍库存增加1912吨，锡库存增加851吨，天然橡胶库存增加4270吨。",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "Japan to Sell Oil From National Reserves at Pre-Iran War Prices",
+        "link": "https://www.bloomberg.com/news/articles/2026-03-13/japan-to-sell-oil-from-national-reserves-at-pre-iran-war-prices",
+        "published": "Fri, 13 Mar 2026 07:22:33 GMT",
+        "summary": "Japan will sell oil from its national reserves at prices based on levels before the start of the Middle East war, according to the country’s trade minister.",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "Strikes Continue as Hormuz Threat Keeps Oil on Edge",
+        "link": "https://www.bloomberg.com/news/live-blog/2026-03-13/iran-war-news-latest-oil-price-trump-stocks-markets-updates",
+        "published": "Fri, 13 Mar 2026 07:15:09 GMT",
+        "summary": "A man retrieves items from the rubble of residential buildings that were destroyed following an attack in Tehran on March 12. Photographer: Majid Saeedi/Getty Images Europe",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "Oil at $100 a Barrel Promises Boon for Africa's Largest Country",
+        "link": "https://www.bloomberg.com/news/articles/2026-03-13/oil-at-100-a-barrel-promises-boon-for-africa-s-largest-country",
+        "published": "Fri, 13 Mar 2026 07:00:02 GMT",
+        "summary": "Algerian authorities were thrown a lifeline after Russia’s full-scale invasion of Ukraine sent energy prices soaring, now there’s hope that the rise in oil prices driven by the war in Iran will offer another.",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "Saudi Aramco To Buy Ukrainian Interceptor Drones To Defend Oil Fields",
+        "link": "https://www.zerohedge.com/technology/saudi-aramco-buy-ukrainian-interceptor-drones-defend-oil-fields",
+        "published": "Fri, 13 Mar 2026 06:45:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Saudi Aramco To Buy Ukrainian Interceptor Drones To Defend Oil Fields </span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p>Low-cost interceptor drones are poised to see massive demand across U.S.-aligned Gulf states as the conflict with <a href=\"https://www.zerohedge.com/geopolitical/two-more-tankers-hit-bringing-total-six-ships",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "Gulf oil shock deepens crisis for Asia’s petrochemicals industry",
+        "link": "https://www.ft.com/content/cb21c436-3bcc-4211-8f92-8041e5a1c698",
+        "published": "Fri, 13 Mar 2026 06:38:17 GMT",
+        "summary": "Japan and South Korea exposed to shortages of key component for plastics",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "The US consumer is OK",
+        "link": "https://www.ft.com/content/867e5b72-e8a3-4c14-a708-eba745657ed3",
+        "published": "Fri, 13 Mar 2026 06:30:09 GMT",
+        "summary": "But if oil stays expensive . . .",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "Oil price shocks create many losers, but some winners too",
+        "link": "https://www.ft.com/content/bffd00bb-ff47-4f88-bcee-c7668435f6a6",
+        "published": "Fri, 13 Mar 2026 05:00:29 GMT",
+        "summary": "Offsetting the higher prices, energy companies have to contend with disruption where they have people and assets",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "Gulf states lose $15bn in energy revenues since start of war",
+        "link": "https://www.ft.com/content/041bd1f6-f27b-41fd-a051-9ff337985cae",
+        "published": "Fri, 13 Mar 2026 05:00:20 GMT",
+        "summary": "Millions of barrels of crude oil remain trapped by shutdown of the Strait of Hormuz",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "U.S. allows temporary purchases of Russian oil already at sea to stabilize energy markets",
+        "link": "https://www.cnbc.com/2026/03/13/bessent-us-allows-purchase-russian-oil-stranded-sea-energy-markets.html",
+        "published": "Fri, 13 Mar 2026 04:49:41 GMT",
+        "summary": "The U.S. has temporarily authorized the purchase of Russian oil stranded at sea to stabilize energy markets.",
+        "source": "CNBC"
+      },
+      {
+        "title": "US-Iran war boosts Russian oil revenues",
+        "link": "https://www.ft.com/content/d19e3776-e417-477b-af21-744511ace21d",
+        "published": "Fri, 13 Mar 2026 04:00:00 GMT",
+        "summary": "Middle East conflict boosts Vladimir Putin’s war chest as tankers carrying Russian oil head to India",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "Oil Prices Head for Weekly Gain Despite U.S. Waiver on Stranded Russian Crude",
+        "link": "https://oilprice.com/Latest-Energy-News/World-News/Oil-Prices-Head-for-Weekly-Gain-Despite-US-Waiver-on-Stranded-Russian-Crude.html",
+        "published": "Fri, 13 Mar 2026 01:20:00 -0500",
+        "summary": "Crude oil prices were on course for another weekly gain today, despite a temporary dip following the announcement of a 30-day sanction waiver on Russian crude stuck on tankers as the Trump administration tries to alleviate an increasingly serious-looking supply tightening. Brent crude was trading at $100.2 per barrel at the time of writing, and West Texas Intermediate was trading at $95.03, both slightly down on Thursday’s close but higher on the start of the week. Washington’s sanction waiver f",
+        "source": "OilPrice"
+      },
+      {
+        "title": "Bitcoin climbs to near $72,000 after Treasury Secretary Bessent attempts to calm oil fears",
+        "link": "https://www.coindesk.com/markets/2026/03/12/bitcoin-climbs-to-near-usd72-000-after-treasury-secretary-bessent-attempts-to-calm-oil-fears",
+        "published": "Fri, 13 Mar 2026 00:38:01 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "US eases Russian oil sanctions as energy prices soar",
+        "link": "https://www.ft.com/content/d213e507-905e-440b-987e-66bfc1acdffe",
+        "published": "Fri, 13 Mar 2026 00:31:46 GMT",
+        "summary": "Move by Treasury comes after escalating crisis in Gulf sends Brent back above $100",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "At the mercy of oil: Five questions for the ECB",
+        "link": "https://www.investing.com/news/economy-news/at-the-mercy-of-oil-five-questions-for-the-ecb-4559025",
+        "published": "2026-03-13 07:06:44",
+        "summary": "",
+        "source": "Investing-Commodities"
+      },
+      {
+        "title": "Morning Bid: Crude shock",
+        "link": "https://www.investing.com/news/economy-news/morning-bid-crude-shock-4558929",
+        "published": "2026-03-13 05:36:29",
+        "summary": "",
+        "source": "Investing-Commodities"
+      },
+      {
+        "title": "Wall St ends sharply lower as Iran war intensifies, crude price soars",
+        "link": "https://www.investing.com/news/economy-news/wall-street-futures-drop-as-middle-east-tensionslift-oil-above-100-4556172",
+        "published": "2026-03-13 01:18:29",
+        "summary": "",
+        "source": "Investing-Commodities"
+      }
+    ],
+    "地缘政治": [
+      {
+        "title": "Ben Affleck Once Criticized AI, Now Netflix Is Buying His AI Startup For $600 Million",
+        "link": "https://www.zerohedge.com/markets/ben-affleck-once-criticized-ai-now-netflix-buying-his-ai-startup-600-million",
+        "published": "Thu, 12 Mar 2026 23:45:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Ben Affleck Once Criticized AI, Now Netflix Is Buying His AI Startup For $600 Million</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p>Ben Affleck—who has previously warned about the risks artificial intelligence poses to Hollywood—has sold his own AI filmmaking startup to Netflix in a deal that could reach $600 million, acco",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "White House Disputes ABC Report Claiming Iran Wants To Launch Drones At West Coast",
+        "link": "https://www.zerohedge.com/political/white-house-disputes-abc-report-claiming-iran-wants-launch-drones-west-coast",
+        "published": "Thu, 12 Mar 2026 23:20:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">White House Disputes ABC Report Claiming Iran Wants To Launch Drones At West Coast</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><em><a href=\"https://www.theepochtimes.com/us/white-house-disputes-abc-report-claiming-iran-wants-to-launch-drones-at-west-coast-5997831\">Authored by Jack Phillips via The Epoch Times</a> (emphas",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "Large US Refueling Aircraft Down In Western Iraq In First Of Iran War",
+        "link": "https://www.zerohedge.com/geopolitical/two-more-tankers-hit-bringing-total-six-ships-oil-tops-100-after-trump-declares-we-won",
+        "published": "Thu, 12 Mar 2026 23:00:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Large US Refueling Aircraft Down In Western Iraq In First Of Iran War</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><strong>Summary:</strong></p>\n\n<ul><li>\n\t<p>State media: <strong>Iran claims responsibility for shooting down US refueling plane</strong>, says US refueling plane was downed with all crew killed in Western Ir",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "Shoppers seeking a tariff refund from retailers are likely out of luck",
+        "link": "https://www.marketwatch.com/story/shoppers-seeking-a-tariff-refund-from-retailers-are-likely-out-of-luck-5aacf5f4?mod=mw_rss_topstories",
+        "published": "Thu, 12 Mar 2026 22:59:00 GMT",
+        "summary": "A new lawsuit alleges that Costco owes shoppers refunds for tariffs, but experts say that’s a tough call.",
+        "source": "MarketWatch"
+      },
+      {
+        "title": "Adobe CEO Shantanu Narayen says he will step down after company installs successor",
+        "link": "https://www.cnbc.com/2026/03/12/adobe-ceo-shantanu-narayen-step-down.html",
+        "published": "Thu, 12 Mar 2026 22:22:21 GMT",
+        "summary": "Shantanu Narayen led Adobe through a transition to subscription software, and he's been positioning the company to grow in the artificial intelligence age.",
+        "source": "CNBC"
+      },
+      {
+        "title": "Western Leaders Pivot To Blaming \"Putin's Hidden Hand\" As Iran War Not Going To Plan",
+        "link": "https://www.zerohedge.com/geopolitical/western-leaders-pivot-blaming-putins-hidden-hand-iran-war-not-going-plan",
+        "published": "Thu, 12 Mar 2026 22:05:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Western Leaders Pivot To Blaming \"Putin's Hidden Hand\" As Iran War Not Going To Plan</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p>Western intelligence officials believe Russia's role in supporting Iran amid the US-Israeli military campaign is <strong>deepening</strong>,<strong> alongside potential expanding involvement by",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "Warren calls on State Department to provide more aid to Americans stuck in Middle East",
+        "link": "https://www.cnbc.com/2026/03/12/warren-state-department-americans-stuck-middle-east-iran-israel-war.html",
+        "published": "Thu, 12 Mar 2026 21:23:31 GMT",
+        "summary": "The State Department said this week that 36,000 Americans had returned to the U.S. after the start of the war with Iran.",
+        "source": "CNBC"
+      },
+      {
+        "title": "How the Iran war will change global business",
+        "link": "https://www.ft.com/content/7145e265-a1ce-4e5f-a0ae-7cb8b9bec168",
+        "published": "Thu, 12 Mar 2026 18:27:36 GMT",
+        "summary": "Damage from the conflict is already having an impact on corporate strategy",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "Trump tariffs: Martin Heinrich bill would give families tax rebate for higher import costs",
+        "link": "https://www.cnbc.com/2026/03/12/trump-trade-tariffs-tax-rebates-martin-heinrich-2026-elections.html",
+        "published": "Thu, 12 Mar 2026 17:37:48 GMT",
+        "summary": "The Supreme Court in a 6-3 ruling Feb. 20 ruled that President Donald Trumps IEEPA tariffs were illegal.",
+        "source": "CNBC"
+      },
+      {
+        "title": "How War in Iran Could Cripple the Global Digital Economy",
+        "link": "https://oilprice.com/Energy/Energy-General/How-War-in-Iran-Could-Cripple-the-Global-Digital-Economy.html",
+        "published": "Thu, 12 Mar 2026 12:00:00 -0500",
+        "summary": "The semiconducting industry is in trouble, which means the global economy is in trouble. The sector that creates the computer chips that increasingly power our world requires a huge amount of resources to operate efficiently, including a number of different critical minerals and a whole lot of energy. And those supply chains are now facing major disruptions thanks to the war that the United States and Israel are waging in Iran.  Though Donald Trump stated on Monday that the war will end “very so",
+        "source": "OilPrice"
+      },
+      {
+        "title": "外交部：所谓“强迫劳动”是美方炮制的谎言 反对以此进行政治操弄",
+        "link": "https://api3.cls.cn/share/article/2312024?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:37:13 GMT",
+        "summary": "【外交部：所谓“强迫劳动”是美方炮制的谎言 反对以此进行政治操弄】财联社3月13日电，外交部发言人郭嘉昆3月13日主持例行记者会。共同社记者提问，据报道，美国特朗普政府12日表示，将就“强迫劳动”问题启动新的调查，调查的对象中包括中国，请问中方对此有何评论？\n\n郭嘉昆表示，中方在处理中美经贸问题上的立场是一贯、明确的，反对各种形式的单边关税措施，关税战、贸易战不符合任何一方的利益，双方应该在平等、尊重、互惠基础上协商解决有关问题。“所谓‘强迫劳动’完全是美方炮制的谎言，中方反对以此为借口进行政治操弄。”郭嘉昆说。 (北京日报)",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "German Chemical Firms Warn of Output Cut on War’s Ripple Effect",
+        "link": "https://www.bloomberg.com/news/articles/2026-03-13/german-chemical-firms-warn-of-output-cut-on-war-s-ripple-effect",
+        "published": "Fri, 13 Mar 2026 07:30:00 GMT",
+        "summary": "Germany’s chemical industry warned shockwaves from the Iran war are beginning to ricochet through Europe’s largest economy with a number of companies dialing down output as supply chains seize up and energy costs surge.",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "China Strengthens Yuan Fixing for a Record 15th Straight Week",
+        "link": "https://www.bloomberg.com/news/articles/2026-03-13/china-strengthens-yuan-fixing-for-a-record-15th-straight-week",
+        "published": "Fri, 13 Mar 2026 07:26:02 GMT",
+        "summary": "China has raised the yuan fixing for a 15th straight week, the longest weekly gaining streak on record, showing continued support for the currency to appreciate despite volatility from the Iran war.",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "State Street Sees No Evidence of Broad-Based Risk Reduction",
+        "link": "https://www.bloomberg.com/news/videos/2026-03-13/state-street-no-evidence-of-broad-based-risk-reduction-video",
+        "published": "Fri, 13 Mar 2026 07:19:42 GMT",
+        "summary": "Marija Veitmane, equity research head at State Street Global Markets, discusses the outlook for equity markets as investors weigh the potential fallout of the war in the Middle East. \"We'll see whether it's confident or complacent, but for now they're kind of hoping this conflict would be resolved sooner rather than later,\" Veitmane tells Bloomberg Television. \"We don't see big risk reductions yet.\" (Source: Bloomberg)",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "Romanian Inflation Eases With New Shock Looming From Iran War",
+        "link": "https://www.bloomberg.com/news/articles/2026-03-13/romanian-inflation-eases-with-new-shock-looming-from-iran-war",
+        "published": "Fri, 13 Mar 2026 07:09:20 GMT",
+        "summary": "Romanian inflation slowed as expected but surging global energy prices threaten to reverse the trend and prevent the central bank from easing monetary policy anytime soon.",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "Foreign Investors Warn of Legal Action on Vietnam Power Dispute",
+        "link": "https://www.bloomberg.com/news/articles/2026-03-13/foreign-investors-warn-of-legal-action-on-vietnam-power-dispute",
+        "published": "Fri, 13 Mar 2026 06:58:15 GMT",
+        "summary": "Foreign investors have urged Vietnam’s government to resolve a long-running dispute over payments to solar and wind power projects, warning that producers may pursue legal action if agreed terms are not honored.",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "India’s Restaurant Industry Running on Fumes",
+        "link": "https://www.bloomberg.com/news/videos/2026-03-13/india-s-restaurant-industry-running-on-fumes-video",
+        "published": "Fri, 13 Mar 2026 06:34:31 GMT",
+        "summary": "India’s massive restaurant industry, which feeds and employs millions, faces severe disruption as gas shortages halt commercial supplies and force outlets to scale back their menus or shut. With most kitchens dependent on LPG cylinders, the crisis threatens small businesses and jobs. Zorawar Kalra, Vice President of the National Restaurant Association of India, discusses the fallout with Haslinda Amin and Menaka Doshi on Insight with Haslinda Amin. (Source: Bloomberg)",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "Yen Trades at Weakest Since July 2024 as Iran War Escalates",
+        "link": "https://www.bloomberg.com/news/articles/2026-03-13/yen-slides-to-weakest-since-july-2024-as-iran-war-escalates",
+        "published": "Fri, 13 Mar 2026 04:34:16 GMT",
+        "summary": "The yen touched its weakest level since 2024 on concern any escalation of the Middle East conflict over the weekend would further dent Japan’s economy.",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "Pro-War Republican Senator Apologizes For Iran Girls' School Massacre After Trump Blames Tehran",
+        "link": "https://www.zerohedge.com/geopolitical/pro-war-republican-senator-apologizes-iran-girls-school-massacre-after-trump-blames",
+        "published": "Fri, 13 Mar 2026 03:30:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Pro-War Republican Senator Apologizes For Iran Girls' School Massacre After Trump Blames Tehran</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><a href=\"https://www.commondreams.org/news/kennedy-iran-school-massacre\"><em>Authored by Brett Wilkins via Common Dreams</em></a></p>\n\n<p>A Republican senator apologized this week fo",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "Iran's Hormuz Naval Mines: A Powerful Asymmetric Weapon Paralyzing Tanker Traffic",
+        "link": "https://www.zerohedge.com/energy/irans-hormuz-naval-mines-power-asymmetric-weapon-paralyzing-tanker-traffic",
+        "published": "Fri, 13 Mar 2026 02:15:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Iran's Hormuz Naval Mines: A Powerful Asymmetric Weapon Paralyzing Tanker Traffic </span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p>Iran's asymmetric warfare in the Strait of Hormuz has shifted from kamikaze drone strikes on tankers, bulk carriers, and container ships to littering the world's most important maritime chokepoin",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "Palantir's technology gives the West a critical edge in Middle East, CEO Alex Karp says",
+        "link": "https://www.cnbc.com/2026/03/12/palantir-tech-gives-west-critical-edge-in-middle-east-ceo-alex-karp.html",
+        "published": "Fri, 13 Mar 2026 01:21:52 GMT",
+        "summary": "Palantir CEO Alex Karp sat down exclusively with CNBC to discuss the Iran war and how AI is being used in wartime.",
+        "source": "CNBC"
+      },
+      {
+        "title": "Senate Republicans On Iran War Ending: Sooner The Better",
+        "link": "https://www.zerohedge.com/geopolitical/senate-republicans-iran-war-ending-sooner-better",
+        "published": "Fri, 13 Mar 2026 00:35:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Senate Republicans On Iran War Ending: Sooner The Better</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><strong>The ongoing U.S. military operation against Iran, which began February 28th with strikes aimed at destroying Iran's nuclear program, ballistic missile capabilities, navy, and other strategic assets, has prompted a",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "Netflix is spending up to $600 million to buy Ben Affleck’s AI startup. What exactly is it buying?",
+        "link": "https://www.marketwatch.com/story/netflix-is-spending-up-to-600-million-to-buy-ben-afflecks-ai-startup-what-exactly-is-it-buying-8435f02e?mod=mw_rss_topstories",
+        "published": "Fri, 13 Mar 2026 00:34:00 GMT",
+        "summary": "A week after backing away from buying Warner Bros. Discovery, Netflix decides to buy rather than build AI tools for filmmakers.",
+        "source": "MarketWatch"
+      }
+    ],
+    "科技/AI": [
+      {
+        "title": "Centrus Partners With Palantir As Wright Pushes End To Russian Imports",
+        "link": "https://www.zerohedge.com/energy/centrus-partners-palantir-wright-pushes-end-russian-imports",
+        "published": "Thu, 12 Mar 2026 22:55:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Centrus Partners With Palantir As Wright Pushes End To Russian Imports</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p>In a <strong>move underscoring America’s drive for nuclear fuel sovereignty,</strong> Centrus Energy and Palantir <a href=\"https://investors.centrusenergy.com/news-releases/news-release-details/centrus-partn",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "'Moderate' Gov. Abigail Spanberger Expected To Sign Sweeping Gun Ban Into Law",
+        "link": "https://www.zerohedge.com/political/moderate-gov-abigail-spanberger-expected-sign-sweeping-gun-ban-law",
+        "published": "Thu, 12 Mar 2026 21:40:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">'Moderate' Gov. Abigail Spanberger Expected To Sign Sweeping Gun Ban Into Law</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><a href=\"https://pjmedia.com/tim-o-brien/2026/03/11/moderate-gov-abigail-spanberger-expected-to-sign-sweeping-gun-ban-into-law-n4950544\"><em>Authored by Tim O'Brien via PJMedia.com,</em></a></p>\n\n<p>N",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "Sam Altman faced 'serious questions' in meeting with lawmakers about OpenAI's defense work",
+        "link": "https://www.cnbc.com/2026/03/12/sam-altman-faced-serious-questions-in-dc-meeting-openai-defense-work.html",
+        "published": "Thu, 12 Mar 2026 21:31:17 GMT",
+        "summary": "OpenAI CEO Sam Altman met with a handful of lawmakers in Washington, D.C., to discuss the company's work with the Defense Department.",
+        "source": "CNBC"
+      },
+      {
+        "title": "Microsoft top Office executive Rajesh Jha retiring after more than 35 years",
+        "link": "https://www.cnbc.com/2026/03/12/microsofts-top-office-executive-rajesh-jha-retiring-after-35-years.html",
+        "published": "Thu, 12 Mar 2026 17:00:35 GMT",
+        "summary": "Rajesh Jha helped Microsoft bring to market an artificial intelligence assistant containing OpenAI models for its Office productivity customers.",
+        "source": "CNBC"
+      },
+      {
+        "title": "DOE Unveils $1.9 Billion Electric Grid Upgrade Push",
+        "link": "https://oilprice.com/Latest-Energy-News/World-News/DOE-Unveils-19-Billion-Electric-Grid-Upgrade-Push.html",
+        "published": "Thu, 12 Mar 2026 15:30:00 -0500",
+        "summary": "The U.S. Department of Energy is launching a $1.9 billion funding effort aimed at rapidly expanding the capacity of the nation’s power grid by upgrading existing transmission lines. This is instead of building entirely new ones. The initiative, called Speed to Power through Accelerated Reconductoring and other Key Advanced Transmission Technology Upgrades—mercifully shortened to SPARK—will fund projects that replace existing transmission wires with higher-capacity conductors and deploy advanced",
+        "source": "OilPrice"
+      },
+      {
+        "title": "Prediction markets get tailored U.S. guidance from former foe CFTC",
+        "link": "https://www.coindesk.com/policy/2026/03/12/prediction-markets-get-tailored-u-s-guidance-from-former-foe-cftc",
+        "published": "Thu, 12 Mar 2026 15:26:42 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "Tesla Wins License to Supply Electricity Across the UK",
+        "link": "https://oilprice.com/Energy/Energy-General/Tesla-Wins-License-to-Supply-Electricity-Across-the-UK.html",
+        "published": "Thu, 12 Mar 2026 13:00:00 -0500",
+        "summary": "Tesla has been granted approval to supply electricity to homes and businesses across the UK, opening the door for the electric vehicle giant to enter the country’s retail energy market. Energy regulator Ofgem confirmed on Thursday that Tesla Energy Ventures Limited, a subsidiary of Musk’s company, has been granted an electricity supply licence by the Gas and Electricity Markets Authority under the Electricity Act 1989. The licence allows the company to supply electricity to both domestic and non",
+        "source": "OilPrice"
+      },
+      {
+        "title": "Meta最新AI模型推迟发布 性能表现不如同行",
+        "link": "https://api3.cls.cn/share/article/2312040?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:40:16 GMT",
+        "summary": "【Meta最新AI模型推迟发布 性能表现不如同行】财联社3月13日电，有媒体曾报道称，Meta从去年12月研发一款代号为“牛油果（Avocado）”的文本人工智能模型，并计划在第一季度推出。然而最新消息称，Meta 已将“牛油果”人工智能模型代码的发布时间从3月至少推迟至5月。据知情人士透露，Meta耗时数月研发了这款AI模型，但其在内部推理、编码和写作测试中，性能表现却不及谷歌、OpenAI和Anthropic等竞争对手的领先人工智能模型。",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "意法半导体拟引入人形机器人推进工厂智能化",
+        "link": "https://api3.cls.cn/share/article/2312037?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:38:43 GMT",
+        "summary": "【意法半导体拟引入人形机器人推进工厂智能化】财联社3月13日电，意法半导体周四公布了一项转型计划，计划对老员工进行再培训，并在老旧芯片制造工厂引入机器人，以应对行业挑战，避免关闭工厂。",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "Vincorion Owner Seeks €300 Million in Defense Firm’s German IPO",
+        "link": "https://www.bloomberg.com/news/articles/2026-03-13/vincorion-owner-seeks-300-million-in-defense-firm-s-german-ipo",
+        "published": "Fri, 13 Mar 2026 07:20:37 GMT",
+        "summary": "Private equity firm Star Capital is looking to raise €300 million ($345 million) through the initial public offering of defense technology group Vincorion SE.",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "Tesla's China sales climb in the first two months of 2026 while BYD numbers drop",
+        "link": "https://www.cnbc.com/2026/03/13/teslas-china-sales-climb-in-the-first-two-months-of-2026-while-byd-numbers-drop.html",
+        "published": "Fri, 13 Mar 2026 07:02:05 GMT",
+        "summary": "Sales of Tesla's China-made electric vehicles rose in the first two months of 2026, from the year before, regaining lost ground to China's BYD.",
+        "source": "CNBC"
+      },
+      {
+        "title": "Thai Growth Seen Halved if Mideast Conflict Lasts Three Months",
+        "link": "https://www.bloomberg.com/news/articles/2026-03-13/thai-growth-seen-halved-if-mideast-conflict-lasts-three-months",
+        "published": "Fri, 13 Mar 2026 06:56:19 GMT",
+        "summary": "A triple hit from weaker tourism, softer exports and higher energy prices threatens to drag Thailand’s growth even lower this year.",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "Fears of Helium Supply Crunch Hit Asian Chipmakers | Bloomberg: The China Show 3/13/2026",
+        "link": "https://www.bloomberg.com/news/videos/2026-03-13/the-china-show-3-13-2026-video",
+        "published": "Fri, 13 Mar 2026 06:39:19 GMT",
+        "summary": "“Bloomberg: The China Show” is your definitive source for news and analysis on the world's second-biggest economy. From politics and policy to tech and trends, David Ingles and Yvonne Man give global investors unique insight, delivering in-depth discussions with the newsmakers who matter. (Source: Bloomberg)",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "Bitcoin investor offers all Nevis residents $100 a month if libertarian city is approved",
+        "link": "https://www.ft.com/content/c7339a1b-2a39-4546-9a42-66cec35a5897",
+        "published": "Fri, 13 Mar 2026 05:00:20 GMT",
+        "summary": "Olivier Janssens accused of ‘public bribes’ with offer to locals as his development awaits final government approval",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "U.S. launches rescue efforts after military refueling plane crashes over Iraq",
+        "link": "https://www.cnbc.com/2026/03/13/us-kc135-crash-iraq-iran-threats-shipping-attacks.html",
+        "published": "Fri, 13 Mar 2026 03:29:12 GMT",
+        "summary": "The U.S. Central Command said that the loss was \"not due to hostile or enemy fire.\"",
+        "source": "CNBC"
+      },
+      {
+        "title": "Rivian is fulfilling its promise to launch a $45,000 EV, but there’s a catch",
+        "link": "https://www.marketwatch.com/story/rivian-is-fulfilling-its-promise-to-launch-a-45-000-ev-but-theres-a-catch-598d33d0?mod=mw_rss_topstories",
+        "published": "Fri, 13 Mar 2026 02:43:00 GMT",
+        "summary": "The EV maker just revealed pricing details for its new R2 lineup. Rivian will first launch a $57,990 model, with plans to debut a $45,000 variant in late 2027.",
+        "source": "MarketWatch"
+      },
+      {
+        "title": "Will Johnny Ever Learn To Read? Pushback Against Science Of Reading Mandates",
+        "link": "https://www.zerohedge.com/political/will-johnny-ever-learn-read-pushback-against-science-reading-mandates",
+        "published": "Fri, 13 Mar 2026 01:50:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Will Johnny Ever Learn To Read? Pushback Against Science Of Reading Mandates</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><em><a href=\"https://realclearwire.com/articles/2026/03/10/will_johnny_ever_learn_to_read_pushback_against_science_of_reading_mandates_1169493.html\">Authored by Vince Bielski via RealClearInvestigation",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "Eric Swalwell Rents Room Linked To Former Staffer To Claim California Residency",
+        "link": "https://www.zerohedge.com/political/eric-swalwell-rents-room-linked-former-staffer-claim-california-residency",
+        "published": "Fri, 13 Mar 2026 01:25:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Eric Swalwell Rents Room Linked To Former Staffer To Claim California Residency </span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><strong>Rep. Eric Swalwell has primarily been living in Washington, D.C. for years,</strong> and now that he’s running for governor of California, he’s hit a snag over residency. </p>\n\n<p><a href=\"",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "US Court Clears State Medicaid Ban On Transgender Surgeries For Adults",
+        "link": "https://www.zerohedge.com/political/us-court-clears-state-medicaid-ban-transgender-surgeries-adults",
+        "published": "Fri, 13 Mar 2026 00:10:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">US Court Clears State Medicaid Ban On Transgender Surgeries For Adults</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><em><a href=\"https://www.theepochtimes.com/us/us-court-clears-state-medicaid-ban-on-transgender-surgeries-for-adults-5997681\">Authored by Zachary Stieber via The Epoch Times</a> (emphasis ours),</em></p>\n\n<p",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "US opens unfair trade practices probe of 60 countries over forced labor",
+        "link": "https://www.investing.com/news/economy-news/us-opens-unfair-trade-practices-probe-of-60-countries-over-forced-labor-4558825",
+        "published": "2026-03-13 06:18:35",
+        "summary": "",
+        "source": "Investing-Commodities"
+      },
+      {
+        "title": "Popular restaurant chain forced into Chapter 7 bankruptcy",
+        "link": "https://finance.yahoo.com/news/popular-restaurant-chain-forced-chapter-194700041.html",
+        "published": "2026-03-11T19:47:00Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      }
+    ],
+    "加密货币": [
+      {
+        "title": "Stricter MiCA rules could thin crypto industry across the EU, says Swiss wealth manager",
+        "link": "https://www.coindesk.com/policy/2026/03/12/stricter-mica-rules-could-thin-crypto-industry-across-the-european-union-swissborg-says",
+        "published": "Thu, 12 Mar 2026 22:47:43 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "Crypto Whale Beached, Loses Nearly $50 Million Swapping USDT For AAVE",
+        "link": "https://www.zerohedge.com/crypto/crypto-whale-beached-loses-nearly-50-million-swapping-usdt-aave",
+        "published": "Thu, 12 Mar 2026 22:30:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Crypto Whale Beached, Loses Nearly $50 Million Swapping USDT For AAVE</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><em><a href=\"https://www.theblock.co/post/393466/crypto-whale-loses-nearly-50-million-swapping-usdt-for-aave\">Authored by RT Watson via The Block</a>,</em></p>\n\n<h4>Quick Take</h4>\n\n<ul><li>Aave Labs founder",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "Crypto investor turns $50 million into $36,000 in one botched move",
+        "link": "https://www.coindesk.com/markets/2026/03/12/crypto-investor-turns-usd50-million-into-usd36-000-in-one-botched-move",
+        "published": "Thu, 12 Mar 2026 22:19:20 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "UK government under fire over ‘bungled’ crypto Isas policy",
+        "link": "https://www.ft.com/content/8cad0e71-8826-4873-b018-cc3274465bb2",
+        "published": "Thu, 12 Mar 2026 18:00:05 GMT",
+        "summary": "Digital investments will be restricted to niche Innovative Finance Isas from next month",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "Ethereum layer-2 developer OP Labs cuts roles to 'narrow focus'",
+        "link": "https://www.coindesk.com/business/2026/03/12/ethereum-layer-2-developer-op-labs-cuts-roles-to-narrow-focus",
+        "published": "Thu, 12 Mar 2026 16:19:31 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "Cathie Wood's Ark Invest says quantum computing is a long-term risk for bitcoin, not an imminent threat",
+        "link": "https://www.coindesk.com/tech/2026/03/12/cathie-wood-s-ark-invest-says-quantum-computing-is-a-long-term-risk-for-bitcoin-not-an-imminent-threat",
+        "published": "Thu, 12 Mar 2026 15:28:13 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "Vitalik Buterin says Ethereum should be used as a simple digital bulletin board",
+        "link": "https://www.coindesk.com/tech/2026/03/12/vitalik-buterin-says-ethereum-should-be-used-as-a-simple-digital-bulletin-board",
+        "published": "Thu, 12 Mar 2026 15:25:31 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "BlackRock’s new ether ETF for yield hungry investors debuts with $15 million in trading volume",
+        "link": "https://www.coindesk.com/markets/2026/03/13/blackrock-s-staked-ether-etf-draws-usd15-million-in-first-day-trading",
+        "published": "Fri, 13 Mar 2026 06:23:09 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "Ultra-short-term bets add ‘even more mania’ to crypto trading",
+        "link": "https://www.ft.com/content/af1f4bba-f129-499d-96b6-d85d30083df5",
+        "published": "Fri, 13 Mar 2026 05:00:11 GMT",
+        "summary": "Five and 15-minute contracts have surged in popularity as cryptocurrencies have fallen from recent peaks",
+        "source": "FT-Markets"
+      }
+    ],
+    "其他": [
+      {
+        "title": "‘I am stuck in a low-income trap’: I’m a teacher and very good at my job. Will I ever earn six figures?",
+        "link": "https://www.marketwatch.com/story/i-am-stuck-in-a-low-income-trap-im-a-teacher-will-i-ever-earn-six-figures-5f7dd2b9?mod=mw_rss_topstories",
+        "published": "Thu, 12 Mar 2026 23:47:00 GMT",
+        "summary": "“My low salary requires me to have multiple other part-time jobs.”",
+        "source": "MarketWatch"
+      },
+      {
+        "title": "‘I have no savings’: I’m inheriting $400,000. I’m 64 with $900 in Social Security. What should I do?",
+        "link": "https://www.marketwatch.com/story/i-have-no-savings-im-inheriting-400-000-im-64-with-900-in-social-security-what-should-i-do-084ec1cb?mod=mw_rss_topstories",
+        "published": "Thu, 12 Mar 2026 22:45:00 GMT",
+        "summary": "“I have no experience with any life other than paycheck to paycheck.”",
+        "source": "MarketWatch"
+      },
+      {
+        "title": "‘I didn’t ask a man to rear-end my car’: Social Security is replacing my disability benefits. Will the fund run out of money?",
+        "link": "https://www.marketwatch.com/story/i-didnt-ask-a-man-to-rear-end-my-car-social-security-is-replacing-my-disability-benefits-will-the-fund-run-out-of-money-794d81b0?mod=mw_rss_topstories",
+        "published": "Thu, 12 Mar 2026 22:39:00 GMT",
+        "summary": "“I didn’t ask a man to rear-end my car at a red light.”",
+        "source": "MarketWatch"
+      },
+      {
+        "title": "SEC's advisory group backs tokenized securities push, outlines how to keep it safe",
+        "link": "https://www.coindesk.com/policy/2026/03/12/sec-s-advisory-group-backs-push-for-tokenized-securities-outlines-how-to-keep-it-safe",
+        "published": "Thu, 12 Mar 2026 21:56:40 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "Housing affordability bill clears Senate as investor ban creates headaches",
+        "link": "https://www.cnbc.com/2026/03/12/housing-bill-affordability-investor-ban.html",
+        "published": "Thu, 12 Mar 2026 20:36:46 GMT",
+        "summary": "The Senate passed the bill 89-10, but House lawmakers say more changes are needed before it could go to President Donald Trump's desk.",
+        "source": "CNBC"
+      },
+      {
+        "title": "Donald Trump to hold another Mar-a-Lago lunch for his token holders",
+        "link": "https://www.coindesk.com/policy/2026/03/12/donald-trump-to-hold-another-mar-a-lago-lunch-for-his-token-holders",
+        "published": "Thu, 12 Mar 2026 20:25:56 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "Uncomfortable moments in private credit",
+        "link": "https://www.ft.com/content/b95a32a2-3ce5-43fe-a76b-c157996d9214",
+        "published": "Thu, 12 Mar 2026 20:00:00 GMT",
+        "summary": "Bad news piles up in non-bank lending",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "The Emperor has no wallet",
+        "link": "https://www.coindesk.com/opinion/2026/03/12/the-emperor-has-no-wallet",
+        "published": "Thu, 12 Mar 2026 17:06:00 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "U.S. Senate votes to ban CBDCs in housing bill that may face trouble in the House",
+        "link": "https://www.coindesk.com/policy/2026/03/12/u-s-senate-votes-to-ban-cbdcs-in-housing-bill-that-may-face-trouble-in-the-house",
+        "published": "Thu, 12 Mar 2026 16:21:15 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "Trump-backed SAVE America Act will get a Senate vote next week, Thune says",
+        "link": "https://www.cnbc.com/2026/03/12/trump-save-america-act-senate-2026-elections.html",
+        "published": "Thu, 12 Mar 2026 15:59:33 GMT",
+        "summary": "Advocates of the voter-ID bill have pressed the Senate for months to call a vote on the controversial legislation.",
+        "source": "CNBC"
+      },
+      {
+        "title": "Alleged Ponzi scheme victims sue JPMorgan for banking supposed $328 million scam",
+        "link": "https://www.coindesk.com/business/2026/03/12/alleged-ponzi-scheme-victims-sue-jpmorgan-for-banking-supposed-usd328-million-scam",
+        "published": "Thu, 12 Mar 2026 15:48:34 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "2026年春运收官 春运出行规模创历史新高",
+        "link": "https://api3.cls.cn/share/article/2312049?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:48:56 GMT",
+        "summary": "【2026年春运收官 春运出行规模创历史新高】财联社3月13日电，为期40天的2026年春运将于今天收官，春运期间出行规模创历史新高。统计显示：马年正月初六，全社会跨区域人员流动量、高速公路车流量分别达3.8亿人次、7143万辆次，单日峰值创历史新高。2026年春运，铁路、公路、水路、民航客运量也超过了历史同期水平。 (央视财经)",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "财联社3月13日电，截至目前，南向资金净买入额达140亿港元。",
+        "link": "https://api3.cls.cn/share/article/2312048?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:46:36 GMT",
+        "summary": "财联社3月13日电，截至目前，南向资金净买入额达140亿港元。",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "浙江证监局：对浙商证券股份有限公司采取责令改正措施",
+        "link": "https://api3.cls.cn/share/article/2312046?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:44:27 GMT",
+        "summary": "【浙江证监局：对浙商证券股份有限公司采取责令改正措施】财联社3月13日电，浙江证监局网站发布关于对浙商证券股份有限公司采取责令改正措施的决定。经查，该公司存在以下问题：个别核心业务岗位人员不具备2年托管业务从业经验，托管业务办公场所未独立，基金投资监督标准与监督流程不完善，对托管部门从业人员执业行为及投资基金管理不健全；公司对资产管理子公司、私募投资基金子公司和另类投资子公司的合规管理不到位。根据相关规定，浙江证监局决定对该公司采取责令改正的行政监管措施，并记入证券期货市场诚信档案。",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "赛托生物：子公司收到地塞米松化学原料药上市申请批准通知书",
+        "link": "https://api3.cls.cn/share/article/2312043?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:42:12 GMT",
+        "summary": "【赛托生物：子公司收到地塞米松化学原料药上市申请批准通知书】财联社3月13日电，赛托生物(300583.SZ)公告称，公司控股子公司山东斯瑞药业有限公司近日收到国家药品监督管理局签发的地塞米松《化学原料药上市申请批准通知书》。地塞米松是一种长效糖皮质激素类药物，具有抗炎、抗过敏、免疫抑制等作用。此次获批将进一步丰富公司产品线，提升市场竞争力。目前该原料药暂无销售，生产销售时间存在不确定性。",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "国际能源署署长：全球在建核电装机容量创新高",
+        "link": "https://api3.cls.cn/share/article/2312042?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:41:05 GMT",
+        "summary": "【国际能源署署长：全球在建核电装机容量创新高】财联社3月13日电，国际能源署署长法提赫·比罗尔12日说，目前全球在建核电装机容量已达约70吉瓦，创40年来新高。",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "财联社3月13日电，广期所品种仓单及变化如下：碳酸锂期货仓单36403手，环比上个交易日减少52手；多晶硅期货仓单10690手，环比上个交易日持平；工业硅期货仓单219...",
+        "link": "https://api3.cls.cn/share/article/2312039?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:40:06 GMT",
+        "summary": "财联社3月13日电，广期所品种仓单及变化如下：碳酸锂期货仓单36403手，环比上个交易日减少52手；多晶硅期货仓单10690手，环比上个交易日持平；工业硅期货仓单21976手，环比上个交易日增加204手。",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "财联社3月13日电，法国巴黎银行在TRADEGATE较巴黎收盘价下跌7.6%。",
+        "link": "https://api3.cls.cn/share/article/2312038?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:39:58 GMT",
+        "summary": "财联社3月13日电，法国巴黎银行在TRADEGATE较巴黎收盘价下跌7.6%。",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "外交部：反对任何国家以“小圈子”规则破坏国际经贸秩序",
+        "link": "https://api3.cls.cn/share/article/2312036?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:38:38 GMT",
+        "summary": "【外交部：反对任何国家以“小圈子”规则破坏国际经贸秩序】财联社3月13日电，外交部发言人郭嘉昆主持例行记者会。有记者就美日等国相关涉“关键矿产”行动提问。对此，郭嘉昆表示，维护开放、包容、普惠的国际贸易环境符合各国的共同利益。各方都有责任为维护“关键矿产”全球产供链稳定与安全发挥建设性作用。同时，我们反对任何国家以“小圈子”规则破坏国际经贸秩序。",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "财联社3月13日电，截至目前，南向资金净买入额达120亿港元。",
+        "link": "https://api3.cls.cn/share/article/2312033?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:37:28 GMT",
+        "summary": "财联社3月13日电，截至目前，南向资金净买入额达120亿港元。",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "印度因霍尔木兹海峡关闭请求中国放宽尿素出口限制 外交部回应",
+        "link": "https://api3.cls.cn/share/article/2312031?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:37:01 GMT",
+        "summary": "【印度因霍尔木兹海峡关闭请求中国放宽尿素出口限制 外交部回应】财联社3月13日电，外交部发言人郭嘉昆3月13日主持例行记者会。路透社记者提问，有报道称，印度已请求中国政府放宽尿素出口限制，以帮助印度弥补因霍尔木兹海峡关闭而造成的供应损失。鉴于两国近期外交关系的改善，中国是否会认真考虑这一请求？“这个问题建议你向中方的主管部门进行询问。”郭嘉昆说。 (澎湃新闻)",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "中基协就《私募投资基金信息披露实施细则（征求意见稿）》向社会公开征求意见",
+        "link": "https://api3.cls.cn/share/article/2312018?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:33:12 GMT",
+        "summary": "【中基协就《私募投资基金信息披露实施细则（征求意见稿）》向社会公开征求意见】财联社3月13日电，为规范私募投资基金信息披露行为，保护投资者合法权益，促进私募投资基金行业规范健康发展，中国证券投资基金业协会起草了《私募投资基金信息披露实施细则（征求意见稿）》及《私募投资基金信息披露重要内容模板（征求意见稿）》，现就相关文件向社会公开征求意见。",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "美对台一揽子重大军售方案将待特朗普访华后签署？外交部回应",
+        "link": "https://api3.cls.cn/share/article/2312014?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:31:11 GMT",
+        "summary": "【美对台一揽子重大军售方案将待特朗普访华后签署？外交部回应】财联社3月13日电，外交部发言人郭嘉昆3月13日主持例行记者会。彭博社记者提问，有报道称，美国已准备好向中国台湾地区提供一揽子重大军售方案，等待美国总统特朗普批准，并可能在他访华行程结束后不久即予签署。发言人对此有何评论？\n\n郭嘉昆表示，中方坚决反对美国向中国台湾地区出售武器的立场是一贯的明确的。美方应切实恪守一个中国原则和中美三个联合公报，特别是“八一七”公报规定，停止对台军售，以实际行动维护中美关系稳定发展，以及台海和平稳定。 (澎湃新闻)",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "外交部：第六轮中美经贸磋商将举行",
+        "link": "https://api3.cls.cn/share/article/2312015?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:30:46 GMT",
+        "summary": "【外交部：第六轮中美经贸磋商将举行】财联社3月13日电，外交部发言人郭嘉昆主持例行记者会。有记者就中美经贸磋商将举行相关问题提问。对此，郭嘉昆表示，中方已经发布了第六轮中美经贸磋商的消息，你可以查阅。具体问题，建议向中方主管部门进行询问。 (央视新闻)",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "财联社3月13日电，截至目前，南向资金净买入额达100亿港元。",
+        "link": "https://api3.cls.cn/share/article/2312010?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:27:31 GMT",
+        "summary": "财联社3月13日电，截至目前，南向资金净买入额达100亿港元。",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "股票私募仓位刷新十周新高 百亿私募加仓最激进",
+        "link": "https://api3.cls.cn/share/article/2312003?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:26:32 GMT",
+        "summary": "【股票私募仓位刷新十周新高 百亿私募加仓最激进】财联社3月13日电，股票私募仓位出现显著提升。私募排排网数据显示，截至2026年3月6日，股票私募仓位指数升至82.64%，较前一周大幅上涨4.02%；该指数时隔三周重回80%上方，刷新近十周新高，同时逼近近一年83.59%的高点。百亿以上规模私募在上周大幅加仓，仓位提升10.49%，为各规模区间中加仓力度最大的类型，仓位指数同时创下近11周新高。私募大幅加仓是政策红利、市场底部判断以及机构资金加速入市等多重积极信号共振的结果。（财联社记者 闫军）",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "财联社3月13日电，欧元兑美元跌至1.1467，为去年8月以来最低水平。",
+        "link": "https://api3.cls.cn/share/article/2312008?os=web&sv=8.4.6&app=CailianpressWeb",
+        "published": "Fri, 13 Mar 2026 07:26:11 GMT",
+        "summary": "财联社3月13日电，欧元兑美元跌至1.1467，为去年8月以来最低水平。",
+        "source": "财联社快讯"
+      },
+      {
+        "title": "UK’s Economy Unexpectedly Stalled in January",
+        "link": "https://www.bloomberg.com/news/live-blog/2026-03-13/ftse-100-live-uk-gdp-pound-bonds-trump-iran-oil-prices-what-s-moving-uk-markets-right-now-markets-today-mmoj97cq",
+        "published": "Fri, 13 Mar 2026 06:45:48 GMT",
+        "summary": "",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "U.S. launches fresh Section 301 probes into 60 economies over forced-labor trade practices",
+        "link": "https://www.cnbc.com/2026/03/13/us-section-301-probe-trade-trump-labor-practices.html",
+        "published": "Fri, 13 Mar 2026 06:25:01 GMT",
+        "summary": "The forced-labor probes follow Section 301 investigations launched on Wednesday, targeting excess industrial capacity across more than a dozen economies.",
+        "source": "CNBC"
+      },
+      {
+        "title": "Adjusted EBITDA and the masking of leverage",
+        "link": "https://www.ft.com/content/ec56ed92-15b8-4a6b-b88b-182836ad9d2b",
+        "published": "Fri, 13 Mar 2026 06:00:09 GMT",
+        "summary": "Add it back?",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "Volkswagen Plans 50,000 Job Cuts Due To Plunging Profits; Board Members Grab €1.75MM Each In Bonuses",
+        "link": "https://www.zerohedge.com/personal-finance/volkswagen-plans-50000-job-cuts-due-plunging-profits-board-members-grab-eu175mm",
+        "published": "Fri, 13 Mar 2026 06:00:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Volkswagen Plans 50,000 Job Cuts Due To Plunging Profits; Board Members Grab €1.75MM Each In Bonuses</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><a href=\"https://rmx.news/article/volkswagen-plans-50000-job-cuts-due-to-plunging-profits-while-board-members-secure-e1-75-million-each-in-bonuses/\"><em>Authored by Thomas Brook",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "Pi rallies more than 30% after Kraken announces listing",
+        "link": "https://www.coindesk.com/markets/2026/03/13/pi-rallies-more-than-30-after-kraken-announces-listing",
+        "published": "Fri, 13 Mar 2026 04:51:46 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "XRP jumps 3% as breakout above $1.39 ends early-2026 downtrend",
+        "link": "https://www.coindesk.com/markets/2026/03/13/xrp-jumps-3-as-breakout-above-usd1-39-ends-early-2026-downtrend",
+        "published": "Fri, 13 Mar 2026 04:47:34 +0000",
+        "summary": "",
+        "source": "CoinDesk"
+      },
+      {
+        "title": "FDA Unveils New Platform For Tracking Side Effects",
+        "link": "https://www.zerohedge.com/political/fda-unveils-new-platform-tracking-side-effects",
+        "published": "Fri, 13 Mar 2026 02:40:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">FDA Unveils New Platform For Tracking Side Effects</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><em><a href=\"https://www.theepochtimes.com/us/fda-unveils-new-platform-for-tracking-side-effects-5997226\">Authored by Zachary Stieber via The Epoch Times</a> (emphasis ours),</em></p>\n\n<p><strong>The Food and Drug Administratio",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "China Consumption Start to Year Seen as Worst Outside Covid",
+        "link": "https://www.bloomberg.com/news/articles/2026-03-13/china-consumption-start-to-year-seen-as-worst-ever-outside-covid",
+        "published": "Fri, 13 Mar 2026 01:00:00 GMT",
+        "summary": "China’s consumer spending may have booked the worst start to any year outside the pandemic, highlighting the challenge to a government that has targeted a bigger role for domestic demand.",
+        "source": "Bloomberg-Markets"
+      },
+      {
+        "title": "Paging Nostradamus: You Have A Margin Call",
+        "link": "https://www.zerohedge.com/markets/paging-nostradamus-you-have-margin-call",
+        "published": "Fri, 13 Mar 2026 01:00:00 +0000",
+        "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Paging Nostradamus: You Have A Margin Call</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><a href=\"https://charleshughsmith.blogspot.com/2026/03/paging-nostradamus-you-have-margin-call.html\"><em>Authored by Charles Hugh Smith via OfTwoMinds blog,</em></a></p>\n\n<p><em>If conditions change beneath the surface, the folks behin",
+        "source": "ZeroHedge"
+      },
+      {
+        "title": "Why China’s renminbi push matters even if it never rivals the dollar",
+        "link": "https://www.ft.com/content/77f8cc0d-7aef-46a2-8460-67a05760a41c",
+        "published": "Fri, 13 Mar 2026 00:01:05 GMT",
+        "summary": "If renminbi settlement becomes cheaper and more trade migrates, firms will have less need to generate or hold US currency",
+        "source": "FT-Markets"
+      },
+      {
+        "title": "Take Five: Deja vu?",
+        "link": "https://www.investing.com/news/economy-news/take-five-deja-vu-4559066",
+        "published": "2026-03-13 07:36:25",
+        "summary": "",
+        "source": "Investing-Commodities"
+      },
+      {
+        "title": "BofA delays BoE rate-cut call to June as energy prices revive inflation risks",
+        "link": "https://www.investing.com/news/economy-news/bofa-delays-boe-ratecut-call-to-june-as-energy-prices-revive-inflation-risks-4558923",
+        "published": "2026-03-13 05:30:51",
+        "summary": "",
+        "source": "Investing-Commodities"
+      },
+      {
+        "title": "Analysis-Why Japan’s bar for yen intervention is now higher",
+        "link": "https://www.investing.com/news/economy-news/analysiswhy-japans-bar-for-yen-intervention-is-now-higher-4558876",
+        "published": "2026-03-13 04:18:28",
+        "summary": "",
+        "source": "Investing-Commodities"
+      },
+      {
+        "title": "China’s home prices seen falling faster before stabilising in 2027: Reuters poll",
+        "link": "https://www.investing.com/news/economy-news/chinas-home-prices-seen-falling-faster-before-stabilising-in-2027-reuters-poll-4558873",
+        "published": "2026-03-13 04:12:30",
+        "summary": "",
+        "source": "Investing-Commodities"
+      },
+      {
+        "title": "New Zealand central bank’s cash proposal sees opposition from lenders",
+        "link": "https://www.investing.com/news/economy-news/new-zealand-central-banks-cash-proposal-sees-opposition-from-lenders-4558862",
+        "published": "2026-03-13 03:36:50",
+        "summary": "",
+        "source": "Investing-Commodities"
+      },
+      {
+        "title": "Rio Tinto (RIO) Sees Mixed Sentiment From Analysts",
+        "link": "https://finance.yahoo.com/news/rio-tinto-rio-sees-mixed-201155056.html",
+        "published": "2026-03-11T20:11:55Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "Reliance Inc. (RS) Sees Optimism From Analysts",
+        "link": "https://finance.yahoo.com/news/reliance-inc-rs-sees-optimism-201100808.html",
+        "published": "2026-03-11T20:11:00Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "Kohl’s Net Income Grows on Q4, Gives 2026 Guidance",
+        "link": "https://finance.yahoo.com/news/kohl-net-income-grows-q4-201012555.html",
+        "published": "2026-03-11T20:10:12Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "Constellium SE (CSTM) Leaves Analysts Impressed",
+        "link": "https://finance.yahoo.com/news/constellium-se-cstm-leaves-analysts-201010819.html",
+        "published": "2026-03-11T20:10:10Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "Analysts Discuss Steel Dynamics’s (STLD) Shares",
+        "link": "https://finance.yahoo.com/news/analysts-discuss-steel-dynamics-stld-200951561.html",
+        "published": "2026-03-11T20:09:51Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "Alcoa Corporation (AA) Focuses On Deals With Data Center Industry",
+        "link": "https://finance.yahoo.com/news/alcoa-corporation-aa-focuses-deals-200938872.html",
+        "published": "2026-03-11T20:09:38Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "Crown Holdings (CCK) Pops Up on Analysts’ Radar",
+        "link": "https://finance.yahoo.com/news/crown-holdings-cck-pops-analysts-200924635.html",
+        "published": "2026-03-11T20:09:24Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "Home equity rates hold steady at multi-year lows",
+        "link": "https://finance.yahoo.com/news/home-equity-rates-hold-steady-200206619.html",
+        "published": "2026-03-11T20:02:06Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "The ‘attorney model’ loophole: How debt relief companies scam people seeking help",
+        "link": "https://finance.yahoo.com/news/attorney-model-loophole-debt-relief-200000358.html",
+        "published": "2026-03-11T20:00:00Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "Dollar Mildly Higher as T-note Yield Rises",
+        "link": "https://finance.yahoo.com/news/dollar-mildly-higher-t-note-194710141.html",
+        "published": "2026-03-11T19:47:10Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "Monster Beverage pullback presents buying opportunity, says Jefferies",
+        "link": "https://finance.yahoo.com/news/monster-beverage-pullback-presents-buying-194700009.html",
+        "published": "2026-03-11T19:47:00Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "Cheapest pet insurance companies in 2026",
+        "link": "https://finance.yahoo.com/personal-finance/insurance/article/cheapest-pet-insurance-191646538.html",
+        "published": "2026-03-11T19:16:46Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      },
+      {
+        "title": "How to refinance a mortgage: A step-by-step guide for homeowners",
+        "link": "https://finance.yahoo.com/personal-finance/mortgages/article/refinance-mortgage-162831396.html",
+        "published": "2024-01-26T22:45:39Z",
+        "summary": "",
+        "source": "Yahoo-Finance"
+      }
+    ]
+  }
+}

@@ -1,0 +1,422 @@
+{
+  "analysis_time": "2026-03-13T07:47:20.889108",
+  "timestamp": "2026-03-13T07:47:20.889123",
+  "breadth": {
+    "total": 5488,
+    "market_total": 5488,
+    "sample_ok": true,
+    "degraded": false,
+    "fetch_errors": [],
+    "up": 1501,
+    "down": 3828,
+    "flat": 159,
+    "up_pct": 27.4,
+    "down_pct": 69.8,
+    "up_down_ratio": 0.39,
+    "limit_up": 79,
+    "limit_down": 33,
+    "up_gt5pct": 148,
+    "down_gt5pct": 263
+  },
+  "temperature": {
+    "label": "冰点",
+    "score": 10,
+    "description": "1501涨/3828跌/159平 | 涨停79 跌停33"
+  },
+  "limit_up_detail": {
+    "timestamp": "2026-03-13T07:47:59.377055",
+    "fallback_source": "eastmoney clist pagination",
+    "fallback_total_market": 5820,
+    "fallback_errors": [
+      "akshare: Can not decode value starting with character '<'",
+      "page10: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+    ],
+    "limit_up": {
+      "total": 11,
+      "stocks": [
+        {
+          "code": "000677",
+          "name": "恒天海龙",
+          "pct": 10.09,
+          "amount": null,
+          "turnover": null,
+          "first_time": "",
+          "last_time": "",
+          "open_count": null,
+          "streak": 1,
+          "reason": "",
+          "fallback_generated": true
+        },
+        {
+          "code": "000890",
+          "name": "法尔胜",
+          "pct": 10.02,
+          "amount": null,
+          "turnover": null,
+          "first_time": "",
+          "last_time": "",
+          "open_count": null,
+          "streak": 1,
+          "reason": "",
+          "fallback_generated": true
+        },
+        {
+          "code": "002056",
+          "name": "横店东磁",
+          "pct": 10.0,
+          "amount": null,
+          "turnover": null,
+          "first_time": "",
+          "last_time": "",
+          "open_count": null,
+          "streak": 1,
+          "reason": "",
+          "fallback_generated": true
+        },
+        {
+          "code": "002084",
+          "name": "海鸥住工",
+          "pct": 10.0,
+          "amount": null,
+          "turnover": null,
+          "first_time": "",
+          "last_time": "",
+          "open_count": null,
+          "streak": 1,
+          "reason": "",
+          "fallback_generated": true
+        },
+        {
+          "code": "002165",
+          "name": "红 宝 丽",
+          "pct": 10.0,
+          "amount": null,
+          "turnover": null,
+          "first_time": "",
+          "last_time": "",
+          "open_count": null,
+          "streak": 1,
+          "reason": "",
+          "fallback_generated": true
+        },
+        {
+          "code": "001366",
+          "name": "播恩集团",
+          "pct": 9.98,
+          "amount": null,
+          "turnover": null,
+          "first_time": "",
+          "last_time": "",
+          "open_count": null,
+          "streak": 1,
+          "reason": "",
+          "fallback_generated": true
+        },
+        {
+          "code": "002109",
+          "name": "兴化股份",
+          "pct": 9.98,
+          "amount": null,
+          "turnover": null,
+          "first_time": "",
+          "last_time": "",
+          "open_count": null,
+          "streak": 1,
+          "reason": "",
+          "fallback_generated": true
+        },
+        {
+          "code": "000010",
+          "name": "美丽生态",
+          "pct": 9.95,
+          "amount": null,
+          "turnover": null,
+          "first_time": "",
+          "last_time": "",
+          "open_count": null,
+          "streak": 1,
+          "reason": "",
+          "fallback_generated": true
+        },
+        {
+          "code": "000908",
+          "name": "*ST景峰",
+          "pct": 4.99,
+          "amount": null,
+          "turnover": null,
+          "first_time": "",
+          "last_time": "",
+          "open_count": null,
+          "streak": 1,
+          "reason": "",
+          "fallback_generated": true
+        },
+        {
+          "code": "000669",
+          "name": "ST金鸿",
+          "pct": 4.97,
+          "amount": null,
+          "turnover": null,
+          "first_time": "",
+          "last_time": "",
+          "open_count": null,
+          "streak": 1,
+          "reason": "",
+          "fallback_generated": true
+        },
+        {
+          "code": "000004",
+          "name": "*ST国华",
+          "pct": 4.94,
+          "amount": null,
+          "turnover": null,
+          "first_time": "",
+          "last_time": "",
+          "open_count": null,
+          "streak": 1,
+          "reason": "",
+          "fallback_generated": true
+        }
+      ],
+      "fallback_used": true
+    },
+    "ladder": {
+      "首板": {
+        "count": 11,
+        "stocks": [
+          {
+            "code": "000677",
+            "name": "恒天海龙",
+            "reason": ""
+          },
+          {
+            "code": "000890",
+            "name": "法尔胜",
+            "reason": ""
+          },
+          {
+            "code": "002056",
+            "name": "横店东磁",
+            "reason": ""
+          },
+          {
+            "code": "002084",
+            "name": "海鸥住工",
+            "reason": ""
+          },
+          {
+            "code": "002165",
+            "name": "红 宝 丽",
+            "reason": ""
+          },
+          {
+            "code": "001366",
+            "name": "播恩集团",
+            "reason": ""
+          },
+          {
+            "code": "002109",
+            "name": "兴化股份",
+            "reason": ""
+          },
+          {
+            "code": "000010",
+            "name": "美丽生态",
+            "reason": ""
+          },
+          {
+            "code": "000908",
+            "name": "*ST景峰",
+            "reason": ""
+          },
+          {
+            "code": "000669",
+            "name": "ST金鸿",
+            "reason": ""
+          },
+          {
+            "code": "000004",
+            "name": "*ST国华",
+            "reason": ""
+          }
+        ]
+      }
+    },
+    "max_streak": 1,
+    "highest_board": [
+      {
+        "code": "000677",
+        "name": "恒天海龙",
+        "pct": 10.09,
+        "amount": null,
+        "turnover": null,
+        "first_time": "",
+        "last_time": "",
+        "open_count": null,
+        "streak": 1,
+        "reason": "",
+        "fallback_generated": true
+      },
+      {
+        "code": "000890",
+        "name": "法尔胜",
+        "pct": 10.02,
+        "amount": null,
+        "turnover": null,
+        "first_time": "",
+        "last_time": "",
+        "open_count": null,
+        "streak": 1,
+        "reason": "",
+        "fallback_generated": true
+      },
+      {
+        "code": "002056",
+        "name": "横店东磁",
+        "pct": 10.0,
+        "amount": null,
+        "turnover": null,
+        "first_time": "",
+        "last_time": "",
+        "open_count": null,
+        "streak": 1,
+        "reason": "",
+        "fallback_generated": true
+      },
+      {
+        "code": "002084",
+        "name": "海鸥住工",
+        "pct": 10.0,
+        "amount": null,
+        "turnover": null,
+        "first_time": "",
+        "last_time": "",
+        "open_count": null,
+        "streak": 1,
+        "reason": "",
+        "fallback_generated": true
+      },
+      {
+        "code": "002165",
+        "name": "红 宝 丽",
+        "pct": 10.0,
+        "amount": null,
+        "turnover": null,
+        "first_time": "",
+        "last_time": "",
+        "open_count": null,
+        "streak": 1,
+        "reason": "",
+        "fallback_generated": true
+      },
+      {
+        "code": "001366",
+        "name": "播恩集团",
+        "pct": 9.98,
+        "amount": null,
+        "turnover": null,
+        "first_time": "",
+        "last_time": "",
+        "open_count": null,
+        "streak": 1,
+        "reason": "",
+        "fallback_generated": true
+      },
+      {
+        "code": "002109",
+        "name": "兴化股份",
+        "pct": 9.98,
+        "amount": null,
+        "turnover": null,
+        "first_time": "",
+        "last_time": "",
+        "open_count": null,
+        "streak": 1,
+        "reason": "",
+        "fallback_generated": true
+      },
+      {
+        "code": "000010",
+        "name": "美丽生态",
+        "pct": 9.95,
+        "amount": null,
+        "turnover": null,
+        "first_time": "",
+        "last_time": "",
+        "open_count": null,
+        "streak": 1,
+        "reason": "",
+        "fallback_generated": true
+      },
+      {
+        "code": "000908",
+        "name": "*ST景峰",
+        "pct": 4.99,
+        "amount": null,
+        "turnover": null,
+        "first_time": "",
+        "last_time": "",
+        "open_count": null,
+        "streak": 1,
+        "reason": "",
+        "fallback_generated": true
+      },
+      {
+        "code": "000669",
+        "name": "ST金鸿",
+        "pct": 4.97,
+        "amount": null,
+        "turnover": null,
+        "first_time": "",
+        "last_time": "",
+        "open_count": null,
+        "streak": 1,
+        "reason": "",
+        "fallback_generated": true
+      },
+      {
+        "code": "000004",
+        "name": "*ST国华",
+        "pct": 4.94,
+        "amount": null,
+        "turnover": null,
+        "first_time": "",
+        "last_time": "",
+        "open_count": null,
+        "streak": 1,
+        "reason": "",
+        "fallback_generated": true
+      }
+    ]
+  },
+  "limit_down_detail": {
+    "timestamp": "2026-03-13T07:48:40.209821",
+    "fallback_source": "eastmoney clist pagination",
+    "fallback_total_market": 0,
+    "fallback_errors": [
+      "akshare: Can not decode value starting with character '<'",
+      "page1: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+      "akshare: Can not decode value starting with character '<'",
+      "page1: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+    ],
+    "limit_down": {
+      "total": 0,
+      "stocks": [],
+      "fallback_used": true
+    }
+  },
+  "broken_board_detail": {
+    "timestamp": "2026-03-13T07:49:12.627054",
+    "broken_board": {
+      "total": 0,
+      "stocks": []
+    }
+  },
+  "seal_rate": {
+    "rate": 100.0,
+    "sealed": 11,
+    "broken": 0,
+    "total_touched": 11,
+    "assessment": "强"
+  }
+}

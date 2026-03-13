@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+"""A股大盘概览 — 供 trader agent 调用"""
+import akshare as ak
+import json
+import sys
+from datetime import datetime
+
+def get_market_overview():
+    """获取大盘核心数据"""
+    result = {}
+
+    # 主要指数实时行情
+    try:
+        indices = ak.stock_zh_index_spot_em()
+        key_indices = ['上证指数', '深证成指', '创业板指', '科创50', '沪深300', '中证500', '中证1000']
+        idx_data = indices[indices['名称'].isin(key_indices)]
+        result['indices'] = idx_data[['代码', '名称', '最新价', '涨跌幅', '涨跌额', '成交量', '成交额']].to_dict('records')
+    except Exception as e:
+        result['indices_error'] = str(e)
+
+    # 涨跌统计
+    try:
+        stock_data = ak.stock_zh_a_spot_em()
+        total = len(stock_data)
+        up = len(stock_data[stock_data['涨跌幅'] > 0])
+        down = len(stock_data[stock_data['涨跌幅'] < 0])
+        flat = total - up - down
+        limit_up = len(stock_data[stock_data['涨跌幅'] >= 9.9])
+        limit_down = len(stock_data[stock_data['涨跌幅'] <= -9.9])
+        result['market_breadth'] = {
+            'total': total, 'up': up, 'down': down, 'flat': flat,
+            'limit_up': limit_up, 'limit_down': limit_down,
+            'up_ratio': round(up / total * 100, 1) if total else 0
+        }
+        # 总成交额
+        total_volume = stock_data['成交额'].sum()
+        result['total_turnover'] = round(total_volume / 1e8, 2)  # 亿元
+    except Exception as e:
+        result['breadth_error'] = str(e)
+
+    # 板块资金流（行业）
+    try:
+        sector_fund = ak.stock_sector_fund_flow_rank(indicator="今日", sector_type="行业资金流")
+        top_inflow = sector_fund.head(10).to_dict('records')
+        top_outflow = sector_fund.tail(10).to_dict('records')
+        result['sector_fund_flow'] = {
+            'top_inflow': top_inflow,
+            'top_outflow': top_outflow
+        }
+    except Exception as e:
+        result['sector_fund_error'] = str(e)
+
+    # 北向资金
+    try:
+        north = ak.stock_hsgt_north_net_flow_in_em(symbol="北向")
+        if not north.empty:
+            latest = north.tail(5)
+            result['northbound'] = latest.to_dict('records')
+    except Exception as e:
+        result['north_error'] = str(e)
+
+    return result
+
+if __name__ == '__main__':
+    data = get_market_overview()
+    print(json.dumps(data, ensure_ascii=False, indent=2, default=str))

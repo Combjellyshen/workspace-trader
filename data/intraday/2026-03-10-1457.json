@@ -1,0 +1,13 @@
+{
+  "time": "2026-03-10 14:57",
+  "alert_score": 0,
+  "has_alert": false,
+  "alerts": [],
+  "snapshot": {
+    "sh_index": {},
+    "stocks": [],
+    "north_flow_yi": null,
+    "north_status": "no_watchlist"
+  },
+  "summary": "当前 watchlist 为空，跳过盘中异动检测。"
+}

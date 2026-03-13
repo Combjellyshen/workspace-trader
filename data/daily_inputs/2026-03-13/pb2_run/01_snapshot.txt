@@ -1,0 +1,666 @@
+{
+  "snapshot_time": "2026-03-13T07:47:08.523699",
+  "indices": [
+    {
+      "code": "sh000001",
+      "name": "上证指数",
+      "open": 4117.5738,
+      "pre_close": 4129.1026,
+      "close": 4095.4485,
+      "high": 4134.0794,
+      "low": 4086.8469,
+      "volume": 792054764.0,
+      "amount": 1063918169396.0,
+      "date": "2026-03-13",
+      "time": "15:30:39",
+      "pct_chg": -0.82
+    },
+    {
+      "code": "sz399001",
+      "name": "深证成指",
+      "open": 14300.925,
+      "pre_close": 14374.871,
+      "close": 14280.78,
+      "high": 14454.307,
+      "low": 14245.959,
+      "volume": 77422569126.0,
+      "amount": 1336399029933.992,
+      "date": "2026-03-13",
+      "time": "15:00:03",
+      "pct_chg": -0.65
+    },
+    {
+      "code": "sz399006",
+      "name": "创业板指",
+      "open": 3296.503,
+      "pre_close": 3317.522,
+      "close": 3310.278,
+      "high": 3342.854,
+      "low": 3296.114,
+      "volume": 22655297449.0,
+      "amount": 576407243084.92,
+      "date": "2026-03-13",
+      "time": "15:00:03",
+      "pct_chg": -0.22
+    },
+    {
+      "code": "sh000688",
+      "name": "科创50",
+      "open": 1374.6497,
+      "pre_close": 1383.6523,
+      "close": 1373.6355,
+      "high": 1392.4335,
+      "low": 1365.6216,
+      "volume": 12002263.0,
+      "amount": 66780732961.0,
+      "date": "2026-03-13",
+      "time": "15:35:35",
+      "pct_chg": -0.72
+    },
+    {
+      "code": "sh000300",
+      "name": "沪深300",
+      "open": 4669.0619,
+      "pre_close": 4687.5601,
+      "close": 4669.14,
+      "high": 4707.4194,
+      "low": 4659.4979,
+      "volume": 310772009.0,
+      "amount": 580305608198.0,
+      "date": "2026-03-13",
+      "time": "15:35:29",
+      "pct_chg": -0.39
+    }
+  ],
+  "industry_flow": [
+    {
+      "name": "建筑建材",
+      "category": "new_jzjc",
+      "net_inflow": 73.06,
+      "net_inflow_raw": 7306418799.3,
+      "inflow": 27256146790.84,
+      "outflow": 19949727991.54,
+      "avg_pct": "0.0109873"
+    },
+    {
+      "name": "农药化肥",
+      "category": "new_nyhf",
+      "net_inflow": 53.39,
+      "net_inflow_raw": 5339183050.85,
+      "inflow": 20677911943.79,
+      "outflow": 15338728892.94,
+      "avg_pct": "0.0132173"
+    },
+    {
+      "name": "化工行业",
+      "category": "new_hghy",
+      "net_inflow": 43.75,
+      "net_inflow_raw": 4375169262.04,
+      "inflow": 49694232319.85,
+      "outflow": 45319063057.81,
+      "avg_pct": "-0.00765466"
+    },
+    {
+      "name": "家电行业",
+      "category": "new_jdhy",
+      "net_inflow": 30.86,
+      "net_inflow_raw": 3085892868.87,
+      "inflow": 10595618807.54,
+      "outflow": 7509725938.67,
+      "avg_pct": "0.00208156"
+    },
+    {
+      "name": "机械行业",
+      "category": "new_jxhy",
+      "net_inflow": 23.43,
+      "net_inflow_raw": 2343385631.3,
+      "inflow": 53228225840.86,
+      "outflow": 50884840209.56,
+      "avg_pct": "-0.0114727"
+    },
+    {
+      "name": "钢铁行业",
+      "category": "new_gthy",
+      "net_inflow": 18.76,
+      "net_inflow_raw": 1875564199.31,
+      "inflow": 14543668944.39,
+      "outflow": 12668104745.08,
+      "avg_pct": "-0.00000197955"
+    },
+    {
+      "name": "酿酒行业",
+      "category": "new_ljhy",
+      "net_inflow": 11.66,
+      "net_inflow_raw": 1165720233.15,
+      "inflow": 6496579273.03,
+      "outflow": 5330859039.88,
+      "avg_pct": "0.0132227"
+    },
+    {
+      "name": "房地产",
+      "category": "new_fdc",
+      "net_inflow": 9.17,
+      "net_inflow_raw": 917329227.9,
+      "inflow": 13897454786.68,
+      "outflow": 12980125558.78,
+      "avg_pct": "-0.00640154"
+    },
+    {
+      "name": "电子器件",
+      "category": "new_dzqj",
+      "net_inflow": 8.82,
+      "net_inflow_raw": 882413658.11,
+      "inflow": 67566831273.95,
+      "outflow": 66684417615.84,
+      "avg_pct": "-0.00699237"
+    },
+    {
+      "name": "化纤行业",
+      "category": "new_hqhy",
+      "net_inflow": 6.37,
+      "net_inflow_raw": 637309312.54,
+      "inflow": 11587923705.93,
+      "outflow": 10950614393.39,
+      "avg_pct": "-0.0100603"
+    },
+    {
+      "name": "家具行业",
+      "category": "new_jjhy",
+      "net_inflow": 3.69,
+      "net_inflow_raw": 369464625.65,
+      "inflow": 1935872263.95,
+      "outflow": 1566407638.3,
+      "avg_pct": "0.00904438"
+    },
+    {
+      "name": "食品行业",
+      "category": "new_sphy",
+      "net_inflow": 3.57,
+      "net_inflow_raw": 356674630.39,
+      "inflow": 6327914059.78,
+      "outflow": 5971239429.39,
+      "avg_pct": "0.00573295"
+    },
+    {
+      "name": "纺织行业",
+      "category": "new_fzhy",
+      "net_inflow": 2.82,
+      "net_inflow_raw": 282450828.42,
+      "inflow": 2897854976.78,
+      "outflow": 2615404148.36,
+      "avg_pct": "0.00230325"
+    },
+    {
+      "name": "公路桥梁",
+      "category": "new_glql",
+      "net_inflow": 0.4,
+      "net_inflow_raw": 40120837.29,
+      "inflow": 835352448.47,
+      "outflow": 795231611.18,
+      "avg_pct": "0.00240724"
+    },
+    {
+      "name": "陶瓷行业",
+      "category": "new_tchy",
+      "net_inflow": 0.38,
+      "net_inflow_raw": 37710197.32,
+      "inflow": 1869750792.65,
+      "outflow": 1832040595.33,
+      "avg_pct": "-0.0174584"
+    },
+    {
+      "name": "仪器仪表",
+      "category": "new_yqyb",
+      "net_inflow": 0.18,
+      "net_inflow_raw": 17998067.53,
+      "inflow": 16457282089.86,
+      "outflow": 16439284022.33,
+      "avg_pct": "-0.0124393"
+    },
+    {
+      "name": "开发区",
+      "category": "new_kfq",
+      "net_inflow": 0.15,
+      "net_inflow_raw": 15446638.53,
+      "inflow": 917437314.42,
+      "outflow": 901990675.89,
+      "avg_pct": "0.000724864"
+    },
+    {
+      "name": "水泥行业",
+      "category": "new_snhy",
+      "net_inflow": 0.09,
+      "net_inflow_raw": 9187180.6,
+      "inflow": 2061965565.82,
+      "outflow": 2052778385.22,
+      "avg_pct": "-0.00123141"
+    },
+    {
+      "name": "医疗器械",
+      "category": "new_ylqx",
+      "net_inflow": 0.08,
+      "net_inflow_raw": 8163699.97,
+      "inflow": 3467411674.26,
+      "outflow": 3459247974.29,
+      "avg_pct": "-0.00347403"
+    },
+    {
+      "name": "摩托车",
+      "category": "new_mtc",
+      "net_inflow": -0.32,
+      "net_inflow_raw": -32096782.29,
+      "inflow": 993258360.99,
+      "outflow": 1025355143.28,
+      "avg_pct": "-0.00599764"
+    }
+  ],
+  "concept_flow": [
+    {
+      "name": "风电",
+      "category": "gn_fd",
+      "net_inflow": 85.86,
+      "net_inflow_raw": 8585901024.04,
+      "inflow": 117406966896.1,
+      "outflow": 108821065872.06,
+      "avg_pct": "-0.012899"
+    },
+    {
+      "name": "光伏概念",
+      "category": "gn_gfgn",
+      "net_inflow": 80.79,
+      "net_inflow_raw": 8079351867.51,
+      "inflow": 98436337749.97,
+      "outflow": 90356985882.46,
+      "avg_pct": "-0.0117619"
+    },
+    {
+      "name": "锂电池",
+      "category": "gn_ldc",
+      "net_inflow": 70.56,
+      "net_inflow_raw": 7055921707.12,
+      "inflow": 70206654177.98,
+      "outflow": 63150732470.86,
+      "avg_pct": "-0.00352865"
+    },
+    {
+      "name": "水利建设",
+      "category": "gn_sljs",
+      "net_inflow": 57.98,
+      "net_inflow_raw": 5797506003.72,
+      "inflow": 14335539928.75,
+      "outflow": 8538033925.03,
+      "avg_pct": "0.00721794"
+    },
+    {
+      "name": "保险重仓",
+      "category": "gn_bxzc",
+      "net_inflow": 57.66,
+      "net_inflow_raw": 5765680377.07,
+      "inflow": 59701429326.41,
+      "outflow": 53935748949.34,
+      "avg_pct": "0.000114532"
+    },
+    {
+      "name": "社保重仓",
+      "category": "gn_sbzc",
+      "net_inflow": 53.31,
+      "net_inflow_raw": 5330826259.44,
+      "inflow": 46840187386.55,
+      "outflow": 41509361127.11,
+      "avg_pct": "-0.00319021"
+    },
+    {
+      "name": "核电核能",
+      "category": "gn_hdhn",
+      "net_inflow": 52.65,
+      "net_inflow_raw": 5265490970.5,
+      "inflow": 38122302824.67,
+      "outflow": 32856811854.17,
+      "avg_pct": "-0.0114526"
+    },
+    {
+      "name": "资产注入",
+      "category": "gn_zczr",
+      "net_inflow": 51.59,
+      "net_inflow_raw": 5159119325.22,
+      "inflow": 19530639463.08,
+      "outflow": 14371520137.86,
+      "avg_pct": "-0.00707358"
+    },
+    {
+      "name": "固态电池",
+      "category": "gn_gtdc",
+      "net_inflow": 37.2,
+      "net_inflow_raw": 3720325836.37,
+      "inflow": 25726783793.47,
+      "outflow": 22006457957.1,
+      "avg_pct": "0.00542384"
+    },
+    {
+      "name": "券商重仓",
+      "category": "gn_qszc",
+      "net_inflow": 33.49,
+      "net_inflow_raw": 3349206092.56,
+      "inflow": 48215060187.9,
+      "outflow": 44865854095.34,
+      "avg_pct": "-0.0030405"
+    },
+    {
+      "name": "锂矿",
+      "category": "gn_lk",
+      "net_inflow": 32.43,
+      "net_inflow_raw": 3242551143.74,
+      "inflow": 33520054507.81,
+      "outflow": 30277503364.07,
+      "avg_pct": "-0.0041443"
+    },
+    {
+      "name": "光伏",
+      "category": "gn_gf",
+      "net_inflow": 29.9,
+      "net_inflow_raw": 2989963831.92,
+      "inflow": 130937626229.19,
+      "outflow": 127947662397.27,
+      "avg_pct": "-0.0120576"
+    },
+    {
+      "name": "绿色照明",
+      "category": "gn_lszm",
+      "net_inflow": 29.78,
+      "net_inflow_raw": 2977782675.04,
+      "inflow": 24862232358.15,
+      "outflow": 21884449683.11,
+      "avg_pct": "-0.00364171"
+    },
+    {
+      "name": "碳中和",
+      "category": "gn_tzh",
+      "net_inflow": 28.27,
+      "net_inflow_raw": 2827273212.65,
+      "inflow": 46868192061.51,
+      "outflow": 44040918848.86,
+      "avg_pct": "-0.00800427"
+    },
+    {
+      "name": "特斯拉",
+      "category": "gn_tsl",
+      "net_inflow": 27.94,
+      "net_inflow_raw": 2793814708.39,
+      "inflow": 43825293695.01,
+      "outflow": 41031478986.62,
+      "avg_pct": "-0.00324305"
+    },
+    {
+      "name": "重组概念",
+      "category": "gn_zzgn",
+      "net_inflow": 26.47,
+      "net_inflow_raw": 2646512115.74,
+      "inflow": 80479479138.93,
+      "outflow": 77832967023.19,
+      "avg_pct": "-0.0110298"
+    },
+    {
+      "name": "核污防治",
+      "category": "gn_hwfz",
+      "net_inflow": 23.72,
+      "net_inflow_raw": 2372099073.95,
+      "inflow": 8340890235.85,
+      "outflow": 5968791161.9,
+      "avg_pct": "0.00291942"
+    },
+    {
+      "name": "黄河三角",
+      "category": "gn_hhsj",
+      "net_inflow": 22.25,
+      "net_inflow_raw": 2224641609.46,
+      "inflow": 27067046600.13,
+      "outflow": 24842404990.67,
+      "avg_pct": "-0.00803585"
+    },
+    {
+      "name": "触摸屏",
+      "category": "gn_cmp",
+      "net_inflow": 21.75,
+      "net_inflow_raw": 2175233793.81,
+      "inflow": 11675558327.97,
+      "outflow": 9500324534.16,
+      "avg_pct": "0.00020638"
+    },
+    {
+      "name": "盐湖提锂",
+      "category": "gn_yhtl",
+      "net_inflow": 20.86,
+      "net_inflow_raw": 2086424440.35,
+      "inflow": 16362231538.85,
+      "outflow": 14275807098.5,
+      "avg_pct": "0.00608772"
+    }
+  ],
+  "stock_flow_top": [
+    {
+      "symbol": "sh601669",
+      "name": "中国电建",
+      "net_inflow": 59.64
+    },
+    {
+      "symbol": "sz300502",
+      "name": "新易盛",
+      "net_inflow": 31.48
+    },
+    {
+      "symbol": "sh601611",
+      "name": "中国核建",
+      "net_inflow": 28.4
+    },
+    {
+      "symbol": "sz002429",
+      "name": "兆驰股份",
+      "net_inflow": 25.83
+    },
+    {
+      "symbol": "sz001309",
+      "name": "德明利",
+      "net_inflow": 19.35
+    },
+    {
+      "symbol": "sh511360",
+      "name": "短融ETF海富通",
+      "net_inflow": 16.98
+    },
+    {
+      "symbol": "sz300185",
+      "name": "通裕重工",
+      "net_inflow": 15.64
+    },
+    {
+      "symbol": "sz002056",
+      "name": "横店东磁",
+      "net_inflow": 13.9
+    },
+    {
+      "symbol": "sz002165",
+      "name": "红 宝 丽",
+      "net_inflow": 13.69
+    },
+    {
+      "symbol": "sh603659",
+      "name": "璞泰来",
+      "net_inflow": 13.26
+    },
+    {
+      "symbol": "sz002463",
+      "name": "沪电股份",
+      "net_inflow": 13.08
+    },
+    {
+      "symbol": "sz002273",
+      "name": "水晶光电",
+      "net_inflow": 12.12
+    },
+    {
+      "symbol": "sz300505",
+      "name": "川金诺",
+      "net_inflow": 11.55
+    },
+    {
+      "symbol": "sh601868",
+      "name": "中国能建",
+      "net_inflow": 11.06
+    },
+    {
+      "symbol": "sz300035",
+      "name": "中科电气",
+      "net_inflow": 10.69
+    },
+    {
+      "symbol": "sz002384",
+      "name": "东山精密",
+      "net_inflow": 10.47
+    },
+    {
+      "symbol": "sz002470",
+      "name": "金正大",
+      "net_inflow": 10.17
+    },
+    {
+      "symbol": "sz300750",
+      "name": "宁德时代",
+      "net_inflow": 9.88
+    },
+    {
+      "symbol": "sh600930",
+      "name": "华电新能",
+      "net_inflow": 9.86
+    },
+    {
+      "symbol": "sh600722",
+      "name": "金牛化工",
+      "net_inflow": 9.27
+    }
+  ],
+  "dragon_tiger": [],
+  "northbound": {
+    "data": [
+      {
+        "trade_date": "20260312",
+        "ggt_ss": 29192.47,
+        "ggt_sz": 23688.31,
+        "hgt": 136610.39,
+        "sgt": 159567.12,
+        "north_money": 296177.51,
+        "south_money": 52880.77
+      },
+      {
+        "trade_date": "20260311",
+        "ggt_ss": 29130.96,
+        "ggt_sz": 23636.98,
+        "hgt": 134253.92,
+        "sgt": 169467.43,
+        "north_money": 303721.35,
+        "south_money": 52767.95
+      },
+      {
+        "trade_date": "20260310",
+        "ggt_ss": 29115.15,
+        "ggt_sz": 23618.32,
+        "hgt": 131793.97,
+        "sgt": 164687.59,
+        "north_money": 296481.56,
+        "south_money": 52733.46
+      },
+      {
+        "trade_date": "20260309",
+        "ggt_ss": 29228.37,
+        "ggt_sz": 23684.62,
+        "hgt": 164848.23,
+        "sgt": 196348.34,
+        "north_money": 361196.57,
+        "south_money": 52912.99
+      },
+      {
+        "trade_date": "20260306",
+        "ggt_ss": 28967.73,
+        "ggt_sz": 23573.13,
+        "hgt": 131754.09,
+        "sgt": 150892.65,
+        "north_money": 282646.74,
+        "south_money": 52540.86
+      },
+      {
+        "trade_date": "20260305",
+        "ggt_ss": 28982.37,
+        "ggt_sz": 23580.37,
+        "hgt": 147565.78,
+        "sgt": 168781.64,
+        "north_money": 316347.42,
+        "south_money": 52562.74
+      },
+      {
+        "trade_date": "20260304",
+        "ggt_ss": 29144.75,
+        "ggt_sz": 23695.34,
+        "hgt": 156625.09,
+        "sgt": 173156.92,
+        "north_money": 329782.01,
+        "south_money": 52840.09
+      },
+      {
+        "trade_date": "20260303",
+        "ggt_ss": 29155.66,
+        "ggt_sz": 23689.09,
+        "hgt": 195527.93,
+        "sgt": 218622.52,
+        "north_money": 414150.45,
+        "south_money": 52844.75
+      },
+      {
+        "trade_date": "20260302",
+        "ggt_ss": 29128.11,
+        "ggt_sz": 23655.83,
+        "hgt": 174618.01,
+        "sgt": 203888.25,
+        "north_money": 378506.26,
+        "south_money": 52783.94
+      },
+      {
+        "trade_date": "20260227",
+        "ggt_ss": 29047.03,
+        "ggt_sz": 23574.77,
+        "hgt": 161691.04,
+        "sgt": 179851.79,
+        "north_money": 341542.83,
+        "south_money": 52621.8
+      }
+    ]
+  },
+  "watchlist_realtime": [
+    {
+      "code": "sz002475",
+      "name": "立讯精密",
+      "open": 49.35,
+      "pre_close": 49.7,
+      "close": 49.33,
+      "high": 50.28,
+      "low": 49.05,
+      "volume": 81983337.0,
+      "amount": 4071284135.66,
+      "date": "2026-03-13",
+      "time": "15:00:00",
+      "pct_chg": -0.74
+    },
+    {
+      "code": "sh560710",
+      "name": "船舶ETF",
+      "open": 1.068,
+      "pre_close": 1.068,
+      "close": 1.046,
+      "high": 1.068,
+      "low": 1.043,
+      "volume": 171705000.0,
+      "amount": 181386288.0,
+      "date": "2026-03-13",
+      "time": "15:00:01",
+      "pct_chg": -2.06
+    }
+  ]
+}

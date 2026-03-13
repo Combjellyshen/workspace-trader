@@ -1,0 +1,103 @@
+[START] 2026-03-11T23:50:16+00:00 premarket precollection
+{
+  "mode": "premarket",
+  "path": "/home/bot/.openclaw/workspace-trader/data/daily_inputs/2026-03-12/09_cross_asset.txt",
+  "coverage": "3/18",
+  "coverage_ratio": 0.1667,
+  "generated_at": "2026-03-11T23:50:17.326049",
+  "errors": [
+    {
+      "section": "global_indexes",
+      "name": "标普500",
+      "error": "mcporter 返回非 JSON: fmp.getHistoricalIndexFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getHistoricalIndexFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "global_indexes",
+      "name": "纳斯达克",
+      "error": "mcporter 返回非 JSON: fmp.getHistoricalIndexFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getHistoricalIndexFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "global_indexes",
+      "name": "道琼斯",
+      "error": "mcporter 返回非 JSON: fmp.getHistoricalIndexFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getHistoricalIndexFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "global_indexes",
+      "name": "恒生指数",
+      "error": "mcporter 返回非 JSON: fmp.getHistoricalIndexFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getHistoricalIndexFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "global_indexes",
+      "name": "日经225",
+      "error": "mcporter 返回非 JSON: fmp.getHistoricalIndexFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getHistoricalIndexFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "global_indexes",
+      "name": "德国DAX",
+      "error": "mcporter 返回非 JSON: fmp.getHistoricalIndexFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getHistoricalIndexFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "commodities",
+      "name": "WTI原油",
+      "error": "HTTPSConnectionPool(host='stooq.com', port=443): Max retries exceeded with url: /q/d/?s=cl.f (Caused by ConnectTimeoutError(<HTTPSConnection(host='stooq.com', port=443) at 0x783e74c0e850>, 'Connection to stooq.com timed out. (connect timeout=15)'))"
+    },
+    {
+      "section": "commodities",
+      "name": "黄金",
+      "error": "HTTPSConnectionPool(host='stooq.com', port=443): Max retries exceeded with url: /q/d/?s=gc.f (Caused by ConnectTimeoutError(<HTTPSConnection(host='stooq.com', port=443) at 0x783e74c0e990>, 'Connection to stooq.com timed out. (connect timeout=15)'))"
+    },
+    {
+      "section": "commodities",
+      "name": "铜",
+      "error": "HTTPSConnectionPool(host='stooq.com', port=443): Max retries exceeded with url: /q/d/?s=hg.f (Caused by ConnectTimeoutError(<HTTPSConnection(host='stooq.com', port=443) at 0x783e74c0e350>, 'Connection to stooq.com timed out. (connect timeout=15)'))"
+    },
+    {
+      "section": "fx_rates",
+      "name": "美元指数",
+      "error": "HTTPSConnectionPool(host='stooq.com', port=443): Max retries exceeded with url: /q/d/?s=dx.f (Caused by ConnectTimeoutError(<HTTPSConnection(host='stooq.com', port=443) at 0x783e74c0ead0>, 'Connection to stooq.com timed out. (connect timeout=15)'))"
+    },
+    {
+      "section": "fx_rates",
+      "name": "USD/CNH",
+      "error": "mcporter 返回非 JSON: fmp.getForexHistoricalFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getForexHistoricalFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "fx_rates",
+      "name": "USD/JPY",
+      "error": "mcporter 返回非 JSON: fmp.getForexHistoricalFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getForexHistoricalFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "fx_rates",
+      "name": "EUR/USD",
+      "error": "mcporter 返回非 JSON: fmp.getForexHistoricalFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getForexHistoricalFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "crypto",
+      "name": "BTC/USD",
+      "error": "HTTPSConnectionPool(host='stooq.com', port=443): Max retries exceeded with url: /q/d/l/?s=btc.v&i=d (Caused by ConnectTimeoutError(<HTTPSConnection(host='stooq.com', port=443) at 0x783e74c0de50>, 'Connection to stooq.com timed out. (connect timeout=15)'))"
+    },
+    {
+      "section": "crypto",
+      "name": "ETH/USD",
+      "error": "HTTPSConnectionPool(host='stooq.com', port=443): Max retries exceeded with url: /q/d/l/?s=eth.v&i=d (Caused by ConnectTimeoutError(<HTTPSConnection(host='stooq.com', port=443) at 0x783e74c0e210>, 'Connection to stooq.com timed out. (connect timeout=15)'))"
+    }
+  ]
+}
+[MID] 2026-03-11T23:54:59+00:00 market_regime_detector
+{
+  "regime": "成长进攻 / 风险偏好提升",
+  "inputs": {
+    "sh000001_pct": 0.25,
+    "sz399001_pct": 0.78,
+    "sz399006_pct": 1.31
+  },
+  "note": "当前为轻量规则版，可继续接入 market_breadth / sentiment / northbound 做更稳的 regime 识别。"
+}
+[MID] 2026-03-11T23:55:06+00:00 data_consistency_guard
+  0%|          | 0/58 [00:00<?, ?it/s]  2%|▏         | 1/58 [00:01<01:33,  1.64s/it]                                              status=error
+recommended_source=deep_data.watchlist_realtime
+[error] 002475 price_conflict: 价格冲突: intraday=0.0, deep_data=50.17
+[warning] 002475 pct_gap: 涨跌幅偏差较大: intraday=+0.00% vs deep_data=+1.58%
+[error] 560710 price_conflict: 价格冲突: intraday=0.0, deep_data=1.096
+[warning] 560710 pct_gap: 涨跌幅偏差较大: intraday=+0.00% vs deep_data=-1.53%
+[END] 2026-03-11T23:55:30+00:00 done

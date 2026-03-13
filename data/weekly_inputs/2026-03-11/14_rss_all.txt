@@ -1,0 +1,1586 @@
+/home/bot/.openclaw/workspace-trader/scripts/data/rss_aggregator.py:114: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "collected_at": datetime.utcnow().isoformat() + "Z",
+{
+  "collected_at": "2026-03-11T16:09:32.055085Z",
+  "total_items": 214,
+  "sources_ok": 13,
+  "sources_total": 19,
+  "source_stats": {
+    "财联社-备用": {
+      "count": 0,
+      "error": "parse error: <unknown>:2:0: syntax error"
+    },
+    "证券时报": {
+      "count": 0,
+      "error": "parse error: text/html; charset=UTF-8 is not an XML media type"
+    },
+    "财联社快讯": {
+      "count": 20,
+      "error": null
+    },
+    "新浪财经": {
+      "count": 0,
+      "error": "parse error: text/html; charset=UTF-8 is not an XML media type"
+    },
+    "CNBC": {
+      "count": 20,
+      "error": null
+    },
+    "MarketWatch": {
+      "count": 10,
+      "error": null
+    },
+    "华尔街见闻-A股": {
+      "count": 20,
+      "error": null
+    },
+    "第一财经": {
+      "count": 20,
+      "error": null
+    },
+    "证监会新闻": {
+      "count": 0,
+      "error": "parse error: text/html; charset=UTF-8 is not an XML media type"
+    },
+    "CoinDesk": {
+      "count": 20,
+      "error": null
+    },
+    "Reuters-Business": {
+      "count": 0,
+      "error": "parse error: <urlopen error [Errno -2] Name or service not known>"
+    },
+    "Yahoo-Finance": {
+      "count": 20,
+      "error": null
+    },
+    "上交所公告": {
+      "count": 0,
+      "error": "parse error: text/html; charset=UTF-8 is not an XML media type"
+    },
+    "FT-Markets": {
+      "count": 20,
+      "error": null
+    },
+    "Investing-Commodities": {
+      "count": 10,
+      "error": null
+    },
+    "ZeroHedge": {
+      "count": 20,
+      "error": null
+    },
+    "Bloomberg-Markets": {
+      "count": 20,
+      "error": null
+    },
+    "OilPrice": {
+      "count": 15,
+      "error": null
+    },
+    "华尔街见闻-全球": {
+      "count": 20,
+      "error": null
+    }
+  },
+  "items": [
+    {
+      "title": "IEA agrees to release record 400 million barrels of oil to address Iran war supply disruption",
+      "link": "https://www.cnbc.com/2026/03/11/iea-oil-reserves-crude-prices-iran-g7-energy.html",
+      "published": "Wed, 11 Mar 2026 16:06:31 GMT",
+      "summary": "The move comes as the Iran war continues to choke off traffic through the strategically vital Strait of Hormuz.",
+      "source": "CNBC"
+    },
+    {
+      "title": "Investor ban on buying homes stalls housing affordability bill",
+      "link": "https://www.cnbc.com/2026/03/11/housing-affordability-2026-election.html",
+      "published": "Wed, 11 Mar 2026 16:04:06 GMT",
+      "summary": "A bill to increase housing supply and decrease costs is set to sail through the Senate on Thursday, but House leaders foresee further negotiations.",
+      "source": "CNBC"
+    },
+    {
+      "title": "财联社3月12日电，英伟达推出 NEMOTRON 3 Super，该模型为智能体 AI（Agentic AI）提供5 倍吞吐量提升。",
+      "link": "https://api3.cls.cn/share/article/2310142?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 16:03:44 GMT",
+      "summary": "财联社3月12日电，英伟达推出 NEMOTRON 3 Super，该模型为智能体 AI（Agentic AI）提供5 倍吞吐量提升。",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "OFC 2026前瞻：硅光子与CPO如何重塑下一代AI互联体系",
+      "link": "https://wallstreetcn.com/articles/3767269",
+      "published": "Wed, 11 Mar 2026 16:03:38 GMT",
+      "summary": "<p style=\"text-align: left;\"><strong>光互联正成为AI基础设施最关键的瓶颈与机遇。</strong></p>\n<p style=\"text-align: left;\">随着OFC 2026展会即将于本月在洛杉矶开幕，全球光通信产业链将集中展示下一代连接技术的最新进展。在AI数据中心带宽需求的强力驱动下，800G光模块正从试点走向主流，1.6T产品已进入量产爬坡阶段，光互联技术路线正经历一场结构性变革。</p>\n<p>据SemiVision Research分析，<strong>生成式AI模型规模快速扩张，数据中心核心瓶颈正从晶体管性能转向互联带宽与延迟。</strong>英伟达CEO黄仁勋提出的“黄氏定律”指出，算力可通过制程演进与3D封装持续提升，但芯片间I/O速率提升滞后，形成“I/O墙”。这一结构性矛盾正推动光学器件向计算与交换芯片侧迁移，以突破功耗、损耗与传输距离的约束。</p>\n<p>本届OFC技术会议将于3月15日至19日举行，展览会定于3月17日至19日在洛杉矶会议中心开幕。核心议题涵盖：1.6T及3.2T光模块技术路径、共封装光学（C",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "财联社3月12日电，美国两年期国债收益率涨幅扩大，升至3.642%，为9月以来最高水平。",
+      "link": "https://api3.cls.cn/share/article/2310141?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 16:02:49 GMT",
+      "summary": "财联社3月12日电，美国两年期国债收益率涨幅扩大，升至3.642%，为9月以来最高水平。",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "英伟达推出Nemotron 3 Super",
+      "link": "https://wallstreetcn.com/articles/3767273",
+      "published": "Wed, 11 Mar 2026 16:02:40 GMT",
+      "summary": "<p>英伟达推出Nemotron 3 Super。</p><div style=\"color: #666; margin-bottom: 15px;\">风险提示及免责条款</div>\n          <div>\n            市场有风险，投资需谨慎。本文不构成个人投资建议，也未考虑到个别用户特殊的投资目标、财务状况或需要。用户应考虑本文中的任何意见、观点或结论是否符合其特定状况。据此投资，责任自负。\n          </div>",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "Crypto Long & Short: AI agents choosing denationalized money",
+      "link": "https://www.coindesk.com/coindesk-indices/2026/03/11/crypto-long-and-short-ai-agents-choosing-denationalized-money",
+      "published": "Wed, 11 Mar 2026 16:02:20 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "私募信贷危机加剧？摩根大通率先“砍”掉贷款额度，1.8万亿美元巨震在即",
+      "link": "https://wallstreetcn.com/articles/3767272",
+      "published": "Wed, 11 Mar 2026 16:02:08 GMT",
+      "summary": "<p>私募信贷市场的压力正从行业内部向传统银行体系蔓延。摩根大通已对向私募信贷机构提供的融资实施限制，此举被市场视为华尔街大型银行对1.8万亿美元私募信贷行业风险敞口的重新评估。</p>\n<p>据英国《金融时报》报道，<strong>摩根大通已通知相关私募信贷机构，对其投资组合中部分贷款的抵押品价值进行下调，涉及贷款主要集中于软件行业企业。</strong>这一估值调整将直接影响相关基金未来可从摩根大通获得的融资规模。</p>\n<p>与此同时，私募信贷领域基金Cliffwater据报已遭遇逾7%的投资者赎回，进一步加剧市场对该行业流动性的担忧。<strong>多重负面信号叠加，使私募信贷市场的脆弱性愈发凸显。</strong></p>\n<h2 style=\"text-align: left;\">摩根大通主动出击，软件贷款首当其冲</h2>\n<p>据报道，摩根大通此次下调估值的贷款集中于软件行业。该行认为，软件企业在人工智能浪潮冲击下尤为脆弱，而此类贷款在近年私募信贷新增规模中占据相当大比重。</p>\n<p>知情人士透露，此番估值调整并未触发相关基金的追加保证金通知，而是摩根大通主动采取",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "日本社民党批长射程导弹计划违宪",
+      "link": "https://api3.cls.cn/share/article/2310139?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 16:01:07 GMT",
+      "summary": "【日本社民党批长射程导弹计划违宪】财联社3月12日电，日本防卫省近日在熊本县部署长射程导弹的计划在日本国内引发争议。日本社民党党首福岛瑞穗3月10日称，此举违反宪法。共同社报道称，除了在熊本县部署陆基改进型12式反舰导弹外，防卫省10日还称，已决定在本月31日把“岛屿防卫用高速滑翔弹”部署至静冈县的陆上自卫队富士驻地。海上自卫队方面，宙斯盾舰“鸟海”号目前为了搭载“战斧”巡航导弹而在美国接受改装，预计3月内具备发射能力。日本政府企图突破“和平宪法”的相关动向，在日本国内引发强烈担忧和批评。 (CCTV国际时讯)",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "US Targets Iranian Minelayer Ships Near Strait of Hormuz",
+      "link": "https://www.bloomberg.com/news/videos/2026-03-11/us-targets-iranian-minelayer-ships-video",
+      "published": "Wed, 11 Mar 2026 16:00:01 GMT",
+      "summary": "The US says its targeting Iranian minelaying ships as part of Operation Epic Fury. US Central Command says it's destroyed 16 near the Strait of Hormuz, a critical passage for oil tankers. The Strait of Hormuz has been all but impassable since the opening salvos of the war, which continued for a 12th day with missiles and drones fired from both sides. (Source: Bloomberg)",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "盈科律师事务所：梅向荣已辞去在本所担任的一切职务",
+      "link": "https://api3.cls.cn/share/article/2310138?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 15:59:36 GMT",
+      "summary": "【盈科律师事务所：梅向荣已辞去在本所担任的一切职务】财联社3月11日电，盈科律师事务所官微表示，关于网传梅向荣先生事件，郑重公告如下：梅向荣先生已辞去在本所担任的一切职务，该事件系其家人开办公司产生的问题，与本所执业活动无关联。本所各项经营活动正常有序开展，将依法依规及时披露合规信息，接受社会与行业监督。",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "Who is Markwayne Mullin? Trump ally will bring conservative immigration policies to DHS",
+      "link": "https://www.cnbc.com/2026/03/11/trump-markwayne-mullin-dhs.html",
+      "published": "Wed, 11 Mar 2026 15:58:01 GMT",
+      "summary": "Republicans are optimistic about Markwayne Mullin taking over the reins at DHS, while Democrats warn his tenure will be more of the same after Kristi Noem.",
+      "source": "CNBC"
+    },
+    {
+      "title": "智利当选总统卡斯特宣誓就职",
+      "link": "https://api3.cls.cn/share/article/2310137?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 15:54:47 GMT",
+      "summary": "【智利当选总统卡斯特宣誓就职】财联社3月11日电，智利当选总统何塞·安东尼奥·卡斯特在智利国会宣誓就职，任期4年至2030年。卡斯特现年60岁，于2019年创立极右翼政党智利共和党。在去年12月中旬举行的智利总统选举第二轮投票中，他击败左翼执政联盟候选人珍妮特·哈拉，当选新一届总统。 (央视新闻)",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "财联社3月11日电，欧元区货币市场目前已完全计入欧洲央行将在7月前加息的预期。",
+      "link": "https://api3.cls.cn/share/article/2310136?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 15:54:38 GMT",
+      "summary": "财联社3月11日电，欧元区货币市场目前已完全计入欧洲央行将在7月前加息的预期。",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "因座椅靠背存在缺陷 丰田将在美召回55万辆汽车",
+      "link": "https://api3.cls.cn/share/article/2310135?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 15:53:55 GMT",
+      "summary": "【因座椅靠背存在缺陷 丰田将在美召回55万辆汽车】财联社3月11日电，美国国家公路交通安全管理局（NHTSA）表示，丰田汽车公司将在美国召回550007辆汽车，原因是座椅靠背机构存在缺陷，可能在调节过程中无法锁定到位，增加受伤风险。美国国家公路交通安全管理局表示，经销商将免费更换座椅靠背倾斜装置总成中的复位弹簧。",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "‘I didn’t ask a man to rear-end my car’: Social Security is replacing my disability benefits. Will the fund run out of money?",
+      "link": "https://www.marketwatch.com/story/i-didnt-ask-a-man-to-rear-end-my-car-social-security-is-replacing-my-disability-benefits-will-the-fund-run-out-of-money-794d81b0?mod=mw_rss_topstories",
+      "published": "Wed, 11 Mar 2026 15:52:00 GMT",
+      "summary": "“I didn’t ask a man to rear-end my car at a red light.”",
+      "source": "MarketWatch"
+    },
+    {
+      "title": "ECB’s Schnabel Says New Forecasts Will Partly Reflect Iran War",
+      "link": "https://www.bloomberg.com/news/articles/2026-03-11/ecb-s-schnabel-says-new-forecasts-will-partly-reflect-iran-war",
+      "published": "Wed, 11 Mar 2026 15:51:50 GMT",
+      "summary": "The European Central Bank’s new quarterly forecasts will partly incorporate the economic impact of the war in Iran, according to Executive Board member Isabel Schnabel.",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "Macron Says Release of Oil Stocks to Be Organized in Coming Days",
+      "link": "https://www.bloomberg.com/news/articles/2026-03-11/macron-says-release-of-oil-stocks-to-be-organized-in-coming-days",
+      "published": "Wed, 11 Mar 2026 15:49:16 GMT",
+      "summary": "The Group of Seven nations and IEA member countries will organize the discharge of a maximum of 400 million barrels from emergency oil reserves in the coming days, French President Emmanuel Macron said.",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "财联社3月11日电，美元兑日元日内涨幅扩大至0.50%，现报158.83。",
+      "link": "https://api3.cls.cn/share/article/2310133?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 15:47:38 GMT",
+      "summary": "财联社3月11日电，美元兑日元日内涨幅扩大至0.50%，现报158.83。",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "伊朗外交部：欧盟对伊新制裁既不合逻辑也不道德",
+      "link": "https://api3.cls.cn/share/article/2310132?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 15:47:03 GMT",
+      "summary": "【伊朗外交部：欧盟对伊新制裁既不合逻辑也不道德】财联社3月11日电，针对欧盟对伊朗实施的制裁，伊朗外交部发言人巴加埃在社交媒体上针对欧盟对伊朗实施新制裁的举措发表声明称，这一举措既不合逻辑，也不道德且非法。声明称，欧盟试图因伊朗根据《联合国宪章》第五十一条行使自卫权并抵抗美国和以色列的残酷非法侵略而惩罚伊朗；而与此同时，欧盟为美以行动提供支持和便利条件。声明还称，欧盟这种立场无异于积极共谋国际违法行为及可怕残暴罪行。 (央视新闻)",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "This oil company’s top executives cashed in as the stock climbed to a 16-month high",
+      "link": "https://www.marketwatch.com/story/this-oil-companys-top-executives-cashed-in-as-the-stock-climbed-to-a-16-month-high-0c2d54a0?mod=mw_rss_topstories",
+      "published": "Wed, 11 Mar 2026 15:47:00 GMT",
+      "summary": "A number of C-suite executives had sold during the rally on the back of the Iran conflict.",
+      "source": "MarketWatch"
+    },
+    {
+      "title": "财联社3月11日电，美股延续跌势，道指跌幅扩大至1%，纳指现跌0.2%，标普500指数跌0.4%。",
+      "link": "https://api3.cls.cn/share/article/2310131?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 15:46:45 GMT",
+      "summary": "财联社3月11日电，美股延续跌势，道指跌幅扩大至1%，纳指现跌0.2%，标普500指数跌0.4%。",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "We're buying the recent drop in a recession-resistant stock that started the year hot",
+      "link": "https://www.cnbc.com/2026/03/11/were-buying-the-recent-drop-in-a-recession-resistant-stock-that-started-the-year-hot.html",
+      "published": "Wed, 11 Mar 2026 15:43:09 GMT",
+      "summary": "After sitting on our hands Tuesday and awaiting further developments in the Iran war, we are putting some money to work",
+      "source": "CNBC"
+    },
+    {
+      "title": "报道：AMD苏姿丰下周密会李在镕，或锁定三星HBM供应",
+      "link": "https://wallstreetcn.com/articles/3767259",
+      "published": "Wed, 11 Mar 2026 15:36:38 GMT",
+      "summary": "<p style=\"text-align: left;\">AMD首席执行官苏姿丰（Lisa Su）计划下周赴韩，与三星电子会长李在镕（Jay Y. Lee）会面，议题聚焦<strong>AI芯片所需高带宽内存（HBM）的供应合作</strong>，此举折射出科技巨头抢占AI内存资源的激烈态势。</p>\n<p style=\"text-align: left;\">据韩国《每日经济新闻》援引业内人士消息，苏姿丰定于3月18日访问韩国，并计划与李在镕及韩国最大互联网搜索引擎运营商Naver的CEO Choi Soo-yeon等核心合作伙伴会面。这是AMD在AI竞赛持续升温背景下的重要外交动作。</p>\n<p style=\"text-align: left;\">苏姿丰此次访韩，正值HBM、DRAM及NAND等存储芯片需求大幅攀升之际。AMD、英伟达等科技公司正竞相采购上述芯片，以支撑数据中心建设及AI系统的持续扩张。<strong>若AMD成功锁定三星的HBM供应，将有助于其进一步与英伟达抗衡。</strong></p>\n<h2 style=\"text-align: left;\"><strong",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "财联社3月11日电，马克龙表示，法国将最多释放1450万桶石油。",
+      "link": "https://api3.cls.cn/share/article/2310129?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 15:35:28 GMT",
+      "summary": "财联社3月11日电，马克龙表示，法国将最多释放1450万桶石油。",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "财联社3月11日电，美国财政部拍卖四个月期国债，得标利率3.6%，投标倍数3.19。",
+      "link": "https://api3.cls.cn/share/article/2310128?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 15:34:44 GMT",
+      "summary": "财联社3月11日电，美国财政部拍卖四个月期国债，得标利率3.6%，投标倍数3.19。",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "Here's the inflation breakdown for February 2026 — in one chart",
+      "link": "https://www.cnbc.com/2026/03/11/cpi-inflation-february-2026-breakdown.html",
+      "published": "Wed, 11 Mar 2026 15:33:38 GMT",
+      "summary": "The consumer price index was rose 2.4% in February 2026, above policymakers' target, economists said. War in Iran complicates the picture.",
+      "source": "CNBC"
+    },
+    {
+      "title": "IEA to Release Oil Reserves as Iran War Chokes Supply",
+      "link": "https://www.bloomberg.com/news/videos/2026-03-11/iea-to-release-oil-reserves-as-iran-war-chokes-supply-video",
+      "published": "Wed, 11 Mar 2026 15:32:46 GMT",
+      "summary": "The IEA agreed to discharge 400 million barrels from emergency oil reserves, the largest-ever release, as governments seek to contain a price spike driven by the Middle East war. (Source: Bloomberg)",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "Ardagh CDS Holders Set for 66% Payout After Settlement Auction",
+      "link": "https://www.bloomberg.com/news/articles/2026-03-11/ardagh-cds-holders-set-for-66-payout-after-settlement-auction",
+      "published": "Wed, 11 Mar 2026 15:31:56 GMT",
+      "summary": "Holders of Ardagh Group SA’s credit default swaps are set for a payout worth 66% of face value following a debt restructuring that saw unsecured bondholders take over the Irish packaging firm.",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "美军警告伊朗平民远离霍尔木兹海峡港口设施",
+      "link": "https://api3.cls.cn/share/article/2310127?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 15:31:47 GMT",
+      "summary": "【美军警告伊朗平民远离霍尔木兹海峡港口设施】财联社3月11日电，美国中央司令部发布声明，警告伊朗平民避免靠近霍尔木兹海峡沿岸由伊朗海军使用的港口设施。美军呼吁伊朗港口工人、行政人员以及商业船只船员远离伊朗海军舰艇和军事设备，并避免进入相关港口设施。声明还称，美国军方将在军事行动中尽可能采取措施减少对平民的伤害，但无法保证在被用于军事目的的设施附近人员的安全。 (央视新闻)",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "BNP, Bradesco, Rabobank Named as Some of Raízen Top Creditors",
+      "link": "https://www.bloomberg.com/news/articles/2026-03-11/bnp-bradesco-rabobank-named-as-some-of-raizen-top-creditors",
+      "published": "Wed, 11 Mar 2026 15:31:04 GMT",
+      "summary": "BNP Paribas, Banco Bradesco SA and Coöperatieve Rabobank are among the largest creditors of Brazilian sugar and ethanol company Raízen SA, which is seeking to restructure some $12.6 billion of debt out-of-court.",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "财联社3月11日电，美国2年期国债收益率升至3.634%，为9月以来最高水平。",
+      "link": "https://api3.cls.cn/share/article/2310126?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 15:30:50 GMT",
+      "summary": "财联社3月11日电，美国2年期国债收益率升至3.634%，为9月以来最高水平。",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "财联社3月11日电，法国总统马克龙表示，G7将在未来几天内释放石油库存。",
+      "link": "https://api3.cls.cn/share/article/2310124?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 15:29:26 GMT",
+      "summary": "财联社3月11日电，法国总统马克龙表示，G7将在未来几天内释放石油库存。",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "Nebius’s stock soars after Nvidia investment. Here’s what to know.",
+      "link": "https://www.marketwatch.com/story/nebiuss-stock-soars-after-nvidia-investment-heres-what-to-know-5f1ed5f0?mod=mw_rss_topstories",
+      "published": "Wed, 11 Mar 2026 15:29:00 GMT",
+      "summary": "Nvidia continues to strike AI relationships that come alongside financial investments.",
+      "source": "MarketWatch"
+    },
+    {
+      "title": "德国将释放近2000万桶石油储备",
+      "link": "https://api3.cls.cn/share/article/2310123?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 15:26:26 GMT",
+      "summary": "【德国将释放近2000万桶石油储备】财联社3月11日电，德国联邦经济和能源部长卡特琳娜·赖歇11日表示，由于美国和以色列军事打击伊朗导致全球能源价格飙升，德国将释放1951万桶战略石油储备，以缓解油价上涨压力。 (新华社)",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "How Strait of Hormuz closure can become tipping point for global economy",
+      "link": "https://www.cnbc.com/2026/03/11/strait-of-hormuz-closure-shipping-economy-oil.html",
+      "published": "Wed, 11 Mar 2026 15:26:09 GMT",
+      "summary": "A Strait of Hormuz closure due to U.S.-Iran war hit the oil market hard, but sectors reliant on shipping across economy from metals to farming are vulnerable.",
+      "source": "CNBC"
+    },
+    {
+      "title": "Anduril expands into space as defense tech angles to support Trump's Golden Dome",
+      "link": "https://www.cnbc.com/2026/03/11/anduril-acquires-exoanalytic-solutions-i-trump-golden-dome.html",
+      "published": "Wed, 11 Mar 2026 15:24:45 GMT",
+      "summary": "Anduril, founded by Oculus creator Palmer Luckey, is positioning itself to be a key player in President Trump's \"Golden Dome\" project.",
+      "source": "CNBC"
+    },
+    {
+      "title": "财联社3月11日电，纳斯达克中国金龙指数跌幅扩大，现跌1.0%，最新报7150.12点。",
+      "link": "https://api3.cls.cn/share/article/2310122?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 15:23:37 GMT",
+      "summary": "财联社3月11日电，纳斯达克中国金龙指数跌幅扩大，现跌1.0%，最新报7150.12点。",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "Wells Fargo signals deeper push into crypto, filing trademark for WFUSD",
+      "link": "https://www.coindesk.com/business/2026/03/11/wells-fargo-signals-deeper-push-into-crypto-filing-trademark-for-wfusd",
+      "published": "Wed, 11 Mar 2026 15:23:28 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "Oracle stock spikes 12% as strong Q3 earnings answer Wall Street AI buildout concerns",
+      "link": "https://www.cnbc.com/2026/03/11/oracle-orcl-stock-q3-earnings-ai-data-center.html",
+      "published": "Wed, 11 Mar 2026 15:18:05 GMT",
+      "summary": "Oracle CEO Clayton Magouyrk said on an earnings call the company's model of having customers provide data chips for new data center builds is working.",
+      "source": "CNBC"
+    },
+    {
+      "title": "IEA unveils largest-ever release of reserves: Why oil prices have continued to move higher",
+      "link": "https://www.marketwatch.com/story/oil-futures-rise-as-traders-await-decision-on-reserves-3cd81485?mod=mw_rss_topstories",
+      "published": "Wed, 11 Mar 2026 15:14:00 GMT",
+      "summary": "The largest-ever release of oil from the International Energy Agency’s emergency stockpiles was expected to send oil prices lower on Wednesday. Instead, prices continued to rise.",
+      "source": "MarketWatch"
+    },
+    {
+      "title": "美军内部调查初步认定“误击”伊朗学校",
+      "link": "https://api3.cls.cn/share/article/2310120?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 15:13:29 GMT",
+      "summary": "【美军内部调查初步认定“误击”伊朗学校】财联社3月11日电，一项正在进行的美军内部调查初步认定，美军对伊朗一所小学的导弹袭击是“误击”。调查称，2月28日，美军在空袭伊朗一处军事基地时，一枚“战斧”巡航导弹“误击”了伊朗米纳卜市的这所小学。据称美军在选定打击目标坐标时“使用了美国国防情报局提供的‘过时数据’”，导致学校被“误标”为军事目标。调查还称，该校建筑“过去曾属于伊朗伊斯兰革命卫队海军基地的一部分，但在2013年至2016年间已被改为学校使用”。 (央视新闻)",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "OpenAI电商梦遭现实重击：购买转化率不足1%，商家冷眼旁观，用户几乎不买单",
+      "link": "https://wallstreetcn.com/articles/3767265",
+      "published": "Wed, 11 Mar 2026 15:12:11 GMT",
+      "summary": "<p>OpenAI试图把ChatGPT从“搜索与对话工具”推向“交易入口”的商业化路径，正在被低转化率与商家参与度不足拉回现实：<strong>产品“买”按钮点击率不足1%，远低于典型电商网站3%到4%的水平</strong>，直接冲击其抽佣变现设想。</p>\n<p>据The Information，OpenAI已在上周三确认，<strong>缩减在ChatGPT内直接上架并售卖商品的聊天内结账尝试。</strong>知情人士称，这一收缩发生在商家采用有限、实际成交不多之后。</p>\n<p>与此同时，OpenAI把重心转向“ChatGPT apps”模式，希望零售商与平台方以独立应用的形式在ChatGPT内“开店”，再结合其与Stripe共同开发的结账技术完成交易。</p>\n<p>但目前只有Instacart支持在ChatGPT app内直接结账，<strong>其他多数场景仍需跳转商家网站，交易链条与体验尚未闭环。</strong></p>\n<p>合作伙伴态度也更谨慎。<strong>Shopify已确认不会推出自己的ChatGPT app</strong>，ChatGPT用户将转回",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "European Central Bank unveils tokenized finance plan to bolster EU's financial autonomy",
+      "link": "https://www.coindesk.com/business/2026/03/11/european-central-bank-unveils-tokenized-finance-plan-to-bolster-eu-s-financial-autonomy",
+      "published": "Wed, 11 Mar 2026 15:11:42 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "AI算力军备竞赛升级！英伟达20亿美元投资AI云公司Nebius，共建人工智能数据中心",
+      "link": "https://wallstreetcn.com/articles/3767266",
+      "published": "Wed, 11 Mar 2026 15:11:24 GMT",
+      "summary": "<p style=\"text-align: left;\">英伟达再度出手，以20亿美元战略投资强化其在AI基础设施领域的布局。</p>\n<p style=\"text-align: left;\">3月11日，据彭博报道，<strong>英伟达将向荷兰AI云计算公司Nebius Group NV投资20亿美元，双方将联合设计、建设并运营AI数据中心</strong>。根据协议，Nebius计划在2030年底前部署超过5吉瓦的英伟达系统——这一规模足以在任意时刻为约380万户家庭提供电力。</p>\n<p style=\"text-align: left;\">在此消息提振下，Nebius股价周三美股盘初涨近15%，过去一年累计涨幅已超两倍。此次合作将聚焦于“推理”领域，即AI模型完成训练后的实际运行与服务部署环节。</p>\n<p style=\"text-align: left;\"><img class=\"wscnph\" src=\"https://wpimg-wscn.awtmt.com/daf662ed-469d-4857-b2b5-18584a1db2e5.png\" /></p>\n<h2 st",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "The Protocol: Ethereum Foundation starts experimenting with ‘DVT-lite’ technology",
+      "link": "https://www.coindesk.com/tech/2026/03/11/the-protocol-ethereum-foundation-starts-experimenting-with-dvt-lite-technology",
+      "published": "Wed, 11 Mar 2026 15:09:16 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "IEA launches record release of oil reserves to counter energy shock",
+      "link": "https://www.ft.com/content/9b623bca-bc3a-4081-b1c7-f57d83ea225e",
+      "published": "Wed, 11 Mar 2026 15:05:56 GMT",
+      "summary": "Unprecedented move underscores fears of threat to global economy from the Middle East war",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "Three cargo ships struck off Iran's coast, UK says, including one in Strait of Hormuz",
+      "link": "https://www.cnbc.com/2026/03/11/cargo-ship-struck-strait-of-hormuz-uk-iran-war.html",
+      "published": "Wed, 11 Mar 2026 15:05:09 GMT",
+      "summary": "The incidents mark the latest in a string of reported attacks in or near to the Strait of Hormuz, where shipping traffic has virtually ground to a halt.",
+      "source": "CNBC"
+    },
+    {
+      "title": "Binance.US names compliance veteran as CEO as regulation, competition get tougher",
+      "link": "https://www.coindesk.com/business/2026/03/11/binance-us-names-compliance-veteran-as-ceo-as-regulation-competition-get-tougher",
+      "published": "Wed, 11 Mar 2026 15:05:00 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "国内商品期货夜盘收盘普遍上涨 能源化工品全线上涨",
+      "link": "https://api3.cls.cn/share/article/2310119?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 15:01:55 GMT",
+      "summary": "【国内商品期货夜盘收盘普遍上涨 能源化工品全线上涨】财联社3月11日电，国内商品期货夜盘收盘普遍上涨，能源化工品全线上涨，PTA涨11.36%，短纤涨7.48%，低硫燃料油涨7.13%，乙二醇涨6.29%，PVC涨5.68%，LPG涨5.44%。黑色系多数上涨，焦煤涨1.9%，焦炭涨1.12%。农产品多数上涨，棕榈油涨1.67%，豆油涨近1%。",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "对二甲苯夜盘收涨约13%，PTA涨约11.3%，瓶片涨约8.8%。 棉花夜盘收跌0.13%。",
+      "link": "https://wallstreetcn.com/livenews/3068198",
+      "published": "Wed, 11 Mar 2026 15:00:24 GMT",
+      "summary": "<p>对二甲苯夜盘收涨约13%，PTA涨约11.3%，瓶片涨约8.8%。</p>\n\n<p>棉花夜盘收跌0.13%。</p>",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "Former legal executives from crypto exchange OKX unveil DeFi connectivity, risk-rating service",
+      "link": "https://www.coindesk.com/business/2026/03/11/former-okx-legal-execs-unveil-defi-connectivity-risk-rating-service",
+      "published": "Wed, 11 Mar 2026 15:00:00 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "Raízen Firma Acordo Para Reestruturar Dívida de R$ 65 Bilhões",
+      "link": "https://www.bloomberg.com/news/videos/2026-03-11/raizen-firma-acordo-para-reestruturar-divida-de-r-65-bi-video",
+      "published": "Wed, 11 Mar 2026 14:59:41 GMT",
+      "summary": "A Raízen, produtora brasileira de açúcar e etanol, controlada conjuntamente pela Shell e Cosan, concordou em iniciar uma reestruturação extrajudicial de dívida no valor de cerca de R$ 65 bilhões.  (Source: Bloomberg)",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "Nebius stock pops 14% on Nvidia $2 billion investment announcement",
+      "link": "https://www.cnbc.com/2026/03/11/nebius-nvidia-ai-cloud.html",
+      "published": "Wed, 11 Mar 2026 14:59:30 GMT",
+      "summary": "The announcement comes a week after Nvidia unveiled partnerships with Lumentum and Coherent, investing $2 billion in each company.",
+      "source": "CNBC"
+    },
+    {
+      "title": "Natural Gas Boom Will Spur a Shortage of US Fracking Gear, Shale Boss Says",
+      "link": "https://www.bloomberg.com/news/articles/2026-03-11/gas-boom-will-spur-a-shortage-of-us-fracking-gear-patterson-uti-pten-ceo-says",
+      "published": "Wed, 11 Mar 2026 14:59:07 GMT",
+      "summary": "Rising US natural gas exports and soaring domestic demand for the power-plant fuel will lead to a shortage of fracking gear later this decade, according to the head of one the country’s top drilling contractors.",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "Oracle’s stock surges. Here’s how it finally left the AI penalty box.",
+      "link": "https://www.marketwatch.com/story/oracles-stock-surges-heres-how-it-finally-left-the-ai-penalty-box-d1d73d39?mod=mw_rss_topstories",
+      "published": "Wed, 11 Mar 2026 14:58:00 GMT",
+      "summary": "Oracle is benefiting from its new bring-your-own-chip policy, which helps protect margins as the company wins more cloud business.",
+      "source": "MarketWatch"
+    },
+    {
+      "title": "“80后”副董事长拟上任，永赢基金公告最新董事会名单",
+      "link": "https://wallstreetcn.com/articles/3767271",
+      "published": "Wed, 11 Mar 2026 14:54:17 GMT",
+      "summary": "<p>3月11日，永赢基金公告，自2025年5月以来，因股东方人员调整、董事会换届、公司拟增设副董事长等原因，经公司股东会审议通过，董事会成员经过数次调整，出现最近12个月内董事变更超过百分之五十的情况。</p>\n<p>公告称，目前，公司董事会成员为，马宇晖、章宁宁、王丹丹、Tan Wing Ming（陈永明）、Ang Eng Siong（洪湧翔）、芦特尔、陈巍、胡建军、王磊。</p>\n<p>而这份新的董事会名单，似乎暗含着下一步的重要安排。</p>\n<h2><strong>80后章宁宁拟任副董事长</strong></h2>\n<p>最值得关注的是，章宁宁拟任副董事长。</p>\n<p>公开信息显示，章宁宁1984年3月出生，自2007年7月入职宁波银行，并自2012年1月起于宁波银行历任金融市场部总经理助理、副总经理、副总经理（主持工作）、总经理，资金营运中心总经理，宁波银行副行长。</p>\n<p>根据宁波银行此前公告，因个人原因，章宁宁女士辞去公司副行长职务，自2024年2月6日起生效。章宁宁女士辞任后，不再担任公司及控股子公司任何职务。章宁宁女士确认与公司董事会无不同意见，亦无其他",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "美国监管机构计划放宽针对华尔街银行的部分资本要求提案",
+      "link": "https://api3.cls.cn/share/article/2310118?os=web&sv=8.4.6&app=CailianpressWeb",
+      "published": "Wed, 11 Mar 2026 14:53:38 GMT",
+      "summary": "【美国监管机构计划放宽针对华尔街银行的部分资本要求提案】财联社3月11日电，据报道，美国监管机构拟提出一揽子新的资本要求，旨在鼓励部分华尔街银行及其中型竞争对手扩大信贷投放。知情人士称，美联储、联邦存款保险公司（FDIC）和货币监理署（OCC）官员最快将于下周公布相关提案，，该方案将包括三项与资本相关的关键措施。其中一项计划是美国银行资本重大提案“巴塞尔协议III”（Basel III）的修订版。美联储负责监管事务的副主席米歇尔·鲍曼上月表示，该修订版本将在3月底前推出。知情人士称，另一项措施将允许中型银行在计算资本水平时采用标准化方法，以回应较小机构的担忧，即若采用华尔街银行使用的更复杂方法，将不得不承担更高的计算成本。",
+      "source": "财联社快讯"
+    },
+    {
+      "title": "九千亿基金公司迎来新副总",
+      "link": "https://wallstreetcn.com/articles/3767270",
+      "published": "Wed, 11 Mar 2026 14:53:16 GMT",
+      "summary": "<p>3月11日，工银瑞信基金公告，梅迎春出任公司副总经理。</p>\n<p>工商银行此前的公告显示，梅迎春出生于1971年，获美国哥伦比亚大学国际事务学院国际事务硕士学位、财政部中国财政科学研究院（原财政科学研究所）经济学博士学位。</p>\n<p>她1992年进入财政部，先后在世界银行司、国库司、关税司工作，曾任财政部国库司预算执行处助理调研员，财政部国库支付中心审核二处助理调研员、副处长、处长，财政部关税司（关税政策研究中心）副主任，其间曾借调世界银行发展金融部发展伙伴关系局和东亚太平洋区域行长办公室任高级顾问。</p>\n<p>自2017年8月起，梅迎春任工商银行非执行董事。2021年2月，梅迎春因任期届满不再担任工商银行非执行董事。</p>\n<p>工银瑞信基金的公告显示，梅迎春2021年2月调任中国工商银行，任总行部室主要负责人。2025年10月，加入工银瑞信基金，现任党委副书记（总行总经理级）。</p>\n<p>工银瑞信基金2月的一份招募说明书显示，工银瑞信基金的高级管理人员包括了，董事长赵桂才，总经理杨帆，督察长、风险官郝炜，副总经理许长勇，副总经理张桦，首席信息官王建，首席投资",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "Russian Oil Output Fell Further in February, OPEC Data Shows",
+      "link": "https://www.bloomberg.com/news/articles/2026-03-11/russian-oil-output-fell-further-in-february-opec-data-shows",
+      "published": "Wed, 11 Mar 2026 14:50:23 GMT",
+      "summary": "Russia’s crude output declined for a third consecutive month in February, underlining the impact of US sanctions and as Ukrainian drone strikes curb domestic oil-processing.",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "‘I’m so screwed’: How can I afford to care for a mom with dementia and send my teen to college?",
+      "link": "https://www.marketwatch.com/story/im-so-screwed-how-can-i-afford-to-care-for-a-mom-with-dementia-and-send-my-teen-to-college-9d127f90?mod=mw_rss_topstories",
+      "published": "Wed, 11 Mar 2026 14:50:00 GMT",
+      "summary": "You don’t have to lose everything — not your savings or your wits — when you become a caregiver.",
+      "source": "MarketWatch"
+    },
+    {
+      "title": "美伊冲突引发对美滞胀担忧，全球资金流入中日市场，限价取消楼市价格分化---0311宏观脱水",
+      "link": "https://wallstreetcn.com/member/articles/3767256",
+      "published": "Wed, 11 Mar 2026 14:45:17 GMT",
+      "summary": "<ul><li><p style=\"text-align: left;\">美伊冲突属于灰犀牛，目前市场交易主线正从避险逻辑向滞胀逻辑过渡，美国非农数据大幅低于预期，进一步加剧了市场对经济滞胀风险的担忧，建议以低估值、低杠杆、低相关度的“三低”资产来应对市场波动。</p></li><li><p style=\"text-align: left;\">从全球资金流向看，外资正边际流入日本和中国市场，而美国市场则由流入转为流出。聚焦A股市场，外资主要加仓有色金属和银行，减持机械设备和家用电器，而融资资金则小幅流出。</p></li><li><p style=\"text-align: left;\">国内核心城市自2024年起陆续取消限价，以上海为例，限价取消后市场呈现明显的价格分化，开发商倾向于建设豪宅以弥补供应缺口，推动豪宅盘单价延续上涨，而刚需盘则因购房者观望情绪浓厚，去化承压。</p></li></ul>",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "Tim Scott hopes Fed Chair Powell investigation 'goes away' to clear Kevin Warsh confirmation",
+      "link": "https://www.cnbc.com/2026/03/11/fed-powell-warsh-tim-scott.html",
+      "published": "Wed, 11 Mar 2026 14:41:14 GMT",
+      "summary": "President Donald Trump nominated Kevin Warsh to succeed Jerome Powell as Fed chair, but the process has been blocked amid a federal investigation into Powell.",
+      "source": "CNBC"
+    },
+    {
+      "title": "JPM’s Kelly Warns Liquidity Flows Are Offsetting Worrying Fundamentals",
+      "link": "https://www.bloomberg.com/news/videos/2026-03-11/jpm-s-kelly-liquidity-offsetting-worrying-fundamentals-video",
+      "published": "Wed, 11 Mar 2026 14:40:29 GMT",
+      "summary": "David Kelly, chief global strategist at JPMorgan Asset Management, sees a “natural bias upwards in the stock market” amid what he calls an artificial flow of liquidity. (Source: Bloomberg)",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "Uber’s stock rises as new Amazon robotaxi partnership is ‘a positive surprise’",
+      "link": "https://www.marketwatch.com/story/ubers-stock-rises-as-new-amazon-robotaxi-partnership-is-a-positive-surprise-675873a1?mod=mw_rss_topstories",
+      "published": "Wed, 11 Mar 2026 14:37:00 GMT",
+      "summary": "Amazon’s Zoox still needs regulatory approval to use its custom-built robotaxis for commercial service",
+      "source": "MarketWatch"
+    },
+    {
+      "title": "国际能源署成员国同意释放4亿桶石油储备，日本先行动",
+      "link": "https://www.yicai.com/news/103081927.html",
+      "published": "Wed, 11 Mar 2026 14:28:13 GMT",
+      "summary": "<figure><img alt=\"国际能源署成员国同意释放4亿桶石油储备，日本先行动\" src=\"https://imgcdn.yicai.com/uppics/slides/2026/03/4b19bbabb3d43b0cffeb9b9e22286ff9.jpg\" /></figure>   <p>“我很高兴IEA成员们展现出强烈的团结，共同采取果断行动。”\n\n</p>   <p>当地时间3月11日，国际能源署（IEA）宣布了其历史上最大规模的石油储备释放计划，共释放4亿桶石油储备。</p>\n\n<p>国际能源署11日发布公告称，32个成员国今日一致同意，将其紧急储备中的4亿桶石油投入市场，以应对中东冲突引发的石油市场扰乱。</p>\n\n<p>“我们面临的石油市场挑战规模前所未有，因此我非常高兴IEA成员国采取了前所未有的紧急集体行动。”国际能源署署长法提赫·比罗尔表示：“石油市场是全球性的，因此对重大干扰的应对也必须是全球性的。能源安全是IEA的创始使命，我很高兴IEA成员们展现出强烈的团结，共同采取果断行动。”</p>\n\n<p>他此前介绍，近期石油市场状况明显恶化。除霍尔木兹海峡运",
+      "source": "第一财经"
+    },
+    {
+      "title": "Fed Rate Cut Getting Harder to Justify, Economist Swonk Says",
+      "link": "https://www.bloomberg.com/news/videos/2026-03-11/it-s-getting-harder-to-justify-fed-cut-diane-swonk-says-video",
+      "published": "Wed, 11 Mar 2026 14:27:52 GMT",
+      "summary": "KPMG Chief Economist Diane Swonk says the recent surge in oil and commodities prices make it \"harder and harder\" to justify a Federal Reserve rate cut on \"Bloomberg Open Interest.\" (Source: Bloomberg)",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "Consumer prices rose 2.4% annually in February, as expected",
+      "link": "https://www.cnbc.com/2026/03/11/cpi-inflation-report-february-2026.html",
+      "published": "Wed, 11 Mar 2026 14:21:28 GMT",
+      "summary": "The consumer price index in February was expected to show a 2.4% increase from a year ago, according to the Dow Jones consensus.",
+      "source": "CNBC"
+    },
+    {
+      "title": "Bitcoin reverses overnight losses, rising to above $70,000 as oil renews decline",
+      "link": "https://www.coindesk.com/markets/2026/03/11/bitcoin-reverses-overnight-losses-rising-to-above-usd70-000-as-oil-renews-decline",
+      "published": "Wed, 11 Mar 2026 14:21:03 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "Most Ships Transit Strait Of Hormuz Since War Started Led By Iranian, China-Linked Tankers",
+      "link": "https://www.zerohedge.com/markets/most-ships-transit-strait-hormuz-war-started-led-iranian-china-linked-tankers",
+      "published": "Wed, 11 Mar 2026 14:20:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Most Ships Transit Strait Of Hormuz Since War Started Led By Iranian, China-Linked Tankers</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p>Yesterday we pointed out that contrary to conventional wisdom of a full Gulf blockade, <strong>more ships are now transiting the Strait of Hormuz...</strong></p>\n\n<blockquote class=\"twitt",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "Europe explores capping natural gas prices",
+      "link": "https://www.ft.com/content/52d1bc56-d998-429e-b0c7-0260c94645b2",
+      "published": "Wed, 11 Mar 2026 14:19:37 GMT",
+      "summary": "European Commission president Ursula von der Leyen mulls measures to ease impact of Iran war shocks",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "Revolut secures full UK banking licence after four-year wait",
+      "link": "https://www.ft.com/content/b4df4126-351e-4424-9707-8a12ca6b79a6",
+      "published": "Wed, 11 Mar 2026 14:16:11 GMT",
+      "summary": "Permit is crucial to growth strategy of Europe’s most valuable fintech",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "Trump Says Iran War To End 'Soon' As 'Practically Nothing Left' To Target",
+      "link": "https://www.zerohedge.com/geopolitical/hegseth-warns-most-intense-day-operation-epic-fury-iea-plans-largest-ever-spr-dump",
+      "published": "Wed, 11 Mar 2026 14:12:15 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Trump Says Iran War To End 'Soon' As 'Practically Nothing Left' To Target</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><ul><li><strong>Trump says the war with Iran will end soon</strong>, as there is 'practically nothing left to target.\" </li>\n\t<li>Yet U.S. and Israeli officials plan at least two more weeks of strikes</li>",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "特朗普称对伊朗军事行动“即将结束”",
+      "link": "https://wallstreetcn.com/articles/3767268",
+      "published": "Wed, 11 Mar 2026 14:12:01 GMT",
+      "summary": "<p>据美国阿克西奥斯新闻网站11日报道，美国总统特朗普称，伊朗境内“几乎已无可打击的目标”，美国对伊朗军事行动“即将结束”。（新华社）</p><div style=\"color: #666; margin-bottom: 15px;\">风险提示及免责条款</div>\n          <div>\n            市场有风险，投资需谨慎。本文不构成个人投资建议，也未考虑到个别用户特殊的投资目标、财务状况或需要。用户应考虑本文中的任何意见、观点或结论是否符合其特定状况。据此投资，责任自负。\n          </div>",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "Five things to know about Iran's new supreme leader, Mojtaba Khamenei",
+      "link": "https://www.cnbc.com/2026/03/11/five-things-to-know-about-irans-new-supreme-leader-mojtaba-khamenei.html",
+      "published": "Wed, 11 Mar 2026 14:10:31 GMT",
+      "summary": "\"The Iranians are showing defiance by choosing the son of Khamenei,\" a former diplomat told CNBC.",
+      "source": "CNBC"
+    },
+    {
+      "title": "2026AWE前瞻：家电AI化起势，智能体入局，互联互通标准加速制订",
+      "link": "https://www.yicai.com/news/103081918.html",
+      "published": "Wed, 11 Mar 2026 14:09:58 GMT",
+      "summary": "<figure><img alt=\"2026AWE前瞻：家电AI化起势，智能体入局，互联互通标准加速制订\" src=\"https://imgcdn.yicai.com/uppics/images/ios/yicai/15B45552-BE4F-427A-80BE-2C38C3561275.jpg\" /></figure>    <p class=\"image-blot\"><img alt=\"由AWE主办方供图。\" src=\"https://imgcdn.yicai.com/uppics/images/2026/03/1870f0b7c6bc9ba1c33aaba3d778e41d.jpg\" /></p><p>3月12日，作为全球三大消费电子展之一的AWE（中国家电及消费电子博览会）将揭幕。第一财经记者会前从多家企业及行业专家处了解到，今年家电AI化加速起势，AI智能体进入智能家居，全屋智能互联互通国家标准制订已提上日程。</p><p>本届AWE以“AI科技 慧享未来”为主题，与往届相比，在上海新国际博览中心展馆的基础上，新增上海东方枢纽国际商务合作区的展馆，令展示总面积达17万平方米，",
+      "source": "第一财经"
+    },
+    {
+      "title": "Strategy's STRC preferred series gets $50 million investment from fellow BTC treasury company Strive",
+      "link": "https://www.coindesk.com/markets/2026/03/11/strategy-s-strc-preferred-series-gets-usd50-million-investment-from-fellow-btc-treasury-company-strive",
+      "published": "Wed, 11 Mar 2026 14:07:09 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "IEA to Release Record 400 Million Barrels From Oil Reserves",
+      "link": "https://www.bloomberg.com/news/articles/2026-03-11/iea-confirms-huge-release-of-emergency-oil-stockpiles",
+      "published": "Wed, 11 Mar 2026 14:04:23 GMT",
+      "summary": "The International Energy Agency agreed to discharge 400 million barrels from emergency oil reserves, its largest-ever release, as governments seek to contain a price spike driven by the Middle East war.",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "声明：国际能源署（IEA）成员国同意释放4亿桶石油。",
+      "link": "https://wallstreetcn.com/livenews/3068158",
+      "published": "Wed, 11 Mar 2026 14:02:14 GMT",
+      "summary": "<p>声明：国际能源署（IEA）成员国同意释放4亿桶石油。</p>",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "Meta计划到2027年年底这段时间部署四款新一代自研AI芯片，来处理迅猛增长的AI需求",
+      "link": "https://wallstreetcn.com/articles/3767267",
+      "published": "Wed, 11 Mar 2026 14:01:15 GMT",
+      "summary": "<p>Meta计划到2027年年底这段时间部署四款新一代自研AI芯片，来处理迅猛增长的AI需求。</p><div style=\"color: #666; margin-bottom: 15px;\">风险提示及免责条款</div>\n          <div>\n            市场有风险，投资需谨慎。本文不构成个人投资建议，也未考虑到个别用户特殊的投资目标、财务状况或需要。用户应考虑本文中的任何意见、观点或结论是否符合其特定状况。据此投资，责任自负。\n          </div>",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "Meta rolls out in-house AI chips weeks after massive Nvidia, AMD deals",
+      "link": "https://www.cnbc.com/2026/03/11/meta-ai-mtia-chip-data-center.html",
+      "published": "Wed, 11 Mar 2026 14:00:01 GMT",
+      "summary": "Meta's latest generations of its MTIA series of in-house chips for artificial intelligence will help support the company's massive data center expansion plans.",
+      "source": "CNBC"
+    },
+    {
+      "title": "Unreliable nursing-home ratings raise disturbing questions — leaving families at a dead end",
+      "link": "https://www.marketwatch.com/story/new-research-on-nursing-home-ratings-raises-disturbing-questions-what-are-families-to-do-685da1ef?mod=mw_rss_topstories",
+      "published": "Wed, 11 Mar 2026 13:45:00 GMT",
+      "summary": "The government’s “star” ratings for nursing homes are misleading, new research finds.",
+      "source": "MarketWatch"
+    },
+    {
+      "title": "‘I have lost nearly everything’: My mother’s trustee changed her $1 million will and my attorney fleeced me. What can I do?",
+      "link": "https://www.marketwatch.com/story/i-have-lost-nearly-everything-my-mothers-trustee-changed-her-1-million-will-and-my-attorney-fleeced-me-what-can-i-do-37768a2a?mod=mw_rss_topstories",
+      "published": "Wed, 11 Mar 2026 13:45:00 GMT",
+      "summary": "“My attorney, who described himself as a minister doing ‘God’s work,’ had me sign a 40% contingency agreement.”",
+      "source": "MarketWatch"
+    },
+    {
+      "title": "Microsoft Backs Anthropic's Bid To Block Pentagon's 'Supply-Chain Risk' Label",
+      "link": "https://www.zerohedge.com/ai/microsoft-backs-anthropics-bid-block-pentagons-supply-chain-risk-label",
+      "published": "Wed, 11 Mar 2026 13:45:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Microsoft Backs Anthropic's Bid To Block Pentagon's 'Supply-Chain Risk' Label</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><a href=\"https://www.theepochtimes.com/us/microsoft-backs-anthropics-bid-to-block-the-pentagons-supply-chain-risk-label-5996968?utm_source=partner&amp;utm_campaign=ZeroHedge\"><em>Authored by Aldgra Fr",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "Medicare Advantage insurers are overcharging taxpayers and seniors billions of dollars. Why is anyone surprised?",
+      "link": "https://www.marketwatch.com/story/medicare-advantage-insurers-are-overcharging-taxpayers-and-seniors-billions-of-dollars-why-is-anyone-surprised-71ca5da4?mod=mw_rss_topstories",
+      "published": "Wed, 11 Mar 2026 13:42:00 GMT",
+      "summary": "The big for-profit health insurers who run the Medicare Advantage program aren’t happy with the latest government watchdog report",
+      "source": "MarketWatch"
+    },
+    {
+      "title": "多所高校要求警惕OpenClaw安全风险，部分严禁校内使用",
+      "link": "https://wallstreetcn.com/articles/3767264",
+      "published": "Wed, 11 Mar 2026 13:40:49 GMT",
+      "summary": "<p>“即日起，全校教职工严禁在任何办公设备、教学终端及校园网络环境下（含VPN远程连接终端），安装、运行、使用OpenClaw软件本体、衍生版本、配套插件及第三方技能脚本。”</p>\n<p>3月10日，珠海科技学院信息数据管理处发出《关于严禁在校内使用OpenClaw软件的通知》，要求已安装相关程序的立即彻底卸载，并清除全部配置、缓存及日志文件。学校将对校园网络及终端开展不定期安全扫描与核查，一经发现违规安装、使用行为，将依规严肃处理。</p>\n<p>珠海科技学院信息数据管理处还提到，请各部门负责人严格履行网络安全主体责任，第一时间组织本部门教职工开展全面自查自纠，确保本通知要求全覆盖、无死角、落实到位。凡因违规使用该软件引发网络安全事件、造成数据泄露或系统损坏的，学校将依法依规严肃追究相关人员责任。</p>\n<p>近期，开源AI智能体框架OpenClaw（因图标为龙虾被广泛称作“龙虾”）在网络上快速走红，其具备的自主执行电脑操作、处理办公任务等功能受到广泛关注。不过，工业和信息化部网络安全威胁和漏洞信息共享平台监测发现，OpenClaw在默认配置或不当配置条件下存在较高安全风险，易",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "文远知行携手吉利远程，Robotaxi落地规模迈向3000辆",
+      "link": "https://www.yicai.com/news/103081874.html",
+      "published": "Wed, 11 Mar 2026 13:36:42 GMT",
+      "summary": "<figure><img alt=\"文远知行携手吉利远程，Robotaxi落地规模迈向3000辆\" src=\"https://imgcdn.yicai.com/uppics/slides/2026/03/03eed84433baf903dee95d1b6bad587d.jpg\" /></figure>   <p>扩大车队数量是关键。</p>   <p style=\"text-align: justify;\">Robotaxi发展正持续向规模化、商业化落地推进。日前，文远知行与吉利远程新能源商用车签署战略合作深化协议，双方合作的新一代前装量产Robotaxi GXR，预计2026年第三季度正式下线，年内交付2000辆，投放至国内和海外市场。</p>\n\n<p style=\"text-align: justify;\">当前，Robotaxi市场竞争激烈，除了文远知行、小马智行、萝卜快跑等自动驾驶方案解决商，特斯拉、小鹏等车企也亲身入局。从商业模式看，Robotaxi的盈利与车队规模密切相关，因此扩大车队数量成为关键。</p>\n\n<p style=\"text-align: justify;\">",
+      "source": "第一财经"
+    },
+    {
+      "title": "Japan to ‘act first’ to release oil reserves over Iran war fears",
+      "link": "https://www.ft.com/content/ffc35d71-2596-4472-9332-1fcaa123eeae",
+      "published": "Wed, 11 Mar 2026 13:32:42 GMT",
+      "summary": "PM Sanae Takaichi moves to soften supply shock to nation with ‘exceptionally high’ reliance on Middle East energy",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "工信部NVDB：关于防范OpenClaw（“龙虾”）开源智能体安全风险的“六要六不要”建议",
+      "link": "https://wallstreetcn.com/articles/3767262",
+      "published": "Wed, 11 Mar 2026 13:30:41 GMT",
+      "summary": "<p style=\"text-align: left;\">3月11日，<strong>针对“龙虾”典型应用场景下的安全风险，工业和信息化部网络安全威胁和漏洞信息共享平台（NVDB）组织智能体提供商、漏洞收集平台运营单位、网络安全企业等，研究提出“六要六不要”建议。</strong></p>\n<p style=\"text-align: left;\">　　一、典型应用场景安全风险</p>\n<p style=\"text-align: left;\">　　（一）智能办公场景主要存在供应链攻击和企业内网渗透的突出风险</p>\n<p style=\"text-align: left;\">　　1．场景描述：通过在企业内部部署“龙虾”，对接企业已有管理系统，实现智能化数据分析、文档处理、行政管理、财务辅助和知识管理等。</p>\n<p style=\"text-align: left;\">　　2．安全风险：引入异常插件、“技能包”等引发供应链攻击；网络安全风险在内网横向扩散，引发已对接的系统平台、数据库等敏感信息泄露或丢失；缺乏审计和追溯机制情况下易引发合规风险。</p>\n<p style=\"text-ali",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "Black women were disproportionately impacted by DOGE cuts. A year later, they're rebuilding careers for themselves and each other",
+      "link": "https://www.cnbc.com/2026/03/11/black-women-impacted-by-doge-cuts-are-rebuilding-their-careers.html",
+      "published": "Wed, 11 Mar 2026 13:30:01 GMT",
+      "summary": "Black women make up 12% of the federal workforce and experienced the largest federal employment losses between 2024 and 2025.",
+      "source": "CNBC"
+    },
+    {
+      "title": "JPMorgan Limits Lending To Private Credit Groups After Marking Down Loan Collateral",
+      "link": "https://www.zerohedge.com/markets/jpmorgan-limits-lending-private-credit-groups-after-marking-down-loan-collateral",
+      "published": "Wed, 11 Mar 2026 13:30:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">JPMorgan Limits Lending To Private Credit Groups After Marking Down Loan Collateral</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p>The barrage of negative private credit news, now that the $1.8 trillion bubble has burst, is coming hot and heavy. </p>\n\n<p>Following last night's report that Cliffwater, a private credit interv",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "为保现金流拼了！甲骨文推行“自带芯片”上云，转嫁AI高昂基建成本",
+      "link": "https://wallstreetcn.com/articles/3767260",
+      "published": "Wed, 11 Mar 2026 13:29:48 GMT",
+      "summary": "<p style=\"text-align: left;\">甲骨文正用一种打破常规的方式应对AI基建的资金压力，<strong>把最昂贵的AI芯片支出转嫁给部分云客户，以缓解未来数年持续承压的现金流，同时继续推进大规模数据中心扩张。</strong></p>\n<p style=\"text-align: left;\">面对未来数年预期为负的自由现金流压力，甲骨文周二在财报电话会上披露，部分云服务客户将被要求自行承担昂贵AI芯片的采购成本，或直接携带自有芯片接入其数据中心。</p>\n<p style=\"text-align: left;\">联席首席执行官Clay Magouyrk表示，<strong>此举使甲骨文可以完成新订单的交付，同时避免现金流进一步恶化</strong>。财报发布后，甲骨文股价盘后上涨逾10%，此前该股自去年9月高点已累计跌去逾半。</p>\n<p style=\"text-align: left;\"><img class=\"wscnph\" src=\"https://wpimg-wscn.awtmt.com/e57b7fcf-e21a-4a33-b633-96feaafb4",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "钱大妈IPO：被“解构”的日清模式，与正在消失的近场红利",
+      "link": "https://wallstreetcn.com/articles/3767263",
+      "published": "Wed, 11 Mar 2026 13:27:32 GMT",
+      "summary": "<p style=\"text-align: left;\">曾被视为社区生鲜连锁最成功样本的钱大妈，正走向资本市场。</p><p style=\"text-align: left;\">日前，社区生鲜连锁龙头企业“钱大妈”在港交所递交招股书，拟香港主板IPO上市。</p><p style=\"text-align: left;\">作为中国社区生鲜连锁龙头企业，钱大妈诞生于2012年，首创“折扣日清”销售模式，以“不卖隔夜肉”的经营承诺闻名。</p><p style=\"text-align: left;\">在资本最为青睐的阶段，钱大妈曾经历过高速扩张。</p><p style=\"text-align: left;\">2019年完成D轮融资后，公司正式启动全国化战略，营收规模迅速增长至70亿元以上，高密度开店与高周转模型叠加，使其快速跻身社区生鲜连锁龙头行列。</p><p style=\"text-align: left;\">但与扩张期相比，公司近年的增长节奏明显趋缓。</p><p style=\"text-align: left;\">2023年至2024年，钱大妈营收基本维持在117亿元左右，未再实",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "CoinDesk 20 performance update: Hedera (HBAR) drops 1.8%, leading index lower",
+      "link": "https://www.coindesk.com/coindesk-indices/2026/03/11/coindesk-20-performance-update-hedera-hbar-drops-1-8-leading-index-lower",
+      "published": "Wed, 11 Mar 2026 13:27:29 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "床位正快速达标、专护人才短缺：谁会成为“青春养老人”",
+      "link": "https://www.yicai.com/news/103081856.html",
+      "published": "Wed, 11 Mar 2026 13:24:10 GMT",
+      "summary": "<figure><img alt=\"床位正快速达标、专护人才短缺：谁会成为“青春养老人”\" src=\"https://imgcdn.yicai.com/uppics/slides/2026/03/251bcf85478ac9b90431965dc8710742.jpg\" /></figure>   <p>“十五五”时期，养老机构护理型床位占比提高到73%。</p>   <p>今年政府工作报告提出，积极应对人口老龄化 ，“十五五”时期，养老机构护理型床位占比提高到73%。</p>\n\n<p>近年来我国养老服务更加精准地聚焦于失能失智老人的照护难题。民政部的数据显示，截至2024年底，全国养老机构和设施达到40.6万个、床位799.3万张，护理型床位占比从2020年的48%提高到65.7%，超额完成了“十四五”规划纲要所制定的55%的目标。</p>\n\n<p>在硬件设施快速达标的同时，一个更加现实的问题凸显出来，当七成以上床位锁定失能失智老人，谁来为这些老人提供专业的照护。</p>\n\n<p>今年全国两会期间，多位代表委员聚焦养老护理人才短缺问题，从人才培养、职业发展、薪酬激励等多方面提出建议，",
+      "source": "第一财经"
+    },
+    {
+      "title": "Ghana opens crypto trading sandbox with 11 firms under new VASP law",
+      "link": "https://www.coindesk.com/policy/2026/03/11/ghana-opens-crypto-trading-sandbox-with-11-firms-under-new-vasp-law",
+      "published": "Wed, 11 Mar 2026 13:21:43 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "109项重大工程项目布局“十五五”新产业新赛道",
+      "link": "https://www.yicai.com/news/103081851.html",
+      "published": "Wed, 11 Mar 2026 13:20:50 GMT",
+      "summary": "<figure><img alt=\"109项重大工程项目布局“十五五”新产业新赛道\" src=\"https://imgcdn.yicai.com/uppics/slides/2026/03/e45d68352e4fc5b4553b6fa589f59618.jpg\" /></figure>   <p>不仅缓解了短期项目储备不足的问题，也为中长期发展拓展了新的投资空间。</p>   <p>“十五五”规划纲要草案提出，未来五年要实施109项重大工程项目。</p>\n\n<p>这109项重大工程项目聚焦引领新质生产力发展、构建现代化基础设施体系、促进城乡融合发展、保障和改善民生、推动绿色低碳转型、重点领域安全保障等方面。兼顾当前和长远，既涉及“硬投资”，也包含“软建设”，并注重以政府投资带动社会力量参与，更好发挥重大工程项目强基础、补短板、增后劲等重要作用。</p>\n\n<p>国家发改委主任郑栅洁日前在十四届全国人大四次会议经济主题记者会上表示，实施好投资于物与投资于人紧密结合的重大工程和项目，将推动综合国力更强、社会保障更稳、居民生活更好。今年将推进“六张网”（水网、电网、算力网、新型通信网、城市",
+      "source": "第一财经"
+    },
+    {
+      "title": "一财社论：以自由开放的姿态迎接朱格拉周期",
+      "link": "https://www.yicai.com/news/103081846.html",
+      "published": "Wed, 11 Mar 2026 13:20:42 GMT",
+      "summary": "<figure><img alt=\"一财社论：以自由开放的姿态迎接朱格拉周期\" src=\"https://imgcdn.yicai.com/uppics/slides/2026/03/e88c6689f2ef2d1a5dad78e5155b63e9.jpg\" /></figure>   <p>在国际产业链供应链上，中国与贸易伙伴是共生关系，双方相互离不开，这是中国人通过几代人的努力锻造出来的比较优势。</p>   <p>中国经济正在用韧性和耐力开出最结实的花。</p>\n\n<p>10日海关总署公布了2026年前2个月的贸易数据，这是一组令人惊艳的数据，按美元计，前2个月出口同比增长21.8%，进口同比增长19.8%，其中2月单月出口同比增长39.6%，进口同比增长13.8%，用开门红来形容“十五五”规划首年开局一点都不为过。</p>\n\n<p>外需的不确定性，是近年来经常被提及的话题，各界对此高度重视、努力解决，当下让这一大不确定性变成了一个可控的风险，凸显出中国供应链在国际经贸体系中的顽强韧性。</p>\n\n<p>最新的贸易数据显示，正视风险和问题才能找寻到增长跨越的解决方案，中国改革开放",
+      "source": "第一财经"
+    },
+    {
+      "title": "PX主力合约触及涨停，涨幅13.01%。",
+      "link": "https://wallstreetcn.com/livenews/3068131",
+      "published": "Wed, 11 Mar 2026 13:12:00 GMT",
+      "summary": "<p>PX主力合约触及涨停，涨幅13.01%。</p>",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "Iran Sleeper Cells 'Activated'; Threaten To \"Eliminate\" Trump",
+      "link": "https://www.zerohedge.com/geopolitical/iran-sleeper-cells-activated-threaten-eliminate-trump",
+      "published": "Wed, 11 Mar 2026 13:10:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Iran Sleeper Cells 'Activated'; Threaten To \"Eliminate\" Trump</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><a href=\"https://modernity.news/2026/03/10/iran-sleeper-cells-activated-threaten-to-eliminate-trump/\"><em>Authored by Steve Watson via Modernity.news,</em></a></p>\n\n<p><strong>US intelligence intercepts reveal Iran m",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "伊朗证实袭击霍尔木兹海峡船只 重申美及其盟友无权通过",
+      "link": "https://wallstreetcn.com/livenews/3068129",
+      "published": "Wed, 11 Mar 2026 13:09:49 GMT",
+      "summary": "<p>当地时间3月11日，伊朗伊斯兰革命卫队发表声明重申其对霍尔木兹海峡的绝对管辖权。声明称，美国及其伙伴已失去通过霍尔木兹海峡的权利。</p>\n<p>伊朗伊斯兰革命卫队表示，“Expres Room”号船只为以色列所有，悬挂利比里亚旗。因无视革命卫队海军警告，当天早晨遭伊朗炮火击中并被迫停航。“Mayuree Naree”号集装箱船因执意非法穿越海峡并无视警告，于数小时前遭到伊朗武装力量打击。声明称，霍尔木兹海峡的每一寸水域都在革命卫队海军的严密监控下，不存在任何管控死角。</p>\n\n<p>伊朗革命卫队表示，美国及其盟友无权通过海峡。伊朗伊斯兰革命卫队海军司令阿里礼萨·坦格西里当天也在社交平台表示，任何想要通过霍尔木兹海峡的船只，必须获得伊朗的许可。（央视）</p>",
+      "source": "华尔街见闻-A股"
+    },
+    {
+      "title": "US inflation holds steady at 2.4% in February",
+      "link": "https://www.ft.com/content/0cfb0ab4-07d0-4d92-a544-cdff09f532b4",
+      "published": "Wed, 11 Mar 2026 13:04:33 GMT",
+      "summary": "Figure comes as Middle East war sends energy prices higher",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "AI赋能银发文旅消费：政策护航下的万亿新赛道",
+      "link": "https://www.yicai.com/news/103081809.html",
+      "published": "Wed, 11 Mar 2026 13:04:32 GMT",
+      "summary": "<figure><img alt=\"AI赋能银发文旅消费：政策护航下的万亿新赛道\" src=\"https://imgcdn.yicai.com/uppics/slides/2026/03/cbd52e8831a4722afd6bab419cc4e845.jpg\" /></figure>   <p>AI技术的突破性发展，为潜力达万亿元的细分市场注入新动能。</p>   <p>随着我国人口老龄化进程加速与居民消费升级，银发群体已从传统养老需求转向多元化文旅体验，成为拉动文旅消费增长的核心力量之一。人工智能（AI）技术的突破性发展，正打破银发文旅消费中的适老适配、安全保障、体验升级等核心瓶颈，为这一潜力达万亿元的细分市场注入新动能。本研究团队对1996~2024年我国的银发旅游政策进行了文本分析，结果显示我国政府对银发文旅的政策注意力呈显著攀升态势，且已形成“技术赋能+福利保障”的核心导向，这种政策演进与技术创新的同频共振，不仅重构了银发文旅的服务与消费生态，更开启了“科技助老、乐享文旅”的消费新范式。</p>\n\n<p><strong>政策筑基：构建AI赋能银发文旅消费的制度框架</stro",
+      "source": "第一财经"
+    },
+    {
+      "title": "主动转型与自信前行：“十五五”如何跨入高收入国家行列",
+      "link": "https://www.yicai.com/news/103081807.html",
+      "published": "Wed, 11 Mar 2026 13:04:18 GMT",
+      "summary": "<figure><img alt=\"主动转型与自信前行：“十五五”如何跨入高收入国家行列\" src=\"https://imgcdn.yicai.com/uppics/slides/2026/03/b2f6bd8f99620c3e8f7f6e258ba314e0.jpg\" /></figure>   <p>展望“十五五”，世界科技革命来势汹汹，中国也具备再次站在世界经济快速增长风口的条件。</p>   <p>2025年10月，中共中央关于制定国民经济和社会发展第十五个五年规划建议（下称“建议”）指出，“‘十五五’时期在基本实现社会主义现代化进程中具有承前启后的重要地位”“要巩固拓展优势、破除瓶颈制约、补强短板弱项，在激烈国际竞争中赢得战略主动”。因此，“十五五”规划编制应该突出三个特点：一是如何判断形势；二是破除短板弱项；三是巩固拓展优势，赢得主动。</p>\n\n<p><strong>“十五五”历史时期特点</strong></p>\n\n<p>如何正确认识“十五五”历史时期国内外环境？2月27日的中央政治局会议强调，“以推动高质量发展为主题，以改革创新为根本动力，以满足人民日益增长的美好生活",
+      "source": "第一财经"
+    },
+    {
+      "title": "Mining giant Foundry to introduce institutional zcash mining pool",
+      "link": "https://www.coindesk.com/business/2026/03/10/mining-giant-foundry-to-introduce-institutional-zcash-mining-pool",
+      "published": "Wed, 11 Mar 2026 13:00:00 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "JPMorgan Chase reins in lending to private credit firms after marking down software loans",
+      "link": "https://www.cnbc.com/2026/03/11/jpmorgan-reins-lending-private-credit-marks-down-software-loans.html",
+      "published": "Wed, 11 Mar 2026 12:57:44 GMT",
+      "summary": "JPMorgan's move shows that the biggest U.S. bank by assets wants to get ahead of potential turbulence involving private credit loans to software companies.",
+      "source": "CNBC"
+    },
+    {
+      "title": "Lloyd's Of London Says Gulf Tanker Coverage Available As Strait Chaos Erupts Again",
+      "link": "https://www.zerohedge.com/markets/lloyds-london-says-gulf-tanker-coverage-available-strait-chaos-erupts-again",
+      "published": "Wed, 11 Mar 2026 12:50:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Lloyd's Of London Says Gulf Tanker Coverage Available As Strait Chaos Erupts Again</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p>What caught the attention of one UBS analyst earlier this morning was a <a href=\"https://www.ft.com/content/2e25cb5b-f5d2-45dd-9688-52ed86212278\"><em>Financial Times</em></a> report stating that",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "AI进化速递 | 马化腾：还有一批“龙虾系”产品陆续赶来",
+      "link": "https://www.yicai.com/news/103081794.html",
+      "published": "Wed, 11 Mar 2026 12:48:18 GMT",
+      "summary": "<p>AI进化速递 | 马化腾：还有一批“龙虾系”产品陆续赶来</p>   <p>①工信部网络安全威胁和漏洞信息共享平台发布关于防范OpenClaw（“龙虾”）开源智能体安全风险的“六要六不要”建议；<br /><br />②马化腾凌晨2点发声：还有一批“龙虾系”产品陆续赶来；<br /><br />③腾讯据悉秘密开发微信AI智能体，年内或对全体用户开放；<br /><br />④智谱启动“龙虾全国部署计划”；<br /><br />⑤百度智能云发布零部署服务DuClaw，内置百度搜索、百科、学术搜索Skills；<br /><br />⑥华为推出“鸿蒙版龙虾”小艺Claw；<br /><br />⑦雷鸟联合高德发布首款智能眼镜本地生活应用“雷鸟智慧生活”；<br /><br />⑧美的集团拟未来三年研发投入超600亿元，重点聚焦AI与具身智能等前沿领域；<br /><br />⑨OpenAI据悉拟将视频生成工具Sora整合至ChatGPT。</p>",
+      "source": "第一财经"
+    },
+    {
+      "title": "收益降、费率跳、规模升，“悬在1%边缘”的货基香在哪？",
+      "link": "https://www.yicai.com/news/103081776.html",
+      "published": "Wed, 11 Mar 2026 12:45:57 GMT",
+      "summary": "<figure><img alt=\"收益降、费率跳、规模升，“悬在1%边缘”的货基香在哪？\" src=\"https://imgcdn.yicai.com/uppics/slides/2026/03/1c53a85042f3f260d223e7775e5ff72e.jpg\" /></figure>   <p>你的余额宝，快连1%都保不住了</p>   <p>“以前放余额宝，每天还能赚杯奶茶钱，现在收益越来越少，连费率都开始‘忽高忽低’了。”来自深圳的90后白领小夏的吐槽，道出了当下不少货币基金投资者的心声。</p>\n\n<p>近期，随着货币基金7日年化收益率持续波动下行，一项隐藏在基金合同里的“自动调档”条款被密集触发。多只货基因收益触及约定阈值，自动触发管理费率临时下调，随后又因收益小幅回升恢复原费率，部分产品甚至出现“一天降费、一天恢复”的循环调整。</p>\n\n<p>拉长时间来看，类似费率“反复横跳”的戏码已频繁上演，但即使7日年化收益率持续下探逼近“1字头”，百余只货基已无奈“破1”，但总规模却逆势突破15.27万亿元，再创历史新高。当“宝宝类”理财的收益光环逐渐褪去，资金为何不撤反",
+      "source": "第一财经"
+    },
+    {
+      "title": "Oil fears hit Asian stocks harder than profits",
+      "link": "https://www.ft.com/content/b18cc6ff-ab6f-4bd4-b89e-be69af2eed11",
+      "published": "Wed, 11 Mar 2026 12:45:10 GMT",
+      "summary": "Reaction reflects possibility of sustained supply disruption and prolonged surge in crude prices",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "Investors seek shelter from Iran war in US tech stocks",
+      "link": "https://www.ft.com/content/fdcb1506-cba9-4cb1-bdfb-6c892d143e27",
+      "published": "Wed, 11 Mar 2026 12:43:17 GMT",
+      "summary": "Megacap companies previously out of favour now seen as ‘safety assets’",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "US Core CPI Tumbles To Slowest In 4 Years (Before Iran-Triggered Oil Spike)",
+      "link": "https://www.zerohedge.com/personal-finance/us-core-cpi-tumbles-slowest-4-years-iran-triggered-oil-spike",
+      "published": "Wed, 11 Mar 2026 12:39:24 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">US Core CPI Tumbles To Slowest In 4 Years (Before Iran-Triggered Oil Spike)</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p>While all attention is currently on Iran (and the<strong> energy impact </strong>of actions overseas), today's CPI (for February) should not be affected by the recent surge in WTI (but March's data defi",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "保时捷营业利润暴跌93%，销售回报率仅1%",
+      "link": "https://www.yicai.com/news/103081773.html",
+      "published": "Wed, 11 Mar 2026 12:36:15 GMT",
+      "summary": "<p>2025财年，保时捷销售回报率降至1.1%。</p>   <p>3月11日，保时捷公布的2025财年财报显示，全年营收为362.7亿欧元，同比下滑9.5%；营业利润为4.13亿欧元，同比下滑92.7%。</p><p>2025财年，保时捷全球汽车交付量为27.9万辆，同比下降10%，除北美市场交付量保持稳定外，其余核心区域销量均出现不同程度下滑。其中，保时捷在中国市场全年销量4.2万辆，同比下降26%；德国市场销量达3.0万辆，同比下滑16%。</p><p>保时捷凭借高利润车型矩阵，是大众汽车集团旗下的核心“利润奶牛”，2024年实现营业利润56.4亿欧元，销售回报率达14.1%。而2025财年，保时捷销售回报率降至1.1%。</p><p>保时捷业绩下降受多重因素影响。该公司称，一方面，美国关税成本、电动化战略调整、企业内部战略重组等带来巨额额外支出，全年特殊支出合计高达39亿欧元。其中，产品战略调整及公司规模优化相关支出约24亿欧元，美国关税影响带来的支出约7亿欧元，电池相关业务产生的额外费用约7亿欧元。另一方面，全球政治经济环境充满不确定性，豪华车市场竞争加剧，核心市场销量下滑",
+      "source": "第一财经"
+    },
+    {
+      "title": "U.S. February CPI matches forecasts, reinforcing expectations for no near-term rate cuts",
+      "link": "https://www.coindesk.com/markets/2026/03/11/u-s-february-inflation-data-matches-forecasts-reinforcing-expectations-for-no-near-term-rate-cuts",
+      "published": "Wed, 11 Mar 2026 12:35:56 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "Binance sues Wall Street Journal as newspaper says U.S. Dept. of Justice is investigating Iran transactions",
+      "link": "https://www.coindesk.com/business/2026/03/11/binance-sues-wall-street-journal-as-newspaper-says-u-s-dept-of-justice-is-investigating-iran-transactions",
+      "published": "Wed, 11 Mar 2026 12:29:14 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "Stocks Drop As Oil Rebounds Over $90 On Escalating War, Ignoring Looming SPR Release",
+      "link": "https://www.zerohedge.com/markets/stocks-drop-oil-rebounds-over-90-escalating-war-ignoring-looming-spr-release",
+      "published": "Wed, 11 Mar 2026 12:28:25 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Stocks Drop As Oil Rebounds Over $90 On Escalating War, Ignoring Looming SPR Release</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p>US equity futures remain extremely illiquid, jittery and volatile, and are down 10bps near the morning lows, erasing a 0.5% gain after earlier rebounding on hopes the upcoming SPR release will",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "Rheinmetall sees sales growth of up to 45% in 2026, says it's in 'prime position' to arm the U.S. amid war in Iran",
+      "link": "https://www.cnbc.com/2026/03/11/rheinmetall-rhm-fy-earnings-stock-2025.html",
+      "published": "Wed, 11 Mar 2026 12:16:23 GMT",
+      "summary": "Arms maker Rheinmetall reported full-year sales that grew 29% year-over-year and said revenue would grow by even more this year.",
+      "source": "CNBC"
+    },
+    {
+      "title": "连涨七年后，全球商业险费率又连跌了六个季度",
+      "link": "https://www.yicai.com/news/103081741.html",
+      "published": "Wed, 11 Mar 2026 12:15:12 GMT",
+      "summary": "<figure><img alt=\"连涨七年后，全球商业险费率又连跌了六个季度\" src=\"https://imgcdn.yicai.com/uppics/slides/2026/03/8b7b276069dd2b3b863822094002c97b.jpg\" /></figure>   <p>全球费率大概率将继续呈下行趋势。</p>   <p>全球商业险费率仍然处在下跌周期中。</p>\n\n<p>国际保险经纪巨头达信（Marsh）近日发布的最新一期全球保险市场费率报告数据显示，2025年第四季度，全球商业保险费率再次下跌了4%。在历经七年上涨后，这一指标已连续第六个季度走低。</p>\n\n<p>达信表示，这一下行趋势得益于保险公司承保能力大幅提升，其背后是再保险业务的增长与新保险公司入场，加剧了市场竞争，总体上为商业险客户带来了更有利的条款与更广泛的保障选择。</p>\n\n<p align=\"center\"><img align=\"\" alt=\"\" src=\"https://imgcdn.yicai.com/uppics/images/2026/03/138c3fb691d79866844",
+      "source": "第一财经"
+    },
+    {
+      "title": "消费税改革侧重点有变，征税范围、税率将调整",
+      "link": "https://www.yicai.com/news/103081697.html",
+      "published": "Wed, 11 Mar 2026 12:05:15 GMT",
+      "summary": "<figure><img alt=\"消费税改革侧重点有变，征税范围、税率将调整\" src=\"https://imgcdn.yicai.com/uppics/thumbs/2026/03/af5fffb95d733520f82df9cad4aa1a38.jpeg\" /></figure>   <p>去年政府对消费税改革的表述，重心在于“分钱”；今年的表述，重心转向了“调税”。</p>   <p>中国万亿级税种消费税改革在即，但侧重点有所变化。</p>\n\n<p>今年的政府工作报告在部署推进财税金融体制改革时称，调整优化消费税征税范围、税率，并推进部分品目征收环节后移。而去年的政府工作报告在部署消费税改革时的表述是，加快推进部分品目消费税征收环节后移并下划地方，增加地方自主财力。</p>\n\n<p>西南财经大学教授刘蓉告诉第一财经，今年我国消费税改革表述相较2025年出现明显调整，从侧重“下划地方、增加地方财力”转向“征税范围、税率、征收环节”三位一体协同优化，标志着改革重心回归税制本质功能，兼顾调节作用、征管效率与央地财力格局。</p>\n\n<p>中南财经政法大学税收治理研究中心主任田彬彬对第",
+      "source": "第一财经"
+    },
+    {
+      "title": "社保“第六险”推行元年，多省份实施方案亮相",
+      "link": "https://www.yicai.com/news/103081696.html",
+      "published": "Wed, 11 Mar 2026 12:05:01 GMT",
+      "summary": "<figure><img alt=\"社保“第六险”推行元年，多省份实施方案亮相\" src=\"https://imgcdn.yicai.com/uppics/thumbs/2026/03/5a4069a94291d8347b464f9da01db31b.jpeg\" /></figure>   <p>未来三年内，各地需完成方案制定、筹资落实、服务网络搭建等系列工作。</p>   <p>今年的政府工作报告提出“推行长期护理保险制度”。在2026年这个“十五五”开局之年，我国社保“第六险”正式从试点走向全面建制。</p>\n\n<p>在制度落地的微观层面，一些家庭的日常生活已被长护险悄然改变。</p>\n\n<p>浙江省宁波市奉化区87岁的傅老师，因阿尔茨海默症叠加骨折完全失能。在傅老师成为长护险保障对象的这两年多以来，护理员小裘每个月上门20个小时，给他喂饭、洗脸、换尿不湿、泡脚、按摩……在小裘的专业照料下，傅老师从来没有生过长期卧床老人常见的褥疮。小裘几乎每天一小时的上门服务，也给了傅老师的家属“喘息”的时间。</p>\n\n<p>按照中央的要求，我国将在前期试点的基础上，用三年左右基本建立覆盖全民、",
+      "source": "第一财经"
+    },
+    {
+      "title": "Bank of England fines Direct Line £10mn for overstating capital",
+      "link": "https://www.ft.com/content/42691d7b-bf8c-41be-a4ef-3f6c8d40740a",
+      "published": "Wed, 11 Mar 2026 12:01:15 GMT",
+      "summary": "Motor insurer took almost a year to detect accounting error",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "Will the Iran war derail the global economy? You asked, we answered",
+      "link": "https://www.ft.com/content/950d23a7-bc13-41f7-ae5e-81d72aa0565a",
+      "published": "Wed, 11 Mar 2026 12:00:24 GMT",
+      "summary": "Economics leader writer Tej Parikh and European economics commentator Martin Sandbu replied to reader questions",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "What the Iran war will mean for emerging market economies",
+      "link": "https://www.ft.com/content/6e6c6f0f-6ca1-4f5e-9035-9b49928c1e5e",
+      "published": "Wed, 11 Mar 2026 12:00:03 GMT",
+      "summary": "Higher oil prices will ‘significantly change the game plan’ for central banks in developing nations, say economists",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "Binance, PayPal and Ripple join Mastercard’s massive new push into blockchain payments",
+      "link": "https://www.coindesk.com/business/2026/03/11/binance-paypal-and-ripple-join-mastercard-s-massive-new-push-into-blockchain-payments",
+      "published": "Wed, 11 Mar 2026 12:00:00 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "IBM中国高管：软件行业的DeepSeek时刻还没来",
+      "link": "https://www.yicai.com/news/103081701.html",
+      "published": "Wed, 11 Mar 2026 11:59:57 GMT",
+      "summary": "<figure><img alt=\"IBM中国高管：软件行业的DeepSeek时刻还没来\" src=\"https://imgcdn.yicai.com/uppics/slides/2026/03/c95f89f7f006811e0c26b0724def3dfe.jpg\" /></figure>   <p>IBM认为市场低估了企业级应用的“复杂度”。</p>   <p>上月，Anthropic旗下AI编程工具Claude Code的亮相，在资本市场掀起巨浪，全球软件股应声大跌。一时间，“AI正在杀死软件”的论调甚嚣尘上。这是否意味着，软件行业，尤其是复杂的企业级软件领域，已经迎来了“DeepSeek时刻”？</p>\n\n<p>“我觉得没有来。”IBM大中华区董事长、总经理陈旭东今日对第一财经记者回应。</p>\n\n<p>他说，股价大跌时，其实很少有客户来问是怎么回事，因为市场低估了企业级应用的“复杂度”。他解释，真正的IT现代化，远非简单的代码重写或翻译。它是一个涉及硬件更迭、组织架构和业务流程现代化的庞大系统工程。以IBM拥有60年历史的主机为例，它的生命力恰在于硬件因供应链迭代而必须定期",
+      "source": "第一财经"
+    },
+    {
+      "title": "US Stocks Dip as Iran War, Oil Spike Overshadow Inflation Data",
+      "link": "https://www.bloomberg.com/news/articles/2026-03-11/us-futures-muted-as-iran-war-continues-investors-await-cpi-data",
+      "published": "Wed, 11 Mar 2026 11:59:26 GMT",
+      "summary": "US stocks edged lower on Wednesday as investors remained focus on war in the Middle East, shrugging off inflation data from before hostilities began that showed easing price pressures.",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "一年涨价三次，老铺去年还是卖爆超300亿元",
+      "link": "https://www.yicai.com/news/103081675.html",
+      "published": "Wed, 11 Mar 2026 11:59:09 GMT",
+      "summary": "<figure><img alt=\"一年涨价三次，老铺去年还是卖爆超300亿元\" src=\"https://imgcdn.yicai.com/uppics/images/android/yicai/7d6c816f-8a5a-4801-a89d-8a2cb6863fe7.jpg\" /></figure>   <p>越涨越要买？</p>   <p>3月11日午后，老铺黄金（06181.HK）发布了年度预盈公告。2025年全年实现销售业绩约310亿元至320亿元，较2024年度增长约216%至227%；经调整净利润约50亿元至51亿元，较2024年度增长约233%至240%。</p><p>翻倍的业绩远高于之前不少机构的预期。此前高盛、花旗等对老铺去年的营收、净利给出的预期在260亿-270亿元，净利在47亿-48亿元的区间。</p><p>或受此消息影响，今日下午开盘，老铺黄金股价瞬间拉升近4%。截至发稿，老铺黄金涨2.35%，报收654港元。</p><p><strong>头部效应明显，越涨越要买？</strong></p><p>老铺黄金公告称，收入和净利润增加的主要原因在于：集团品牌影响力",
+      "source": "第一财经"
+    },
+    {
+      "title": "监管零容忍！年初两月16家银行虚增存贷款被罚",
+      "link": "https://www.yicai.com/news/103081669.html",
+      "published": "Wed, 11 Mar 2026 11:49:13 GMT",
+      "summary": "<figure><img alt=\"监管零容忍！年初两月16家银行虚增存贷款被罚\" src=\"https://imgcdn.yicai.com/uppics/slides/2026/03/84d6e978933d035eb028b359132cc403.jpg\" /></figure>   <p>个人追责力度加大。</p>   <p>2026年开年以来，银行业虚增存贷款问题再度受到监管关注。</p>\n\n<p>据第一财经记者不完全统计，今年前两个月已有至少16家银行因虚增存贷款规模等违规行为受到监管处罚，涉及国有大型银行分支机构、股份制银行、城商行以及农商行等多类型机构。多数案件同时追究机构与责任人员责任，“双罚制”已成为监管常态，个别案例甚至出现终身禁止从事银行业工作的处罚。</p>\n\n<p>在业内人士看来，随着监管持续强化，银行通过各类操作手段做大存贷款规模的空间正逐步受到压缩。与此同时，在净息差持续收窄、信贷需求偏弱以及存款竞争加剧的背景下，依赖规模扩张驱动增长的传统模式正面临调整。</p>\n\n<p><strong>十余家银行因虚增存贷款受罚</strong></p>\n\n<p>从监",
+      "source": "第一财经"
+    },
+    {
+      "title": "中小银行资本“嗷嗷待补”，代表委员建言专项债“自审自发”",
+      "link": "https://www.yicai.com/news/103081626.html",
+      "published": "Wed, 11 Mar 2026 11:31:38 GMT",
+      "summary": "<figure><img alt=\"中小银行资本“嗷嗷待补”，代表委员建言专项债“自审自发”\" src=\"https://imgcdn.yicai.com/uppics/slides/2026/03/3cccda57324712c421a663e1f1682006.jpg\" /></figure>   <p>资本补充的同时，风险防控至关重要。</p>   <p>今年全国两会期间，中小银行资本补充问题成为热议焦点。</p>\n\n<p>政府工作报告明确提出，要多渠道加大资本补充力度，稳妥处置金融机构不良资产；并拟发行特别国债3000亿元，支持国有大型商业银行补充资本。</p>\n\n<p>相较国有大行，当前中小银行无论采用内源式还是外源式方法来补充资本金，均面临较大压力，资本补充难度突出。</p>\n\n<p>针对这一情况，两会期间，多位代表委员建议以省级为单位常态化发行专项债，通过“自审自发”形式补充中小银行资本，通过多方协同构建中小银行资本补充长效机制，确保资本真正用于服务实体经济。</p>\n\n<p><strong>中小银行资本告急</strong></p>\n\n<p>资本是否充足是中小银行经营实",
+      "source": "第一财经"
+    },
+    {
+      "title": "Inflation fears push European bond yields towards yearly highs",
+      "link": "https://www.ft.com/content/ad111a3e-ee44-4614-8be1-bef695cdc51b",
+      "published": "Wed, 11 Mar 2026 11:26:48 GMT",
+      "summary": "400mn barrels of crude made available as governments race to tackle energy shock",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "Insurance As A Weapon: How The Strait Of Hormuz Shapes Global Power And Energy Markets",
+      "link": "https://www.zerohedge.com/markets/insurance-weapon-how-strait-hormuz-shapes-global-power-and-energy-markets",
+      "published": "Wed, 11 Mar 2026 11:20:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Insurance As A Weapon: How The Strait Of Hormuz Shapes Global Power And Energy Markets</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><em>Submitted by Thomas Kolbe</em></p>\n\n<p>War is raging in Iran. Amid the fog of propaganda, it is increasingly difficult to separate fact from fiction, to distinguish AI-generated material",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "Bitcoin stuck under $70,000 as investors play it safe before U.S. inflation report",
+      "link": "https://www.coindesk.com/daybook-us/2026/03/11/bitcoin-stuck-under-usd70-000-as-investors-play-it-safe-before-u-s-inflation-report",
+      "published": "Wed, 11 Mar 2026 11:15:00 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "Hedge fund Caxton loses more than $600mn in Iran war fallout",
+      "link": "https://www.ft.com/content/f47e1478-7b4b-4dd3-8037-6643549ac737",
+      "published": "Wed, 11 Mar 2026 11:00:04 GMT",
+      "summary": "Firm’s $9bn fund was down 7% last week as market upheaval hurt macro traders",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "Where the auto supply chain is most threatened by the Iran war",
+      "link": "https://www.cnbc.com/2026/03/11/autos-supply-chain-iran.html",
+      "published": "Wed, 11 Mar 2026 11:00:01 GMT",
+      "summary": "Oil prices above $100 per barrel, rising fuel costs for consumers and shortages of metals and petrochemicals refined in the Gulf region could hurt automakers.",
+      "source": "CNBC"
+    },
+    {
+      "title": "Iran’s New Supreme Leader Creates a Delicate Diplomatic Moment for Central Asia",
+      "link": "https://oilprice.com/Geopolitics/Asia/Irans-New-Supreme-Leader-Creates-a-Delicate-Diplomatic-Moment-for-Central-Asia.html",
+      "published": "Wed, 11 Mar 2026 11:00:00 -0500",
+      "summary": "Intent on staying on Tehran’s good side, Armenia and Azerbaijan have both saluted the elevation of Mojtaba Khamenei to be Iran’s Supreme Leader. The congratulatory notes sent by Yerevan and Baku highlight the delicate geopolitical balance that both are trying to maintain amid the ongoing US-Israeli air campaign to cause the Islamic Republic’s collapse. Both Armenia and Azerbaijan share a frontier with Iran. Meanwhile, both are heavily invested in developing a US-backed trade corridor, known as T",
+      "source": "OilPrice"
+    },
+    {
+      "title": "有AI新贵市值日跌200余亿港元，暴涨暴跌估值争议再起",
+      "link": "https://www.yicai.com/news/103081576.html",
+      "published": "Wed, 11 Mar 2026 10:59:19 GMT",
+      "summary": "<figure><img alt=\"有AI新贵市值日跌200余亿港元，暴涨暴跌估值争议再起\" src=\"https://imgcdn.yicai.com/uppics/slides/2026/03/ed905cf9ec5ee4ea6e2b0ddc976f0dae.jpg\" /></figure>   <p>短期震荡与“养虾热”风向的快速轮动相关，</p>   <p>一日暴涨、一日暴跌。港股AI模型头部公司的股价，正频繁上演过山车行情。</p>\n\n<p>3月10日，受“养虾热”催化，MINIMAX-WP、智谱大幅走强，市值分别达3826亿、2895亿港元，MINIMAX-WP甚至一举超越百度。然而，到了次日（3月11日），板块迅速回调<strong>，MINIMAX-WP（00100.HK）下跌6.48%，智谱（02513.HK）下跌6.09%。</strong></p>\n\n<p>剧烈波动并非偶然。长时间来看看，讯策、MINIMAX-WP月振幅分别高达109.83%、81.07%，智谱与腾讯控股的月振幅也均超过15%。</p>\n\n<p>业内人士认为，短期震荡与“养虾热”风向的快速转变相关",
+      "source": "第一财经"
+    },
+    {
+      "title": "全国有6县GDP超3000亿，江阴上市公司数量领跑百强县",
+      "link": "https://www.yicai.com/news/103081552.html",
+      "published": "Wed, 11 Mar 2026 10:55:38 GMT",
+      "summary": "<figure><img alt=\"全国有6县GDP超3000亿，江阴上市公司数量领跑百强县\" src=\"https://imgcdn.yicai.com/uppics/slides/2026/03/40a1ed16b652e60e23f750deb12e313b.jpg\" /></figure>   <p>6县分别是“苏南四小龙”，以及福建晋江和浙江慈溪</p>   <p>随着我国经济的发展，县域经济也不断壮大，去年多个经济强县也实现了新突破。</p>\n\n<p>根据第一财经记者统计，目前，GDP超3000亿元的县域达到了6个，即“苏南四小龙”（江苏昆山、江阴、张家港和常熟），以及福建晋江和浙江慈溪。</p>\n\n<p>其中，昆山依然稳居县域经济首位。2025年，昆山市以5615.34亿元地区生产总值、5.8%的同比增速，连续四年站稳5000亿元台阶，连续22年位居全国综合实力百强县市榜首。</p>\n\n<p>根据媒体报道，工业是昆山经济的核心支柱，2025年规上工业总产值突破1.3万亿元，同比增长4.9%，总量与增量均居苏州市首位，占苏州比重达26.6%。拥有超3.5万家工业企业的城市，",
+      "source": "第一财经"
+    },
+    {
+      "title": "Seniors Hit With Billions In Extra Premiums From Medicare Overpayments: Report",
+      "link": "https://www.zerohedge.com/political/seniors-hit-billions-extra-premiums-medicare-overpayments-report",
+      "published": "Wed, 11 Mar 2026 10:55:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Seniors Hit With Billions In Extra Premiums From Medicare Overpayments: Report</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><strong>Private insurers are padding their pockets with billions in alleged overpayments from Medicare Advantage</strong>, and hardworking <strong>American seniors are footing the bill </strong>throu",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "MFS Accused of Using Front to Defraud Barclays, Castlelake",
+      "link": "https://www.bloomberg.com/news/articles/2026-03-11/mfs-ceo-accused-of-using-front-to-defraud-barclays-castlelake",
+      "published": "Wed, 11 Mar 2026 10:37:35 GMT",
+      "summary": "A company closely aligned with Paresh Raja’s now-defunct mortgage lender Market Financial Solutions was allegedly used to siphon off funds from entities backed by Barclays Plc and a firm majority owned by Brookfield Asset Management Ltd.",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "Bitcoin drops on Iran war uncertainty, AI tokens jump",
+      "link": "https://www.coindesk.com/markets/2026/03/11/bitcoin-drops-on-iran-war-uncertainty-ai-tokens-jump",
+      "published": "Wed, 11 Mar 2026 10:35:35 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "Aramco Asks Asian Buyers for Dual Red Sea-Hormuz Oil Supply Plans",
+      "link": "https://oilprice.com/Latest-Energy-News/World-News/Aramco-Asks-Asian-Buyers-for-Dual-Red-Sea-Hormuz-Oil-Supply-Plans.html",
+      "published": "Wed, 11 Mar 2026 10:30:00 -0500",
+      "summary": "Saudi Arabia’s oil giant Aramco is requesting from Asian buyers to nominate crude loading plans for April for both its key export port in the Gulf and the export alternative on the Red Sea, multiple sources told Reuters on Wednesday. The crisis at the Strait of Hormuz has reverberated through global markets. With the Strait effectively blocked for tanker traffic, Saudi Arabia has diverted part of its crude oil exports from the Ras Tanura export terminal in the Gulf that needs free-flowing traffi",
+      "source": "OilPrice"
+    },
+    {
+      "title": "Iranian Drone Strike Hits Oman’s Largest Oil Storage Facility",
+      "link": "https://oilprice.com/Latest-Energy-News/World-News/Iranian-Drone-Strike-Hits-Omans-Largest-Oil-Storage-Facility.html",
+      "published": "Wed, 11 Mar 2026 10:15:00 -0500",
+      "summary": "Iranian drones struck oil storage facilities at the Port of Salalah in Oman on Wednesday, marking the latest attack on Gulf energy infrastructure as the regional war expands into a full-scale confrontation over global oil supply. Fuel storage tanks at the port were hit in the strike, according to maritime security firm Ambrey and Omani state media, though no merchant vessels in the area were damaged.OSINT account Visioner shared video footage of the oil storage facilities after the attack: ?????",
+      "source": "OilPrice"
+    },
+    {
+      "title": "Oracle jumps 11% premarket as AI demand challenges 'SaaS apocalypse' fears",
+      "link": "https://www.coindesk.com/markets/2026/03/11/oracle-jumps-11-premarket-as-ai-demand-challenges-saas-apocalypse-fears",
+      "published": "Wed, 11 Mar 2026 10:10:46 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "IEA Launches Record 400-Million-Barrel Emergency Oil Release",
+      "link": "https://oilprice.com/Latest-Energy-News/World-News/IEA-Launches-Record-400-Million-Barrel-Emergency-Oil-Release.html",
+      "published": "Wed, 11 Mar 2026 10:00:00 -0500",
+      "summary": "The International Energy Agency (IEA) and its member nations have agreed to release a record 400 million barrels of oil from strategic reserves in an attempt to stabilize global energy markets as the war involving Iran continues to disrupt crude flows through the Strait of Hormuz. The coordinated action, announced Wednesday by the IEA, represents the largest emergency oil release ever organized by the group and only the sixth such intervention since the IEA was created following the 1970s oil sh",
+      "source": "OilPrice"
+    },
+    {
+      "title": "Trump Threatens 'Unprecedented Military Consequences' As Iran Reportedly Starts Mining The Strait Of Hormuz",
+      "link": "https://www.zerohedge.com/geopolitical/irgc-says-iran-not-us-will-determine-wars-end-trump-threatens-strikes-20-times-harder",
+      "published": "Wed, 11 Mar 2026 09:55:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Trump Threatens 'Unprecedented Military Consequences' As Iran Reportedly Starts Mining The Strait Of Hormuz</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><strong>Summary:</strong></p>\n\n<ul><li>\n\t<p><em>CNN says the IRGC had <strong>already begun laying explosive mines</strong> in the vital Strait of Hormuz.</em></p>\n\t</li>",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "EIA Sees Increase, Not Decrease in US Oil Inventories",
+      "link": "https://oilprice.com/Energy/Crude-Oil/EIA-Sees-Increase-Not-Decrease-in-US-Oil-Inventories.html",
+      "published": "Wed, 11 Mar 2026 09:48:46 -0500",
+      "summary": "Crude oil inventories in the United States increased by 3.8 million barrels during the week ending March 6, according to new data from the U.S. Energy Information Administration (EIA) released on Wednesday. The increase brings commercial stockpiles to 443.1 million barrels according to government data, which is still 2% below the five-year average for this time of year. The EIA’s data release follows API’s figures that were released a day earlier, which reported that crude oil inventories fell b",
+      "source": "OilPrice"
+    },
+    {
+      "title": "Are Bad Bots Taking Over The Web?",
+      "link": "https://www.zerohedge.com/technology/are-bad-bots-taking-over-web",
+      "published": "Wed, 11 Mar 2026 09:45:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Are Bad Bots Taking Over The Web?</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><strong>The share of global web traffic generated by humans is shrinking,</strong> while bot activity is on the rise.</p>\n\n<p>According to <a href=\"https://www.imperva.com/blog/2025-imperva-bad-bot-report-how-ai-is-supercharging-the-bot-threat/",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "Activist Shareholders Challenge BP on Rejected Climate Resolution",
+      "link": "https://oilprice.com/Latest-Energy-News/World-News/Activist-Shareholders-Challenge-BP-on-Rejected-Climate-Resolution.html",
+      "published": "Wed, 11 Mar 2026 09:30:00 -0500",
+      "summary": "Green activist investor Follow This has vowed to fight BP in court after the supermajor did not include a Follow This-led resolution to explain how the company takes investment decisions to create value for shareholders.  In January, Follow This and 23 institutional investors filed shareholder resolutions with both BP and Shell, requesting disclosure of shareholder value creation under scenarios of declining oil and gas demand. The resolution for the Annual General Meeting of BP, to be held on A",
+      "source": "OilPrice"
+    },
+    {
+      "title": "IEA preparing record release of oil reserves",
+      "link": "https://www.ft.com/content/894b1636-caaa-4f30-a171-549f5bd00738",
+      "published": "Wed, 11 Mar 2026 09:17:07 GMT",
+      "summary": "Plan underlines fears for the global economy from energy shock triggered by the Middle East war",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "Where U.S. and Israeli War Goals in Iran Diverge",
+      "link": "https://oilprice.com/Geopolitics/Middle-East/Where-US-and-Israeli-War-Goals-in-Iran-Diverge.html",
+      "published": "Wed, 11 Mar 2026 09:00:00 -0500",
+      "summary": "Driving past the gleaming skyscrapers of downtown Tel Aviv, a huge video billboard catches the eye as the advertisement switches from groceries to a giant portrait of the US president with the caption: \"Thank you, God and Donald Trump!\" The tribute bears witness to Israeli gratitude for America's role in the military strikes on Iran. Israeli officials have repeatedly stressed that the two countries are in lockstep. \"The cooperation is historic between the US military and the IDF (Israel Defense",
+      "source": "OilPrice"
+    },
+    {
+      "title": "The Global Elites Lose Again",
+      "link": "https://www.zerohedge.com/political/global-elites-lose-again",
+      "published": "Wed, 11 Mar 2026 09:00:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">The Global Elites Lose Again</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><a href=\"https://amgreatness.com/2026/03/10/the-global-elites-lose-again/\"><em>Authored by Heather Mac Donald via American Greatness,</em></a></p>\n\n<p><strong>To the despair of the European establishment, the Alternative für Deutschland (AfD), the m",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "EU Mulls Capping Gas Price as Energy Costs Spike on Iran War",
+      "link": "https://oilprice.com/Latest-Energy-News/World-News/EU-Mulls-Capping-Gas-Price-as-Energy-Costs-Spike-on-Iran-War.html",
+      "published": "Wed, 11 Mar 2026 08:23:00 -0500",
+      "summary": "The European Union is considering emergency relief measures in the wake of the energy price spike amid the Middle East war, including capping the price of natural gas, European Commission President Ursula von der Leyen said on Wednesday. The price spike in oil and gas prices during the ten days of war have already cost the European taxpayer an additional 3 billion euros, or $3.5 billion, in fossil fuel imports, von der Leyen told the European Parliament today. “Households and companies face pres",
+      "source": "OilPrice"
+    },
+    {
+      "title": "How Europe's Economic 'Center Of Gravity' Has Shifted Since 1950",
+      "link": "https://www.zerohedge.com/economics/how-europes-economic-center-gravity-has-shifted-1950",
+      "published": "Wed, 11 Mar 2026 08:15:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">How Europe's Economic 'Center Of Gravity' Has Shifted Since 1950</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p>Europe’s economic balance point has been slowly drifting east for decades.</p>\n\n<p>This map traces the continent’s GDP-weighted “center of gravity” from 1950 to 2022, showing how Europe’s economic core has shifted",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "Coinbase-backed AI payments protocol wants to fix micropayment but demand is just not there yet",
+      "link": "https://www.coindesk.com/markets/2026/03/11/coinbase-backed-ai-payments-protocol-wants-to-fix-micropayment-but-demand-is-just-not-there-yet",
+      "published": "Wed, 11 Mar 2026 08:11:04 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "World Races to Protect Oil Flows as Trump Hints at War’s End",
+      "link": "https://www.bloomberg.com/news/articles/2026-03-11/world-races-to-shield-oil-flows-after-iran-war-hits-supplies",
+      "published": "Wed, 11 Mar 2026 08:04:54 GMT",
+      "summary": "The US and Israel’s war on Iran forced world governments to intervene to shore up energy supplies, even as President Donald Trump once again said fighting will end soon.",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "Shell and TotalEnergies Issue Force Majeure After Qatar LNG Shut Down",
+      "link": "https://oilprice.com/Latest-Energy-News/World-News/Shell-and-TotalEnergies-Issue-Force-Majeure-After-Qatar-LNG-Shut-Down.html",
+      "published": "Wed, 11 Mar 2026 07:31:00 -0500",
+      "summary": "Several major energy traders have begun declaring force majeure to their own customers after Qatar’s LNG shutdown rippled through global gas markets, according to Reuters sources on Wednesday. Companies including Shell and TotalEnergies–both major portfolio players that lift liquefied natural gas from QatarEnergy–have notified downstream buyers that contractual deliveries may be disrupted following Qatar’s suspension of LNG production. The move marks the first clear sign that Qatar’s export stop",
+      "source": "OilPrice"
+    },
+    {
+      "title": "European Parliament Committee Backs Tougher Asylum Return Rules In Right-Wing Migration Win",
+      "link": "https://www.zerohedge.com/geopolitical/european-parliament-committee-backs-tougher-asylum-return-rules-right-wing-migration",
+      "published": "Wed, 11 Mar 2026 07:30:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">European Parliament Committee Backs Tougher Asylum Return Rules In Right-Wing Migration Win</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><a href=\"https://rmx.news/article/european-parliament-committee-backs-tougher-asylum-return-rules-in-right-wing-migration-win/\"><em>Authored by Thomas Brooke via Remix News,</em></a></p>",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "Next week could spice things up for bitcoin as seven central banks face an inflation test",
+      "link": "https://www.coindesk.com/markets/2026/03/11/next-week-could-spice-things-up-for-bitcoin-as-seven-central-banks-face-an-inflation-test",
+      "published": "Wed, 11 Mar 2026 07:14:05 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "Senate Democrats push ban on prediction market bets tied to war and death",
+      "link": "https://www.coindesk.com/markets/2026/03/11/schiff-pushes-ban-on-prediction-market-bets-tied-to-war-and-death",
+      "published": "Wed, 11 Mar 2026 07:13:16 +0000",
+      "summary": "",
+      "source": "CoinDesk"
+    },
+    {
+      "title": "Dozens Of Oil Tankers Divert To Red Sea As Saudis Reroute Crude Flows From Hormuz Chokepoint",
+      "link": "https://www.zerohedge.com/geopolitical/oil-tankers-divert-red-sea-saudis-divert-hormuz-chokepoint",
+      "published": "Wed, 11 Mar 2026 06:45:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">Dozens Of Oil Tankers Divert To Red Sea As Saudis Reroute Crude Flows From Hormuz Chokepoint </span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p>Despite continued disruption at the Strait of Hormuz chokepoint, maritime traffic has not fully collapsed.</p>\n\n<blockquote class=\"twitter-tweet\">\n<p dir=\"ltr\" lang=\"en\" xml:lang=\"en\">",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "Does private credit have a credit quality problem?",
+      "link": "https://www.ft.com/content/529d8936-301f-4b31-bdd4-2b60aea42d0a",
+      "published": "Wed, 11 Mar 2026 06:30:09 GMT",
+      "summary": "The stock market thinks so",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "G7 Backs Oil Reserves Release to Curb Middle East Supply Crunch",
+      "link": "https://oilprice.com/Latest-Energy-News/World-News/G7-Backs-Oil-Reserves-Release-to-Curb-Middle-East-Supply-Crunch.html",
+      "published": "Wed, 11 Mar 2026 06:30:00 -0500",
+      "summary": "The G-7 group of the world’s most advanced economies support in principle the idea to release strategic petroleum reserves to calm the market as supply from the Middle East is choked at the Strait of Hormuz.   “Working alongside the IEA, we are vigilantly monitoring energy market trends and are coordinating within the G-7 and with our international partners, IEA member countries, and beyond,” G-7 energy ministers said in a statement emailed to Bloomberg on Wednesday. The ministers noted they sup",
+      "source": "OilPrice"
+    },
+    {
+      "title": "RIP Wilshire Indexes. And all wannabe index disrupters?",
+      "link": "https://www.ft.com/content/df26b41a-1bc1-4c00-84b6-deb7e403316e",
+      "published": "Wed, 11 Mar 2026 06:00:09 GMT",
+      "summary": "Plus ça change, plus c’est la même chose",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "European Taxpayers Warn Against Eurobonds: A Looming Fiscal Trap",
+      "link": "https://www.zerohedge.com/economics/european-taxpayers-warn-against-eurobonds-looming-fiscal-trap",
+      "published": "Wed, 11 Mar 2026 06:00:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">European Taxpayers Warn Against Eurobonds: A Looming Fiscal Trap</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><em>Submitted by Thomas Kolbe</em></p>\n\n<p>In public debate, the introduction of joint European bonds, Eurobonds, has so far often been dismissed as a fantasy. That the European Taxpayers’ Association has now issu",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "Crude Oil Jumps 4% as Traders Price In Supply Disruption",
+      "link": "https://oilprice.com/Latest-Energy-News/World-News/Crude-Oil-Jumps-4-as-Traders-Price-In-Supply-Disruption.html",
+      "published": "Wed, 11 Mar 2026 05:47:00 -0500",
+      "summary": "Oil prices rebounded early on Wednesday as the market fears a massive supply crunch from the ongoing blockage at the Strait of Hormuz, which offset reports that the IEA is preparing its largest-ever release from strategic oil stocks.  As of 6:31 a.m. EDT on Wednesday, the front-month Brent Crude futures prices moved above $90 per barrel again, having slumped to $88 at close on Tuesday. Brent was trading at $91.15, up by 3.80%.  The U.S. benchmark, WTI Crude, was up above $86 per barrel, at $86.8",
+      "source": "OilPrice"
+    },
+    {
+      "title": "How the war in Iran changes our scenarios",
+      "link": "https://www.ft.com/content/628aed21-6aa0-470e-8ade-cff19bf8c1d3",
+      "published": "Wed, 11 Mar 2026 05:30:09 GMT",
+      "summary": "Updating MPR’s central bank forecasts for higher energy prices",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "Cargo Ship Hit by Projectile in Strait of Hormuz as Tanker Crisis Continues",
+      "link": "https://oilprice.com/Latest-Energy-News/World-News/Cargo-Ship-Hit-by-Projectile-in-Strait-of-Hormuz-as-Tanker-Crisis-Continues.html",
+      "published": "Wed, 11 Mar 2026 05:30:00 -0500",
+      "summary": "A cargo vessel has been hit by an unknown projectile in the Strait of Hormuz, which has ignited a fire onboard, the United Kingdom Maritime Trade Operations (UKMTO), a Royal Navy-sponsored organization, said on Wednesday. UKMTO said it had received a report of an incident 11 nautical miles north of Oman in the Strait of Hormuz. The vessel has requested assistance, and the crew is evacuating the vessel, said the organization, which liaises between the navy and merchant shipping. The Joint Maritim",
+      "source": "OilPrice"
+    },
+    {
+      "title": "Green investors threaten BP with legal action over rejected resolution",
+      "link": "https://www.ft.com/content/12203331-b4ff-4e58-a23d-65f2e136a54e",
+      "published": "Wed, 11 Mar 2026 05:00:39 GMT",
+      "summary": "Energy major accused of ‘unprecedented attack on shareholder rights’ for refusal to allow vote at AGM",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "The economic consequences of war with Iran",
+      "link": "https://www.ft.com/content/dab7d625-77f8-40ff-aeb9-451f81772125",
+      "published": "Wed, 11 Mar 2026 05:00:30 GMT",
+      "summary": "There are lasting lessons about energy resilience to be learnt from this conflict",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "Gulf disruption chokes sulphur flows supporting swaths of global industry",
+      "link": "https://www.ft.com/content/dd2498cc-d221-4645-9fae-34d1d832c15d",
+      "published": "Wed, 11 Mar 2026 05:00:30 GMT",
+      "summary": "Shortage spurs surge in prices and threatens sectors from fertiliser to microchips as impact of war in Iran widens",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "UBS’s new private equity deals confront an old problem",
+      "link": "https://www.ft.com/content/c2f4d5b8-cca8-4ef5-b939-bc64f69946e2",
+      "published": "Wed, 11 Mar 2026 05:00:30 GMT",
+      "summary": "A firm should think carefully about which risks are worthwhile and tolerable to their clients",
+      "source": "FT-Markets"
+    },
+    {
+      "title": "Tankers Avoid Emirati Port as Gulf War Risk Disrupts Oil Exports",
+      "link": "https://oilprice.com/Latest-Energy-News/World-News/Tankers-Avoid-Emirati-Port-as-Gulf-War-Risk-Disrupts-Oil-Exports.html",
+      "published": "Wed, 11 Mar 2026 04:30:00 -0500",
+      "summary": "Shipping companies have grown reluctant to call at the port of Fujairah in the UAE, prompting cancellations of oil cargoes that Adnoc is then reselling at higher prices, Bloomberg has reported, citing anonymous sources. Per the report, Nippon Yusen KK and an unnamed European shipping company are among those unwilling to send their ships to Fujairah, even though the port city is outside the Strait of Hormuz—but still too close for comfort, it seems. Bloomberg noted in its report that Fujairah has",
+      "source": "OilPrice"
+    },
+    {
+      "title": "No Magnets, No Drones: How China Controls the Future of Warfare",
+      "link": "https://oilprice.com/Energy/Energy-General/No-Magnets-No-Drones-How-China-Controls-the-Future-of-Warfare.html",
+      "published": "Wed, 11 Mar 2026 04:00:00 -0500",
+      "summary": "One high-powered, precise weapon has quickly and permanently transformed modern warfare. It can weigh less than a suitcase…and cost a few hundred dollars to build…but take out a multimillion-dollar tank from miles away. The drone has changed the face of war. Nothing has disrupted the battlefield so drastically since the introduction of the machine gun in World War I. Military experts describe the shift as transformative…a fundamental rewiring of how conflicts are fought, won, and lost. Ukraine p",
+      "source": "OilPrice"
+    },
+    {
+      "title": "We Must Invest In Civics For America's 250th",
+      "link": "https://www.zerohedge.com/political/we-must-invest-civics-americas-250th",
+      "published": "Wed, 11 Mar 2026 03:45:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">We Must Invest In Civics For America's 250th</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><em><a href=\"https://www.realclearwire.com/articles/2026/03/09/we_must_invest_in_civics_for_americas_250th_1169295.html\">Authored by Hans Zeiger via RealClearEducation</a>,</em></p>\n\n<p><strong>The second week of March is Civic Learn",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "Trump says U.S. will build first refinery in 50 years with investment from India's Reliance Industries",
+      "link": "https://www.cnbc.com/2026/03/11/trump-us-oil-refinery-reliance-ambani-texas-india-shale-wti.html",
+      "published": "Wed, 11 Mar 2026 03:40:21 GMT",
+      "summary": "U.S. President said India's largest private energy company Reliance Industries is investing in a $300-billion refinery project in Texas.",
+      "source": "CNBC"
+    },
+    {
+      "title": "$330 Million In U.S. Reaper Drones Suffer Grim Fate In Operation Epic Fury",
+      "link": "https://www.zerohedge.com/military/330-million-us-reaper-drones-suffer-grim-fate-operation-epic-fury",
+      "published": "Wed, 11 Mar 2026 03:20:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">$330 Million In U.S. Reaper Drones Suffer Grim Fate In Operation Epic Fury</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p>CBS News sources confirmed that over the eleven-day course of <a href=\"https://www.zerohedge.com/geopolitical/irgc-says-iran-not-us-will-determine-wars-end-trump-threatens-strikes-20-times-harder\">Operat",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "Qatar’s LNG Shutdown Sends Shockwaves Through Global Gas Markets",
+      "link": "https://oilprice.com/Latest-Energy-News/World-News/Qatars-LNG-Shutdown-Sends-Shockwaves-Through-Global-Gas-Markets.html",
+      "published": "Wed, 11 Mar 2026 03:05:00 -0500",
+      "summary": "QatarEnergy’s shutdown of its LNG production complex has resulted in a streak of five days with zero shipments of the superchilled fuel, according to Kpler data cited by Bloomberg. This is the longest period with no Qatari LNG leaving the country since 2008, the publication noted, adding no LNG carrier has passed the Strait of Hormuz since February 28. That includes vessels normally exporting liquefied gas from the UAE, meaning 20% of the world’s LNG exports are gone. QatarEnergy — the state-own",
+      "source": "OilPrice"
+    },
+    {
+      "title": "ADHD May Not Be A Disorder After All",
+      "link": "https://www.zerohedge.com/medical/adhd-may-not-be-disorder-after-all",
+      "published": "Wed, 11 Mar 2026 02:55:00 +0000",
+      "summary": "<span class=\"field field--name-title field--type-string field--label-hidden\">ADHD May Not Be A Disorder After All</span>\n\n            <div class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item\"><p><em><a href=\"https://www.theepochtimes.com/health/adhd-may-not-be-a-disorder-after-all-5986284?utm_source=partner&amp;utm_campaign=ZeroHedge&amp;src_src=partner&amp;src_cmp=ZeroHedge\">Authored by Amy Denney via The Epoch Times</a> (emphasis",
+      "source": "ZeroHedge"
+    },
+    {
+      "title": "Aluminum Rises as Iran War Drives Spike in Asia Premium Offer",
+      "link": "https://www.bloomberg.com/news/articles/2026-03-11/aluminum-fluctuates-as-iran-war-continues-to-disrupt-trade-flows",
+      "published": "Wed, 11 Mar 2026 02:50:33 GMT",
+      "summary": "Aluminum rose on supply disruptions triggered by the war in the Middle East, with offer prices in Japan climbing to an 11-year high.",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "Starboard Builds $350 Million CarMax Stake, Seeks Board Seats",
+      "link": "https://www.bloomberg.com/news/articles/2026-03-11/activist-starboard-is-said-to-build-350-million-stake-in-carmax",
+      "published": "Wed, 11 Mar 2026 00:06:47 GMT",
+      "summary": "Starboard Value LP has amassed a stake of about $350 million in CarMax Inc. and sees an opportunity to accelerate the used car retailer’s turnaround under incoming Chief Executive Officer Keith Barr.",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "Stocks Fall as Oil Keeps Gaining on War Jitters: Markets Wrap",
+      "link": "https://www.bloomberg.com/news/articles/2026-03-10/asian-stocks-poised-for-gains-oil-swings-higher-markets-wrap",
+      "published": "Tue, 10 Mar 2026 22:36:51 GMT",
+      "summary": "Wall Street traders hit by geopolitical worries kept a lid on stocks and bonds, with oil surging after the release of stockpiles from rich nations was seen as just a reprieve as the war in Iran drags on.",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "Gold Steadies With Traders Looking to Oil and Dollar During War",
+      "link": "https://www.bloomberg.com/news/articles/2026-03-10/gold-steadies-as-traders-digest-uncertainty-over-middle-east-war",
+      "published": "Tue, 10 Mar 2026 22:21:19 GMT",
+      "summary": "Gold steadied as traders tracked the war in the Middle East and assessed reports that the International Energy Agency recommended the largest-ever release of oil reserves.",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "Oil Rises as Traders Weigh War Impact and Reserves Release Plan",
+      "link": "https://www.bloomberg.com/news/articles/2026-03-10/latest-oil-market-news-and-analysis-for-march-11",
+      "published": "Tue, 10 Mar 2026 22:12:34 GMT",
+      "summary": "Oil climbed in another volatile trading session as traders weighed whether an emergency release of crude reserves by wealthy nations would blunt the impact of escalating disruptions to Middle East supplies.",
+      "source": "Bloomberg-Markets"
+    },
+    {
+      "title": "Tillis maintains blockade on Fed pick Kevin Warsh over Powell probe",
+      "link": "https://www.cnbc.com/2026/03/10/fed-kevin-warsh-thom-tillis-trump.html",
+      "published": "Tue, 10 Mar 2026 21:42:30 GMT",
+      "summary": "Sen. Thom Tillis met with Federal Reserve chairman nominee Kevin Warsh, who President Donald Trump wants to replace Chair Jerome Powell.",
+      "source": "CNBC"
+    },
+    {
+      "title": "Medtech industry value to be driven by infrastructure over next decade",
+      "link": "https://finance.yahoo.com/news/medtech-industry-value-driven-infrastructure-155521180.html",
+      "published": "2026-03-11T15:55:21Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Why Jefferies thinks Supermarket Income REIT is worth buying after solid update",
+      "link": "https://finance.yahoo.com/news/why-jefferies-thinks-supermarket-income-154502066.html",
+      "published": "2026-03-11T15:45:02Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Xeinadin adds senior expertise at Sittingbourne office",
+      "link": "https://finance.yahoo.com/news/xeinadin-adds-senior-expertise-sittingbourne-154321713.html",
+      "published": "2026-03-11T15:43:21Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Buying Plug Power Taught Me a Costly Lesson",
+      "link": "https://finance.yahoo.com/news/buying-plug-power-taught-costly-154100301.html",
+      "published": "2026-03-11T15:41:00Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Citi, StanChart evacuate Dubai offices, HSBC closes Qatar branches as fears grow",
+      "link": "https://finance.yahoo.com/news/citi-stanchart-evacuate-dubai-offices-153727887.html",
+      "published": "2026-03-11T15:37:27Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Stock Market Today: Nasdaq Leads As Oil Climbs; Oracle Soars While Boeing Stumbles (Live Coverage)",
+      "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-cpi-inflation-data-oracle-orcl/?src=A00220&yptr=yahoo",
+      "published": "2026-03-11T15:37:19Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Salesforce (CRM) Presents at Morgan Stanley’s Conference, Here’s What You Need to Know",
+      "link": "https://finance.yahoo.com/news/salesforce-crm-presents-morgan-stanley-153630749.html",
+      "published": "2026-03-11T15:36:30Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Here’s What Bernstein Think About Nvidia (NVDA)",
+      "link": "https://finance.yahoo.com/news/bernstein-think-nvidia-nvda-153545547.html",
+      "published": "2026-03-11T15:35:45Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "UBS Maintains a Hold Rating on Apple (AAPL) As Shipmments Drop in China",
+      "link": "https://finance.yahoo.com/news/ubs-maintains-hold-rating-apple-153523394.html",
+      "published": "2026-03-11T15:35:23Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Here’s What Jefferies Think About Microsoft (MSFT)",
+      "link": "https://finance.yahoo.com/news/jefferies-think-microsoft-msft-153510141.html",
+      "published": "2026-03-11T15:35:10Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Here’s What Aletheia Has to Say About Broadcom (AVGO)",
+      "link": "https://finance.yahoo.com/news/aletheia-broadcom-avgo-153448270.html",
+      "published": "2026-03-11T15:34:48Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Oracle (ORCL) and OpenAI Drop Plans to Expand Data Center in Texas",
+      "link": "https://finance.yahoo.com/news/oracle-orcl-openai-drop-plans-153429320.html",
+      "published": "2026-03-11T15:34:29Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Palantir (PLTR) An Outlier as the Iran War Continues",
+      "link": "https://finance.yahoo.com/news/palantir-pltr-outlier-iran-war-153415335.html",
+      "published": "2026-03-11T15:34:15Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Advanced Micro Devices (AMD) Enters a Multi-Year Partnership With Adeia",
+      "link": "https://finance.yahoo.com/news/advanced-micro-devices-amd-enters-153335640.html",
+      "published": "2026-03-11T15:33:35Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Cisco Systems (CSCO) Presents at Morgan Stanley’s Conference, Here’s What You Need to Know",
+      "link": "https://finance.yahoo.com/news/cisco-systems-csco-presents-morgan-153313839.html",
+      "published": "2026-03-11T15:33:13Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "SAP SE (SAP) Partners With Uptycs",
+      "link": "https://finance.yahoo.com/news/sap-se-sap-partners-uptycs-153238888.html",
+      "published": "2026-03-11T15:32:38Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Stock market today: Dow, S&P 500, Nasdaq slip amid fresh inflation data, continued Iran fallout",
+      "link": "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-slip-amid-fresh-inflation-data-continued-iran-fallout-133543561.html",
+      "published": "2026-03-11T13:35:43Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Technical Assessment: Bullish in the Intermediate-Term",
+      "link": "https://finance.yahoo.com/research/reports/ARGUS_46390_TechnicalAnalysis_1773228097000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+      "published": "2026-03-11T11:21:37Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Daily – Vickers Top Insider Picks for 03/11/2026",
+      "link": "https://finance.yahoo.com/research/reports/ARGUS_46386_InsiderActivity_1773223751000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+      "published": "2026-03-11T10:09:11Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Daily – Vickers Top Buyers & Sellers for 03/11/2026",
+      "link": "https://finance.yahoo.com/research/reports/ARGUS_46387_TopBottomInsiderActivity_1773223751000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+      "published": "2026-03-11T10:09:11Z",
+      "summary": "",
+      "source": "Yahoo-Finance"
+    },
+    {
+      "title": "Some Gulf states reviewing sovereign investments to offset economic shock of Iran war, official says",
+      "link": "https://www.investing.com/news/economy-news/some-gulf-states-reviewing-sovereign-investments-to-offset-economic-shock-of-iran-war-official-says-4555050",
+      "published": "2026-03-11 15:43:19",
+      "summary": "",
+      "source": "Investing-Commodities"
+    },
+    {
+      "title": "U.S. military warns Iranian civilians to avoid naval port facilities",
+      "link": "https://www.investing.com/news/economy-news/us-military-warns-iranian-civilians-to-avoid-naval-port-facilities-93CH-4555025",
+      "published": "2026-03-11 15:17:27",
+      "summary": "",
+      "source": "Investing-Commodities"
+    },
+    {
+      "title": "US navy aircraft transits Taiwan Strait ahead of Trump’s planned China visit",
+      "link": "https://www.investing.com/news/economy-news/us-navy-aircraft-transits-taiwan-strait-ahead-of-trumps-planned-china-visit-4554135",
+      "published": "2026-03-11 15:06:34",
+      "summary": "",
+      "source": "Investing-Commodities"
+    },
+    {
+      "title": "U.S. consumer spending to remain strong despite Iran shock: analyst",
+      "link": "https://www.investing.com/news/economy-news/us-consumer-spending-to-remain-strong-despite-iran-shock-analyst-4554949",
+      "published": "2026-03-11 14:42:45",
+      "summary": "",
+      "source": "Investing-Commodities"
+    },
+    {
+      "title": "US consumer prices increase moderately before Iran conflict",
+      "link": "https://www.investing.com/news/economy-news/us-consumer-prices-increase-as-expected-in-february-4554505",
+      "published": "2026-03-11 14:18:47",
+      "summary": "",
+      "source": "Investing-Commodities"
+    },
+    {
+      "title": "Wells Fargo on the U.S. economy: Risks are tilting to the downside",
+      "link": "https://www.investing.com/news/economy-news/wells-fargo-on-the-us-economy-risks-are-tilting-to-the-downside-4554876",
+      "published": "2026-03-11 14:12:44",
+      "summary": "",
+      "source": "Investing-Commodities"
+    },
+    {
+      "title": "US restarts Global Entry program amid industry pressure",
+      "link": "https://www.investing.com/news/economy-news/us-restarts-global-entry-program-under-pressure-from-industry-4554404",
+      "published": "2026-03-11 14:12:33",
+      "summary": "",
+      "source": "Investing-Commodities"
+    },
+    {
+      "title": "US 10-year Treasury yield forecast to only gently drift up following war surge: Reuters poll",
+      "link": "https://www.investing.com/news/economy-news/us-10year-treasury-yield-forecast-to-only-gently-drift-up-following-war-surge-reuters-poll-4554785",
+      "published": "2026-03-11 13:42:49",
+      "summary": "",
+      "source": "Investing-Commodities"
+    },
+    {
+      "title": "Instant View: February inflation in line with expectations as Iran war overshadows last month’s data",
+      "link": "https://www.investing.com/news/economy-news/instant-view-february-inflation-in-line-with-expectations-as-iran-war-overshadows-last-months-data-4554740",
+      "published": "2026-03-11 13:36:57",
+      "summary": "",
+      "source": "Investing-Commodities"
+    },
+    {
+      "title": "Sweden’s 2026 growth forecast cut to 2.8% on Middle East war concerns",
+      "link": "https://www.investing.com/news/economy-news/swedens-2026-growth-forecast-cut-to-28-on-middle-east-war-concerns-93CH-4554711",
+      "published": "2026-03-11 13:26:29",
+      "summary": "",
+      "source": "Investing-Commodities"
+    }
+  ]
+}

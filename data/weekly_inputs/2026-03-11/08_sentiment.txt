@@ -1,0 +1,469 @@
+{
+  "ths_hot": {
+    "source": "同花顺",
+    "count": 30,
+    "stocks": [
+      {
+        "rank": 1,
+        "code": "601868",
+        "name": "中国能建",
+        "hot_value": "1035244.0",
+        "concepts": [
+          "碳交易",
+          "生物质能发电"
+        ],
+        "status": "首板涨停"
+      },
+      {
+        "rank": 2,
+        "code": "601016",
+        "name": "节能风电",
+        "hot_value": "638594.0",
+        "concepts": [
+          "绿色电力",
+          "风电"
+        ],
+        "status": "首板涨停"
+      },
+      {
+        "rank": 3,
+        "code": "002202",
+        "name": "金风科技",
+        "hot_value": "529220.0",
+        "concepts": [
+          "商业航天",
+          "海工装备"
+        ],
+        "status": ""
+      },
+      {
+        "rank": 4,
+        "code": "600410",
+        "name": "华胜天成",
+        "hot_value": "501429.0",
+        "concepts": [
+          "云计算",
+          "华为鲲鹏"
+        ],
+        "status": "持续上榜"
+      },
+      {
+        "rank": 5,
+        "code": "000988",
+        "name": "华工科技",
+        "hot_value": "487743.0",
+        "concepts": [
+          "共封装光学(CPO)",
+          "F5G概念"
+        ],
+        "status": ""
+      },
+      {
+        "rank": 6,
+        "code": "002015",
+        "name": "协鑫能科",
+        "hot_value": "456639.0",
+        "concepts": [
+          "虚拟电厂",
+          "华为数字能源"
+        ],
+        "status": "4天2板"
+      },
+      {
+        "rank": 7,
+        "code": "002506",
+        "name": "协鑫集成",
+        "hot_value": "440121.0",
+        "concepts": [
+          "钙钛矿电池",
+          "HJT电池"
+        ],
+        "status": "持续上榜"
+      },
+      {
+        "rank": 8,
+        "code": "601789",
+        "name": "宁波建工",
+        "hot_value": "434163.0",
+        "concepts": [
+          "房屋检测",
+          "新型城镇化"
+        ],
+        "status": "4天4板"
+      },
+      {
+        "rank": 9,
+        "code": "001896",
+        "name": "豫能控股",
+        "hot_value": "398820.0",
+        "concepts": [
+          "抽水蓄能",
+          "超超临界发电"
+        ],
+        "status": "15天8板"
+      },
+      {
+        "rank": 10,
+        "code": "600722",
+        "name": "金牛化工",
+        "hot_value": "354295.0",
+        "concepts": [
+          "煤化工概念",
+          "国企改革"
+        ],
+        "status": "首板涨停"
+      },
+      {
+        "rank": 11,
+        "code": "002261",
+        "name": "拓维信息",
+        "hot_value": "352634.0",
+        "concepts": [
+          "华为欧拉",
+          "华为昇腾"
+        ],
+        "status": "4天2板"
+      },
+      {
+        "rank": 12,
+        "code": "600821",
+        "name": "金开新能",
+        "hot_value": "347725.0",
+        "concepts": [
+          "碳交易",
+          "风电"
+        ],
+        "status": "6天3板"
+      },
+      {
+        "rank": 13,
+        "code": "000537",
+        "name": "绿发电力",
+        "hot_value": "334575.0",
+        "concepts": [
+          "绿色电力",
+          "光热发电"
+        ],
+        "status": "2天2板"
+      },
+      {
+        "rank": 14,
+        "code": "000533",
+        "name": "顺钠股份",
+        "hot_value": "319232.0",
+        "concepts": [
+          "抽水蓄能",
+          "智能电网"
+        ],
+        "status": "6天4板"
+      },
+      {
+        "rank": 15,
+        "code": "603778",
+        "name": "国晟科技",
+        "hot_value": "317292.0",
+        "concepts": [
+          "钙钛矿电池",
+          "HJT电池"
+        ],
+        "status": "首板涨停"
+      },
+      {
+        "rank": 16,
+        "code": "601179",
+        "name": "中国西电",
+        "hot_value": "314153.0",
+        "concepts": [
+          "柔性直流输电",
+          "特高压"
+        ],
+        "status": ""
+      },
+      {
+        "rank": 17,
+        "code": "601669",
+        "name": "中国电建",
+        "hot_value": "304727.0",
+        "concepts": [
+          "特高压",
+          "抽水蓄能"
+        ],
+        "status": ""
+      },
+      {
+        "rank": 18,
+        "code": "600108",
+        "name": "亚盛集团",
+        "hot_value": "299248.0",
+        "concepts": [
+          "玉米",
+          "粮食概念"
+        ],
+        "status": "9天7板"
+      },
+      {
+        "rank": 19,
+        "code": "000839",
+        "name": "国安股份",
+        "hot_value": "290989.0",
+        "concepts": [
+          "文化传媒概念",
+          "虚拟数字人"
+        ],
+        "status": "2天2板"
+      },
+      {
+        "rank": 20,
+        "code": "600759",
+        "name": "洲际油气",
+        "hot_value": "278156.0",
+        "concepts": [
+          "俄乌冲突概念",
+          "天然气"
+        ],
+        "status": "持续上榜"
+      },
+      {
+        "rank": 21,
+        "code": "600726",
+        "name": "华电能源",
+        "hot_value": "262333.0",
+        "concepts": [
+          "超超临界发电",
+          "煤炭概念"
+        ],
+        "status": "2天2板"
+      },
+      {
+        "rank": 22,
+        "code": "600989",
+        "name": "宝丰能源",
+        "hot_value": "256498.0",
+        "concepts": [
+          "煤化工概念",
+          "煤炭概念"
+        ],
+        "status": "首板涨停"
+      },
+      {
+        "rank": 23,
+        "code": "000547",
+        "name": "航天发展",
+        "hot_value": "254699.0",
+        "concepts": [
+          "商业航天",
+          "卫星导航"
+        ],
+        "status": ""
+      },
+      {
+        "rank": 24,
+        "code": "600172",
+        "name": "黄河旋风",
+        "hot_value": "240028.0",
+        "concepts": [
+          "培育钻石",
+          "第三代半导体"
+        ],
+        "status": "2天2板"
+      },
+      {
+        "rank": 25,
+        "code": "002445",
+        "name": "中南文化",
+        "hot_value": "239530.0",
+        "concepts": [
+          "文化传媒概念",
+          "手机游戏"
+        ],
+        "status": "3天3板"
+      },
+      {
+        "rank": 26,
+        "code": "300274",
+        "name": "阳光电源",
+        "hot_value": "237411.0",
+        "concepts": [
+          "宁德时代概念",
+          "光伏概念"
+        ],
+        "status": ""
+      },
+      {
+        "rank": 27,
+        "code": "603421",
+        "name": "鼎信通讯",
+        "hot_value": "225616.0",
+        "concepts": [
+          "电力物联网",
+          "虚拟电厂"
+        ],
+        "status": "2天2板"
+      },
+      {
+        "rank": 28,
+        "code": "002455",
+        "name": "百川股份",
+        "hot_value": "225355.0",
+        "concepts": [
+          "磷化工",
+          "金属回收"
+        ],
+        "status": "首板涨停"
+      },
+      {
+        "rank": 29,
+        "code": "601778",
+        "name": "晶科科技",
+        "hot_value": "223830.0",
+        "concepts": [
+          "光伏建筑一体化",
+          "光伏概念"
+        ],
+        "status": "2天1板"
+      },
+      {
+        "rank": 30,
+        "code": "002195",
+        "name": "岩山科技",
+        "hot_value": "222470.0",
+        "concepts": [
+          "AI语料",
+          "AIGC概念"
+        ],
+        "status": ""
+      }
+    ]
+  },
+  "eastmoney_popularity": {
+    "source": "东财人气榜",
+    "count": 20,
+    "stocks": [
+      {
+        "rank": 1,
+        "code": "601868",
+        "market": "SH",
+        "raw_code": "SH601868"
+      },
+      {
+        "rank": 2,
+        "code": "601016",
+        "market": "SH",
+        "raw_code": "SH601016"
+      },
+      {
+        "rank": 3,
+        "code": "002202",
+        "market": "SZ",
+        "raw_code": "SZ002202"
+      },
+      {
+        "rank": 4,
+        "code": "002015",
+        "market": "SZ",
+        "raw_code": "SZ002015"
+      },
+      {
+        "rank": 5,
+        "code": "600410",
+        "market": "SH",
+        "raw_code": "SH600410"
+      },
+      {
+        "rank": 6,
+        "code": "000988",
+        "market": "SZ",
+        "raw_code": "SZ000988"
+      },
+      {
+        "rank": 7,
+        "code": "000537",
+        "market": "SZ",
+        "raw_code": "SZ000537"
+      },
+      {
+        "rank": 8,
+        "code": "600759",
+        "market": "SH",
+        "raw_code": "SH600759"
+      },
+      {
+        "rank": 9,
+        "code": "002506",
+        "market": "SZ",
+        "raw_code": "SZ002506"
+      },
+      {
+        "rank": 10,
+        "code": "600722",
+        "market": "SH",
+        "raw_code": "SH600722"
+      },
+      {
+        "rank": 11,
+        "code": "002261",
+        "market": "SZ",
+        "raw_code": "SZ002261"
+      },
+      {
+        "rank": 12,
+        "code": "600989",
+        "market": "SH",
+        "raw_code": "SH600989"
+      },
+      {
+        "rank": 13,
+        "code": "300274",
+        "market": "SZ",
+        "raw_code": "SZ300274"
+      },
+      {
+        "rank": 14,
+        "code": "601789",
+        "market": "SH",
+        "raw_code": "SH601789"
+      },
+      {
+        "rank": 15,
+        "code": "601669",
+        "market": "SH",
+        "raw_code": "SH601669"
+      },
+      {
+        "rank": 16,
+        "code": "600726",
+        "market": "SH",
+        "raw_code": "SH600726"
+      },
+      {
+        "rank": 17,
+        "code": "000545",
+        "market": "SZ",
+        "raw_code": "SZ000545"
+      },
+      {
+        "rank": 18,
+        "code": "603778",
+        "market": "SH",
+        "raw_code": "SH603778"
+      },
+      {
+        "rank": 19,
+        "code": "600108",
+        "market": "SH",
+        "raw_code": "SH600108"
+      },
+      {
+        "rank": 20,
+        "code": "002733",
+        "market": "SZ",
+        "raw_code": "SZ002733"
+      }
+    ]
+  },
+  "baidu_hot": {
+    "source": "百度股市通",
+    "count": 0,
+    "stocks": []
+  }
+}

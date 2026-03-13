@@ -1,0 +1,272 @@
+[
+  {
+    "name": "风电",
+    "category": "gn_fd",
+    "net_inflow": 167.51,
+    "net_inflow_raw": 16751470841.31,
+    "inflow": 110630814997.06,
+    "outflow": 93879344155.75,
+    "avg_pct": "0.0155117"
+  },
+  {
+    "name": "融资融券",
+    "category": "gn_rzrq",
+    "net_inflow": 154.31,
+    "net_inflow_raw": 15430502813.01,
+    "inflow": 176472385348.94,
+    "outflow": 161041882535.93,
+    "avg_pct": "0.00601886"
+  },
+  {
+    "name": "光伏",
+    "category": "gn_gf",
+    "net_inflow": 153.2,
+    "net_inflow_raw": 15320252895.66,
+    "inflow": 151160526906.07,
+    "outflow": 135840274010.41,
+    "avg_pct": "0.0172264"
+  },
+  {
+    "name": "锂电池",
+    "category": "gn_ldc",
+    "net_inflow": 118.07,
+    "net_inflow_raw": 11806570360.51,
+    "inflow": 74045678323.64,
+    "outflow": 62239107963.13,
+    "avg_pct": "0.0164379"
+  },
+  {
+    "name": "股权激励",
+    "category": "gn_gqjl",
+    "net_inflow": 91.98,
+    "net_inflow_raw": 9198482754.97,
+    "inflow": 131147698361.44,
+    "outflow": 121949215606.47,
+    "avg_pct": "0.00914203"
+  },
+  {
+    "name": "业绩预升",
+    "category": "gn_yjys",
+    "net_inflow": 82.04,
+    "net_inflow_raw": 8204036664.85,
+    "inflow": 93420278900.81,
+    "outflow": 85216242235.96,
+    "avg_pct": "0.00703813"
+  },
+  {
+    "name": "参股金融",
+    "category": "gn_cgjr",
+    "net_inflow": 78.6,
+    "net_inflow_raw": 7860447810.35,
+    "inflow": 77165251659.66,
+    "outflow": 69304803849.31,
+    "avg_pct": "0.00588053"
+  },
+  {
+    "name": "碳中和",
+    "category": "gn_tzh",
+    "net_inflow": 70.06,
+    "net_inflow_raw": 7005888414.24,
+    "inflow": 45824158656.95,
+    "outflow": 38818270242.71,
+    "avg_pct": "0.0177325"
+  },
+  {
+    "name": "风能",
+    "category": "gn_fn",
+    "net_inflow": 68.24,
+    "net_inflow_raw": 6823612670.01,
+    "inflow": 45210481772.24,
+    "outflow": 38386869102.23,
+    "avg_pct": "0.016839"
+  },
+  {
+    "name": "固态电池",
+    "category": "gn_gtdc",
+    "net_inflow": 68.22,
+    "net_inflow_raw": 6822465254.13,
+    "inflow": 32366684338.66,
+    "outflow": 25544219084.53,
+    "avg_pct": "0.0406573"
+  },
+  {
+    "name": "特斯拉",
+    "category": "gn_tsl",
+    "net_inflow": 67.94,
+    "net_inflow_raw": 6793550009.26,
+    "inflow": 46383943480.06,
+    "outflow": 39590393470.8,
+    "avg_pct": "0.0140973"
+  },
+  {
+    "name": "分拆上市",
+    "category": "gn_fcss",
+    "net_inflow": 65.74,
+    "net_inflow_raw": 6574295776.18,
+    "inflow": 30545424311.85,
+    "outflow": 23971128535.67,
+    "avg_pct": "0.0121378"
+  },
+  {
+    "name": "社保重仓",
+    "category": "gn_sbzc",
+    "net_inflow": 64.32,
+    "net_inflow_raw": 6432193264.62,
+    "inflow": 42300132724.78,
+    "outflow": 35867939460.16,
+    "avg_pct": "0.0034901"
+  },
+  {
+    "name": "基金重仓",
+    "category": "gn_jjzc",
+    "net_inflow": 59.54,
+    "net_inflow_raw": 5954142645.66,
+    "inflow": 54766740214.03,
+    "outflow": 48812597568.37,
+    "avg_pct": "0.00741879"
+  },
+  {
+    "name": "充电桩",
+    "category": "gn_cdz",
+    "net_inflow": 57.77,
+    "net_inflow_raw": 5777464185.11,
+    "inflow": 36677478181.95,
+    "outflow": 30900013996.84,
+    "avg_pct": "0.0216471"
+  },
+  {
+    "name": "光伏概念",
+    "category": "gn_gfgn",
+    "net_inflow": 56.61,
+    "net_inflow_raw": 5661205264.2,
+    "inflow": 106654957364.95,
+    "outflow": 100993752100.75,
+    "avg_pct": "0.00634378"
+  },
+  {
+    "name": "含H股",
+    "category": "gn_hHg",
+    "net_inflow": 55.46,
+    "net_inflow_raw": 5545817351.47,
+    "inflow": 62786625666.59,
+    "outflow": 57240808315.12,
+    "avg_pct": "0.00837931"
+  },
+  {
+    "name": "锂矿",
+    "category": "gn_lk",
+    "net_inflow": 52.88,
+    "net_inflow_raw": 5288401478.41,
+    "inflow": 32335747177.08,
+    "outflow": 27047345698.67,
+    "avg_pct": "0.0148125"
+  },
+  {
+    "name": "保险重仓",
+    "category": "gn_bxzc",
+    "net_inflow": 51.48,
+    "net_inflow_raw": 5147989019.76,
+    "inflow": 58827607123.96,
+    "outflow": 53679618104.2,
+    "avg_pct": "0.00762853"
+  },
+  {
+    "name": "皖江区域",
+    "category": "gn_wjqy",
+    "net_inflow": 49.36,
+    "net_inflow_raw": 4935596545.12,
+    "inflow": 26429757721.23,
+    "outflow": 21494161176.11,
+    "avg_pct": "0.0204288"
+  },
+  {
+    "name": "钠电池",
+    "category": "gn_ndc",
+    "net_inflow": 47.68,
+    "net_inflow_raw": 4767536230.2,
+    "inflow": 21276602211.73,
+    "outflow": 16509065981.53,
+    "avg_pct": "0.0478419"
+  },
+  {
+    "name": "重组概念",
+    "category": "gn_zzgn",
+    "net_inflow": 42.21,
+    "net_inflow_raw": 4221463809.96,
+    "inflow": 79671049039.48,
+    "outflow": 75449585229.52,
+    "avg_pct": "0.00328018"
+  },
+  {
+    "name": "高压快充",
+    "category": "gn_gykc",
+    "net_inflow": 40.97,
+    "net_inflow_raw": 4097455759.7,
+    "inflow": 25879555928.55,
+    "outflow": 21782100168.85,
+    "avg_pct": "0.017397"
+  },
+  {
+    "name": "金融参股",
+    "category": "gn_jrcg",
+    "net_inflow": 39.27,
+    "net_inflow_raw": 3927229607.82,
+    "inflow": 62380858178.17,
+    "outflow": 58453628570.35,
+    "avg_pct": "0.00455782"
+  },
+  {
+    "name": "盐湖提锂",
+    "category": "gn_yhtl",
+    "net_inflow": 38.57,
+    "net_inflow_raw": 3856629061.16,
+    "inflow": 17536080687.42,
+    "outflow": 13679451626.26,
+    "avg_pct": "0.019266"
+  },
+  {
+    "name": "页岩气",
+    "category": "gn_yyq",
+    "net_inflow": 37.06,
+    "net_inflow_raw": 3706191236.84,
+    "inflow": 21202903964.28,
+    "outflow": 17496712727.44,
+    "avg_pct": "0.0036399"
+  },
+  {
+    "name": "低碳经济",
+    "category": "gn_dtjj",
+    "net_inflow": 36.25,
+    "net_inflow_raw": 3625040997.02,
+    "inflow": 45113774294.05,
+    "outflow": 41488733297.03,
+    "avg_pct": "0.0100401"
+  },
+  {
+    "name": "电解液",
+    "category": "gn_djy",
+    "net_inflow": 31.99,
+    "net_inflow_raw": 3199297977.94,
+    "inflow": 17181835537.47,
+    "outflow": 13982537559.53,
+    "avg_pct": "0.0296311"
+  },
+  {
+    "name": "超大盘",
+    "category": "gn_cdp",
+    "net_inflow": 31.46,
+    "net_inflow_raw": 3145580983.96,
+    "inflow": 23925566814.72,
+    "outflow": 20779985830.76,
+    "avg_pct": "0.0106053"
+  },
+  {
+    "name": "物联网",
+    "category": "gn_wlw",
+    "net_inflow": 30.78,
+    "net_inflow_raw": 3078464322.35,
+    "inflow": 28750423445.67,
+    "outflow": 25671959123.32,
+    "avg_pct": "0.00863051"
+  }
+]

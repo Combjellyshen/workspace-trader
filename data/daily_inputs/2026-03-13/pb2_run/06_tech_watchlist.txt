@@ -1,0 +1,107 @@
+分析 002475 立讯精密...
+分析 560710 船舶ETF...
+[
+  {
+    "code": "002475",
+    "analysis_time": "2026-03-13T08:03:13.729685",
+    "latest": {
+      "close": 49.33,
+      "high": 50.28,
+      "low": 49.05,
+      "volume": 819833.0
+    },
+    "rsi_6": 52.96,
+    "rsi_14": 44.78,
+    "kdj": {
+      "K": 64.4,
+      "D": 50.78,
+      "J": 91.64
+    },
+    "bollinger": {
+      "upper": 53.059,
+      "mid": 49.604,
+      "lower": 46.149,
+      "width_pct": 13.93,
+      "position": 46.0,
+      "signal": "中性"
+    },
+    "macd": {
+      "DIF": -1.233,
+      "DEA": -1.539,
+      "MACD": 0.612,
+      "cross": "none",
+      "histogram_trend": "expanding"
+    },
+    "volume_ratio": 0.68,
+    "ma_system": {
+      "values": {
+        "MA5": 49.018,
+        "MA10": 48.217,
+        "MA20": 49.604,
+        "MA60": 53.988
+      },
+      "arrangement": "交叉/震荡",
+      "price_above": [
+        "MA5",
+        "MA10"
+      ],
+      "price_below": [
+        "MA20",
+        "MA60"
+      ],
+      "support": 48.217,
+      "resistance": 49.604
+    },
+    "patterns": [],
+    "signals": [],
+    "name": "立讯精密"
+  },
+  {
+    "code": "560710",
+    "analysis_time": "2026-03-13T08:03:15.227506",
+    "latest": {
+      "close": 1.046,
+      "high": 1.068,
+      "low": 1.043,
+      "volume": 1717050.0
+    },
+    "rsi_6": 31.34,
+    "rsi_14": 54.26,
+    "kdj": {
+      "K": 23.29,
+      "D": 38.26,
+      "J": -6.65
+    },
+    "bollinger": {
+      "upper": 1.169,
+      "mid": 1.085,
+      "lower": 1.0,
+      "width_pct": 15.58,
+      "position": 27.2,
+      "signal": "中性"
+    },
+    "macd": null,
+    "volume_ratio": 0.99,
+    "ma_system": {
+      "values": {
+        "MA5": 1.086,
+        "MA10": 1.101,
+        "MA20": 1.085
+      },
+      "arrangement": "交叉/震荡",
+      "price_above": [],
+      "price_below": [
+        "MA5",
+        "MA10",
+        "MA20"
+      ],
+      "support": null,
+      "resistance": 1.085
+    },
+    "patterns": [],
+    "signals": [
+      "💡 KDJ超卖"
+    ],
+    "name": "船舶ETF"
+  }
+]

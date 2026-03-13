@@ -1,0 +1,6 @@
+status=error
+recommended_source=deep_data.watchlist_realtime
+[error] 002475 price_conflict: 价格冲突: intraday=0.0, deep_data=50.17
+[warning] 002475 pct_gap: 涨跌幅偏差较大: intraday=+0.00% vs deep_data=+1.58%
+[error] 560710 price_conflict: 价格冲突: intraday=0.0, deep_data=1.096
+[warning] 560710 pct_gap: 涨跌幅偏差较大: intraday=+0.00% vs deep_data=-1.53%

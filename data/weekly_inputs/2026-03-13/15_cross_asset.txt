@@ -1,0 +1,778 @@
+{
+  "generated_at": "2026-03-13T10:37:37.247365",
+  "sources": {
+    "market_data": "FMP MCP（indexes/forex/crypto） + Investing.com HTML（DAX / DXY / commodities） + Yahoo Finance（fallback）",
+    "rates": "FRED CSV (public)"
+  },
+  "sections": {
+    "global_indexes": [
+      {
+        "name": "标普500",
+        "symbol": "^GSPC",
+        "unit": "points",
+        "ok": true,
+        "resolved_symbol": "^GSPC",
+        "source": "FMP MCP fmp.getHistoricalIndexFullChart",
+        "latest_close": 6672.61,
+        "previous_close": 6775.79,
+        "weekly_reference_close": 6830.72,
+        "weekly_change_pct": -2.3147,
+        "as_of": "2026-03-12",
+        "previous_as_of": "2026-03-11",
+        "weekly_reference_as_of": "2026-03-05",
+        "points_used": 60,
+        "recent_5": [
+          {
+            "date": "2026-03-06",
+            "close": 6740.01
+          },
+          {
+            "date": "2026-03-09",
+            "close": 6795.98
+          },
+          {
+            "date": "2026-03-10",
+            "close": 6781.49
+          },
+          {
+            "date": "2026-03-11",
+            "close": 6775.79
+          },
+          {
+            "date": "2026-03-12",
+            "close": 6672.61
+          }
+        ],
+        "used_fallback": false,
+        "tried_symbols": [
+          "^GSPC"
+        ],
+        "display": "标普500: 6672.61 points (-2.31%/5个交易日)"
+      },
+      {
+        "name": "纳斯达克",
+        "symbol": "^IXIC",
+        "unit": "points",
+        "ok": true,
+        "resolved_symbol": "^IXIC",
+        "source": "FMP MCP fmp.getHistoricalIndexFullChart",
+        "latest_close": 22311.98,
+        "previous_close": 22716.13,
+        "weekly_reference_close": 22748.99,
+        "weekly_change_pct": -1.921,
+        "as_of": "2026-03-12",
+        "previous_as_of": "2026-03-11",
+        "weekly_reference_as_of": "2026-03-05",
+        "points_used": 60,
+        "recent_5": [
+          {
+            "date": "2026-03-06",
+            "close": 22387.68
+          },
+          {
+            "date": "2026-03-09",
+            "close": 22695.95
+          },
+          {
+            "date": "2026-03-10",
+            "close": 22697.1
+          },
+          {
+            "date": "2026-03-11",
+            "close": 22716.13
+          },
+          {
+            "date": "2026-03-12",
+            "close": 22311.98
+          }
+        ],
+        "used_fallback": false,
+        "tried_symbols": [
+          "^IXIC"
+        ],
+        "display": "纳斯达克: 22311.98 points (-1.92%/5个交易日)"
+      },
+      {
+        "name": "道琼斯",
+        "symbol": "^DJI",
+        "unit": "points",
+        "ok": true,
+        "resolved_symbol": "^DJI",
+        "source": "FMP MCP fmp.getHistoricalIndexFullChart",
+        "latest_close": 46677.86,
+        "previous_close": 47417.28,
+        "weekly_reference_close": 47954.75,
+        "weekly_change_pct": -2.6627,
+        "as_of": "2026-03-12",
+        "previous_as_of": "2026-03-11",
+        "weekly_reference_as_of": "2026-03-05",
+        "points_used": 60,
+        "recent_5": [
+          {
+            "date": "2026-03-06",
+            "close": 47501.56
+          },
+          {
+            "date": "2026-03-09",
+            "close": 47740.81
+          },
+          {
+            "date": "2026-03-10",
+            "close": 47706.52
+          },
+          {
+            "date": "2026-03-11",
+            "close": 47417.28
+          },
+          {
+            "date": "2026-03-12",
+            "close": 46677.86
+          }
+        ],
+        "used_fallback": false,
+        "tried_symbols": [
+          "^DJI"
+        ],
+        "display": "道琼斯: 46677.86 points (-2.66%/5个交易日)"
+      },
+      {
+        "name": "恒生指数",
+        "symbol": "^HSI",
+        "unit": "points",
+        "ok": true,
+        "resolved_symbol": "^HSI",
+        "source": "FMP MCP fmp.getHistoricalIndexFullChart",
+        "latest_close": 25465.61,
+        "previous_close": 25716.77,
+        "weekly_reference_close": 25757.3,
+        "weekly_change_pct": -1.1325,
+        "as_of": "2026-03-13",
+        "previous_as_of": "2026-03-12",
+        "weekly_reference_as_of": "2026-03-06",
+        "points_used": 59,
+        "recent_5": [
+          {
+            "date": "2026-03-09",
+            "close": 25408.47
+          },
+          {
+            "date": "2026-03-10",
+            "close": 25959.9
+          },
+          {
+            "date": "2026-03-11",
+            "close": 25898.77
+          },
+          {
+            "date": "2026-03-12",
+            "close": 25716.77
+          },
+          {
+            "date": "2026-03-13",
+            "close": 25465.61
+          }
+        ],
+        "used_fallback": false,
+        "tried_symbols": [
+          "^HSI"
+        ],
+        "display": "恒生指数: 25465.61 points (-1.13%/5个交易日)"
+      },
+      {
+        "name": "日经225",
+        "symbol": "^N225",
+        "unit": "points",
+        "ok": true,
+        "resolved_symbol": "^N225",
+        "source": "FMP MCP fmp.getHistoricalIndexFullChart",
+        "latest_close": 53819.61,
+        "previous_close": 54452.96,
+        "weekly_reference_close": 55620.84,
+        "weekly_change_pct": -3.2384,
+        "as_of": "2026-03-13",
+        "previous_as_of": "2026-03-12",
+        "weekly_reference_as_of": "2026-03-06",
+        "points_used": 59,
+        "recent_5": [
+          {
+            "date": "2026-03-09",
+            "close": 52728.72
+          },
+          {
+            "date": "2026-03-10",
+            "close": 54248.39
+          },
+          {
+            "date": "2026-03-11",
+            "close": 55025.37
+          },
+          {
+            "date": "2026-03-12",
+            "close": 54452.96
+          },
+          {
+            "date": "2026-03-13",
+            "close": 53819.61
+          }
+        ],
+        "used_fallback": false,
+        "tried_symbols": [
+          "^N225"
+        ],
+        "display": "日经225: 53819.61 points (-3.24%/5个交易日)"
+      },
+      {
+        "name": "德国DAX",
+        "symbol": "^GDAXI",
+        "unit": "points",
+        "ok": true,
+        "resolved_symbol": "^GDAXI",
+        "source": "Investing.com HTML",
+        "latest_close": 23387.2,
+        "previous_close": 23589.65,
+        "weekly_reference_close": 23591.03,
+        "weekly_change_pct": -0.864,
+        "as_of": "2026-03-13",
+        "previous_as_of": "2026-03-12",
+        "weekly_reference_as_of": "2026-03-06",
+        "points_used": 21,
+        "recent_5": [
+          {
+            "date": "2026-03-09",
+            "close": 23409.37
+          },
+          {
+            "date": "2026-03-10",
+            "close": 23968.63
+          },
+          {
+            "date": "2026-03-11",
+            "close": 23640.03
+          },
+          {
+            "date": "2026-03-12",
+            "close": 23589.65
+          },
+          {
+            "date": "2026-03-13",
+            "close": 23387.2
+          }
+        ],
+        "used_fallback": false,
+        "display": "德国DAX: 23387.2 points (-0.86%/5个交易日)"
+      }
+    ],
+    "commodities": [
+      {
+        "name": "WTI原油",
+        "symbol": "CL=F",
+        "unit": "USD/bbl",
+        "ok": true,
+        "resolved_symbol": "CL=F",
+        "source": "Investing.com HTML",
+        "latest_close": 95.45,
+        "previous_close": 95.73,
+        "weekly_reference_close": 90.9,
+        "weekly_change_pct": 5.0055,
+        "as_of": "2026-03-13",
+        "previous_as_of": "2026-03-12",
+        "weekly_reference_as_of": "2026-03-06",
+        "points_used": 22,
+        "recent_5": [
+          {
+            "date": "2026-03-09",
+            "close": 94.77
+          },
+          {
+            "date": "2026-03-10",
+            "close": 83.45
+          },
+          {
+            "date": "2026-03-11",
+            "close": 87.25
+          },
+          {
+            "date": "2026-03-12",
+            "close": 95.73
+          },
+          {
+            "date": "2026-03-13",
+            "close": 95.45
+          }
+        ],
+        "used_fallback": false,
+        "display": "WTI原油: 95.45 USD/bbl (+5.01%/5个交易日)"
+      },
+      {
+        "name": "黄金",
+        "symbol": "GC=F",
+        "unit": "USD/oz",
+        "ok": true,
+        "resolved_symbol": "GC=F",
+        "source": "Investing.com HTML",
+        "latest_close": 5094.3,
+        "previous_close": 5125.8,
+        "weekly_reference_close": 5158.7,
+        "weekly_change_pct": -1.2484,
+        "as_of": "2026-03-13",
+        "previous_as_of": "2026-03-12",
+        "weekly_reference_as_of": "2026-03-06",
+        "points_used": 22,
+        "recent_5": [
+          {
+            "date": "2026-03-09",
+            "close": 5103.7
+          },
+          {
+            "date": "2026-03-10",
+            "close": 5242.1
+          },
+          {
+            "date": "2026-03-11",
+            "close": 5179.1
+          },
+          {
+            "date": "2026-03-12",
+            "close": 5125.8
+          },
+          {
+            "date": "2026-03-13",
+            "close": 5094.3
+          }
+        ],
+        "used_fallback": false,
+        "display": "黄金: 5094.3 USD/oz (-1.25%/5个交易日)"
+      },
+      {
+        "name": "铜",
+        "symbol": "HG=F",
+        "unit": "USD/lb",
+        "ok": true,
+        "resolved_symbol": "HG=F",
+        "source": "Investing.com HTML",
+        "latest_close": 5.8038,
+        "previous_close": 5.868,
+        "weekly_reference_close": 5.807,
+        "weekly_change_pct": -0.0551,
+        "as_of": "2026-03-13",
+        "previous_as_of": "2026-03-12",
+        "weekly_reference_as_of": "2026-03-06",
+        "points_used": 22,
+        "recent_5": [
+          {
+            "date": "2026-03-09",
+            "close": 5.8485
+          },
+          {
+            "date": "2026-03-10",
+            "close": 5.952
+          },
+          {
+            "date": "2026-03-11",
+            "close": 5.8915
+          },
+          {
+            "date": "2026-03-12",
+            "close": 5.868
+          },
+          {
+            "date": "2026-03-13",
+            "close": 5.8038
+          }
+        ],
+        "used_fallback": false,
+        "display": "铜: 5.8038 USD/lb (-0.06%/5个交易日)"
+      }
+    ],
+    "fx_rates": [
+      {
+        "name": "美元指数",
+        "symbol": "DX-Y.NYB",
+        "unit": "index",
+        "ok": true,
+        "resolved_symbol": "DX-Y.NYB",
+        "source": "Investing.com HTML",
+        "latest_close": 100.182,
+        "previous_close": 99.754,
+        "weekly_reference_close": 98.979,
+        "weekly_change_pct": 1.2154,
+        "as_of": "2026-03-13",
+        "previous_as_of": "2026-03-12",
+        "weekly_reference_as_of": "2026-03-06",
+        "points_used": 21,
+        "recent_5": [
+          {
+            "date": "2026-03-09",
+            "close": 99.171
+          },
+          {
+            "date": "2026-03-10",
+            "close": 98.809
+          },
+          {
+            "date": "2026-03-11",
+            "close": 99.225
+          },
+          {
+            "date": "2026-03-12",
+            "close": 99.754
+          },
+          {
+            "date": "2026-03-13",
+            "close": 100.182
+          }
+        ],
+        "used_fallback": false,
+        "display": "美元指数: 100.182 index (+1.22%/5个交易日)"
+      },
+      {
+        "name": "USD/CNH",
+        "symbol": "USDCNH",
+        "unit": "rate",
+        "ok": true,
+        "resolved_symbol": "USDCNY",
+        "source": "FMP MCP fmp.getForexHistoricalFullChart",
+        "latest_close": 6.8954,
+        "previous_close": 6.8689,
+        "weekly_reference_close": 6.9209,
+        "weekly_change_pct": -0.3684,
+        "as_of": "2026-03-13",
+        "previous_as_of": "2026-03-12",
+        "weekly_reference_as_of": "2026-03-08",
+        "points_used": 78,
+        "recent_5": [
+          {
+            "date": "2026-03-09",
+            "close": 6.9061
+          },
+          {
+            "date": "2026-03-10",
+            "close": 6.8761
+          },
+          {
+            "date": "2026-03-11",
+            "close": 6.865
+          },
+          {
+            "date": "2026-03-12",
+            "close": 6.8689
+          },
+          {
+            "date": "2026-03-13",
+            "close": 6.8954
+          }
+        ],
+        "used_fallback": true,
+        "tried_symbols": [
+          "USDCNH",
+          "USDCNY"
+        ],
+        "note": "FMP 的 USDCNH 受权限/覆盖限制时，回退到 USDCNY 作为近似代理。",
+        "display": "USD/CNH: 6.8954 rate (-0.37%/5个交易日)"
+      },
+      {
+        "name": "USD/JPY",
+        "symbol": "USDJPY",
+        "unit": "rate",
+        "ok": true,
+        "resolved_symbol": "USDJPY",
+        "source": "FMP MCP fmp.getForexHistoricalFullChart",
+        "latest_close": 159.483,
+        "previous_close": 159.324,
+        "weekly_reference_close": 158.858,
+        "weekly_change_pct": 0.3934,
+        "as_of": "2026-03-13",
+        "previous_as_of": "2026-03-12",
+        "weekly_reference_as_of": "2026-03-08",
+        "points_used": 78,
+        "recent_5": [
+          {
+            "date": "2026-03-09",
+            "close": 157.645
+          },
+          {
+            "date": "2026-03-10",
+            "close": 158.036
+          },
+          {
+            "date": "2026-03-11",
+            "close": 158.943
+          },
+          {
+            "date": "2026-03-12",
+            "close": 159.324
+          },
+          {
+            "date": "2026-03-13",
+            "close": 159.483
+          }
+        ],
+        "used_fallback": false,
+        "tried_symbols": [
+          "USDJPY"
+        ],
+        "display": "USD/JPY: 159.483 rate (+0.39%/5个交易日)"
+      },
+      {
+        "name": "EUR/USD",
+        "symbol": "EURUSD",
+        "unit": "rate",
+        "ok": true,
+        "resolved_symbol": "EURUSD",
+        "source": "FMP MCP fmp.getForexHistoricalFullChart",
+        "latest_close": 1.1455,
+        "previous_close": 1.1511,
+        "weekly_reference_close": 1.1516,
+        "weekly_change_pct": -0.5254,
+        "as_of": "2026-03-13",
+        "previous_as_of": "2026-03-12",
+        "weekly_reference_as_of": "2026-03-08",
+        "points_used": 78,
+        "recent_5": [
+          {
+            "date": "2026-03-09",
+            "close": 1.1637
+          },
+          {
+            "date": "2026-03-10",
+            "close": 1.1608
+          },
+          {
+            "date": "2026-03-11",
+            "close": 1.1567
+          },
+          {
+            "date": "2026-03-12",
+            "close": 1.1511
+          },
+          {
+            "date": "2026-03-13",
+            "close": 1.1455
+          }
+        ],
+        "used_fallback": false,
+        "tried_symbols": [
+          "EURUSD"
+        ],
+        "display": "EUR/USD: 1.1455 rate (-0.53%/5个交易日)"
+      }
+    ],
+    "crypto": [
+      {
+        "name": "BTC/USD",
+        "symbol": "BTCUSD",
+        "unit": "USD",
+        "ok": true,
+        "resolved_symbol": "BTCUSD",
+        "source": "FMP MCP fmp.getCryptocurrencyHistoricalFullChart",
+        "latest_close": 72409.05,
+        "previous_close": 70531.56,
+        "weekly_reference_close": 65970.56,
+        "weekly_change_pct": 9.7596,
+        "as_of": "2026-03-13",
+        "previous_as_of": "2026-03-12",
+        "weekly_reference_as_of": "2026-03-08",
+        "points_used": 91,
+        "recent_5": [
+          {
+            "date": "2026-03-09",
+            "close": 68432.17
+          },
+          {
+            "date": "2026-03-10",
+            "close": 69960.83
+          },
+          {
+            "date": "2026-03-11",
+            "close": 70208.0
+          },
+          {
+            "date": "2026-03-12",
+            "close": 70531.56
+          },
+          {
+            "date": "2026-03-13",
+            "close": 72409.05
+          }
+        ],
+        "used_fallback": false,
+        "tried_symbols": [
+          "BTCUSD"
+        ],
+        "display": "BTC/USD: 72409.05 USD (+9.76%/5个交易日)"
+      },
+      {
+        "name": "ETH/USD",
+        "symbol": "ETHUSD",
+        "unit": "USD",
+        "ok": true,
+        "resolved_symbol": "ETHUSD",
+        "source": "FMP MCP fmp.getCryptocurrencyHistoricalFullChart",
+        "latest_close": 2125.99,
+        "previous_close": 2074.0,
+        "weekly_reference_close": 1936.93,
+        "weekly_change_pct": 9.7608,
+        "as_of": "2026-03-13",
+        "previous_as_of": "2026-03-12",
+        "weekly_reference_as_of": "2026-03-08",
+        "points_used": 91,
+        "recent_5": [
+          {
+            "date": "2026-03-09",
+            "close": 1993.19
+          },
+          {
+            "date": "2026-03-10",
+            "close": 2036.8
+          },
+          {
+            "date": "2026-03-11",
+            "close": 2052.25
+          },
+          {
+            "date": "2026-03-12",
+            "close": 2074.0
+          },
+          {
+            "date": "2026-03-13",
+            "close": 2125.99
+          }
+        ],
+        "used_fallback": false,
+        "tried_symbols": [
+          "ETHUSD"
+        ],
+        "display": "ETH/USD: 2125.99 USD (+9.76%/5个交易日)"
+      }
+    ],
+    "rates": [
+      {
+        "name": "美国2Y",
+        "symbol": "DGS2",
+        "unit": "%",
+        "ok": true,
+        "source": "FRED CSV",
+        "latest_value": 3.64,
+        "previous_value": 3.57,
+        "weekly_reference_value": 3.54,
+        "weekly_change_bp": 10.0,
+        "weekly_change_pct": 2.8249,
+        "as_of": "2026-03-11",
+        "previous_as_of": "2026-03-10",
+        "weekly_reference_as_of": "2026-03-04",
+        "points_used": 59,
+        "recent_5": [
+          {
+            "date": "2026-03-05",
+            "value": 3.57
+          },
+          {
+            "date": "2026-03-06",
+            "value": 3.56
+          },
+          {
+            "date": "2026-03-09",
+            "value": 3.56
+          },
+          {
+            "date": "2026-03-10",
+            "value": 3.57
+          },
+          {
+            "date": "2026-03-11",
+            "value": 3.64
+          }
+        ],
+        "display": "美国2Y: 3.64 % (+10.00bp/5个交易日)"
+      },
+      {
+        "name": "美国10Y",
+        "symbol": "DGS10",
+        "unit": "%",
+        "ok": true,
+        "source": "FRED CSV",
+        "latest_value": 4.21,
+        "previous_value": 4.15,
+        "weekly_reference_value": 4.09,
+        "weekly_change_bp": 12.0,
+        "weekly_change_pct": 2.934,
+        "as_of": "2026-03-11",
+        "previous_as_of": "2026-03-10",
+        "weekly_reference_as_of": "2026-03-04",
+        "points_used": 59,
+        "recent_5": [
+          {
+            "date": "2026-03-05",
+            "value": 4.13
+          },
+          {
+            "date": "2026-03-06",
+            "value": 4.15
+          },
+          {
+            "date": "2026-03-09",
+            "value": 4.12
+          },
+          {
+            "date": "2026-03-10",
+            "value": 4.15
+          },
+          {
+            "date": "2026-03-11",
+            "value": 4.21
+          }
+        ],
+        "display": "美国10Y: 4.21 % (+12.00bp/5个交易日)"
+      },
+      {
+        "name": "美国30Y",
+        "symbol": "DGS30",
+        "unit": "%",
+        "ok": true,
+        "source": "FRED CSV",
+        "latest_value": 4.86,
+        "previous_value": 4.78,
+        "weekly_reference_value": 4.72,
+        "weekly_change_bp": 14.0,
+        "weekly_change_pct": 2.9661,
+        "as_of": "2026-03-11",
+        "previous_as_of": "2026-03-10",
+        "weekly_reference_as_of": "2026-03-04",
+        "points_used": 59,
+        "recent_5": [
+          {
+            "date": "2026-03-05",
+            "value": 4.74
+          },
+          {
+            "date": "2026-03-06",
+            "value": 4.77
+          },
+          {
+            "date": "2026-03-09",
+            "value": 4.72
+          },
+          {
+            "date": "2026-03-10",
+            "value": 4.78
+          },
+          {
+            "date": "2026-03-11",
+            "value": 4.86
+          }
+        ],
+        "display": "美国30Y: 4.86 % (+14.00bp/5个交易日)"
+      }
+    ]
+  },
+  "summary": {
+    "coverage": "18/18",
+    "coverage_ratio": 1.0,
+    "global_indexes_ok": 6,
+    "commodities_ok": 3,
+    "fx_rates_ok": 4,
+    "crypto_ok": 2,
+    "rates_ok": 3
+  },
+  "errors": []
+}

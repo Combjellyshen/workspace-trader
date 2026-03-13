@@ -1,0 +1,23 @@
+[
+  {
+    "date": "2026-03-13",
+    "signal_type": "market_breadth",
+    "code": "ALL",
+    "direction": "bearish",
+    "reason": "涨跌比0.39、冰点温度10分，结构性风险高于指数表象"
+  },
+  {
+    "date": "2026-03-13",
+    "signal_type": "watchlist_tech",
+    "code": "002475",
+    "direction": "neutral_to_bearish",
+    "reason": "收盘49.33仍在MA20(49.604)下方，弱修复未确认"
+  },
+  {
+    "date": "2026-03-13",
+    "signal_type": "etf_consistency",
+    "code": "560710",
+    "direction": "bearish",
+    "reason": "消息偏多但价格-2.06%，消息-资金-价格一致性偏弱，需继续观望"
+  }
+]

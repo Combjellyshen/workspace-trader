@@ -1,0 +1,20 @@
+[
+  {
+    "date": "2026-03-11",
+    "signal_type": "weekly_regime",
+    "direction": "neutral_to_bullish",
+    "target": "A股",
+    "summary": "主导矛盾为中东冲突与风险资产韧性博弈；A股在两会政策窗口下维持谨慎偏多，新能源主线强于科创成长。",
+    "confidence": 0.68,
+    "invalid_condition": "WTI持续高于100美元超两周或北向连续3日大幅流出"
+  },
+  {
+    "date": "2026-03-11",
+    "signal_type": "sector_rotation",
+    "direction": "long_new_energy_short_high_valuation_ai",
+    "target": "风电/光伏/锂电 vs 高估值AI",
+    "summary": "风电+光伏+锂电概念净流入合计超过400亿，科创50单日-1.37%，显示成长内部风格切换。",
+    "confidence": 0.72,
+    "invalid_condition": "创业板下周缩量转阴且新能源成交显著衰减"
+  }
+]

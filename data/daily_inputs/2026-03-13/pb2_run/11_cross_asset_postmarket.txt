@@ -1,0 +1,8 @@
+{
+  "mode": "postmarket",
+  "path": "/home/bot/.openclaw/workspace-trader/data/daily_inputs/2026-03-13/09_cross_asset.txt",
+  "coverage": "18/18",
+  "coverage_ratio": 1.0,
+  "generated_at": "2026-03-13T07:52:12.161303",
+  "errors": []
+}

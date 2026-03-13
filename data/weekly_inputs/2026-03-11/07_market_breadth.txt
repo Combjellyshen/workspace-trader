@@ -1,0 +1,27 @@
+{
+  "analysis_time": "2026-03-11T16:06:25.374151",
+  "timestamp": "2026-03-11T16:06:25.374166",
+  "breadth_error": "Remote end closed connection without response",
+  "limit_up_detail": {
+    "timestamp": "2026-03-11T16:06:26.633571",
+    "limit_up": {
+      "total": 0,
+      "stocks": []
+    },
+    "ladder": {}
+  },
+  "limit_down_detail": {
+    "timestamp": "2026-03-11T16:06:27.343800",
+    "limit_down": {
+      "total": 0,
+      "stocks": []
+    }
+  },
+  "broken_board_detail": {
+    "timestamp": "2026-03-11T16:06:28.281599",
+    "broken_board": {
+      "total": 0,
+      "stocks": []
+    }
+  }
+}

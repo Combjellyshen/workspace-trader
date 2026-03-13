@@ -1,0 +1,42 @@
+{
+  "time": "2026-03-11 06:30",
+  "alert_score": 1,
+  "has_alert": true,
+  "alerts": [
+    {
+      "type": "main_flow",
+      "code": "002475",
+      "name": "立讯精密",
+      "level": "yellow",
+      "detail": "主力净流入 +11.23亿",
+      "action_hint": "主力吸筹信号",
+      "signal": "吸筹"
+    }
+  ],
+  "snapshot": {
+    "sh_index": {
+      "price": 4133.55,
+      "change_pct": 0.25,
+      "status": "ok"
+    },
+    "stocks": [
+      {
+        "code": "002475",
+        "name": "立讯精密",
+        "price": 50.31,
+        "change_pct": 1.86,
+        "main_flow_yi": 11.2342
+      },
+      {
+        "code": "560710",
+        "name": "船舶ETF",
+        "price": 0.0,
+        "change_pct": 0.0,
+        "main_flow_yi": 0.0
+      }
+    ],
+    "north_flow_yi": 0.0,
+    "north_status": "unavailable"
+  },
+  "summary": "立讯精密主力净流入 +11.23亿 alert_score=1。"
+}

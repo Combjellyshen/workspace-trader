@@ -1,0 +1,44 @@
+{
+  "analysis_time": "2026-03-10T23:54:49.501792",
+  "timestamp": "2026-03-10T23:54:49.501808",
+  "breadth": {
+    "total": 81,
+    "up": 64,
+    "down": 14,
+    "flat": 3,
+    "up_pct": 79.0,
+    "down_pct": 17.3,
+    "up_down_ratio": 4.57,
+    "limit_up": 1,
+    "limit_down": 0,
+    "up_gt5pct": 4,
+    "down_gt5pct": 1
+  },
+  "temperature": {
+    "label": "温和偏多",
+    "score": 60,
+    "description": "64涨/14跌/3平 | 涨停1 跌停0"
+  },
+  "limit_up_detail": {
+    "timestamp": "2026-03-10T23:54:50.245733",
+    "limit_up": {
+      "total": 0,
+      "stocks": []
+    },
+    "ladder": {}
+  },
+  "limit_down_detail": {
+    "timestamp": "2026-03-10T23:54:51.059045",
+    "limit_down": {
+      "total": 0,
+      "stocks": []
+    }
+  },
+  "broken_board_detail": {
+    "timestamp": "2026-03-10T23:54:51.806944",
+    "broken_board": {
+      "total": 0,
+      "stocks": []
+    }
+  }
+}

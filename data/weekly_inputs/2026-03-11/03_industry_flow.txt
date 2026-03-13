@@ -1,0 +1,272 @@
+[
+  {
+    "name": "化工行业",
+    "category": "new_hghy",
+    "net_inflow": 80.83,
+    "net_inflow_raw": 8082776694.68,
+    "inflow": 47614044315.13,
+    "outflow": 39531267620.45,
+    "avg_pct": "0.0223423"
+  },
+  {
+    "name": "电器行业",
+    "category": "new_dqhy",
+    "net_inflow": 59.36,
+    "net_inflow_raw": 5935884548.89,
+    "inflow": 35159567801.45,
+    "outflow": 29223683252.56,
+    "avg_pct": "0.0290225"
+  },
+  {
+    "name": "建筑建材",
+    "category": "new_jzjc",
+    "net_inflow": 54.09,
+    "net_inflow_raw": 5408759497.68,
+    "inflow": 21782197520.68,
+    "outflow": 16373438023.0,
+    "avg_pct": "0.0128339"
+  },
+  {
+    "name": "电力行业",
+    "category": "new_dlhy",
+    "net_inflow": 52.42,
+    "net_inflow_raw": 5241968200.43,
+    "inflow": 26558333034.09,
+    "outflow": 21316364833.66,
+    "avg_pct": "0.0147988"
+  },
+  {
+    "name": "金融行业",
+    "category": "new_jrhy",
+    "net_inflow": 28.98,
+    "net_inflow_raw": 2898037034.78,
+    "inflow": 16876688088.56,
+    "outflow": 13978651053.78,
+    "avg_pct": "0.00656344"
+  },
+  {
+    "name": "化纤行业",
+    "category": "new_hqhy",
+    "net_inflow": 27.18,
+    "net_inflow_raw": 2718332350.09,
+    "inflow": 9610635543.85,
+    "outflow": 6892303193.76,
+    "avg_pct": "0.0245416"
+  },
+  {
+    "name": "综合行业",
+    "category": "new_zhhy",
+    "net_inflow": 21.73,
+    "net_inflow_raw": 2172555668.83,
+    "inflow": 5116497231.15,
+    "outflow": 2943941562.32,
+    "avg_pct": "0.00622116"
+  },
+  {
+    "name": "电子器件",
+    "category": "new_dzqj",
+    "net_inflow": 21.61,
+    "net_inflow_raw": 2160710527.34,
+    "inflow": 77831303919.74,
+    "outflow": 75670593392.4,
+    "avg_pct": "0.00524741"
+  },
+  {
+    "name": "煤炭行业",
+    "category": "new_mthy",
+    "net_inflow": 20.96,
+    "net_inflow_raw": 2095814205.31,
+    "inflow": 14886893997.96,
+    "outflow": 12791079792.65,
+    "avg_pct": "0.0318324"
+  },
+  {
+    "name": "农药化肥",
+    "category": "new_nyhf",
+    "net_inflow": 16.37,
+    "net_inflow_raw": 1636501294.35,
+    "inflow": 13556309277.34,
+    "outflow": 11919807982.99,
+    "avg_pct": "0.0204036"
+  },
+  {
+    "name": "家电行业",
+    "category": "new_jdhy",
+    "net_inflow": 15.0,
+    "net_inflow_raw": 1500372601.34,
+    "inflow": 9694776096.77,
+    "outflow": 8194403495.43,
+    "avg_pct": "0.00891903"
+  },
+  {
+    "name": "其它行业",
+    "category": "new_qtxy",
+    "net_inflow": 14.55,
+    "net_inflow_raw": 1455449358.908,
+    "inflow": 15421241749.079,
+    "outflow": 13965792390.171,
+    "avg_pct": "0.00379208"
+  },
+  {
+    "name": "仪器仪表",
+    "category": "new_yqyb",
+    "net_inflow": 14.15,
+    "net_inflow_raw": 1415018137.24,
+    "inflow": 16657955910.09,
+    "outflow": 15242937772.85,
+    "avg_pct": "0.00930081"
+  },
+  {
+    "name": "汽车制造",
+    "category": "new_qczz",
+    "net_inflow": 8.93,
+    "net_inflow_raw": 892991839.01,
+    "inflow": 25513721888.63,
+    "outflow": 24620730049.62,
+    "avg_pct": "0.00519859"
+  },
+  {
+    "name": "商业百货",
+    "category": "new_sybh",
+    "net_inflow": 8.75,
+    "net_inflow_raw": 874761890.45,
+    "inflow": 10764372332.03,
+    "outflow": 9889610441.58,
+    "avg_pct": "0.00315141"
+  },
+  {
+    "name": "造纸行业",
+    "category": "new_zzhy",
+    "net_inflow": 8.12,
+    "net_inflow_raw": 812374341.42,
+    "inflow": 5598717027.92,
+    "outflow": 4786342686.5,
+    "avg_pct": "0.0158814"
+  },
+  {
+    "name": "房地产",
+    "category": "new_fdc",
+    "net_inflow": 7.01,
+    "net_inflow_raw": 701200609.41,
+    "inflow": 10743166781.03,
+    "outflow": 10041966171.62,
+    "avg_pct": "0.00279029"
+  },
+  {
+    "name": "陶瓷行业",
+    "category": "new_tchy",
+    "net_inflow": 7.0,
+    "net_inflow_raw": 700194101.8,
+    "inflow": 2289132351.5,
+    "outflow": 1588938249.7,
+    "avg_pct": "0.0399014"
+  },
+  {
+    "name": "医疗器械",
+    "category": "new_ylqx",
+    "net_inflow": 6.35,
+    "net_inflow_raw": 635360109.25,
+    "inflow": 3598446066.12,
+    "outflow": 2963085956.87,
+    "avg_pct": "0.00190286"
+  },
+  {
+    "name": "农林牧渔",
+    "category": "new_nlmy",
+    "net_inflow": 5.68,
+    "net_inflow_raw": 567562686.55,
+    "inflow": 11997942384.91,
+    "outflow": 11430379698.36,
+    "avg_pct": "0.0127973"
+  },
+  {
+    "name": "食品行业",
+    "category": "new_sphy",
+    "net_inflow": 5.57,
+    "net_inflow_raw": 557254512.15,
+    "inflow": 5469086983.81,
+    "outflow": 4911832471.66,
+    "avg_pct": "0.0082087"
+  },
+  {
+    "name": "交通运输",
+    "category": "new_jtys",
+    "net_inflow": 5.36,
+    "net_inflow_raw": 536051263.75,
+    "inflow": 13878948506.49,
+    "outflow": 13342897242.74,
+    "avg_pct": "0.0114656"
+  },
+  {
+    "name": "供水供气",
+    "category": "new_gsgq",
+    "net_inflow": 2.93,
+    "net_inflow_raw": 292859019.4,
+    "inflow": 2062914122.85,
+    "outflow": 1770055103.45,
+    "avg_pct": "0.00494118"
+  },
+  {
+    "name": "物资外贸",
+    "category": "new_wzwm",
+    "net_inflow": 2.52,
+    "net_inflow_raw": 251862057.56,
+    "inflow": 1737366637.27,
+    "outflow": 1485504579.71,
+    "avg_pct": "0.00617023"
+  },
+  {
+    "name": "发电设备",
+    "category": "new_fdsb",
+    "net_inflow": 2.11,
+    "net_inflow_raw": 210984976.48,
+    "inflow": 44769902326.7,
+    "outflow": 44558917350.22,
+    "avg_pct": "-0.00527428"
+  },
+  {
+    "name": "家具行业",
+    "category": "new_jjhy",
+    "net_inflow": 2.01,
+    "net_inflow_raw": 200874702.46,
+    "inflow": 1555673725.99,
+    "outflow": 1354799023.53,
+    "avg_pct": "0.00886729"
+  },
+  {
+    "name": "公路桥梁",
+    "category": "new_glql",
+    "net_inflow": 0.85,
+    "net_inflow_raw": 85217019.54,
+    "inflow": 753071387.71,
+    "outflow": 667854368.17,
+    "avg_pct": "0.00936672"
+  },
+  {
+    "name": "水泥行业",
+    "category": "new_snhy",
+    "net_inflow": 0.59,
+    "net_inflow_raw": 59385332.59,
+    "inflow": 1835423846.73,
+    "outflow": 1776038514.14,
+    "avg_pct": "0.0125178"
+  },
+  {
+    "name": "纺织行业",
+    "category": "new_fzhy",
+    "net_inflow": -0.1,
+    "net_inflow_raw": -10230035.56,
+    "inflow": 2739266580.92,
+    "outflow": 2749496616.48,
+    "avg_pct": "0.00047709"
+  },
+  {
+    "name": "钢铁行业",
+    "category": "new_gthy",
+    "net_inflow": -0.49,
+    "net_inflow_raw": -48714179.91,
+    "inflow": 9109402539.22,
+    "outflow": 9158116719.13,
+    "avg_pct": "-0.00196311"
+  }
+]

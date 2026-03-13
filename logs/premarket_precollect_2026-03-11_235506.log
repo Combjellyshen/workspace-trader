@@ -1,0 +1,51 @@
+[START] 2026-03-11T23:55:06+00:00 premarket precollection
+[RUN] timeout 240 market_intel_pipeline.py premarket
+[RC] market_intel_pipeline=124
+[RUN] timeout 240 market_regime_detector.py
+{
+  "regime": "成长进攻 / 风险偏好提升",
+  "inputs": {
+    "sh000001_pct": 0.25,
+    "sz399001_pct": 0.78,
+    "sz399006_pct": 1.31
+  },
+  "note": "当前为轻量规则版，可继续接入 market_breadth / sentiment / northbound 做更稳的 regime 识别。"
+}
+[RC] market_regime_detector=0
+[RUN] timeout 240 data_consistency_guard.py --json
+{
+  "status": "error",
+  "issues": [
+    {
+      "level": "error",
+      "code": "002475",
+      "type": "price_conflict",
+      "detail": "价格冲突: intraday=0.0, deep_data=50.17"
+    },
+    {
+      "level": "warning",
+      "code": "002475",
+      "type": "pct_gap",
+      "detail": "涨跌幅偏差较大: intraday=+0.00% vs deep_data=+1.58%"
+    },
+    {
+      "level": "error",
+      "code": "560710",
+      "type": "price_conflict",
+      "detail": "价格冲突: intraday=0.0, deep_data=1.096"
+    },
+    {
+      "level": "warning",
+      "code": "560710",
+      "type": "pct_gap",
+      "detail": "涨跌幅偏差较大: intraday=+0.00% vs deep_data=-1.53%"
+    }
+  ],
+  "source_priority": [
+    "deep_data.watchlist_realtime",
+    "intraday_alert.snapshot"
+  ],
+  "recommended_source": "deep_data.watchlist_realtime"
+}
+[RC] data_consistency_guard=0
+[END] 2026-03-11T23:59:34+00:00 done

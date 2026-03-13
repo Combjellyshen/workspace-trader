@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "yfinance": {
+      "command": "yfinance-mcp",
+      "args": [],
+      "env": {}
+    },
+    "fmp": {
+      "url": "http://127.0.0.1:18900/mcp"
+    }
+  }
+}

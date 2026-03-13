@@ -1,0 +1,32 @@
+{
+  "time": "2026-03-12 06:30",
+  "alert_score": 0,
+  "has_alert": false,
+  "alerts": [],
+  "snapshot": {
+    "sh_index": {
+      "price": 0.0,
+      "change_pct": 0.0,
+      "status": "market_closed"
+    },
+    "stocks": [
+      {
+        "code": "002475",
+        "name": "立讯精密",
+        "price": 0.0,
+        "change_pct": 0.0,
+        "main_flow_yi": -0.1017
+      },
+      {
+        "code": "560710",
+        "name": "船舶ETF",
+        "price": 0.0,
+        "change_pct": 0.0,
+        "main_flow_yi": 0.0
+      }
+    ],
+    "north_flow_yi": 0.0,
+    "north_status": "unavailable"
+  },
+  "summary": "无异动。上证指数 +0.00%，自选股整体平稳。"
+}

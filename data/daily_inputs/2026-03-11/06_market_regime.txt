@@ -1,0 +1,9 @@
+{
+  "regime": "成长进攻 / 风险偏好提升",
+  "inputs": {
+    "sh000001_pct": 0.65,
+    "sz399001_pct": 2.04,
+    "sz399006_pct": 3.04
+  },
+  "note": "当前为轻量规则版，可继续接入 market_breadth / sentiment / northbound 做更稳的 regime 识别。"
+}

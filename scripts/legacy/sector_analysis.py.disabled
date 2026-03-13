@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+"""板块深度分析 — 资金流、涨跌、概念热度"""
+import akshare as ak
+import json
+import sys
+
+def sector_analysis():
+    """板块全景分析"""
+    result = {}
+
+    # 行业板块行情
+    try:
+        industry = ak.stock_board_industry_name_em()
+        if not industry.empty:
+            result['industry_boards'] = industry.head(50).to_dict('records')
+    except Exception as e:
+        result['industry_error'] = str(e)
+
+    # 概念板块行情
+    try:
+        concept = ak.stock_board_concept_name_em()
+        if not concept.empty:
+            # 按涨跌幅排序
+            concept_sorted = concept.sort_values('涨跌幅', ascending=False)
+            result['concept_top'] = concept_sorted.head(20).to_dict('records')
+            result['concept_bottom'] = concept_sorted.tail(10).to_dict('records')
+    except Exception as e:
+        result['concept_error'] = str(e)
+
+    # 行业资金流
+    try:
+        fund = ak.stock_sector_fund_flow_rank(indicator="今日", sector_type="行业资金流")
+        if not fund.empty:
+            result['industry_fund'] = fund.head(20).to_dict('records')
+    except Exception as e:
+        result['industry_fund_error'] = str(e)
+
+    # 概念资金流
+    try:
+        cfund = ak.stock_sector_fund_flow_rank(indicator="今日", sector_type="概念资金流")
+        if not cfund.empty:
+            result['concept_fund'] = cfund.head(20).to_dict('records')
+    except Exception as e:
+        result['concept_fund_error'] = str(e)
+
+    return result
+
+
+if __name__ == '__main__':
+    data = sector_analysis()
+    print(json.dumps(data, ensure_ascii=False, indent=2, default=str))

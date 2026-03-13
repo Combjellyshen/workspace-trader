@@ -1,0 +1,626 @@
+{
+  "basic": {
+    "full_name": "富国中证智选船舶产业交易型开放式指数证券投资基金",
+    "short_name": "富国中证智选船舶产业ETF",
+    "fund_type": "指数型-股票",
+    "issue_date": "2026年01月12日",
+    "establish": "2026年01月28日 / 14.876亿份",
+    "manager": "富国基金",
+    "custodian": "兴业银行",
+    "manager_person": "苏华清",
+    "mgmt_fee": "0.50%（每年）",
+    "custody_fee": "0.10%（每年）",
+    "benchmark": "中证智选船舶产业指数收益率",
+    "tracking_index": "中证智选船舶产业指数",
+    "nav_scale": "14.87亿元 / 2026-01-30",
+    "daily_tracking_dev_target": "0.2%",
+    "annual_tracking_error_target": "2%"
+  },
+  "holdings": [
+    {
+      "序号": 1,
+      "股票代码": "600482",
+      "股票名称": "中国动力",
+      "占净值比例": 1.83,
+      "持股数": 104.58,
+      "持仓市值": 2727.45,
+      "季度": "2026年1季度股票投资明细"
+    },
+    {
+      "序号": 2,
+      "股票代码": "600150",
+      "股票名称": "中国船舶",
+      "占净值比例": 1.38,
+      "持股数": 61.37,
+      "持仓市值": 2058.35,
+      "季度": "2026年1季度股票投资明细"
+    },
+    {
+      "序号": 3,
+      "股票代码": "600685",
+      "股票名称": "中船防务",
+      "占净值比例": 0.83,
+      "持股数": 39.16,
+      "持仓市值": 1231.19,
+      "季度": "2026年1季度股票投资明细"
+    },
+    {
+      "序号": 4,
+      "股票代码": "300008",
+      "股票名称": "天海防务",
+      "占净值比例": 0.72,
+      "持股数": 131.81,
+      "持仓市值": 1068.98,
+      "季度": "2026年1季度股票投资明细"
+    },
+    {
+      "序号": 5,
+      "股票代码": "600072",
+      "股票名称": "中船科技",
+      "占净值比例": 0.66,
+      "持股数": 85.96,
+      "持仓市值": 986.8,
+      "季度": "2026年1季度股票投资明细"
+    },
+    {
+      "序号": 6,
+      "股票代码": "600320",
+      "股票名称": "振华重工",
+      "占净值比例": 0.65,
+      "持股数": 190.04,
+      "持仓市值": 973.0,
+      "季度": "2026年1季度股票投资明细"
+    },
+    {
+      "序号": 7,
+      "股票代码": "000880",
+      "股票名称": "潍柴重机",
+      "占净值比例": 0.52,
+      "持股数": 22.11,
+      "持仓市值": 780.48,
+      "季度": "2026年1季度股票投资明细"
+    },
+    {
+      "序号": 8,
+      "股票代码": "600764",
+      "股票名称": "中国海防",
+      "占净值比例": 0.49,
+      "持股数": 27.1,
+      "持仓市值": 728.18,
+      "季度": "2026年1季度股票投资明细"
+    },
+    {
+      "序号": 9,
+      "股票代码": "601890",
+      "股票名称": "亚星锚链",
+      "占净值比例": 0.45,
+      "持股数": 64.02,
+      "持仓市值": 663.86,
+      "季度": "2026年1季度股票投资明细"
+    },
+    {
+      "序号": 10,
+      "股票代码": "300516",
+      "股票名称": "久之洋",
+      "占净值比例": 0.32,
+      "持股数": 6.86,
+      "持仓市值": 473.27,
+      "季度": "2026年1季度股票投资明细"
+    }
+  ],
+  "top10_weight_sum_pct": 7.8500000000000005,
+  "component_snapshot": [
+    {
+      "code": "600482",
+      "name": "中国动力",
+      "weight_pct": 1.83,
+      "close": 32.85,
+      "chg_pct": -5.0,
+      "pb": 1.85,
+      "pe_ttm": 46.28,
+      "mktcap_yi": 745.118931888
+    },
+    {
+      "code": "600150",
+      "name": "中国船舶",
+      "weight_pct": 1.38,
+      "close": 35.18,
+      "chg_pct": -2.28,
+      "pb": 1.88,
+      "pe_ttm": 33.93,
+      "mktcap_yi": 2647.5135691184
+    },
+    {
+      "code": "600685",
+      "name": "中船防务",
+      "weight_pct": 0.83,
+      "close": 33.55,
+      "chg_pct": -2.16,
+      "pb": 2.64,
+      "pe_ttm": 54.29,
+      "mktcap_yi": 474.23138981899996
+    },
+    {
+      "code": "300008",
+      "name": "天海防务",
+      "weight_pct": 0.72,
+      "close": 8.36,
+      "chg_pct": -1.76,
+      "pb": 6.18,
+      "pe_ttm": 46.79,
+      "mktcap_yi": 144.4632355188
+    },
+    {
+      "code": "600072",
+      "name": "中船科技",
+      "weight_pct": 0.66,
+      "close": 13.51,
+      "chg_pct": 3.05,
+      "pb": 2.09,
+      "pe_ttm": -10.61,
+      "mktcap_yi": 202.7377756859
+    },
+    {
+      "code": "600320",
+      "name": "振华重工",
+      "weight_pct": 0.65,
+      "close": 5.39,
+      "chg_pct": 2.08,
+      "pb": 1.82,
+      "pe_ttm": 40.66,
+      "mktcap_yi": 283.9642537039
+    },
+    {
+      "code": "000880",
+      "name": "潍柴重机",
+      "weight_pct": 0.52,
+      "close": 29.27,
+      "chg_pct": -4.32,
+      "pb": 6.6,
+      "pe_ttm": 54.5,
+      "mktcap_yi": 135.768555468
+    },
+    {
+      "code": "600764",
+      "name": "中国海防",
+      "weight_pct": 0.49,
+      "close": 26.72,
+      "chg_pct": -1.07,
+      "pb": 2.3,
+      "pe_ttm": 92.37,
+      "mktcap_yi": 189.88017193919998
+    },
+    {
+      "code": "601890",
+      "name": "亚星锚链",
+      "weight_pct": 0.45,
+      "close": 11.41,
+      "chg_pct": -1.98,
+      "pb": 2.96,
+      "pe_ttm": 38.86,
+      "mktcap_yi": 109.46754
+    },
+    {
+      "code": "300516",
+      "name": "久之洋",
+      "weight_pct": 0.32,
+      "close": 60.86,
+      "chg_pct": -2.53,
+      "pb": 8.43,
+      "pe_ttm": 377.82,
+      "mktcap_yi": 109.548
+    }
+  ],
+  "top10_weighted_pb": 3.0282420382165607,
+  "top10_weighted_pe_ttm": 56.26527388535032,
+  "quote": {
+    "close": 1.046,
+    "high": 1.068,
+    "low": 1.043,
+    "open": 1.068,
+    "volume_hand": 1717050,
+    "turnover_yi": 1.81386288,
+    "preclose": 1.068,
+    "chg_pct": -2.06,
+    "amplitude_pct": 2.34,
+    "chg": -0.022
+  },
+  "main_net_5d": [
+    {
+      "date": "2026-03-12",
+      "net_yi": -0.44
+    },
+    {
+      "date": "2026-03-11",
+      "net_yi": -0.39
+    },
+    {
+      "date": "2026-03-10",
+      "net_yi": 0.17
+    },
+    {
+      "date": "2026-03-09",
+      "net_yi": -0.72
+    },
+    {
+      "date": "2026-03-06",
+      "net_yi": 0.21
+    }
+  ],
+  "main_net_5d_sum_yi": -1.16,
+  "discount": {
+    "unit_nav_prev": 1.0667,
+    "market_price": 1.068,
+    "discount_rate": "-0.12%"
+  },
+  "hist": {
+    "rows": 20,
+    "start": "2026-02-06",
+    "end": "2026-03-13",
+    "cur": 1.046,
+    "max": 1.148,
+    "min": 0.987,
+    "ret_5d_pct": -8.89,
+    "ret_10d_pct": -7.1,
+    "ret_since_start_pct": 5.98,
+    "max_drawdown_pct": -8.89,
+    "ann_vol_pct": 33.62,
+    "avg_turnover_pct": 12.12,
+    "avg_amount_yi": 2.07,
+    "latest_amount_yi": 1.81
+  },
+  "tech": {
+    "code": "560710",
+    "analysis_time": "2026-03-13T07:32:25.975665",
+    "latest": {
+      "close": 1.046,
+      "high": 1.068,
+      "low": 1.043,
+      "volume": 1717050.0
+    },
+    "rsi_6": 31.34,
+    "rsi_14": 54.26,
+    "kdj": {
+      "K": 23.29,
+      "D": 38.26,
+      "J": -6.65
+    },
+    "bollinger": {
+      "upper": 1.169,
+      "mid": 1.085,
+      "lower": 1.0,
+      "width_pct": 15.58,
+      "position": 27.2,
+      "signal": "中性"
+    },
+    "macd": null,
+    "volume_ratio": 0.99,
+    "ma_system": {
+      "values": {
+        "MA5": 1.086,
+        "MA10": 1.101,
+        "MA20": 1.085
+      },
+      "arrangement": "交叉/震荡",
+      "price_above": [],
+      "price_below": [
+        "MA5",
+        "MA10",
+        "MA20"
+      ],
+      "support": null,
+      "resistance": 1.085
+    },
+    "patterns": [],
+    "signals": [
+      "💡 KDJ超卖"
+    ]
+  },
+  "chip": {
+    "code": "560710",
+    "data": {
+      "current_price": 1.068,
+      "price_range": {
+        "min": 0.985,
+        "max": 1.182
+      },
+      "profitable_ratio_pct": 25.75,
+      "support_zones": [
+        {
+          "price": 1.067,
+          "chip_pct": 1.132
+        },
+        {
+          "price": 1.063,
+          "chip_pct": 1.132
+        },
+        {
+          "price": 1.061,
+          "chip_pct": 1.132
+        },
+        {
+          "price": 1.059,
+          "chip_pct": 1.132
+        },
+        {
+          "price": 1.065,
+          "chip_pct": 1.132
+        }
+      ],
+      "trapped_zones": [
+        {
+          "price": 1.116,
+          "chip_pct": 3.351
+        },
+        {
+          "price": 1.118,
+          "chip_pct": 3.212
+        },
+        {
+          "price": 1.114,
+          "chip_pct": 3.067
+        },
+        {
+          "price": 1.112,
+          "chip_pct": 2.93
+        },
+        {
+          "price": 1.11,
+          "chip_pct": 2.93
+        }
+      ],
+      "top_chip_zones": [
+        {
+          "price": 1.116,
+          "chip_pct": 3.351
+        },
+        {
+          "price": 1.118,
+          "chip_pct": 3.212
+        },
+        {
+          "price": 1.114,
+          "chip_pct": 3.067
+        },
+        {
+          "price": 1.11,
+          "chip_pct": 2.93
+        },
+        {
+          "price": 1.112,
+          "chip_pct": 2.93
+        },
+        {
+          "price": 1.12,
+          "chip_pct": 2.89
+        },
+        {
+          "price": 1.122,
+          "chip_pct": 2.886
+        },
+        {
+          "price": 1.124,
+          "chip_pct": 2.886
+        },
+        {
+          "price": 1.126,
+          "chip_pct": 2.886
+        },
+        {
+          "price": 1.108,
+          "chip_pct": 2.721
+        }
+      ],
+      "days_used": 19
+    },
+    "signal": "high_trapped_ratio",
+    "interpretation": "获利盘仅25.75%，大量套牢盘，上方阻力大。 主要支撑区: 1.067元(1.132%)、1.063元(1.132%)、1.061元(1.132%)。 主要套牢区: 1.116元(3.351%)、1.118元(3.212%)、1.114元(3.067%)。"
+  },
+  "big_order": {
+    "code": "560710",
+    "market": "沪市",
+    "data": {
+      "summary": {
+        "all_buy_hand": 1093216,
+        "all_sell_hand": 623834,
+        "all_net_hand": 469382,
+        "big_buy_hand": 948499,
+        "big_sell_hand": 498408,
+        "big_net_hand": 450091,
+        "super_buy_hand": 587139,
+        "super_sell_hand": 319451,
+        "big_order_threshold": 500,
+        "super_order_threshold": 2000
+      },
+      "absorption_zone": {
+        "min": 1.043,
+        "max": 1.067,
+        "avg": 1.058
+      },
+      "hourly_distribution": {
+        "09": {
+          "buy": 330565,
+          "sell": 214762,
+          "big_buy": 306803,
+          "big_sell": 185109
+        },
+        "10": {
+          "buy": 213317,
+          "sell": 130411,
+          "big_buy": 181295,
+          "big_sell": 109520
+        },
+        "11": {
+          "buy": 161599,
+          "sell": 54922,
+          "big_buy": 139852,
+          "big_sell": 46710
+        },
+        "13": {
+          "buy": 147298,
+          "sell": 61170,
+          "big_buy": 111183,
+          "big_sell": 42446
+        },
+        "14": {
+          "buy": 240137,
+          "sell": 162569,
+          "big_buy": 209366,
+          "big_sell": 114623
+        },
+        "15": {
+          "buy": 300,
+          "sell": 0,
+          "big_buy": 0,
+          "big_sell": 0
+        }
+      },
+      "big_buy_orders": [
+        {
+          "time": "09:30:04",
+          "price": 1.057,
+          "volume_hand": 1470,
+          "amount_k": 47.0,
+          "direction": 1
+        },
+        {
+          "time": "09:30:25",
+          "price": 1.062,
+          "volume_hand": 4941,
+          "amount_k": 7.0,
+          "direction": 1
+        },
+        {
+          "time": "09:30:40",
+          "price": 1.061,
+          "volume_hand": 538,
+          "amount_k": 17.0,
+          "direction": 1
+        },
+        {
+          "time": "09:30:49",
+          "price": 1.059,
+          "volume_hand": 618,
+          "amount_k": 3.0,
+          "direction": 1
+        },
+        {
+          "time": "09:30:55",
+          "price": 1.058,
+          "volume_hand": 501,
+          "amount_k": 7.0,
+          "direction": 1
+        },
+        {
+          "time": "09:31:10",
+          "price": 1.057,
+          "volume_hand": 822,
+          "amount_k": 23.0,
+          "direction": 1
+        },
+        {
+          "time": "09:31:13",
+          "price": 1.056,
+          "volume_hand": 592,
+          "amount_k": 12.0,
+          "direction": 1
+        },
+        {
+          "time": "09:31:19",
+          "price": 1.056,
+          "volume_hand": 1272,
+          "amount_k": 19.0,
+          "direction": 1
+        },
+        {
+          "time": "09:31:22",
+          "price": 1.055,
+          "volume_hand": 644,
+          "amount_k": 7.0,
+          "direction": 1
+        },
+        {
+          "time": "09:31:49",
+          "price": 1.055,
+          "volume_hand": 520,
+          "amount_k": 6.0,
+          "direction": 1
+        }
+      ],
+      "big_sell_orders": [
+        {
+          "time": "09:25:01",
+          "price": 1.068,
+          "volume_hand": 9542,
+          "amount_k": 119.0,
+          "direction": 2
+        },
+        {
+          "time": "09:30:19",
+          "price": 1.066,
+          "volume_hand": 5558,
+          "amount_k": 21.0,
+          "direction": 2
+        },
+        {
+          "time": "09:30:34",
+          "price": 1.062,
+          "volume_hand": 581,
+          "amount_k": 12.0,
+          "direction": 2
+        },
+        {
+          "time": "09:30:46",
+          "price": 1.062,
+          "volume_hand": 548,
+          "amount_k": 11.0,
+          "direction": 2
+        },
+        {
+          "time": "09:30:52",
+          "price": 1.059,
+          "volume_hand": 832,
+          "amount_k": 8.0,
+          "direction": 2
+        },
+        {
+          "time": "09:31:16",
+          "price": 1.056,
+          "volume_hand": 1285,
+          "amount_k": 21.0,
+          "direction": 2
+        },
+        {
+          "time": "09:31:25",
+          "price": 1.056,
+          "volume_hand": 2662,
+          "amount_k": 44.0,
+          "direction": 2
+        },
+        {
+          "time": "09:31:31",
+          "price": 1.056,
+          "volume_hand": 3768,
+          "amount_k": 13.0,
+          "direction": 2
+        },
+        {
+          "time": "09:31:34",
+          "price": 1.056,
+          "volume_hand": 772,
+          "amount_k": 7.0,
+          "direction": 2
+        },
+        {
+          "time": "09:31:37",
+          "price": 1.056,
+          "volume_hand": 1692,
+          "amount_k": 3.0,
+          "direction": 2
+        }
+      ]
+    },
+    "signal": "strong_inflow",
+    "interpretation": "全天主买1093216手，主卖623834手，净买469382手。 大单(≥500手): 净流入450091手 (买948499手/卖498408手)。 超大单(≥2000手): 买587139手/卖319451手。 主力大单吸筹区间: 1.043-1.067元（均价1.058元）。 大单净流入为正，主力整体买入倾向。"
+  }
+}

@@ -1,0 +1,397 @@
+{
+  "generated_at": "2026-03-11T07:05:34.973962",
+  "sources": {
+    "market_data": "FMP MCP（indexes/forex） + Stooq（commodities / crypto / DAX / DXY 补位） + Yahoo Finance（fallback）",
+    "rates": "FRED CSV (public)"
+  },
+  "sections": {
+    "global_indexes": [
+      {
+        "name": "标普500",
+        "symbol": "^GSPC",
+        "unit": "points",
+        "ok": false,
+        "source": "FMP MCP fmp.getHistoricalIndexFullChart",
+        "error": "mcporter 返回非 JSON: fmp.getHistoricalIndexFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getHistoricalIndexFullChart not found'\n    }\n  ],\n  isError: true\n}",
+        "tried_symbols": [
+          "^GSPC"
+        ],
+        "yahoo_fallback_error": "无法获取足够的有效历史数据"
+      },
+      {
+        "name": "纳斯达克",
+        "symbol": "^IXIC",
+        "unit": "points",
+        "ok": false,
+        "source": "FMP MCP fmp.getHistoricalIndexFullChart",
+        "error": "mcporter 返回非 JSON: fmp.getHistoricalIndexFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getHistoricalIndexFullChart not found'\n    }\n  ],\n  isError: true\n}",
+        "tried_symbols": [
+          "^IXIC"
+        ],
+        "yahoo_fallback_error": "无法获取足够的有效历史数据"
+      },
+      {
+        "name": "道琼斯",
+        "symbol": "^DJI",
+        "unit": "points",
+        "ok": false,
+        "source": "FMP MCP fmp.getHistoricalIndexFullChart",
+        "error": "mcporter 返回非 JSON: fmp.getHistoricalIndexFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getHistoricalIndexFullChart not found'\n    }\n  ],\n  isError: true\n}",
+        "tried_symbols": [
+          "^DJI"
+        ],
+        "yahoo_fallback_error": "无法获取足够的有效历史数据"
+      },
+      {
+        "name": "恒生指数",
+        "symbol": "^HSI",
+        "unit": "points",
+        "ok": false,
+        "source": "FMP MCP fmp.getHistoricalIndexFullChart",
+        "error": "mcporter 返回非 JSON: fmp.getHistoricalIndexFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getHistoricalIndexFullChart not found'\n    }\n  ],\n  isError: true\n}",
+        "tried_symbols": [
+          "^HSI"
+        ],
+        "yahoo_fallback_error": "无法获取足够的有效历史数据"
+      },
+      {
+        "name": "日经225",
+        "symbol": "^N225",
+        "unit": "points",
+        "ok": false,
+        "source": "FMP MCP fmp.getHistoricalIndexFullChart",
+        "error": "mcporter 返回非 JSON: fmp.getHistoricalIndexFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getHistoricalIndexFullChart not found'\n    }\n  ],\n  isError: true\n}",
+        "tried_symbols": [
+          "^N225"
+        ],
+        "yahoo_fallback_error": "无法获取足够的有效历史数据"
+      },
+      {
+        "name": "德国DAX",
+        "symbol": "^dax",
+        "unit": "points",
+        "ok": true,
+        "resolved_symbol": "^dax",
+        "source": "Stooq CSV",
+        "latest_close": 23968.63,
+        "previous_close": 23409.37,
+        "weekly_reference_close": 23790.65,
+        "weekly_change_pct": 0.7481,
+        "as_of": "2026-03-10",
+        "previous_as_of": "2026-03-09",
+        "weekly_reference_as_of": "2026-03-03",
+        "points_used": 16720,
+        "recent_5": [
+          {
+            "date": "2026-03-04",
+            "close": 24205.36
+          },
+          {
+            "date": "2026-03-05",
+            "close": 23815.75
+          },
+          {
+            "date": "2026-03-06",
+            "close": 23591.03
+          },
+          {
+            "date": "2026-03-09",
+            "close": 23409.37
+          },
+          {
+            "date": "2026-03-10",
+            "close": 23968.63
+          }
+        ],
+        "used_fallback": false,
+        "fallback_from_primary_source": true,
+        "display": "德国DAX: 23968.63 points (+0.75%/5个交易日)"
+      }
+    ],
+    "commodities": [
+      {
+        "name": "WTI原油",
+        "symbol": "CL=F",
+        "unit": "USD/bbl",
+        "ok": false,
+        "error": "Stooq 历史表未找到"
+      },
+      {
+        "name": "黄金",
+        "symbol": "GC=F",
+        "unit": "USD/oz",
+        "ok": false,
+        "error": "HTTPSConnectionPool(host='stooq.com', port=443): Read timed out. (read timeout=15)"
+      },
+      {
+        "name": "铜",
+        "symbol": "HG=F",
+        "unit": "USD/lb",
+        "ok": false,
+        "error": "HTTPSConnectionPool(host='stooq.com', port=443): Max retries exceeded with url: /q/d/?s=hg.f (Caused by ConnectTimeoutError(<HTTPSConnection(host='stooq.com', port=443) at 0x7eab6717d950>, 'Connection to stooq.com timed out. (connect timeout=15)'))"
+      }
+    ],
+    "fx_rates": [
+      {
+        "name": "美元指数",
+        "symbol": "DX-Y.NYB",
+        "unit": "index",
+        "ok": false,
+        "error": "HTTPSConnectionPool(host='stooq.com', port=443): Max retries exceeded with url: /q/d/?s=dx.f (Caused by ConnectTimeoutError(<HTTPSConnection(host='stooq.com', port=443) at 0x7eab6717e850>, 'Connection to stooq.com timed out. (connect timeout=15)'))"
+      },
+      {
+        "name": "USD/CNH",
+        "symbol": "USDCNH",
+        "unit": "rate",
+        "ok": false,
+        "source": "FMP MCP fmp.getForexHistoricalFullChart",
+        "error": "mcporter 返回非 JSON: fmp.getForexHistoricalFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getForexHistoricalFullChart not found'\n    }\n  ],\n  isError: true\n}",
+        "tried_symbols": [
+          "USDCNH",
+          "USDCNY"
+        ],
+        "yahoo_fallback_error": "无法获取足够的有效历史数据"
+      },
+      {
+        "name": "USD/JPY",
+        "symbol": "USDJPY",
+        "unit": "rate",
+        "ok": false,
+        "source": "FMP MCP fmp.getForexHistoricalFullChart",
+        "error": "mcporter 返回非 JSON: fmp.getForexHistoricalFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getForexHistoricalFullChart not found'\n    }\n  ],\n  isError: true\n}",
+        "tried_symbols": [
+          "USDJPY"
+        ],
+        "yahoo_fallback_error": "无法获取足够的有效历史数据"
+      },
+      {
+        "name": "EUR/USD",
+        "symbol": "EURUSD",
+        "unit": "rate",
+        "ok": false,
+        "source": "FMP MCP fmp.getForexHistoricalFullChart",
+        "error": "mcporter 返回非 JSON: fmp.getForexHistoricalFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getForexHistoricalFullChart not found'\n    }\n  ],\n  isError: true\n}",
+        "tried_symbols": [
+          "EURUSD"
+        ],
+        "yahoo_fallback_error": "无法获取足够的有效历史数据"
+      }
+    ],
+    "crypto": [
+      {
+        "name": "BTC/USD",
+        "symbol": "BTC.V",
+        "unit": "USD",
+        "ok": false,
+        "error": "HTTPSConnectionPool(host='stooq.com', port=443): Max retries exceeded with url: /q/d/l/?s=btc.v&i=d (Caused by ConnectTimeoutError(<HTTPSConnection(host='stooq.com', port=443) at 0x7eab6717e710>, 'Connection to stooq.com timed out. (connect timeout=15)'))"
+      },
+      {
+        "name": "ETH/USD",
+        "symbol": "ETH.V",
+        "unit": "USD",
+        "ok": false,
+        "error": "HTTPSConnectionPool(host='stooq.com', port=443): Max retries exceeded with url: /q/d/l/?s=eth.v&i=d (Caused by ConnectTimeoutError(<HTTPSConnection(host='stooq.com', port=443) at 0x7eab6717e0d0>, 'Connection to stooq.com timed out. (connect timeout=15)'))"
+      }
+    ],
+    "rates": [
+      {
+        "name": "美国2Y",
+        "symbol": "DGS2",
+        "unit": "%",
+        "ok": true,
+        "source": "FRED CSV",
+        "latest_value": 3.56,
+        "previous_value": 3.56,
+        "weekly_reference_value": 3.47,
+        "weekly_change_bp": 9.0,
+        "weekly_change_pct": 2.5937,
+        "as_of": "2026-03-09",
+        "previous_as_of": "2026-03-06",
+        "weekly_reference_as_of": "2026-03-02",
+        "points_used": 59,
+        "recent_5": [
+          {
+            "date": "2026-03-03",
+            "value": 3.51
+          },
+          {
+            "date": "2026-03-04",
+            "value": 3.54
+          },
+          {
+            "date": "2026-03-05",
+            "value": 3.57
+          },
+          {
+            "date": "2026-03-06",
+            "value": 3.56
+          },
+          {
+            "date": "2026-03-09",
+            "value": 3.56
+          }
+        ],
+        "display": "美国2Y: 3.56 % (+9.00bp/5个交易日)"
+      },
+      {
+        "name": "美国10Y",
+        "symbol": "DGS10",
+        "unit": "%",
+        "ok": true,
+        "source": "FRED CSV",
+        "latest_value": 4.12,
+        "previous_value": 4.15,
+        "weekly_reference_value": 4.05,
+        "weekly_change_bp": 7.0,
+        "weekly_change_pct": 1.7284,
+        "as_of": "2026-03-09",
+        "previous_as_of": "2026-03-06",
+        "weekly_reference_as_of": "2026-03-02",
+        "points_used": 59,
+        "recent_5": [
+          {
+            "date": "2026-03-03",
+            "value": 4.06
+          },
+          {
+            "date": "2026-03-04",
+            "value": 4.09
+          },
+          {
+            "date": "2026-03-05",
+            "value": 4.13
+          },
+          {
+            "date": "2026-03-06",
+            "value": 4.15
+          },
+          {
+            "date": "2026-03-09",
+            "value": 4.12
+          }
+        ],
+        "display": "美国10Y: 4.12 % (+7.00bp/5个交易日)"
+      },
+      {
+        "name": "美国30Y",
+        "symbol": "DGS30",
+        "unit": "%",
+        "ok": true,
+        "source": "FRED CSV",
+        "latest_value": 4.72,
+        "previous_value": 4.77,
+        "weekly_reference_value": 4.7,
+        "weekly_change_bp": 2.0,
+        "weekly_change_pct": 0.4255,
+        "as_of": "2026-03-09",
+        "previous_as_of": "2026-03-06",
+        "weekly_reference_as_of": "2026-03-02",
+        "points_used": 59,
+        "recent_5": [
+          {
+            "date": "2026-03-03",
+            "value": 4.7
+          },
+          {
+            "date": "2026-03-04",
+            "value": 4.72
+          },
+          {
+            "date": "2026-03-05",
+            "value": 4.74
+          },
+          {
+            "date": "2026-03-06",
+            "value": 4.77
+          },
+          {
+            "date": "2026-03-09",
+            "value": 4.72
+          }
+        ],
+        "display": "美国30Y: 4.72 % (+2.00bp/5个交易日)"
+      }
+    ]
+  },
+  "summary": {
+    "coverage": "4/18",
+    "coverage_ratio": 0.2222,
+    "global_indexes_ok": 1,
+    "commodities_ok": 0,
+    "fx_rates_ok": 0,
+    "crypto_ok": 0,
+    "rates_ok": 3
+  },
+  "errors": [
+    {
+      "section": "global_indexes",
+      "name": "标普500",
+      "error": "mcporter 返回非 JSON: fmp.getHistoricalIndexFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getHistoricalIndexFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "global_indexes",
+      "name": "纳斯达克",
+      "error": "mcporter 返回非 JSON: fmp.getHistoricalIndexFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getHistoricalIndexFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "global_indexes",
+      "name": "道琼斯",
+      "error": "mcporter 返回非 JSON: fmp.getHistoricalIndexFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getHistoricalIndexFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "global_indexes",
+      "name": "恒生指数",
+      "error": "mcporter 返回非 JSON: fmp.getHistoricalIndexFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getHistoricalIndexFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "global_indexes",
+      "name": "日经225",
+      "error": "mcporter 返回非 JSON: fmp.getHistoricalIndexFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getHistoricalIndexFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "commodities",
+      "name": "WTI原油",
+      "error": "Stooq 历史表未找到"
+    },
+    {
+      "section": "commodities",
+      "name": "黄金",
+      "error": "HTTPSConnectionPool(host='stooq.com', port=443): Read timed out. (read timeout=15)"
+    },
+    {
+      "section": "commodities",
+      "name": "铜",
+      "error": "HTTPSConnectionPool(host='stooq.com', port=443): Max retries exceeded with url: /q/d/?s=hg.f (Caused by ConnectTimeoutError(<HTTPSConnection(host='stooq.com', port=443) at 0x7eab6717d950>, 'Connection to stooq.com timed out. (connect timeout=15)'))"
+    },
+    {
+      "section": "fx_rates",
+      "name": "美元指数",
+      "error": "HTTPSConnectionPool(host='stooq.com', port=443): Max retries exceeded with url: /q/d/?s=dx.f (Caused by ConnectTimeoutError(<HTTPSConnection(host='stooq.com', port=443) at 0x7eab6717e850>, 'Connection to stooq.com timed out. (connect timeout=15)'))"
+    },
+    {
+      "section": "fx_rates",
+      "name": "USD/CNH",
+      "error": "mcporter 返回非 JSON: fmp.getForexHistoricalFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getForexHistoricalFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "fx_rates",
+      "name": "USD/JPY",
+      "error": "mcporter 返回非 JSON: fmp.getForexHistoricalFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getForexHistoricalFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "fx_rates",
+      "name": "EUR/USD",
+      "error": "mcporter 返回非 JSON: fmp.getForexHistoricalFullChart; {\n  content: [\n    {\n      type: 'text',\n      text: 'MCP error -32602: Tool getForexHistoricalFullChart not found'\n    }\n  ],\n  isError: true\n}"
+    },
+    {
+      "section": "crypto",
+      "name": "BTC/USD",
+      "error": "HTTPSConnectionPool(host='stooq.com', port=443): Max retries exceeded with url: /q/d/l/?s=btc.v&i=d (Caused by ConnectTimeoutError(<HTTPSConnection(host='stooq.com', port=443) at 0x7eab6717e710>, 'Connection to stooq.com timed out. (connect timeout=15)'))"
+    },
+    {
+      "section": "crypto",
+      "name": "ETH/USD",
+      "error": "HTTPSConnectionPool(host='stooq.com', port=443): Max retries exceeded with url: /q/d/l/?s=eth.v&i=d (Caused by ConnectTimeoutError(<HTTPSConnection(host='stooq.com', port=443) at 0x7eab6717e0d0>, 'Connection to stooq.com timed out. (connect timeout=15)'))"
+    }
+  ]
+}

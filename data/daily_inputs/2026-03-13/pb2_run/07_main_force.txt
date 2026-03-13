@@ -1,0 +1,424 @@
+分析主力意图 002475 立讯精密...
+分析主力意图 560710 船舶ETF...
+[
+  {
+    "code": "002475",
+    "analysis_time": "2026-03-13T07:49:14.655775",
+    "money_flow": {
+      "code": "002475",
+      "timestamp": "2026-03-13T07:49:14.655789",
+      "intraday_flow": {
+        "time": "2026-03-13 15:00",
+        "main_net": 27848.6793,
+        "small_net": -17445.8392,
+        "mid_net": -10402.84,
+        "big_net": 24906.783,
+        "super_big_net": 2941.8963
+      },
+      "flow_trend": [
+        {
+          "time": "2026-03-13 14:51",
+          "main_net": 27257.86
+        },
+        {
+          "time": "2026-03-13 14:52",
+          "main_net": 27418.57
+        },
+        {
+          "time": "2026-03-13 14:53",
+          "main_net": 27495.04
+        },
+        {
+          "time": "2026-03-13 14:54",
+          "main_net": 27596.63
+        },
+        {
+          "time": "2026-03-13 14:55",
+          "main_net": 27793.86
+        },
+        {
+          "time": "2026-03-13 14:56",
+          "main_net": 27895.95
+        },
+        {
+          "time": "2026-03-13 14:57",
+          "main_net": 27848.68
+        },
+        {
+          "time": "2026-03-13 14:58",
+          "main_net": 27848.68
+        },
+        {
+          "time": "2026-03-13 14:59",
+          "main_net": 27848.68
+        },
+        {
+          "time": "2026-03-13 15:00",
+          "main_net": 27848.68
+        }
+      ],
+      "daily_flow": [
+        {
+          "date": "2026-03-02",
+          "main_net_inflow": -9.12,
+          "small_net": 8.76,
+          "mid_net": 0.36,
+          "big_net": -4.23,
+          "super_big_net": -4.9
+        },
+        {
+          "date": "2026-03-03",
+          "main_net_inflow": -6.39,
+          "small_net": 6.3,
+          "mid_net": 0.08,
+          "big_net": -3.69,
+          "super_big_net": -2.7
+        },
+        {
+          "date": "2026-03-04",
+          "main_net_inflow": -3.74,
+          "small_net": 5.52,
+          "mid_net": -1.78,
+          "big_net": -3.82,
+          "super_big_net": 0.08
+        },
+        {
+          "date": "2026-03-05",
+          "main_net_inflow": 0.19,
+          "small_net": 0.58,
+          "mid_net": -0.77,
+          "big_net": 1.35,
+          "super_big_net": -1.16
+        },
+        {
+          "date": "2026-03-06",
+          "main_net_inflow": -1.24,
+          "small_net": -0.19,
+          "mid_net": 1.43,
+          "big_net": 1.25,
+          "super_big_net": -2.49
+        },
+        {
+          "date": "2026-03-09",
+          "main_net_inflow": -1.55,
+          "small_net": 2.35,
+          "mid_net": -0.8,
+          "big_net": -2.14,
+          "super_big_net": 0.59
+        },
+        {
+          "date": "2026-03-10",
+          "main_net_inflow": 11.23,
+          "small_net": -5.9,
+          "mid_net": -5.33,
+          "big_net": 2.52,
+          "super_big_net": 8.71
+        },
+        {
+          "date": "2026-03-11",
+          "main_net_inflow": -0.1,
+          "small_net": -2.71,
+          "mid_net": 2.81,
+          "big_net": 2.87,
+          "super_big_net": -2.97
+        },
+        {
+          "date": "2026-03-12",
+          "main_net_inflow": -1.07,
+          "small_net": 1.47,
+          "mid_net": -0.4,
+          "big_net": 1.84,
+          "super_big_net": -2.9
+        },
+        {
+          "date": "2026-03-13",
+          "main_net_inflow": 2.78,
+          "small_net": -1.74,
+          "mid_net": -1.04,
+          "big_net": 2.49,
+          "super_big_net": 0.29
+        }
+      ],
+      "consecutive": {
+        "direction": "连续流入",
+        "days": 1,
+        "total": 2.78
+      }
+    },
+    "tick": {
+      "code": "002475",
+      "timestamp": "2026-03-13T07:49:17.051236",
+      "tick_error": "HTTP Error 404: Not Found"
+    },
+    "chip": {
+      "code": "002475",
+      "timestamp": "2026-03-13T07:49:17.876594",
+      "chip_error": "HTTP Error 404: Not Found"
+    },
+    "holders": {
+      "code": "002475",
+      "timestamp": "2026-03-13T07:49:18.463788",
+      "report_date": "2025-12-31",
+      "top10_holders": [
+        {
+          "rank": 1,
+          "name": "立讯有限公司",
+          "shares": 2731537636,
+          "ratio": "37.58%",
+          "change": "不变",
+          "type": "其它"
+        },
+        {
+          "rank": 2,
+          "name": "香港中央结算有限公司",
+          "shares": 527966919,
+          "ratio": "7.26%",
+          "change": "100429470",
+          "type": "其它"
+        },
+        {
+          "rank": 3,
+          "name": "中国证券金融股份有限公司",
+          "shares": 84428888,
+          "ratio": "1.16%",
+          "change": "不变",
+          "type": "证券公司"
+        },
+        {
+          "rank": 4,
+          "name": "中国工商银行股份有限公司-华泰柏瑞沪深300交易型开放式指数证券投资基金",
+          "shares": 84015354,
+          "ratio": "1.16%",
+          "change": "-2466370",
+          "type": "证券投资基金"
+        },
+        {
+          "rank": 5,
+          "name": "中国建设银行股份有限公司-易方达沪深300交易型开放式指数发起式证券投资基金",
+          "shares": 60046597,
+          "ratio": "0.83%",
+          "change": "-2391500",
+          "type": "证券投资基金"
+        },
+        {
+          "rank": 6,
+          "name": "中央汇金资产管理有限责任公司",
+          "shares": 58041012,
+          "ratio": "0.80%",
+          "change": "不变",
+          "type": "其它"
+        },
+        {
+          "rank": 7,
+          "name": "中国工商银行股份有限公司-华夏沪深300交易型开放式指数证券投资基金",
+          "shares": 45824544,
+          "ratio": "0.63%",
+          "change": "-768600",
+          "type": "证券投资基金"
+        },
+        {
+          "rank": 8,
+          "name": "中国银行股份有限公司-嘉实沪深300交易型开放式指数证券投资基金",
+          "shares": 39523184,
+          "ratio": "0.54%",
+          "change": "-639701",
+          "type": "证券投资基金"
+        },
+        {
+          "rank": 9,
+          "name": "易方达基金-农业银行-易方达中证金融资产管理计划",
+          "shares": 38656343,
+          "ratio": "0.53%",
+          "change": "不变",
+          "type": "基金资产管理计划"
+        },
+        {
+          "rank": 10,
+          "name": "华夏基金-农业银行-华夏中证金融资产管理计划",
+          "shares": 38576831,
+          "ratio": "0.53%",
+          "change": "不变",
+          "type": "基金资产管理计划"
+        }
+      ],
+      "holder_structure": {
+        "institutional_count": 7,
+        "individual_count": 0,
+        "signal": "机构主导"
+      },
+      "holder_changes": {
+        "prev_date": "2025-09-30",
+        "new_entries": [],
+        "exits": [],
+        "new_count": 0,
+        "exit_count": 0
+      }
+    },
+    "signals": [
+      "👥 股东结构：机构主导"
+    ],
+    "name": "立讯精密"
+  },
+  {
+    "code": "560710",
+    "analysis_time": "2026-03-13T07:49:19.811713",
+    "money_flow": {
+      "code": "560710",
+      "timestamp": "2026-03-13T07:49:19.811731",
+      "intraday_flow": {
+        "time": "2026-03-13 15:00",
+        "main_net": 861.2799,
+        "small_net": 1521.1997,
+        "mid_net": -2382.4794,
+        "big_net": -2081.0037,
+        "super_big_net": 2942.2836
+      },
+      "flow_trend": [
+        {
+          "time": "2026-03-13 14:51",
+          "main_net": 1072.94
+        },
+        {
+          "time": "2026-03-13 14:52",
+          "main_net": 1059.17
+        },
+        {
+          "time": "2026-03-13 14:53",
+          "main_net": 1094.47
+        },
+        {
+          "time": "2026-03-13 14:54",
+          "main_net": 1085.31
+        },
+        {
+          "time": "2026-03-13 14:55",
+          "main_net": 1016.58
+        },
+        {
+          "time": "2026-03-13 14:56",
+          "main_net": 945.44
+        },
+        {
+          "time": "2026-03-13 14:57",
+          "main_net": 909.06
+        },
+        {
+          "time": "2026-03-13 14:58",
+          "main_net": 885.67
+        },
+        {
+          "time": "2026-03-13 14:59",
+          "main_net": 882.04
+        },
+        {
+          "time": "2026-03-13 15:00",
+          "main_net": 861.28
+        }
+      ],
+      "daily_flow": [
+        {
+          "date": "2026-03-02",
+          "main_net_inflow": -0.85,
+          "small_net": 0.53,
+          "mid_net": 0.31,
+          "big_net": 0.49,
+          "super_big_net": -1.34
+        },
+        {
+          "date": "2026-03-03",
+          "main_net_inflow": -0.39,
+          "small_net": 0.41,
+          "mid_net": -0.02,
+          "big_net": 0.01,
+          "super_big_net": -0.4
+        },
+        {
+          "date": "2026-03-04",
+          "main_net_inflow": 0.12,
+          "small_net": -0.03,
+          "mid_net": -0.09,
+          "big_net": -0.05,
+          "super_big_net": 0.17
+        },
+        {
+          "date": "2026-03-05",
+          "main_net_inflow": 0.11,
+          "small_net": -0.04,
+          "mid_net": -0.07,
+          "big_net": -0.0,
+          "super_big_net": 0.11
+        },
+        {
+          "date": "2026-03-06",
+          "main_net_inflow": 0.21,
+          "small_net": -0.03,
+          "mid_net": -0.18,
+          "big_net": -0.13,
+          "super_big_net": 0.35
+        },
+        {
+          "date": "2026-03-09",
+          "main_net_inflow": -0.72,
+          "small_net": 0.37,
+          "mid_net": 0.34,
+          "big_net": -0.03,
+          "super_big_net": -0.69
+        },
+        {
+          "date": "2026-03-10",
+          "main_net_inflow": 0.17,
+          "small_net": -0.05,
+          "mid_net": -0.12,
+          "big_net": 0.03,
+          "super_big_net": 0.15
+        },
+        {
+          "date": "2026-03-11",
+          "main_net_inflow": -0.39,
+          "small_net": 0.32,
+          "mid_net": 0.06,
+          "big_net": -0.13,
+          "super_big_net": -0.26
+        },
+        {
+          "date": "2026-03-12",
+          "main_net_inflow": -0.44,
+          "small_net": 0.3,
+          "mid_net": 0.14,
+          "big_net": -0.05,
+          "super_big_net": -0.39
+        },
+        {
+          "date": "2026-03-13",
+          "main_net_inflow": 0.09,
+          "small_net": 0.15,
+          "mid_net": -0.24,
+          "big_net": -0.21,
+          "super_big_net": 0.29
+        }
+      ],
+      "consecutive": {
+        "direction": "连续流入",
+        "days": 1,
+        "total": 0.09
+      }
+    },
+    "tick": {
+      "code": "560710",
+      "timestamp": "2026-03-13T07:49:21.005620",
+      "tick_error": "HTTP Error 404: Not Found"
+    },
+    "chip": {
+      "code": "560710",
+      "timestamp": "2026-03-13T07:49:21.861404",
+      "chip_error": "HTTP Error 404: Not Found"
+    },
+    "holders": {
+      "code": "560710",
+      "timestamp": "2026-03-13T07:49:22.374049",
+      "holder_error": "无股东数据"
+    },
+    "signals": [],
+    "name": "船舶ETF"
+  }
+]

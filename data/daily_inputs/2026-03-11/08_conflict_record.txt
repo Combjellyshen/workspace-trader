@@ -1,0 +1,9 @@
+日期: 2026-03-11
+任务: 开盘前数据预采集
+
+关键行情冲突记录
+- 标的: 560710
+- 冲突类型: price_conflict
+- 冲突明细: intraday_alert.snapshot 显示价格 0.0；deep_data.watchlist_realtime 显示价格 1.113
+- 推荐信任源: deep_data.watchlist_realtime
+- 备注: data_consistency_guard 总状态为 error，当前仅发现上述关键冲突项。

@@ -1,0 +1,20 @@
+日期: 2026-03-13
+任务: 开盘前数据预采集
+
+关键行情冲突记录
+- 标的: 002475
+- 冲突类型: price_conflict
+- 冲突明细: 价格冲突: intraday=0.0, deep_data=49.7
+- 推荐信任源: deep_data.watchlist_realtime
+- 对后续分析置信度影响: 自选股实时价格相关判断需降级，盘前分析中涉及该标的的涨跌幅、强弱对比与交易预案必须以 deep_data 源复核后再下结论。
+
+- 标的: 560710
+- 冲突类型: price_conflict / pct_gap
+- 冲突明细: 价格冲突: intraday=0.0, deep_data=1.068；涨跌幅偏差较大: intraday=+0.00% vs deep_data=-2.55%
+- 推荐信任源: deep_data.watchlist_realtime
+- 对后续分析置信度影响: 该 ETF 的实时价格口径存在明显冲突，盘前若引用其表现，置信度下调一级，并避免直接使用 intraday_alert 快照作为依据。；该 ETF 的涨跌幅口径存在偏差，盘前若引用其强弱判断，需以 deep_data 为主并保留数据冲突提示。
+
+总体说明
+- data_consistency_guard 总状态: error
+- 当前推荐信任源: deep_data.watchlist_realtime
+- 影响范围: 主要集中在自选池实时价格/涨跌幅口径，不影响 09_cross_asset.txt 的跨资产覆盖完整性，但会降低涉及冲突标的盘前细项判断的确定性。

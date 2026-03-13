@@ -1,0 +1,38 @@
+[
+  {
+    "date": "2026-03-12",
+    "signal_type": "geopolitical",
+    "direction": "risk_off",
+    "target": "全球",
+    "summary": "伊朗攻击波斯湾油轮+迪拜机场，IEA释放4亿桶SPR创纪录，WTI周涨13.7%逼近$93-100区间，霍尔木兹海峡封锁风险升级",
+    "confidence": 0.85,
+    "invalid_condition": "中东停火+WTI回落至$80以下"
+  },
+  {
+    "date": "2026-03-12",
+    "signal_type": "sector_rotation",
+    "direction": "long_energy_cycle_short_growth",
+    "target": "煤炭/电力/风电 vs 科创/AI",
+    "summary": "煤炭+59亿、电力+43亿、钢铁+42亿净流入；风电概念+160亿；科创50-1.24%继续失血。两会新能源政策+中东油价共振放大能源安全主线",
+    "confidence": 0.8,
+    "invalid_condition": "WTI回落至$80以下且科创50连续两日涨>1%"
+  },
+  {
+    "date": "2026-03-12",
+    "signal_type": "breadth_extreme",
+    "direction": "bearish_divergence",
+    "target": "A股",
+    "summary": "上证-0.10%但涨跌比0.38(冰点)，3892跌/1494涨。典型指数稳+个股杀，权重护盘掩盖结构弱势",
+    "confidence": 0.9,
+    "invalid_condition": "连续2日涨跌比恢复>1.0"
+  },
+  {
+    "date": "2026-03-12",
+    "signal_type": "policy",
+    "direction": "bullish_new_energy",
+    "target": "新能源/储能/电力",
+    "summary": "两会闭幕政策定调：适度宽松货币政策延续、新型电力系统+新型储能+绿电应用写入政府工作报告，十五五开局年聚焦新质生产力",
+    "confidence": 0.75,
+    "invalid_condition": "政策力度不及预期或资金在1周内转出新能源方向"
+  }
+]

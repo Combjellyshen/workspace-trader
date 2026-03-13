@@ -1,0 +1,704 @@
+{
+  "flow_delta": {
+    "analysis_time": "2026-03-13T08:03:30.729975",
+    "today": {
+      "industry_top5": [
+        {
+          "name": "建筑建材",
+          "category": "new_jzjc",
+          "net_inflow": 73.06,
+          "net_inflow_raw": 7306418799.3,
+          "inflow": 27256146790.84,
+          "outflow": 19949727991.54,
+          "avg_pct": "0.0109873"
+        },
+        {
+          "name": "农药化肥",
+          "category": "new_nyhf",
+          "net_inflow": 53.39,
+          "net_inflow_raw": 5339183050.85,
+          "inflow": 20677911943.79,
+          "outflow": 15338728892.94,
+          "avg_pct": "0.0132173"
+        },
+        {
+          "name": "化工行业",
+          "category": "new_hghy",
+          "net_inflow": 43.75,
+          "net_inflow_raw": 4375169262.04,
+          "inflow": 49694232319.85,
+          "outflow": 45319063057.81,
+          "avg_pct": "-0.00765466"
+        },
+        {
+          "name": "家电行业",
+          "category": "new_jdhy",
+          "net_inflow": 30.86,
+          "net_inflow_raw": 3085892868.87,
+          "inflow": 10595618807.54,
+          "outflow": 7509725938.67,
+          "avg_pct": "0.00208156"
+        },
+        {
+          "name": "机械行业",
+          "category": "new_jxhy",
+          "net_inflow": 23.43,
+          "net_inflow_raw": 2343385631.3,
+          "inflow": 53228225840.86,
+          "outflow": 50884840209.56,
+          "avg_pct": "-0.0114727"
+        }
+      ],
+      "industry_bottom5": [
+        {
+          "name": "生物制药",
+          "category": "new_swzz",
+          "net_inflow": -3.73,
+          "net_inflow_raw": -372957603.98,
+          "inflow": 13036065016.14,
+          "outflow": 13409022620.12,
+          "avg_pct": "-0.00353679"
+        },
+        {
+          "name": "服装鞋类",
+          "category": "new_fzxl",
+          "net_inflow": -2.69,
+          "net_inflow_raw": -268549982.77,
+          "inflow": 4762101042.9,
+          "outflow": 5030651025.67,
+          "avg_pct": "0.000734306"
+        },
+        {
+          "name": "供水供气",
+          "category": "new_gsgq",
+          "net_inflow": -2.37,
+          "net_inflow_raw": -236743042.67,
+          "inflow": 2468310042.75,
+          "outflow": 2705053085.42,
+          "avg_pct": "-0.00815023"
+        },
+        {
+          "name": "印刷包装",
+          "category": "new_ysbz",
+          "net_inflow": -1.35,
+          "net_inflow_raw": -134741470.81,
+          "inflow": 3579290188.22,
+          "outflow": 3714031659.03,
+          "avg_pct": "-0.0237331"
+        },
+        {
+          "name": "酒店旅游",
+          "category": "new_jdly",
+          "net_inflow": -1.15,
+          "net_inflow_raw": -114918655.99,
+          "inflow": 3193792604.45,
+          "outflow": 3308711260.44,
+          "avg_pct": "-0.00281699"
+        }
+      ],
+      "concept_top5": [
+        {
+          "name": "风电",
+          "category": "gn_fd",
+          "net_inflow": 85.86,
+          "net_inflow_raw": 8585901024.04,
+          "inflow": 117406966896.1,
+          "outflow": 108821065872.06,
+          "avg_pct": "-0.012899"
+        },
+        {
+          "name": "光伏概念",
+          "category": "gn_gfgn",
+          "net_inflow": 80.79,
+          "net_inflow_raw": 8079351867.51,
+          "inflow": 98436337749.97,
+          "outflow": 90356985882.46,
+          "avg_pct": "-0.0117619"
+        },
+        {
+          "name": "锂电池",
+          "category": "gn_ldc",
+          "net_inflow": 70.56,
+          "net_inflow_raw": 7055921707.12,
+          "inflow": 70206654177.98,
+          "outflow": 63150732470.86,
+          "avg_pct": "-0.00352865"
+        },
+        {
+          "name": "水利建设",
+          "category": "gn_sljs",
+          "net_inflow": 57.98,
+          "net_inflow_raw": 5797506003.72,
+          "inflow": 14335539928.75,
+          "outflow": 8538033925.03,
+          "avg_pct": "0.00721794"
+        },
+        {
+          "name": "保险重仓",
+          "category": "gn_bxzc",
+          "net_inflow": 57.66,
+          "net_inflow_raw": 5765680377.07,
+          "inflow": 59701429326.41,
+          "outflow": 53935748949.34,
+          "avg_pct": "0.000114532"
+        }
+      ],
+      "concept_bottom5": [
+        {
+          "name": "风能",
+          "category": "gn_fn",
+          "net_inflow": 11.04,
+          "net_inflow_raw": 1103784831.21,
+          "inflow": 41309947609.62,
+          "outflow": 40206162778.41,
+          "avg_pct": "-0.0110231"
+        },
+        {
+          "name": "草甘膦",
+          "category": "gn_cgl",
+          "net_inflow": 11.38,
+          "net_inflow_raw": 1138022522.73,
+          "inflow": 5194622066.51,
+          "outflow": 4056599543.78,
+          "avg_pct": "0.0000062627"
+        },
+        {
+          "name": "出口退税",
+          "category": "gn_ckts",
+          "net_inflow": 13.47,
+          "net_inflow_raw": 1346926432.9,
+          "inflow": 13712083446.64,
+          "outflow": 12365157013.74,
+          "avg_pct": "-0.0118005"
+        },
+        {
+          "name": "生态农业",
+          "category": "gn_stny",
+          "net_inflow": 15.55,
+          "net_inflow_raw": 1555085425.47,
+          "inflow": 7405459245.36,
+          "outflow": 5850373819.89,
+          "avg_pct": "0.00307889"
+        },
+        {
+          "name": "京津冀",
+          "category": "gn_jjj",
+          "net_inflow": 15.96,
+          "net_inflow_raw": 1595619287.61,
+          "inflow": 9821595861.69,
+          "outflow": 8225976574.08,
+          "avg_pct": "-0.00434317"
+        }
+      ]
+    },
+    "industry_delta": {
+      "biggest_increase": [
+        {
+          "name": "建筑建材",
+          "today": 73.06,
+          "prev": 11.14,
+          "delta": 61.92,
+          "signal": "🔥 加速流入"
+        },
+        {
+          "name": "农药化肥",
+          "today": 53.39,
+          "prev": 12.38,
+          "delta": 41.01,
+          "signal": "🔥 加速流入"
+        },
+        {
+          "name": "家电行业",
+          "today": 30.86,
+          "prev": 0.72,
+          "delta": 30.14,
+          "signal": "🔥 加速流入"
+        },
+        {
+          "name": "机械行业",
+          "today": 23.43,
+          "prev": 0,
+          "delta": 23.43,
+          "signal": "🔥 加速流入"
+        },
+        {
+          "name": "酿酒行业",
+          "today": 11.66,
+          "prev": 0,
+          "delta": 11.66,
+          "signal": "🔥 加速流入"
+        }
+      ],
+      "biggest_decrease": [
+        {
+          "name": "金融行业",
+          "today": -0.64,
+          "prev": 6.46,
+          "delta": -7.1,
+          "signal": "⚠️ 加速流出"
+        },
+        {
+          "name": "农林牧渔",
+          "today": -0.75,
+          "prev": 6.36,
+          "delta": -7.11,
+          "signal": "⚠️ 加速流出"
+        },
+        {
+          "name": "供水供气",
+          "today": -2.37,
+          "prev": 7.65,
+          "delta": -10.02,
+          "signal": "⚠️ 加速流出"
+        },
+        {
+          "name": "钢铁行业",
+          "today": 18.76,
+          "prev": 41.81,
+          "delta": -23.05,
+          "signal": "⚠️ 加速流出"
+        },
+        {
+          "name": "化纤行业",
+          "today": 6.37,
+          "prev": 38.94,
+          "delta": -32.57,
+          "signal": "⚠️ 加速流出"
+        }
+      ]
+    },
+    "concept_delta": {
+      "biggest_increase": [
+        {
+          "name": "锂电池",
+          "today": 70.56,
+          "prev": 0,
+          "delta": 70.56
+        },
+        {
+          "name": "水利建设",
+          "today": 57.98,
+          "prev": 0,
+          "delta": 57.98
+        },
+        {
+          "name": "保险重仓",
+          "today": 57.66,
+          "prev": 0,
+          "delta": 57.66
+        },
+        {
+          "name": "核电核能",
+          "today": 52.65,
+          "prev": 0,
+          "delta": 52.65
+        },
+        {
+          "name": "光伏概念",
+          "today": 80.79,
+          "prev": 42.47,
+          "delta": 38.32
+        }
+      ],
+      "biggest_decrease": [
+        {
+          "name": "光伏",
+          "today": 29.9,
+          "prev": 44.77,
+          "delta": -14.87
+        },
+        {
+          "name": "碳中和",
+          "today": 28.27,
+          "prev": 44.85,
+          "delta": -16.58
+        },
+        {
+          "name": "风能",
+          "today": 11.04,
+          "prev": 28.22,
+          "delta": -17.18
+        },
+        {
+          "name": "风电",
+          "today": 85.86,
+          "prev": 160.28,
+          "delta": -74.42
+        },
+        {
+          "name": "融资融券",
+          "today": 19.96,
+          "prev": 123.97,
+          "delta": -104.01
+        }
+      ]
+    },
+    "rotation": {
+      "new_in_top10": [
+        "房地产",
+        "酿酒行业",
+        "电子器件",
+        "机械行业",
+        "家电行业"
+      ],
+      "dropped_from_top10": [
+        "有色金属",
+        "供水供气",
+        "金融行业",
+        "电力行业",
+        "煤炭行业"
+      ]
+    }
+  },
+  "sentiment_delta": {
+    "analysis_time": "2026-03-13T08:03:31.913744",
+    "today_top10": [
+      {
+        "rank": 1,
+        "code": "001896",
+        "name": "豫能控股",
+        "hot_value": "3012803.0",
+        "concepts": [
+          "抽水蓄能",
+          "超超临界发电"
+        ],
+        "status": ""
+      },
+      {
+        "rank": 2,
+        "code": "600410",
+        "name": "华胜天成",
+        "hot_value": "2308459.0",
+        "concepts": [
+          "云计算",
+          "网络安全"
+        ],
+        "status": "持续上榜"
+      },
+      {
+        "rank": 3,
+        "code": "002195",
+        "name": "岩山科技",
+        "hot_value": "2177334.0",
+        "concepts": [
+          "AI语料",
+          "AIGC概念"
+        ],
+        "status": ""
+      },
+      {
+        "rank": 4,
+        "code": "601868",
+        "name": "中国能建",
+        "hot_value": "2131427.0",
+        "concepts": [
+          "虚拟电厂",
+          "生物质能发电"
+        ],
+        "status": "3天2板"
+      },
+      {
+        "rank": 5,
+        "code": "002202",
+        "name": "金风科技",
+        "hot_value": "1748165.0",
+        "concepts": [
+          "商业航天",
+          "海工装备"
+        ],
+        "status": ""
+      },
+      {
+        "rank": 6,
+        "code": "002015",
+        "name": "协鑫能科",
+        "hot_value": "1641962.0",
+        "concepts": [
+          "虚拟电厂",
+          "华为数字能源"
+        ],
+        "status": "6天3板"
+      },
+      {
+        "rank": 7,
+        "code": "002173",
+        "name": "创新医疗",
+        "hot_value": "1476060.0",
+        "concepts": [
+          "脑机接口",
+          "高压氧舱"
+        ],
+        "status": ""
+      },
+      {
+        "rank": 8,
+        "code": "002969",
+        "name": "嘉美包装",
+        "hot_value": "1417978.0",
+        "concepts": [
+          "啤酒概念",
+          "海峡两岸"
+        ],
+        "status": "首板涨停"
+      },
+      {
+        "rank": 9,
+        "code": "601669",
+        "name": "中国电建",
+        "hot_value": "1401879.0",
+        "concepts": [
+          "抽水蓄能",
+          "特高压"
+        ],
+        "status": "首板涨停"
+      },
+      {
+        "rank": 10,
+        "code": "002506",
+        "name": "协鑫集成",
+        "hot_value": "1376385.0",
+        "concepts": [
+          "HJT电池",
+          "钙钛矿电池"
+        ],
+        "status": ""
+      }
+    ],
+    "delta": {
+      "new_entries": [
+        {
+          "rank": 7,
+          "code": "002173",
+          "name": "创新医疗",
+          "hot_value": "1476060.0",
+          "concepts": [
+            "脑机接口",
+            "高压氧舱"
+          ],
+          "status": ""
+        },
+        {
+          "rank": 8,
+          "code": "002969",
+          "name": "嘉美包装",
+          "hot_value": "1417978.0",
+          "concepts": [
+            "啤酒概念",
+            "海峡两岸"
+          ],
+          "status": "首板涨停"
+        },
+        {
+          "rank": 17,
+          "code": "601611",
+          "name": "中国核建",
+          "hot_value": "908001.0",
+          "concepts": [
+            "可控核聚变",
+            "军工"
+          ],
+          "status": "首板涨停"
+        },
+        {
+          "rank": 18,
+          "code": "600227",
+          "name": "赤天化",
+          "hot_value": "897859.0",
+          "concepts": [
+            "化肥",
+            "煤化工概念"
+          ],
+          "status": "首板涨停"
+        },
+        {
+          "rank": 20,
+          "code": "600775",
+          "name": "南京熊猫",
+          "hot_value": "816731.0",
+          "concepts": [
+            "脑机接口",
+            "商业航天"
+          ],
+          "status": ""
+        },
+        {
+          "rank": 22,
+          "code": "002463",
+          "name": "沪电股份",
+          "hot_value": "801379.0",
+          "concepts": [
+            "PCB概念",
+            "5G"
+          ],
+          "status": ""
+        },
+        {
+          "rank": 24,
+          "code": "600726",
+          "name": "华电能源",
+          "hot_value": "777917.0",
+          "concepts": [
+            "超超临界发电",
+            "绿色电力"
+          ],
+          "status": "4天4板"
+        },
+        {
+          "rank": 26,
+          "code": "601016",
+          "name": "节能风电",
+          "hot_value": "776155.0",
+          "concepts": [
+            "绿色电力",
+            "风电"
+          ],
+          "status": "3天2板"
+        },
+        {
+          "rank": 27,
+          "code": "600879",
+          "name": "航天电子",
+          "hot_value": "746000.0",
+          "concepts": [
+            "军工信息化",
+            "太赫兹"
+          ],
+          "status": ""
+        },
+        {
+          "rank": 28,
+          "code": "002131",
+          "name": "利欧股份",
+          "hot_value": "742288.0",
+          "concepts": [
+            "小红书概念",
+            "快手概念"
+          ],
+          "status": ""
+        }
+      ],
+      "dropped": [
+        {
+          "name": "美利云",
+          "code": "000815",
+          "rank": 9
+        },
+        {
+          "name": "百川股份",
+          "code": "002455",
+          "rank": 11
+        },
+        {
+          "name": "东山精密",
+          "code": "002384",
+          "rank": 14
+        },
+        {
+          "name": "三安光电",
+          "code": "600703",
+          "rank": 17
+        },
+        {
+          "name": "南网能源",
+          "code": "003035",
+          "rank": 19
+        },
+        {
+          "name": "融发核电",
+          "code": "002366",
+          "rank": 20
+        },
+        {
+          "name": "中国西电",
+          "code": "601179",
+          "rank": 21
+        },
+        {
+          "name": "华银电力",
+          "code": "600744",
+          "rank": 24
+        },
+        {
+          "name": "晶科科技",
+          "code": "601778",
+          "rank": 25
+        },
+        {
+          "name": "光迅科技",
+          "code": "002281",
+          "rank": 26
+        }
+      ],
+      "new_count": 11,
+      "dropped_count": 11,
+      "turnover_rate": 36.7
+    },
+    "rank_movers": {
+      "risers": [
+        {
+          "name": "岩山科技",
+          "today_rank": 3,
+          "prev_rank": 28,
+          "change": 25
+        },
+        {
+          "name": "金牛化工",
+          "today_rank": 13,
+          "prev_rank": 27,
+          "change": 14
+        },
+        {
+          "name": "中国电建",
+          "today_rank": 9,
+          "prev_rank": 22,
+          "change": 13
+        },
+        {
+          "name": "协鑫能科",
+          "today_rank": 6,
+          "prev_rank": 18,
+          "change": 12
+        },
+        {
+          "name": "汉缆股份",
+          "today_rank": 12,
+          "prev_rank": 23,
+          "change": 11
+        }
+      ],
+      "fallers": [
+        {
+          "name": "华工科技",
+          "today_rank": 19,
+          "prev_rank": 7,
+          "change": -12
+        },
+        {
+          "name": "宁波建工",
+          "today_rank": 14,
+          "prev_rank": 5,
+          "change": -9
+        },
+        {
+          "name": "中国能建",
+          "today_rank": 4,
+          "prev_rank": 1,
+          "change": -3
+        },
+        {
+          "name": "航天发展",
+          "today_rank": 11,
+          "prev_rank": 8,
+          "change": -3
+        },
+        {
+          "name": "拓维信息",
+          "today_rank": 15,
+          "prev_rank": 12,
+          "change": -3
+        }
+      ]
+    },
+    "turnover_signal": "🔄 热点有一定轮动"
+  }
+}

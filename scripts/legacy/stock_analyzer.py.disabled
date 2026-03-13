@@ -1,0 +1,129 @@
+#!/usr/bin/env python3
+"""自选股深度分析 — 供 trader agent 调用"""
+import akshare as ak
+import json
+import sys
+from datetime import datetime, timedelta
+
+def analyze_stock(code: str):
+    """单只股票深度分析"""
+    result = {'code': code}
+
+    # 实时行情
+    try:
+        spot = ak.stock_zh_a_spot_em()
+        stock = spot[spot['代码'] == code]
+        if not stock.empty:
+            row = stock.iloc[0]
+            result['realtime'] = {
+                'name': row.get('名称', ''),
+                'price': row.get('最新价', 0),
+                'change_pct': row.get('涨跌幅', 0),
+                'change_amt': row.get('涨跌额', 0),
+                'volume': row.get('成交量', 0),
+                'turnover': row.get('成交额', 0),
+                'amplitude': row.get('振幅', 0),
+                'high': row.get('最高', 0),
+                'low': row.get('最低', 0),
+                'open': row.get('今开', 0),
+                'prev_close': row.get('昨收', 0),
+                'turnover_rate': row.get('换手率', 0),
+                'pe': row.get('市盈率-动态', 0),
+                'pb': row.get('市净率', 0),
+                'total_mv': row.get('总市值', 0),
+                'circ_mv': row.get('流通市值', 0),
+            }
+    except Exception as e:
+        result['realtime_error'] = str(e)
+
+    # 日K线（近60日）
+    try:
+        end_date = datetime.now().strftime('%Y%m%d')
+        start_date = (datetime.now() - timedelta(days=90)).strftime('%Y%m%d')
+        kline = ak.stock_zh_a_hist(symbol=code, period="daily",
+                                    start_date=start_date, end_date=end_date, adjust="qfq")
+        if not kline.empty:
+            recent = kline.tail(20)
+            result['kline_20d'] = recent.to_dict('records')
+
+            # 均线
+            closes = kline['收盘'].values
+            result['ma'] = {}
+            for period in [5, 10, 20, 60]:
+                if len(closes) >= period:
+                    result['ma'][f'MA{period}'] = round(float(closes[-period:].mean()), 2)
+
+            # 简单技术指标
+            if len(closes) >= 26:
+                ema12 = _ema(closes, 12)
+                ema26 = _ema(closes, 26)
+                dif = ema12 - ema26
+                dea = _ema_arr(dif, 9)
+                macd = 2 * (dif - dea)
+                result['macd'] = {
+                    'DIF': round(float(dif[-1]), 3),
+                    'DEA': round(float(dea[-1]), 3),
+                    'MACD': round(float(macd[-1]), 3),
+                }
+    except Exception as e:
+        result['kline_error'] = str(e)
+
+    # 资金流向
+    try:
+        fund = ak.stock_individual_fund_flow(stock=code, market="sh" if code.startswith('6') else "sz")
+        if not fund.empty:
+            recent_fund = fund.tail(5)
+            result['fund_flow_5d'] = recent_fund.to_dict('records')
+    except Exception as e:
+        result['fund_error'] = str(e)
+
+    return result
+
+
+def _ema(data, period):
+    """计算 EMA"""
+    import numpy as np
+    ema = np.zeros_like(data, dtype=float)
+    ema[0] = data[0]
+    k = 2.0 / (period + 1)
+    for i in range(1, len(data)):
+        ema[i] = data[i] * k + ema[i-1] * (1 - k)
+    return ema
+
+
+def _ema_arr(data, period):
+    import numpy as np
+    ema = np.zeros_like(data, dtype=float)
+    ema[0] = data[0]
+    k = 2.0 / (period + 1)
+    for i in range(1, len(data)):
+        ema[i] = data[i] * k + ema[i-1] * (1 - k)
+    return ema
+
+
+def analyze_watchlist(watchlist_path: str):
+    """批量分析自选股"""
+    with open(watchlist_path) as f:
+        wl = json.load(f)
+
+    results = []
+    for stock in wl.get('stocks', []):
+        code = stock if isinstance(stock, str) else stock.get('code', '')
+        if code:
+            print(f"分析 {code}...", file=sys.stderr)
+            results.append(analyze_stock(code))
+
+    return results
+
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1 and sys.argv[1] == '--watchlist':
+        path = sys.argv[2] if len(sys.argv) > 2 else '/home/bot/.openclaw/workspace-trader/watchlist.json'
+        data = analyze_watchlist(path)
+    elif len(sys.argv) > 1:
+        data = analyze_stock(sys.argv[1])
+    else:
+        print("Usage: stock_analyzer.py <CODE> | --watchlist [path]", file=sys.stderr)
+        sys.exit(1)
+
+    print(json.dumps(data, ensure_ascii=False, indent=2, default=str))

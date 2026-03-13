@@ -1,0 +1,18 @@
+{
+  "code": "002475",
+  "name": "立讯精密",
+  "type": "stock",
+  "sector": "待填写",
+  "added": "2026-03-10",
+  "status": "watching",
+  "thesis": {
+    "long_reason": "待研究",
+    "key_risk": "待研究",
+    "invalidation": "待研究",
+    "conviction": 30
+  },
+  "valuation_track": [],
+  "signal_history": [],
+  "report_refs": [],
+  "notes": ""
+}
