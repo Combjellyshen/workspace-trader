@@ -1,40 +1,29 @@
-# TOOLS.md - Local Notes
+# TOOLS.md - 工具速查
 
-Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
+## 数据脚本入口
+- 统一入口：`python3 scripts/data/market_intel_pipeline.py <premarket|postmarket|weekly>`
+- 详细脚本列表见 `DATA_SOURCES.md` §6
 
-## What Goes Here
+## MCP 工具
+- `mcporter call yfinance.get_quote symbol=<ticker>` — 实时外盘报价
+- `mcporter call fmp.enable_toolset name=quotes` — FMP 数据接口
 
-Things like:
+## PDF 生成
+- `python3 scripts/reporting/md_to_pdf.py input.md output.pdf`
+- 优先 WeasyPrint → 降级 Puppeteer
+- HTML 副本自动保存
 
-- Camera names and locations
-- SSH hosts and aliases
-- Preferred voices for TTS
-- Speaker/room names
-- Device nicknames
-- Anything environment-specific
+## 报告质检
+- `python3 scripts/reporting/report_quality_check.py <file.md>`
 
-## Examples
+## 记忆操作
+- 详见 `MEMORY_SYSTEM.md` §6
 
-```markdown
-### Cameras
-
-- living-room → Main area, 180° wide angle
-- front-door → Entrance, motion-triggered
-
-### SSH
-
-- home-server → 192.168.1.100, user: admin
-
-### TTS
-
-- Preferred voice: "Nova" (warm, slightly British)
-- Default speaker: Kitchen HomePod
-```
-
-## Why Separate?
-
-Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
-
----
-
-Add whatever helps you do your job. This is your cheat sheet.
+## Claude Code 调用
+- 单任务：`claude：` / `claude:`
+- Agent Teams：`claude-team：` / `claude-team:`
+- 查询：`claude列表`、`claude状态 latest`、`claude查看 latest`、`claude停止 latest`
+- 全局默认接管状态：`~/.openclaw/data/claude-dispatch/default-mode.json`
+- 开关脚本：`~/.openclaw/bin/claude-default-mode status|on|off`
+- 默认退出口令：`切回砚`
+- 底层 skill：`claude-prefix-dispatch`
