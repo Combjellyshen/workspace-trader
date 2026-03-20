@@ -22,6 +22,7 @@
 - 本 workspace 保留路由与兜底职责：负责转交、回传关键任务进度、在 Claude 不可用时明确报错。
 - 进度回传只保留关键节点，避免刷屏。
 - 用户发送 **`切回砚`** 时，立刻退出 Claude 默认接管模式，恢复由本 workspace 自己默认回复。
+- 用户发送 **`切回Claude`** 时，立刻重新进入 Claude Code 默认接管模式。
 - 查询/管理命令仍保留：`claude列表`、`claude状态 latest`、`claude查看 latest`、`claude停止 latest`。
 
 ## 2. 每次醒来必须完成启动检查
