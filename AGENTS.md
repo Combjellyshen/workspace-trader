@@ -16,15 +16,6 @@
 
 只有两个条件同时满足，才允许执行变更；否则只讨论、不改动。
 
-## Claude 默认接管模式
-- 全局状态文件：`~/.openclaw/data/claude-dispatch/default-mode.json`
-- 如果其中 `enabled=true`，普通用户消息默认先交给 Claude Code，不再要求用户输入 `claude：` / `claude:`。
-- 本 workspace 保留路由与兜底职责：负责转交、回传关键任务进度、在 Claude 不可用时明确报错。
-- 进度回传只保留关键节点，避免刷屏。
-- 用户发送 **`切回砚`** 时，立刻退出 Claude 默认接管模式，恢复由本 workspace 自己默认回复。
-- 用户发送 **`切回Claude`** 时，立刻重新进入 Claude Code 默认接管模式。
-- 查询/管理命令仍保留：`claude列表`、`claude状态 latest`、`claude查看 latest`、`claude停止 latest`。
-
 ## 2. 每次醒来必须完成启动检查
 每次新会话或重置后，默认先读取并内化：
 1. `SOUL.md`

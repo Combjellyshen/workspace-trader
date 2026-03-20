@@ -23,8 +23,4 @@
 - 单任务：`claude：` / `claude:`
 - Agent Teams：`claude-team：` / `claude-team:`
 - 查询：`claude列表`、`claude状态 latest`、`claude查看 latest`、`claude停止 latest`
-- 全局默认接管状态：`~/.openclaw/data/claude-dispatch/default-mode.json`
-- 开关脚本：`~/.openclaw/bin/claude-default-mode status|on|off`
-- 默认退出口令：`切回砚`
-- 默认重新进入口令：`切回Claude`
 - 底层 skill：`claude-prefix-dispatch`
