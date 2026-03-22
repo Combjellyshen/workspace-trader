@@ -17,16 +17,12 @@ FEEDS = {
     "财联社快讯": "https://rsshub.rssforever.com/cls/telegraph",
     "华尔街见闻-全球": "https://rsshub.rssforever.com/wallstreetcn/news/global",
     "华尔街见闻-A股": "https://rsshub.rssforever.com/wallstreetcn/news/shares",
-
-    # === 国内（备用 RSSHub 实例） ===
-    "财联社-备用": "https://rsshub.app/cls/telegraph",
-    "新浪财经": "https://rsshub.rssforever.com/sina/news/rollnews/finance",
-    "证券时报": "https://rsshub.rssforever.com/stcn/news",
     "第一财经": "https://rsshub.rssforever.com/yicai/news",
 
-    # === 监管/政策（重要！） ===
-    "证监会新闻": "https://rsshub.rssforever.com/csrc/news",
-    "上交所公告": "https://rsshub.rssforever.com/sse/news",
+    # === 国内（替代中文源 via RSSHub） ===
+    "东方财富-要闻": "https://rsshub.rssforever.com/eastmoney/report/important",
+    "金十数据": "https://rsshub.rssforever.com/jin10/flash",
+    "格隆汇": "https://rsshub.rssforever.com/gelonghui/live",
 
     # === 国际（直连） ===
     "CNBC": "https://www.cnbc.com/id/100003114/device/rss/rss.html",
@@ -35,21 +31,40 @@ FEEDS = {
     "CoinDesk": "https://www.coindesk.com/arc/outboundfeeds/rss/",
     "FT-Markets": "https://www.ft.com/markets?format=rss",
     "Yahoo-Finance": "https://finance.yahoo.com/news/rssindex",
-    "Reuters-Business": "https://feeds.reuters.com/reuters/businessNews",
     "Bloomberg-Markets": "https://feeds.bloomberg.com/markets/news.rss",
+
+    # === 日本/亚太 ===
+    "Nikkei-Asia": "https://asia.nikkei.com/rss/feed.rss",
+    "SCMP-Economy": "https://www.scmp.com/rss/5/feed",
+
+    # === 欧洲/宏观 ===
+    "ECB-Press": "https://www.ecb.europa.eu/rss/press.html",
+    "BBC-Business": "https://feeds.bbci.co.uk/news/business/rss.xml",
+
+    # === 逆向/宏观研究 ===
+    "Mises-Wire": "https://mises.org/wire.xml",
+    "Naked-Capitalism": "https://www.nakedcapitalism.com/feed",
+
+    # === 加密/DeFi ===
+    "TheBlock": "https://www.theblock.co/rss.xml",
 
     # === 大宗/能源 ===
     "OilPrice": "https://oilprice.com/rss/main",
     "Investing-Commodities": "https://www.investing.com/rss/news_14.rss",
+    "WorldOilNews": "https://www.worldoil.com/rss/breaking-news",
 }
 
 # 按类别分组
-DOMESTIC_SOURCES = ["财联社快讯", "财联社-备用", "华尔街见闻-全球", "华尔街见闻-A股",
-                    "新浪财经", "证券时报", "第一财经", "证监会新闻", "上交所公告"]
+DOMESTIC_SOURCES = ["财联社快讯", "华尔街见闻-全球", "华尔街见闻-A股",
+                    "第一财经", "东方财富-要闻", "金十数据", "格隆汇"]
 INTERNATIONAL_SOURCES = ["CNBC", "MarketWatch", "ZeroHedge", "FT-Markets", "Yahoo-Finance",
-                          "Reuters-Business", "Bloomberg-Markets"]
-COMMODITY_SOURCES = ["OilPrice", "CoinDesk", "Investing-Commodities"]
-POLICY_SOURCES = ["证监会新闻", "上交所公告"]
+                          "Bloomberg-Markets"]
+ASIAN_SOURCES = ["Nikkei-Asia", "SCMP-Economy"]
+EUROPEAN_SOURCES = ["ECB-Press", "BBC-Business"]
+MACRO_RESEARCH_SOURCES = ["Mises-Wire", "Naked-Capitalism"]
+COMMODITY_SOURCES = ["OilPrice", "Investing-Commodities", "WorldOilNews"]
+CRYPTO_SOURCES = ["CoinDesk", "TheBlock"]
+POLICY_SOURCES = []  # removed broken regulatory feeds; re-add when working sources found
 
 
 def fetch_feed(name, url, timeout=12):
@@ -124,7 +139,8 @@ def collect_domestic():
     return collect(sources=DOMESTIC_SOURCES)
 
 def collect_international():
-    return collect(sources=INTERNATIONAL_SOURCES + COMMODITY_SOURCES)
+    return collect(sources=INTERNATIONAL_SOURCES + ASIAN_SOURCES + EUROPEAN_SOURCES
+                   + MACRO_RESEARCH_SOURCES + COMMODITY_SOURCES + CRYPTO_SOURCES)
 
 def collect_all():
     return collect()
@@ -134,9 +150,11 @@ def collect_all():
 def categorize_news(items):
     """将新闻按主题分类"""
     categories = {
-        "央行/货币政策": [],
+        "宏观/央行": [],
         "A股/板块": [],
         "美股/全球": [],
+        "日本/亚太": [],
+        "欧洲/英国": [],
         "大宗商品/能源": [],
         "地缘政治": [],
         "科技/AI": [],
@@ -145,9 +163,13 @@ def categorize_news(items):
     }
 
     keywords_map = {
-        "央行/货币政策": ["央行", "降准", "降息", "MLF", "LPR", "货币", "利率", "Fed", "Powell", "FOMC", "interest rate"],
+        "宏观/央行": ["央行", "降准", "降息", "MLF", "LPR", "货币", "利率", "Fed", "Powell", "FOMC",
+                    "interest rate", "ECB", "BOJ", "央行行长", "货币政策", "QE", "QT", "taper",
+                    "inflation", "通胀", "CPI", "PPI", "GDP", "PMI", "就业", "unemployment"],
         "A股/板块": ["A股", "沪指", "深指", "创业板", "涨停", "板块", "北向", "资金流", "两市", "上证"],
         "美股/全球": ["美股", "纳斯达克", "标普", "道指", "S&P", "Nasdaq", "Wall Street", "stock"],
+        "日本/亚太": ["日本", "Japan", "Nikkei", "日経", "Asia", "亚太", "东盟", "ASEAN", "印度", "India"],
+        "欧洲/英国": ["ECB", "欧洲", "Europe", "英国", "UK", "Brexit", "欧央行", "德国", "Germany", "法国"],
         "大宗商品/能源": ["原油", "黄金", "白银", "铜", "oil", "gold", "crude", "commodity", "OPEC"],
         "地缘政治": ["伊朗", "以色列", "俄", "乌克兰", "关税", "制裁", "tariff", "Iran", "Israel", "war"],
         "科技/AI": ["AI", "芯片", "算力", "半导体", "NVIDIA", "OpenAI", "GPU", "chip", "semiconductor"],

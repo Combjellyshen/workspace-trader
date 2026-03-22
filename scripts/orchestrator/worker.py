@@ -29,16 +29,18 @@ from scripts.orchestrator.claude_runner import (
 WORKSPACE = Path(__file__).resolve().parents[2]
 
 # Budget limits per stage (USD) — prevent runaway costs
+# discuss is now 6 Claude calls: 4 roles × $1.0 + challenge $1.0 + editor $1.5
 STAGE_BUDGETS = {
-    "discuss": 3.0,
+    "discuss": 6.5,  # 4×1.0 + 1.0 + 1.5 (managed per-call inside _discuss)
     "write": 5.0,
     "review": 2.0,
     "revise": 4.0,
 }
 
 # Timeout per stage (seconds)
+# discuss: 6 calls × 180s each = 1080s max, but most finish faster
 STAGE_TIMEOUTS = {
-    "discuss": 300,
+    "discuss": 1200,
     "write": 600,
     "review": 180,
     "revise": 480,
@@ -282,10 +284,18 @@ def _normalize(task_type: str, date: str, checkpoints: dict) -> StepResult:
 
 
 def _discuss(task_type: str, date: str, checkpoints: dict) -> StepResult:
-    """Multi-POV discussion via Claude Code.
+    """Multi-round agent team debate via Claude Code.
 
-    Daily tasks: 5-role debate (bull/bear/quant/risk/editor).
-    Weekly: 7-module research → cross-challenge → editor ruling.
+    Architecture (3 rounds, each a separate Claude call):
+      Round 1: 4 independent roles analyze the data (bull/bear/quant/risk)
+               Each role gets the same data but a different system prompt.
+               They cannot see each other's output → genuine independence.
+      Round 2: Cross-challenge — one Claude sees all 4 outputs and finds
+               contradictions, blind spots, and logic holes.
+      Round 3: Editor ruling — one Claude sees everything and makes the
+               final call with overturn conditions.
+
+    On 2-core 4GB server: all rounds run serially (no parallel Claude calls).
     """
     out = _output_dir(task_type, date)
     output_path = out / "discussion.json"
@@ -294,66 +304,135 @@ def _discuss(task_type: str, date: str, checkpoints: dict) -> StepResult:
     normalized = _load_normalized(checkpoints)
     if normalized is None:
         return StepResult(
-            step_name="discuss",
-            status="error",
+            step_name="discuss", status="error",
             error="Normalized data not available — run normalize stage first",
             timestamp=_now_iso(),
         )
 
-    # Build data context from artifacts
     data_context = build_data_context(normalized.get("artifacts", {}), date)
     memory_context = build_memory_context(date)
-
-    # Select prompt template
-    template_name = "discuss_weekly" if task_type == "weekly" else "discuss_daily"
-    try:
-        system_prompt = load_prompt_template(template_name)
-    except FileNotFoundError as e:
-        return StepResult(
-            step_name="discuss", status="error",
-            error=str(e), timestamp=_now_iso(),
-        )
-
     watchlist_context = build_watchlist_context()
 
-    prompt = (
+    base_prompt = (
         f"任务类型: {task_type}\n日期: {date}\n\n"
         f"{watchlist_context}\n\n"
         f"{memory_context}\n\n"
         f"{data_context}\n\n"
-        f"请基于以上数据，按照系统提示中的角色设定和输出格式完成多角色讨论。"
     )
 
-    result = run_claude(
-        prompt,
-        system_prompt=system_prompt,
-        timeout_seconds=STAGE_TIMEOUTS["discuss"],
-        max_budget_usd=STAGE_BUDGETS["discuss"],
-        allowed_tools=[],  # pure text generation — no tools needed
-    )
+    prompts_dir = Path(__file__).resolve().parent / "prompts" / "roles"
 
-    if not result.success:
-        return StepResult(
-            step_name="discuss", status="error",
-            error=f"Claude Code failed: {result.error}",
-            timestamp=_now_iso(),
+    # ── Round 1: Independent role analysis ──────────────────────────
+    round1_roles = ["bull", "bear", "quant", "risk"]
+    round1_results = {}
+    round1_budget = 1.0  # per role
+
+    for role in round1_roles:
+        role_prompt_path = prompts_dir / f"{role}.md"
+        if not role_prompt_path.exists():
+            round1_results[role] = {"error": f"Prompt not found: {role}.md"}
+            continue
+
+        system_prompt = role_prompt_path.read_text(encoding="utf-8")
+        prompt = base_prompt + f"请按照你的角色设定分析以上数据，输出纯 JSON。"
+
+        print(f"  [discuss] Round 1 — {role}...")
+        result = run_claude(
+            prompt,
+            system_prompt=system_prompt,
+            timeout_seconds=180,
+            max_budget_usd=round1_budget,
+            allowed_tools=[],
         )
 
-    # Try to parse as JSON; if that fails, wrap the raw text
-    try:
-        discussion = json.loads(result.output)
-    except json.JSONDecodeError:
-        discussion = {
-            "task_type": task_type,
-            "date": date,
-            "roles": _discussion_roles(task_type),
-            "raw_output": result.output,
-            "parse_error": "Claude output was not valid JSON — raw text preserved",
-            "generated_at": _now_iso(),
-        }
+        if result.success:
+            try:
+                round1_results[role] = json.loads(result.output)
+            except json.JSONDecodeError:
+                round1_results[role] = {"raw_output": result.output[:5000]}
+        else:
+            round1_results[role] = {"error": result.error[:500]}
+            print(f"  [discuss] Round 1 — {role} FAILED: {result.error[:200]}", file=sys.stderr)
+
+    # ── Round 2: Cross-challenge ────────────────────────────────────
+    print(f"  [discuss] Round 2 — cross-challenge...")
+    challenge_prompt_path = prompts_dir / "cross_challenge.md"
+    if challenge_prompt_path.exists():
+        challenge_system = challenge_prompt_path.read_text(encoding="utf-8")
+    else:
+        challenge_system = "你是交叉质疑主持人。找出 4 个角色分析中的矛盾和盲点。输出 JSON。"
+
+    round1_text = json.dumps(round1_results, indent=2, ensure_ascii=False)
+    challenge_prompt = (
+        f"以下是 4 个独立角色对 {date} 市场数据的分析：\n\n"
+        f"```json\n{round1_text}\n```\n\n"
+        f"请找出他们之间的矛盾、盲点和逻辑漏洞。输出纯 JSON。"
+    )
+
+    challenge_result = run_claude(
+        challenge_prompt,
+        system_prompt=challenge_system,
+        timeout_seconds=180,
+        max_budget_usd=1.0,
+        allowed_tools=[],
+    )
+
+    if challenge_result.success:
+        try:
+            round2_output = json.loads(challenge_result.output)
+        except json.JSONDecodeError:
+            round2_output = {"raw_output": challenge_result.output[:5000]}
+    else:
+        round2_output = {"error": challenge_result.error[:500]}
+
+    # ── Round 3: Editor ruling ──────────────────────────────────────
+    print(f"  [discuss] Round 3 — editor ruling...")
+    editor_prompt_path = prompts_dir / "editor.md"
+    if editor_prompt_path.exists():
+        editor_system = editor_prompt_path.read_text(encoding="utf-8")
+    else:
+        editor_system = "你是主编。综合所有角色分析和质疑，做最终裁决。输出 JSON。"
+
+    round2_text = json.dumps(round2_output, indent=2, ensure_ascii=False)
+    editor_prompt = (
+        f"## 4 个角色的独立分析\n\n```json\n{round1_text}\n```\n\n"
+        f"## 交叉质疑报告\n\n```json\n{round2_text}\n```\n\n"
+        f"请综合以上所有信息，做出最终裁决。输出纯 JSON。"
+    )
+
+    editor_result = run_claude(
+        editor_prompt,
+        system_prompt=editor_system,
+        timeout_seconds=180,
+        max_budget_usd=1.5,
+        allowed_tools=[],
+    )
+
+    if editor_result.success:
+        try:
+            round3_output = json.loads(editor_result.output)
+        except json.JSONDecodeError:
+            round3_output = {"raw_output": editor_result.output[:5000]}
+    else:
+        round3_output = {"error": editor_result.error[:500]}
+
+    # ── Assemble final discussion document ──────────────────────────
+    discussion = {
+        "task_type": task_type,
+        "date": date,
+        "architecture": "3-round agent team debate",
+        "round_1_independent": round1_results,
+        "round_2_cross_challenge": round2_output,
+        "round_3_editor_ruling": round3_output,
+        "generated_at": _now_iso(),
+    }
 
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(discussion, f, indent=2, ensure_ascii=False)
+
+    # Count successes
+    r1_ok = sum(1 for r in round1_results.values() if "error" not in r)
+    print(f"  [discuss] Done: R1={r1_ok}/4 roles, R2={'ok' if 'error' not in round2_output else 'fail'}, R3={'ok' if 'error' not in round3_output else 'fail'}")
 
     return StepResult(
         step_name="discuss",

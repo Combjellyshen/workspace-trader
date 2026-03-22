@@ -27,7 +27,12 @@ MANIFESTS_DIR = Path(__file__).resolve().parent / "manifests"
 SH_TZ = ZoneInfo("Asia/Shanghai")
 
 # How old an existing artifact can be before we re-fetch (hours)
-REUSE_MAX_AGE_H = 12
+# Dynamic per task type: weekly tasks get a longer window so weekend runs
+# can reuse Friday's data; daily tasks use a tighter window.
+REUSE_MAX_AGE_H_BY_TYPE: dict[str, int] = {
+    "weekly": 72,   # 3 days — covers weekends
+}
+REUSE_MAX_AGE_H_DEFAULT = 12
 # Non-required scripts get a shorter timeout to fail fast
 NON_REQUIRED_TIMEOUT_CAP = 45
 
@@ -69,13 +74,17 @@ def load_manifest(task_type: str) -> dict:
         return json.load(f)
 
 
-def _find_recent_artifact(name: str, output_dir: Path, date: str) -> Path | None:
+def _find_recent_artifact(name: str, output_dir: Path, date: str,
+                          task_type: str = "daily") -> Path | None:
     """Look for a recent artifact file that can be reused.
 
     Search order:
       1. Same output_dir (exact match from earlier run today)
       2. daily_inputs/{date}/ (reuse from daily precollect)
       3. daily_inputs from the last 7 days (reuse from any recent day)
+
+    The staleness window is task-type-aware: weekly tasks tolerate older
+    artifacts (72 h) so that weekend runs can reuse Friday's data.
 
     Returns the path if found and fresh enough, else None.
     """
@@ -105,7 +114,8 @@ def _find_recent_artifact(name: str, output_dir: Path, date: str) -> Path | None
                 break
 
     # Pick the newest candidate that's within the reuse window
-    cutoff = time.time() - REUSE_MAX_AGE_H * 3600
+    max_age_h = REUSE_MAX_AGE_H_BY_TYPE.get(task_type, REUSE_MAX_AGE_H_DEFAULT)
+    cutoff = time.time() - max_age_h * 3600
     for c in candidates:
         try:
             if os.path.getmtime(str(c)) >= cutoff:
@@ -151,7 +161,7 @@ def run_collection(task_type: str, date: str) -> dict:
         artifact_path = output_dir / f"{name}.txt"
 
         # --- Try to reuse existing artifact ---
-        cached = _find_recent_artifact(name, output_dir, date)
+        cached = _find_recent_artifact(name, output_dir, date, task_type=task_type)
         if cached is not None:
             try:
                 content = cached.read_text(encoding="utf-8")

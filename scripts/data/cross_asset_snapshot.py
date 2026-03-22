@@ -56,11 +56,11 @@ LAST_YAHOO_DIRECT_TS = 0.0
 
 ASSET_MAP = {
     "global_indexes": [
-        {"name": "标普500", "symbol": "^GSPC", "source": "fmp_index", "unit": "points", "yahoo_symbol": "^GSPC"},
-        {"name": "纳斯达克", "symbol": "^IXIC", "source": "fmp_index", "unit": "points", "yahoo_symbol": "^IXIC"},
-        {"name": "道琼斯", "symbol": "^DJI", "source": "fmp_index", "unit": "points", "yahoo_symbol": "^DJI"},
-        {"name": "恒生指数", "symbol": "^HSI", "source": "fmp_index", "unit": "points", "yahoo_symbol": "^HSI"},
-        {"name": "日经225", "symbol": "^N225", "source": "fmp_index", "unit": "points", "yahoo_symbol": "^N225"},
+        {"name": "标普500", "symbol": "^GSPC", "source": "fmp_index", "unit": "points", "yahoo_symbol": "^GSPC", "stooq_symbol": "^spx"},
+        {"name": "纳斯达克", "symbol": "^IXIC", "source": "fmp_index", "unit": "points", "yahoo_symbol": "^IXIC", "stooq_symbol": "^ndq"},
+        {"name": "道琼斯", "symbol": "^DJI", "source": "fmp_index", "unit": "points", "yahoo_symbol": "^DJI", "stooq_symbol": "^dji"},
+        {"name": "恒生指数", "symbol": "^HSI", "source": "fmp_index", "unit": "points", "yahoo_symbol": "^HSI", "stooq_symbol": "^hsi"},
+        {"name": "日经225", "symbol": "^N225", "source": "fmp_index", "unit": "points", "yahoo_symbol": "^N225", "stooq_symbol": "^nkx"},
         {"name": "德国DAX", "symbol": "^GDAXI", "source": "investing_html", "unit": "points", "investing_url": "https://www.investing.com/indices/germany-30-historical-data"},
     ],
     "commodities": [
@@ -643,32 +643,78 @@ def fetch_yahoo_direct_series(symbol: str, fallback_symbol: Optional[str] = None
     }
 
 
-def fetch_fred_series(series_id: str) -> Dict[str, Any]:
-    end_date = datetime.now(timezone.utc).date()
-    start_date = end_date - timedelta(days=90)
-    url = (
-        "https://fred.stlouisfed.org/graph/fredgraph.csv"
-        f"?id={quote(series_id, safe='')}&cosd={start_date.isoformat()}&coed={end_date.isoformat()}"
-    )
+FRED_TIMEOUT = 10  # seconds — if FRED is slow, fall back to Treasury.gov
+
+# Mapping from FRED series IDs to Treasury.gov CSV column headers
+_TREASURY_COL_MAP: Dict[str, str] = {
+    "DGS2": "2 Yr",
+    "DGS10": "10 Yr",
+    "DGS30": "30 Yr",
+}
+
+TREASURY_GOV_CSV_URL = (
+    "https://home.treasury.gov/resource-center/data-chart-center/"
+    "interest-rates/daily-treasury-rates.csv/all/{year}"
+    "?type=daily_treasury_yield_curve&field_tdr_date_value={year}"
+    "&page&_format=csv"
+)
+
+
+def _fetch_treasury_gov_fallback(series_id: str) -> Dict[str, Any]:
+    """Fetch yield data directly from Treasury.gov CSV as a FRED fallback."""
+    col_name = _TREASURY_COL_MAP.get(series_id)
+    if col_name is None:
+        return {
+            "ok": False,
+            "symbol": series_id,
+            "source": "Treasury.gov CSV",
+            "error": f"No Treasury.gov column mapping for {series_id}",
+        }
+
+    year = datetime.now(timezone.utc).year
+    url = TREASURY_GOV_CSV_URL.format(year=year)
     response = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
     response.raise_for_status()
 
     reader = csv.DictReader(io.StringIO(response.text))
     points: List[Tuple[str, float]] = []
     for row in reader:
-        raw = row.get(series_id)
-        if raw in (None, "", "."):
+        raw = row.get(col_name)
+        if raw in (None, "", "N/A"):
             continue
+        # Treasury.gov dates are MM/DD/YYYY — normalise to YYYY-MM-DD
+        raw_date = row.get("Date", "")
         try:
-            points.append((row["observation_date"], float(raw)))
+            parsed_date = datetime.strptime(raw_date, "%m/%d/%Y").strftime("%Y-%m-%d")
+        except Exception:
+            parsed_date = raw_date
+        try:
+            points.append((parsed_date, float(raw)))
         except Exception:
             continue
+
+    # Sort chronologically (Treasury.gov may list newest first)
+    points.sort(key=lambda p: p[0])
 
     if len(points) < 2:
         return {
             "ok": False,
             "symbol": series_id,
-            "source": "FRED CSV",
+            "source": "Treasury.gov CSV",
+            "error": "有效数据点不足",
+        }
+
+    return _build_fred_result(series_id, points, source="Treasury.gov CSV")
+
+
+def _build_fred_result(series_id: str, points: List[Tuple[str, float]],
+                       source: str = "FRED CSV") -> Dict[str, Any]:
+    """Shared result builder for FRED-style yield data."""
+    if len(points) < 2:
+        return {
+            "ok": False,
+            "symbol": series_id,
+            "source": source,
             "error": "有效数据点不足",
         }
 
@@ -683,7 +729,7 @@ def fetch_fred_series(series_id: str) -> Dict[str, Any]:
     return {
         "ok": True,
         "symbol": series_id,
-        "source": "FRED CSV",
+        "source": source,
         "latest_value": _round(latest_value, 4),
         "previous_value": _round(prev_value, 4),
         "weekly_reference_value": _round(weekly_ref_value, 4),
@@ -697,6 +743,41 @@ def fetch_fred_series(series_id: str) -> Dict[str, Any]:
             {"date": dt, "value": _round(value, 4)} for dt, value in points[-5:]
         ],
     }
+
+
+def fetch_fred_series(series_id: str) -> Dict[str, Any]:
+    end_date = datetime.now(timezone.utc).date()
+    start_date = end_date - timedelta(days=90)
+    url = (
+        "https://fred.stlouisfed.org/graph/fredgraph.csv"
+        f"?id={quote(series_id, safe='')}&cosd={start_date.isoformat()}&coed={end_date.isoformat()}"
+    )
+
+    # Try FRED first with a tight timeout; fall back to Treasury.gov on failure
+    try:
+        response = requests.get(url, headers=HEADERS, timeout=FRED_TIMEOUT)
+        response.raise_for_status()
+    except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as exc:
+        print(f"  [cross_asset] FRED timeout/connection error for {series_id}: {exc}  — trying Treasury.gov fallback")
+        return _fetch_treasury_gov_fallback(series_id)
+
+    reader = csv.DictReader(io.StringIO(response.text))
+    points: List[Tuple[str, float]] = []
+    for row in reader:
+        raw = row.get(series_id)
+        if raw in (None, "", "."):
+            continue
+        try:
+            points.append((row["observation_date"], float(raw)))
+        except Exception:
+            continue
+
+    if len(points) < 2:
+        # FRED returned data but too few points — try Treasury.gov
+        print(f"  [cross_asset] FRED returned < 2 points for {series_id} — trying Treasury.gov fallback")
+        return _fetch_treasury_gov_fallback(series_id)
+
+    return _build_fred_result(series_id, points, source="FRED CSV")
 
 
 def _collect_yahoo_symbols() -> List[str]:
