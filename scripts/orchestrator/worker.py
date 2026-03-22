@@ -329,7 +329,7 @@ def _discuss(task_type: str, date: str, checkpoints: dict) -> StepResult:
         system_prompt=system_prompt,
         timeout_seconds=STAGE_TIMEOUTS["discuss"],
         max_budget_usd=STAGE_BUDGETS["discuss"],
-        allowed_tools=["Read"],
+        allowed_tools=[],  # pure text generation — no tools needed
     )
 
     if not result.success:
@@ -445,8 +445,7 @@ def _write(task_type: str, date: str, checkpoints: dict) -> StepResult:
         system_prompt=system_prompt,
         timeout_seconds=STAGE_TIMEOUTS["write"],
         max_budget_usd=STAGE_BUDGETS["write"],
-        add_dirs=[str(WORKSPACE / "data"), str(WORKSPACE / "memory")],
-        allowed_tools=["Read"],
+        allowed_tools=[],  # all data passed via prompt — no tools needed
     )
 
     if not result.success:
@@ -609,8 +608,7 @@ def _revise(task_type: str, date: str, checkpoints: dict) -> StepResult:
         system_prompt=system_prompt,
         timeout_seconds=STAGE_TIMEOUTS["revise"],
         max_budget_usd=STAGE_BUDGETS["revise"],
-        allowed_tools=["Read"],
-        add_dirs=[str(WORKSPACE / "data"), str(WORKSPACE / "memory")],
+        allowed_tools=[],  # draft + review feedback in prompt — no tools needed
     )
 
     if not result.success:

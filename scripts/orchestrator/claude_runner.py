@@ -71,6 +71,7 @@ def run_claude(
     cmd = [
         CLAUDE_BIN,
         "-p",
+        "--bare",  # skip hooks, LSP, plugin sync — saves ~100MB + 2-3s startup
         "--dangerously-skip-permissions",
         f"--max-budget-usd={max_budget_usd}",
         f"--output-format={output_format}",
@@ -86,8 +87,12 @@ def run_claude(
         for d in add_dirs:
             cmd.extend(["--add-dir", d])
 
-    if allowed_tools:
-        cmd.extend(["--allowedTools", ",".join(allowed_tools)])
+    if allowed_tools is not None:
+        if len(allowed_tools) == 0:
+            # Empty list = disable all tools (pure text generation, lowest memory)
+            cmd.extend(["--tools", ""])
+        else:
+            cmd.extend(["--allowedTools", ",".join(allowed_tools)])
 
     # Pass prompt via stdin to avoid shell argument length limits.
     # Claude Code reads from stdin when no positional prompt is given.

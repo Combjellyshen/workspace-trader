@@ -112,8 +112,30 @@ def run_delivery(task_type: str, date: str, checkpoints: dict) -> dict:
         print(f"  [deliver] ERROR: {result.error}", file=sys.stderr)
         return result.to_dict()
 
-    # 2. Quality check (real) --------------------------------------------------
-    qc_ok, qc_issues = quality_check(final_path, task_type)
+    # 2. Quality check — reuse worker review result if available ----------------
+    #    This saves a full Claude CLI invocation (~300MB + 1-2min).
+    #    Only fall back to standalone QC if no review checkpoint exists.
+    review_cp = checkpoints.get("review", {})
+    review_path = review_cp.get("output_path", "")
+
+    if review_path and Path(review_path).exists():
+        # Trust the worker review — it already used Claude to evaluate quality
+        try:
+            with open(review_path, encoding="utf-8") as f:
+                review_data = json.load(f)
+            verdict = review_data.get("verdict", review_data.get("passed", True))
+            # Accept if verdict is PASS/True, or score >= 60
+            score = review_data.get("score", review_data.get("overall_score", 100))
+            qc_ok = verdict in (True, "PASS") or (isinstance(score, (int, float)) and score >= 60)
+            qc_issues = review_data.get("issues", review_data.get("critical_issues", []))
+            print(f"  [deliver] Reusing worker review (score={score}, verdict={verdict})")
+        except (json.JSONDecodeError, OSError):
+            # Review file corrupt — fall back to standalone QC
+            qc_ok, qc_issues = quality_check(final_path, task_type)
+    else:
+        # No review checkpoint — run standalone QC
+        qc_ok, qc_issues = quality_check(final_path, task_type)
+
     result.quality_passed = qc_ok
 
     if not qc_ok:

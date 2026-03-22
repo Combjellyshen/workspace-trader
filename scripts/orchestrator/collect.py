@@ -8,6 +8,7 @@ subprocess and writes a result manifest alongside the output.
 """
 
 import json
+import resource
 import subprocess
 import sys
 import time
@@ -16,6 +17,19 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
+
+# Memory limit per collect subprocess (bytes).
+# Prevents a single data script from consuming all available RAM.
+_COLLECT_MEM_LIMIT_MB = 512
+_COLLECT_MEM_LIMIT = _COLLECT_MEM_LIMIT_MB * 1024 * 1024
+
+
+def _limit_memory():
+    """Set soft virtual memory limit for child processes."""
+    try:
+        resource.setrlimit(resource.RLIMIT_AS, (_COLLECT_MEM_LIMIT, -1))
+    except (ValueError, OSError):
+        pass  # best-effort — some systems don't support RLIMIT_AS
 
 WORKSPACE = Path(__file__).resolve().parents[2]
 MANIFESTS_DIR = Path(__file__).resolve().parent / "manifests"
@@ -99,6 +113,7 @@ def run_collection(task_type: str, date: str) -> dict:
                 capture_output=True,
                 text=True,
                 timeout=timeout_s,
+                preexec_fn=_limit_memory,
             )
             sr.duration_s = round(time.monotonic() - t0, 2)
 
