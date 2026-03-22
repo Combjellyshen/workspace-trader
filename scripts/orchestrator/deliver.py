@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """
-Delivery pipeline — quality check, PDF generation, Telegram send,
-memory archival, and state update.
+Delivery pipeline — quality check, PDF generation, memory archival,
+and state update.
 
-Quality check and PDF generation are real; Telegram send and memory
-archival remain explicit no-ops until their integrations land.
+Quality check and PDF generation call real scripts.
+Memory archival calls memory_manager.py.
+Telegram delivery is handled by the upstream OpenClaw agent framework
+(via the cron job's delivery config), not by this module.
 """
 
 import json
@@ -19,6 +21,15 @@ from zoneinfo import ZoneInfo
 WORKSPACE = Path(__file__).resolve().parents[2]
 QUALITY_CHECK_SCRIPT = WORKSPACE / "scripts" / "reporting" / "report_quality_check.py"
 MD_TO_PDF_SCRIPT = WORKSPACE / "scripts" / "reporting" / "md_to_pdf.py"
+MEMORY_MANAGER = WORKSPACE / "scripts" / "memory" / "memory_manager.py"
+
+# Task type → memory archive category
+MEMORY_CATEGORIES = {
+    "premarket": ("daily", "{date}-pre-market"),
+    "closing": ("daily", "{date}-closing"),
+    "weekly": ("weekly", "{date}-market-insight"),
+    "philosophy": ("philosophy", "{date}-philosophy"),
+}
 
 
 @dataclass
@@ -74,15 +85,16 @@ def run_delivery(task_type: str, date: str, checkpoints: dict) -> dict:
 
     Steps:
         1. Locate final report from worker checkpoints
-        2. Run quality check (real — calls report_quality_check.py)
+        2. Run quality check (calls report_quality_check.py)
         3. Copy to canonical report path
-        4. Generate PDF (real — calls md_to_pdf.py)
-        5. Send via Telegram (not yet implemented)
-        6. Archive to memory (not yet implemented)
+        4. Generate PDF (calls md_to_pdf.py)
+        5. Archive to memory (calls memory_manager.py)
+        6. Archive sentiment (closing tasks only)
 
-    Semantics: ``delivered`` is True only when local report + PDF succeed.
-    ``telegram_sent`` and ``memory_archived`` are always False until their
-    integrations land; their status is surfaced honestly in the result.
+    Telegram delivery is handled by the upstream OpenClaw framework
+    via the cron job's delivery config, not by this module.
+
+    ``delivered`` is True when local report + PDF succeed.
     """
     result = DeliveryResult(
         task_type=task_type,
@@ -135,24 +147,21 @@ def run_delivery(task_type: str, date: str, checkpoints: dict) -> dict:
         print(f"  [deliver] PDF generation failed — report still delivered as markdown",
               file=sys.stderr)
 
-    # 5. Telegram delivery (not yet implemented) -------------------------------
-    telegram_sent = False
-    print(f"  [deliver] Telegram send: not yet implemented")
+    # 5. Memory archival -------------------------------------------------------
+    result.memory_archived = archive_to_memory(task_type, date, str(report_dest))
+    if result.memory_archived:
+        print(f"  [deliver] Memory archived successfully")
+    else:
+        print(f"  [deliver] Memory archive failed (non-fatal)", file=sys.stderr)
 
-    # 6. Memory archival (not yet implemented) ---------------------------------
-    result.memory_archived = False
-    print(f"  [deliver] Memory archive: not yet implemented")
+    # 6. Sentiment snapshot (closing tasks only) --------------------------------
+    if task_type == "closing":
+        _archive_sentiment(date)
 
-    # Delivered = local report + PDF succeeded; downstream channels are separate
+    # Delivered = local report + PDF succeeded
+    # Telegram delivery is handled by the OpenClaw agent framework, not here
     result.delivered = True
     result.timestamp = _now_iso()
-    if not telegram_sent or not result.memory_archived:
-        pending = []
-        if not telegram_sent:
-            pending.append("telegram")
-        if not result.memory_archived:
-            pending.append("memory_archive")
-        result.error = f"Delivered locally but pending: {', '.join(pending)}"
 
     return result.to_dict()
 
@@ -220,6 +229,64 @@ def generate_pdf(md_path: Path, pdf_path: Path) -> bool:
         return False
 
     return pdf_path.exists()
+
+
+def archive_to_memory(task_type: str, date: str, report_path: str) -> bool:
+    """Archive the report to memory via memory_manager.py save_reports.
+
+    Returns True on success, False on failure (non-fatal).
+    """
+    if not MEMORY_MANAGER.exists():
+        print(f"  [deliver] WARNING: memory_manager.py not found", file=sys.stderr)
+        return False
+
+    category_info = MEMORY_CATEGORIES.get(task_type)
+    if not category_info:
+        print(f"  [deliver] No memory category for task type '{task_type}'",
+              file=sys.stderr)
+        return False
+
+    category, name_template = category_info
+    name = name_template.replace("{date}", date)
+
+    try:
+        proc = subprocess.run(
+            [sys.executable, str(MEMORY_MANAGER), "save_reports", category, name],
+            capture_output=True, text=True, timeout=30,
+            cwd=str(WORKSPACE),
+        )
+    except subprocess.TimeoutExpired:
+        print(f"  [deliver] Memory archive timed out (30s)", file=sys.stderr)
+        return False
+
+    if proc.returncode != 0:
+        print(f"  [deliver] Memory archive error: {proc.stderr[:200]}",
+              file=sys.stderr)
+        return False
+
+    return True
+
+
+def _archive_sentiment(date: str) -> bool:
+    """Archive daily sentiment snapshot (closing tasks only)."""
+    if not MEMORY_MANAGER.exists():
+        return False
+
+    try:
+        proc = subprocess.run(
+            [sys.executable, str(MEMORY_MANAGER), "save_sentiment", date],
+            capture_output=True, text=True, timeout=30,
+            cwd=str(WORKSPACE),
+        )
+        if proc.returncode == 0:
+            print(f"  [deliver] Sentiment archived for {date}")
+            return True
+        else:
+            print(f"  [deliver] Sentiment archive failed: {proc.stderr[:200]}",
+                  file=sys.stderr)
+            return False
+    except subprocess.TimeoutExpired:
+        return False
 
 
 def _now_iso() -> str:

@@ -6,8 +6,8 @@ Each intellectual task (normalize, discuss, write, review, revise) is a worker
 step with explicit inputs/outputs. This module defines the data structures and
 dispatches to the correct handler.
 
-Current implementation: scaffolded with clear function signatures. Real Claude
-Code subagent integration will be added in Phase 2.
+Stages discuss/write/review/revise invoke Claude Code via claude_runner.
+The normalize stage runs locally (no LLM needed).
 """
 
 import json
@@ -18,7 +18,30 @@ from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
 
+from scripts.orchestrator.claude_runner import (
+    build_data_context,
+    build_memory_context,
+    load_prompt_template,
+    run_claude,
+)
+
 WORKSPACE = Path(__file__).resolve().parents[2]
+
+# Budget limits per stage (USD) — prevent runaway costs
+STAGE_BUDGETS = {
+    "discuss": 3.0,
+    "write": 5.0,
+    "review": 2.0,
+    "revise": 4.0,
+}
+
+# Timeout per stage (seconds)
+STAGE_TIMEOUTS = {
+    "discuss": 300,
+    "write": 600,
+    "review": 180,
+    "revise": 480,
+}
 
 
 @dataclass
@@ -58,7 +81,7 @@ class StepResult:
 
 
 # ---------------------------------------------------------------------------
-# Flow definitions (will grow as prompt templates are added)
+# Flow definitions
 # ---------------------------------------------------------------------------
 
 FLOWS: dict[str, WorkerFlow] = {
@@ -88,6 +111,15 @@ FLOWS: dict[str, WorkerFlow] = {
             WorkerStep("discuss", ["normalized_data"], "discussion"),
             WorkerStep("write", ["normalized_data", "discussion", "template"], "draft"),
             WorkerStep("review", ["draft", "quality_rules"], "review_feedback"),
+            WorkerStep("revise", ["draft", "review_feedback"], "final"),
+        ],
+    ),
+    "philosophy": WorkerFlow(
+        task_type="philosophy",
+        steps=[
+            WorkerStep("normalize", ["manifest"], "normalized_data"),
+            WorkerStep("write", ["normalized_data", "memory_context"], "draft"),
+            WorkerStep("review", ["draft"], "review_feedback"),
             WorkerStep("revise", ["draft", "review_feedback"], "final"),
         ],
     ),
@@ -143,14 +175,48 @@ def run_worker(task_type: str, date: str, stage: str,
 
 
 # ---------------------------------------------------------------------------
-# Stage handlers (scaffolded — real logic added in Phase 2)
+# Helpers
+# ---------------------------------------------------------------------------
+
+def _output_dir(task_type: str, date: str) -> Path:
+    d = WORKSPACE / "data" / "worker" / task_type / date
+    d.mkdir(parents=True, exist_ok=True)
+    return d
+
+
+def _load_normalized(checkpoints: dict) -> dict | None:
+    """Load normalized.json from checkpoints."""
+    norm_path = checkpoints.get("normalize", {}).get("output_path", "")
+    if not norm_path or not Path(norm_path).exists():
+        return None
+    try:
+        with open(norm_path, encoding="utf-8") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return None
+
+
+def _discussion_roles(task_type: str) -> list[str]:
+    if task_type == "weekly":
+        return [
+            "module_macro", "module_structure", "module_sectors",
+            "module_watchlist", "module_risk", "cross_challenge", "editor_ruling",
+        ]
+    return ["bull", "bear", "quant", "risk_officer", "editor"]
+
+
+def _now_iso() -> str:
+    return datetime.now(ZoneInfo("Asia/Shanghai")).isoformat()
+
+
+# ---------------------------------------------------------------------------
+# Stage handlers
 # ---------------------------------------------------------------------------
 
 def _normalize(task_type: str, date: str, checkpoints: dict) -> StepResult:
     """Read raw collection outputs and structure them for analysis.
 
-    Reads the collection manifest, loads each script's output,
-    and produces a unified normalized JSON for downstream stages.
+    This stage runs locally — no LLM call needed.
     """
     manifest_path = checkpoints.get("collect", {}).get("manifest_path", "")
     if not manifest_path:
@@ -181,7 +247,6 @@ def _normalize(task_type: str, date: str, checkpoints: dict) -> StepResult:
             timestamp=_now_iso(),
         )
 
-    # Build artifact map from manifest script results
     artifacts: dict[str, dict] = {}
     for script in collection_manifest.get("scripts", []):
         name = script.get("name", "")
@@ -193,9 +258,8 @@ def _normalize(task_type: str, date: str, checkpoints: dict) -> StepResult:
             "available": bool(output_file and Path(output_file).exists()),
         }
 
-    output_dir = WORKSPACE / "data" / "worker" / task_type / date
-    output_dir.mkdir(parents=True, exist_ok=True)
-    output_path = output_dir / "normalized.json"
+    out = _output_dir(task_type, date)
+    output_path = out / "normalized.json"
 
     normalized = {
         "task_type": task_type,
@@ -217,23 +281,73 @@ def _normalize(task_type: str, date: str, checkpoints: dict) -> StepResult:
 
 
 def _discuss(task_type: str, date: str, checkpoints: dict) -> StepResult:
-    """Multi-POV discussion stage.
+    """Multi-POV discussion via Claude Code.
 
-    For daily tasks: 5-role debate (bull/bear/quant/risk/editor).
-    For weekly: 5-module research → cross-challenge → editor ruling.
+    Daily tasks: 5-role debate (bull/bear/quant/risk/editor).
+    Weekly: 7-module research → cross-challenge → editor ruling.
     """
-    output_dir = WORKSPACE / "data" / "worker" / task_type / date
-    output_dir.mkdir(parents=True, exist_ok=True)
-    output_path = output_dir / "discussion.json"
+    out = _output_dir(task_type, date)
+    output_path = out / "discussion.json"
 
-    discussion = {
-        "task_type": task_type,
-        "date": date,
-        "roles": _discussion_roles(task_type),
-        "arguments": {},  # populated by Claude Code subagents in Phase 2
-        "ruling": None,
-        "generated_at": _now_iso(),
-    }
+    # Load normalized data for context
+    normalized = _load_normalized(checkpoints)
+    if normalized is None:
+        return StepResult(
+            step_name="discuss",
+            status="error",
+            error="Normalized data not available — run normalize stage first",
+            timestamp=_now_iso(),
+        )
+
+    # Build data context from artifacts
+    data_context = build_data_context(normalized.get("artifacts", {}), date)
+    memory_context = build_memory_context(date)
+
+    # Select prompt template
+    template_name = "discuss_weekly" if task_type == "weekly" else "discuss_daily"
+    try:
+        system_prompt = load_prompt_template(template_name)
+    except FileNotFoundError as e:
+        return StepResult(
+            step_name="discuss", status="error",
+            error=str(e), timestamp=_now_iso(),
+        )
+
+    prompt = (
+        f"任务类型: {task_type}\n日期: {date}\n\n"
+        f"{memory_context}\n\n"
+        f"{data_context}\n\n"
+        f"请基于以上数据，按照系统提示中的角色设定和输出格式完成多角色讨论。"
+    )
+
+    result = run_claude(
+        prompt,
+        system_prompt=system_prompt,
+        timeout_seconds=STAGE_TIMEOUTS["discuss"],
+        max_budget_usd=STAGE_BUDGETS["discuss"],
+        allowed_tools=["Read"],
+    )
+
+    if not result.success:
+        return StepResult(
+            step_name="discuss", status="error",
+            error=f"Claude Code failed: {result.error}",
+            timestamp=_now_iso(),
+        )
+
+    # Try to parse as JSON; if that fails, wrap the raw text
+    try:
+        discussion = json.loads(result.output)
+    except json.JSONDecodeError:
+        discussion = {
+            "task_type": task_type,
+            "date": date,
+            "roles": _discussion_roles(task_type),
+            "raw_output": result.output,
+            "parse_error": "Claude output was not valid JSON — raw text preserved",
+            "generated_at": _now_iso(),
+        }
+
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(discussion, f, indent=2, ensure_ascii=False)
 
@@ -246,21 +360,94 @@ def _discuss(task_type: str, date: str, checkpoints: dict) -> StepResult:
 
 
 def _write(task_type: str, date: str, checkpoints: dict) -> StepResult:
-    """Draft generation stage.
+    """Draft generation via Claude Code.
 
     Takes normalized data + discussion output and produces a markdown draft.
     """
-    output_dir = WORKSPACE / "data" / "worker" / task_type / date
-    output_dir.mkdir(parents=True, exist_ok=True)
-    output_path = output_dir / "draft.md"
+    out = _output_dir(task_type, date)
+    output_path = out / "draft.md"
 
-    # Scaffold: produce a stub draft
-    draft_content = (
-        f"# {task_type.title()} Report — {date}\n\n"
-        f"<!-- Generated by orchestrator worker at {_now_iso()} -->\n"
-        f"<!-- Placeholder: real content generated by Claude Code in Phase 2 -->\n"
+    # Load normalized data
+    normalized = _load_normalized(checkpoints)
+    if normalized is None:
+        return StepResult(
+            step_name="write", status="error",
+            error="Normalized data not available",
+            timestamp=_now_iso(),
+        )
+
+    data_context = build_data_context(normalized.get("artifacts", {}), date)
+    memory_context = build_memory_context(date)
+
+    # Load discussion if available
+    discuss_path = checkpoints.get("discuss", {}).get("output_path", "")
+    discussion_text = ""
+    if discuss_path and Path(discuss_path).exists():
+        try:
+            discussion_text = Path(discuss_path).read_text(encoding="utf-8")
+            if len(discussion_text) > 20000:
+                discussion_text = discussion_text[:20000] + "\n... (截断)"
+        except OSError:
+            discussion_text = "（讨论纪要读取失败）"
+
+    # Load system prompt
+    try:
+        system_prompt = load_prompt_template("write_report")
+    except FileNotFoundError as e:
+        return StepResult(
+            step_name="write", status="error",
+            error=str(e), timestamp=_now_iso(),
+        )
+
+    # Load premarket report for closing tasks
+    premarket_ref = ""
+    if task_type == "closing":
+        pm_path = WORKSPACE / "reports" / "daily" / f"{date}-pre-market.md"
+        if pm_path.exists():
+            try:
+                pm_text = pm_path.read_text(encoding="utf-8")
+                if len(pm_text) > 15000:
+                    pm_text = pm_text[:15000] + "\n... (截断)"
+                premarket_ref = f"\n# 今日盘前报告（供对照验证/证伪）\n\n{pm_text}\n"
+            except OSError:
+                pass
+
+    prompt_parts = [
+        f"任务类型: {task_type}",
+        f"日期: {date}",
+        "",
+        memory_context,
+        "",
+        data_context,
+    ]
+    if discussion_text:
+        prompt_parts.extend(["", "# 讨论纪要\n", discussion_text])
+    if premarket_ref:
+        prompt_parts.append(premarket_ref)
+    prompt_parts.extend([
+        "",
+        f"请按照系统提示中 {task_type} 的报告结构要求，撰写完整的 Markdown 报告。",
+    ])
+
+    prompt = "\n".join(prompt_parts)
+
+    result = run_claude(
+        prompt,
+        system_prompt=system_prompt,
+        timeout_seconds=STAGE_TIMEOUTS["write"],
+        max_budget_usd=STAGE_BUDGETS["write"],
+        add_dirs=[str(WORKSPACE / "data"), str(WORKSPACE / "memory")],
+        allowed_tools=["Read"],
     )
-    output_path.write_text(draft_content, encoding="utf-8")
+
+    if not result.success:
+        return StepResult(
+            step_name="write", status="error",
+            error=f"Claude Code failed: {result.error}",
+            timestamp=_now_iso(),
+        )
+
+    output_path.write_text(result.output, encoding="utf-8")
 
     return StepResult(
         step_name="write",
@@ -271,22 +458,69 @@ def _write(task_type: str, date: str, checkpoints: dict) -> StepResult:
 
 
 def _review(task_type: str, date: str, checkpoints: dict) -> StepResult:
-    """Quality review stage.
+    """Quality review via Claude Code.
 
     Checks the draft against structural and content quality rules.
-    Returns review feedback for the revise stage.
+    Returns structured review feedback for the revise stage.
     """
-    output_dir = WORKSPACE / "data" / "worker" / task_type / date
-    output_dir.mkdir(parents=True, exist_ok=True)
-    output_path = output_dir / "review.json"
+    out = _output_dir(task_type, date)
+    output_path = out / "review.json"
 
-    review = {
-        "task_type": task_type,
-        "date": date,
-        "passed": True,  # scaffold — real checks in Phase 2
-        "issues": [],
-        "generated_at": _now_iso(),
-    }
+    # Load the draft
+    write_path = checkpoints.get("write", {}).get("output_path", "")
+    if not write_path or not Path(write_path).exists():
+        return StepResult(
+            step_name="review", status="error",
+            error="Draft not available — run write stage first",
+            timestamp=_now_iso(),
+        )
+
+    draft = Path(write_path).read_text(encoding="utf-8")
+
+    # Load system prompt
+    try:
+        system_prompt = load_prompt_template("review_report")
+    except FileNotFoundError as e:
+        return StepResult(
+            step_name="review", status="error",
+            error=str(e), timestamp=_now_iso(),
+        )
+
+    prompt = (
+        f"任务类型: {task_type}\n日期: {date}\n\n"
+        f"# 待审核报告\n\n{draft}\n\n"
+        f"请按照系统提示中的审核维度和输出格式，对这份报告进行严格质检。"
+    )
+
+    result = run_claude(
+        prompt,
+        system_prompt=system_prompt,
+        timeout_seconds=STAGE_TIMEOUTS["review"],
+        max_budget_usd=STAGE_BUDGETS["review"],
+        allowed_tools=[],
+    )
+
+    if not result.success:
+        return StepResult(
+            step_name="review", status="error",
+            error=f"Claude Code failed: {result.error}",
+            timestamp=_now_iso(),
+        )
+
+    # Parse review output
+    try:
+        review = json.loads(result.output)
+    except json.JSONDecodeError:
+        review = {
+            "task_type": task_type,
+            "date": date,
+            "passed": False,
+            "verdict": "REVISE",
+            "raw_output": result.output,
+            "parse_error": "Review output was not valid JSON",
+            "generated_at": _now_iso(),
+        }
+
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(review, f, indent=2, ensure_ascii=False)
 
@@ -299,24 +533,90 @@ def _review(task_type: str, date: str, checkpoints: dict) -> StepResult:
 
 
 def _revise(task_type: str, date: str, checkpoints: dict) -> StepResult:
-    """Revision stage — apply review feedback to the draft.
+    """Revision stage via Claude Code.
 
-    If review passed, this is a no-op that promotes the draft to final.
+    If review passed (verdict=PASS), promotes draft to final without LLM call.
     If review found issues, Claude Code revises based on feedback.
     """
-    write_output = checkpoints.get("write", {}).get("output_path", "")
-    review_output = checkpoints.get("review", {}).get("output_path", "")
+    out = _output_dir(task_type, date)
+    final_path = out / "final.md"
 
-    output_dir = WORKSPACE / "data" / "worker" / task_type / date
-    output_dir.mkdir(parents=True, exist_ok=True)
-    final_path = output_dir / "final.md"
+    write_path = checkpoints.get("write", {}).get("output_path", "")
+    review_path = checkpoints.get("review", {}).get("output_path", "")
 
-    # Scaffold: copy draft as final (real revision in Phase 2)
-    if write_output and Path(write_output).exists():
-        final_path.write_text(
-            Path(write_output).read_text(encoding="utf-8"),
-            encoding="utf-8",
+    if not write_path or not Path(write_path).exists():
+        return StepResult(
+            step_name="revise", status="error",
+            error="Draft not available for revision",
+            timestamp=_now_iso(),
         )
+
+    draft = Path(write_path).read_text(encoding="utf-8")
+
+    # Check if review passed — if so, skip LLM call
+    review_data = {}
+    if review_path and Path(review_path).exists():
+        try:
+            with open(review_path, encoding="utf-8") as f:
+                review_data = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            pass
+
+    verdict = review_data.get("verdict", "REVISE")
+    if verdict == "PASS":
+        print("  [worker] Review passed — promoting draft to final (no revision needed)")
+        final_path.write_text(draft, encoding="utf-8")
+        return StepResult(
+            step_name="revise",
+            status="ok",
+            output_path=str(final_path),
+            timestamp=_now_iso(),
+        )
+
+    # Review has issues — invoke Claude Code to revise
+    try:
+        system_prompt = load_prompt_template("revise_report")
+    except FileNotFoundError as e:
+        # Fallback: just promote draft
+        final_path.write_text(draft, encoding="utf-8")
+        return StepResult(
+            step_name="revise", status="ok",
+            output_path=str(final_path),
+            error=f"Revise template not found ({e}), promoted draft as-is",
+            timestamp=_now_iso(),
+        )
+
+    review_text = json.dumps(review_data, indent=2, ensure_ascii=False)
+
+    prompt = (
+        f"任务类型: {task_type}\n日期: {date}\n\n"
+        f"# 审核反馈\n```json\n{review_text}\n```\n\n"
+        f"# 原始报告草稿\n\n{draft}\n\n"
+        f"请根据审核反馈修订报告，输出完整的修订版 Markdown。"
+    )
+
+    result = run_claude(
+        prompt,
+        system_prompt=system_prompt,
+        timeout_seconds=STAGE_TIMEOUTS["revise"],
+        max_budget_usd=STAGE_BUDGETS["revise"],
+        allowed_tools=["Read"],
+        add_dirs=[str(WORKSPACE / "data"), str(WORKSPACE / "memory")],
+    )
+
+    if not result.success:
+        # Fallback: promote unrevised draft
+        print(f"  [worker] Revision failed ({result.error}), promoting draft as-is",
+              file=sys.stderr)
+        final_path.write_text(draft, encoding="utf-8")
+        return StepResult(
+            step_name="revise", status="ok",
+            output_path=str(final_path),
+            error=f"Revision failed, promoted unrevised draft: {result.error}",
+            timestamp=_now_iso(),
+        )
+
+    final_path.write_text(result.output, encoding="utf-8")
 
     return StepResult(
         step_name="revise",
@@ -324,29 +624,6 @@ def _revise(task_type: str, date: str, checkpoints: dict) -> StepResult:
         output_path=str(final_path),
         timestamp=_now_iso(),
     )
-
-
-# ---------------------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------------------
-
-def _discussion_roles(task_type: str) -> list[str]:
-    """Return role names for the discussion stage."""
-    if task_type == "weekly":
-        return [
-            "module_macro",
-            "module_structure",
-            "module_sectors",
-            "module_watchlist",
-            "module_risk",
-            "cross_challenge",
-            "editor_ruling",
-        ]
-    return ["bull", "bear", "quant", "risk_officer", "editor"]
-
-
-def _now_iso() -> str:
-    return datetime.now(ZoneInfo("Asia/Shanghai")).isoformat()
 
 
 _STAGE_HANDLERS = {

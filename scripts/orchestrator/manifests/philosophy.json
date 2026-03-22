@@ -1,0 +1,57 @@
+{
+  "task_type": "philosophy",
+  "description": "哲学周更新数据采集 (PB-5 §1)",
+  "min_coverage": 0.7,
+  "output_dir": "memory/knowledge/",
+  "scripts": [
+    {
+      "name": "philosophy_collect",
+      "command": "python3 scripts/memory/philosophy_updater.py collect",
+      "required": true,
+      "timeout_s": 90,
+      "purpose": "哲学框架数据采集"
+    },
+    {
+      "name": "philosophy_summarize",
+      "command": "python3 scripts/memory/philosophy_updater.py summarize",
+      "required": true,
+      "timeout_s": 60,
+      "purpose": "周度摘要生成"
+    },
+    {
+      "name": "philosophy_check",
+      "command": "python3 scripts/memory/philosophy_updater.py check",
+      "required": true,
+      "timeout_s": 60,
+      "purpose": "框架验证检查"
+    },
+    {
+      "name": "macro_summary",
+      "command": "python3 scripts/data/macro_deep.py summary",
+      "required": false,
+      "timeout_s": 90,
+      "purpose": "宏观环境摘要"
+    },
+    {
+      "name": "macro_pmi",
+      "command": "python3 scripts/data/macro_monitor.py pmi",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "PMI数据"
+    },
+    {
+      "name": "research_strategy",
+      "command": "python3 scripts/data/research_reports.py strategy",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "卖方策略视角"
+    },
+    {
+      "name": "market_cache_sectors",
+      "command": "python3 scripts/data/market_cache.py sectors",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "板块数据"
+    }
+  ]
+}
