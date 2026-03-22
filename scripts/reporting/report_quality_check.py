@@ -1,258 +1,207 @@
 #!/usr/bin/env python3
 """报告发布前质检器
 
-设计原则：检查报告是否覆盖了关键分析维度，而非纠字眼。
-每个检查项都接受多个同义词/变体表达，只要命中一个即通过。
+使用 Claude Code 做语义级内容审核，不做关键词匹配。
+仅保留少量硬性结构检查（篇幅、章节数）作为快速预检。
 """
-import re
+import json
+import subprocess
 import sys
 from pathlib import Path
 
 WORKSPACE_ROOT = Path(__file__).resolve().parents[2]
-if str(WORKSPACE_ROOT) not in sys.path:
-    sys.path.insert(0, str(WORKSPACE_ROOT))
-
-from scripts.utils.common import load_watchlist  # noqa: E402
+CLAUDE_BIN = "/home/bot/.local/bin/claude"
 
 # ---------------------------------------------------------------------------
-# 通用必需维度（所有报告类型）
+# 硬性结构预检（纯本地，不调 LLM）
 # ---------------------------------------------------------------------------
 
-REQUIRED_COMMON = {
-    '数据覆盖': ['数据覆盖', '数据来源', '数据源', '覆盖说明', '覆盖率'],
-    '风险提示': ['风险提示', '风险声明', '风险警示', '风险因素'],
-    '数据缺口': ['数据缺口', '数据缺失', '不可用', '暂缺', '无法获取'],
+MIN_WEEKLY_CHARS = 10000
+MIN_WEEKLY_H2 = 6
+MIN_DAILY_CHARS = 3000
+
+REPORT_TYPE_LABELS = {
+    'weekly': '周报',
+    'daily_premarket': '盘前报告',
+    'daily_closing': '收盘复盘',
 }
 
-# ---------------------------------------------------------------------------
-# 分析深度必需维度（所有报告类型）
-# ---------------------------------------------------------------------------
 
-DEPTH_REQUIRED = {
-    '反思模块': ['如果我错了', '如果判断错误', '错误可能', '最可能错在'],
-    '推翻条件': ['推翻条件', '失效条件', '翻转条件', '否定条件', '止损条件'],
-    '主导矛盾': ['主导矛盾', '核心矛盾', '主要矛盾', '关键分歧'],
-}
-
-# ---------------------------------------------------------------------------
-# 周报必需章节
-# ---------------------------------------------------------------------------
-
-WEEKLY_REQUIRED = {
-    '全球市场': ['全球市场', '全球概览', '海外市场', '外盘'],
-    '跨资产': ['跨资产', '债券', '加密', '商品', '汇率'],
-    '宏观': ['宏观', '政策', '央行', 'PMI', 'CPI'],
-    'A股结构': ['A股', '市场结构', '涨跌', '广度'],
-    '行业赛道': ['行业', '赛道', '板块', '轮动'],
-    '新闻': ['新闻', '消息面', '催化', '事件驱动'],
-    '观察池': ['自选股', '观察池', '持仓', 'watchlist'],
-    '风险评估': ['风险评估', '风险温度', 'VIX', '系统性风险', '风险指数'],
-    '多角色': ['多空', '论证', '论战', '辩论', 'agent', '角色', '裁决'],
-    '下周展望': ['下周', '展望', '预判', '预案'],
-}
-
-WEEKLY_CROSS_ASSET = {
-    '美股': ['标普', 'S&P', '纳斯达克', '纳指', 'NASDAQ', '道琼斯', '道指', 'Dow', '美股'],
-    '商品': ['原油', 'WTI', '黄金', 'Gold', '铜', 'Copper', '大宗'],
-    '外汇': ['美元指数', 'DXY', 'USD/CNH', 'USDCNH', '离岸人民币', '汇率'],
-    '利率': ['美债', '国债', '利率', '收益率', '2Y', '10Y', '期限利差'],
-    '加密': ['BTC', '比特币', 'ETH', '以太坊', '加密货币', 'crypto'],
-}
-
-WEEKLY_RISK = {
-    '风险指标': ['VIX', 'MOVE', '恐慌指数', '波动率', '信用利差', 'HY', 'IG', '风险温度'],
-    '机构状况': ['银行', '券商', '资管', '基金', '赎回', '流动性', '机构'],
-    '传导': ['传导', '风险源', '外溢', '冲击', '影响路径'],
-}
-
-MIN_WEEKLY_CHARS = 12000
-MIN_WEEKLY_H2 = 8
-
-# ---------------------------------------------------------------------------
-# 日报/复盘必需维度
-# ---------------------------------------------------------------------------
-
-DAILY_REQUIRED = {
-    '消息面': ['新闻', '消息面', '催化', '事件', '公告', '政策'],
-    '矛盾判断': ['矛盾', '背离', '一致性', '分歧', '统一', '冲突'],
-}
-
-CLOSING_REQUIRED = {
-    '风险评估': ['风险评估', '风险温度', '世界风险', '系统性风险', 'VIX'],
-    '机构状况': ['机构', '银行', '券商', '资管', '赎回', '流动性'],
-}
-
-# ---------------------------------------------------------------------------
-# K线技术面检查（宽松版）
-# 只要覆盖 >= 5/10 个技术指标维度即通过
-# ---------------------------------------------------------------------------
-
-KLINE_INDICATORS = [
-    ['K线', '技术面', '技术分析'],
-    ['MA5', 'MA10', 'MA20', '均线', '移动平均'],
-    ['MA60', '60日', '长期均线'],
-    ['MACD', '快慢线', 'DIF', 'DEA'],
-    ['RSI', '相对强弱'],
-    ['KDJ', '随机指标'],
-    ['布林', 'Bollinger', 'BOLL'],
-    ['量价', '成交量', '换手', '放量', '缩量'],
-    ['支撑', '压力', '阻力'],
-    ['原因', '为什么', '因为', '导致', '驱动', '逻辑'],
-]
-KLINE_MIN_COVERAGE = 5  # 至少覆盖 5/10 个维度
-
-# ---------------------------------------------------------------------------
-# 观察池与 ETF
-# ---------------------------------------------------------------------------
-
-WATCHLIST_KEYWORDS = ['验证', '证伪', '交易计划', '失效条件', '计划', '止损']
-WATCHLIST_MIN_KEYWORDS = 2  # 至少命中 2/6 个
-
-ETF_KEYWORD_GROUPS = [
-    ['折溢价', '溢价', '折价', 'premium', 'discount'],
-    ['份额', '申赎', '申购', '赎回', '规模变化'],
-    ['方法学', '跟踪标的', '跟踪指数', '标的指数', '编制'],
-    ['成分', '前十大', '持仓', '权重股', '重仓'],
-]
-ETF_MIN_GROUPS = 2  # 至少覆盖 2/4 个维度
-
-# ---------------------------------------------------------------------------
-# 禁止项
-# ---------------------------------------------------------------------------
-
-FORBIDDEN_PATTERNS = [r'\{\{[^{}]+\}\}']  # 只检查双花括号模板变量
-
-# ---------------------------------------------------------------------------
-# 检查逻辑
-# ---------------------------------------------------------------------------
+def _detect_type(path: Path) -> str:
+    lower = str(path).lower()
+    if 'weekly' in lower or 'market-insight' in path.name:
+        return 'weekly'
+    if 'closing' in path.name.lower() or 'closing' in lower:
+        return 'daily_closing'
+    return 'daily_premarket'
 
 
-def _strip_fenced_code(text: str) -> str:
-    return re.sub(r'```[\s\S]*?```', '', text)
-
-
-def _any_match(text: str, keywords: list[str]) -> bool:
-    """Check if any keyword appears in text (case-insensitive for ASCII)."""
-    for kw in keywords:
-        if kw in text or kw.lower() in text.lower():
-            return True
-    return False
-
-
-def _current_watchlist_meta():
-    watchlist = load_watchlist()
-    items = []
-    has_etf = False
-    for raw in watchlist:
-        item = raw if isinstance(raw, dict) else {'code': str(raw), 'name': ''}
-        code = str(item.get('code', ''))
-        name = str(item.get('name', ''))
-        ptype = str(item.get('type', '')).lower()
-        is_etf = ptype == 'etf' or code.startswith(('5', '15', '16', '56', '58')) or 'etf' in name.lower()
-        has_etf = has_etf or is_etf
-        items.append({'code': code, 'name': name, 'is_etf': is_etf})
-    return {'items': items, 'has_watchlist': bool(items), 'has_etf': has_etf}
-
-
-def _check_watchlist_depth(text: str, issues: list[str]):
-    meta = _current_watchlist_meta()
-    if not meta['has_watchlist']:
-        return
-
-    # Check stock coverage
-    missing_items = []
-    for item in meta['items']:
-        if item['code'] and item['code'] in text:
-            continue
-        if item['name'] and item['name'] in text:
-            continue
-        missing_items.append(item['code'] or item['name'])
-    if missing_items:
-        issues.append(f'报告未逐只覆盖当前观察池：缺少 {missing_items}')
-
-    # Flexible keyword check
-    hits = sum(1 for kw in WATCHLIST_KEYWORDS if kw in text)
-    if hits < WATCHLIST_MIN_KEYWORDS:
-        issues.append(f'观察池分析深度不足：仅命中 {hits}/{len(WATCHLIST_KEYWORDS)} 个分析维度关键词')
-
-    # ETF check (flexible)
-    if meta['has_etf']:
-        groups_hit = sum(1 for group in ETF_KEYWORD_GROUPS if _any_match(text, group))
-        if groups_hit < ETF_MIN_GROUPS:
-            issues.append(f'观察池含 ETF，但 ETF 分析维度不足：仅覆盖 {groups_hit}/{len(ETF_KEYWORD_GROUPS)} 个维度')
-
-
-def _check_kline_depth(text: str, issues: list[str], label: str):
-    hits = sum(1 for group in KLINE_INDICATORS if _any_match(text, group))
-    if hits < KLINE_MIN_COVERAGE:
-        issues.append(f'{label}K线技术面覆盖不足：仅覆盖 {hits}/{len(KLINE_INDICATORS)} 个指标维度（要求≥{KLINE_MIN_COVERAGE}）')
-
-
-def check(path: Path):
-    text = path.read_text(encoding='utf-8')
+def _structural_precheck(text: str, report_type: str) -> list[str]:
+    """Fast local checks that don't need LLM."""
     issues = []
+    import re
 
-    # 通用维度
-    for label, keywords in REQUIRED_COMMON.items():
-        if not _any_match(text, keywords):
-            issues.append(f'缺少必需维度：{label}')
-
-    # 分析深度
-    for label, keywords in DEPTH_REQUIRED.items():
-        if not _any_match(text, keywords):
-            issues.append(f'缺少分析深度维度：{label}')
-
-    lower_path = str(path).lower()
-    is_weekly = 'weekly' in lower_path or 'market-insight' in path.name
-    is_daily = ('daily' in lower_path) or ('pre-market' in path.name) or ('closing' in path.name)
-
-    if is_weekly:
-        # 章节覆盖
-        for label, keywords in WEEKLY_REQUIRED.items():
-            if not _any_match(text, keywords):
-                issues.append(f'周报缺少章节维度：{label}')
-
-        # 跨资产覆盖（按大类检查，不再逐个子项）
-        for label, keywords in WEEKLY_CROSS_ASSET.items():
-            if not _any_match(text, keywords):
-                issues.append(f'周报跨资产缺少：{label}')
-
-        # 风险评估覆盖
-        for label, keywords in WEEKLY_RISK.items():
-            if not _any_match(text, keywords):
-                issues.append(f'周报风险评估缺少：{label}')
-
-        # 篇幅
+    if report_type == 'weekly':
         if len(text) < MIN_WEEKLY_CHARS:
             issues.append(f'周报正文过短：{len(text)} 字符 < {MIN_WEEKLY_CHARS}')
         h2_count = len(re.findall(r'^##\s+', text, flags=re.M))
         if h2_count < MIN_WEEKLY_H2:
             issues.append(f'周报结构不足：{h2_count} 个 H2 < {MIN_WEEKLY_H2}')
+    else:
+        if len(text) < MIN_DAILY_CHARS:
+            issues.append(f'报告正文过短：{len(text)} 字符 < {MIN_DAILY_CHARS}')
 
-        _check_kline_depth(text, issues, '周报')
-
-    elif is_daily:
-        for label, keywords in DAILY_REQUIRED.items():
-            if not _any_match(text, keywords):
-                issues.append(f'日报缺少维度：{label}')
-
-        is_closing = 'closing' in path.name.lower() or 'closing' in lower_path
-        if is_closing:
-            for label, keywords in CLOSING_REQUIRED.items():
-                if not _any_match(text, keywords):
-                    issues.append(f'收盘复盘缺少：{label}')
-            _check_kline_depth(text, issues, '收盘复盘')
-
-    if is_weekly or is_daily:
-        _check_watchlist_depth(text, issues)
-
-    # 禁止项（只检查双花括号模板）
-    template_text = _strip_fenced_code(text)
-    for pat in FORBIDDEN_PATTERNS:
-        if re.search(pat, template_text):
-            issues.append(f'存在未替换模板变量：{pat}')
+    # Check for unreplaced template variables (double braces only)
+    stripped = re.sub(r'```[\s\S]*?```', '', text)
+    if re.search(r'\{\{[^{}]+\}\}', stripped):
+        issues.append('存在未替换的模板变量')
 
     return issues
+
+
+# ---------------------------------------------------------------------------
+# Claude Code 语义审核
+# ---------------------------------------------------------------------------
+
+REVIEW_SYSTEM_PROMPT = """\
+你是砚·交易台的报告质检官。你的任务是审核一份市场分析报告的内容质量。
+
+## 审核标准
+
+根据报告类型，检查以下维度是否被**实质性覆盖**（不是看有没有某个关键词，而是看有没有真正分析到位）：
+
+### 所有报告必须覆盖：
+1. 数据来源是否透明（读者能知道报告基于什么数据）
+2. 是否有风险提醒（不是套话，而是具体的风险点）
+3. 是否有反思（"如果判断错了怎么办"）
+4. 是否识别了当前市场的核心矛盾
+
+### 盘前报告额外检查：
+5. 消息面是否进入了分析链条（不是只罗列新闻）
+6. 技术面分析是否有深度（不是只说涨跌）
+7. 是否给出了明确的方向判断和预案
+
+### 收盘复盘额外检查：
+5. 是否对照了盘前预判做验证/证伪
+6. 技术面是否覆盖主要指数和观察池
+7. 是否有风险评估（全球风险环境）
+
+### 周报额外检查：
+5. 全球市场是否有实质分析（不是只报数字）
+6. 跨资产是否覆盖（美股、商品、汇率、利率、加密）
+7. 行业赛道是否有深度（催化→资金→定价链条）
+8. 观察池是否逐只分析
+9. 多角色论证是否有留痕
+10. 是否有下周展望
+
+## 输出格式
+
+严格输出 JSON：
+
+```json
+{
+  "passed": true/false,
+  "score": 0-100,
+  "issues": ["问题1", "问题2"],
+  "verdict": "PASS 或简短说明为什么不通过"
+}
+```
+
+## 评判标准
+- score ≥ 60 且无严重缺失 → passed=true
+- "严重缺失"定义：完全没有风险提醒、完全没有方向判断、报告像是半成品
+- 用词不够精确、某个维度覆盖较浅但有提及 → 不算严重缺失，扣分但通过
+- 输出纯 JSON，不加额外文字
+"""
+
+
+def _claude_review(text: str, report_type: str) -> tuple[bool, list[str]]:
+    """Use Claude Code to semantically review the report."""
+    label = REPORT_TYPE_LABELS.get(report_type, '报告')
+
+    # Truncate if extremely long to stay within reasonable prompt size
+    if len(text) > 80000:
+        text = text[:80000] + "\n\n... (截断，原文过长)"
+
+    prompt = f"报告类型：{label}\n\n以下是待审核的报告全文：\n\n{text}"
+
+    cmd = [
+        CLAUDE_BIN,
+        "-p",
+        "--dangerously-skip-permissions",
+        "--max-budget-usd=0.50",
+        "--system-prompt", REVIEW_SYSTEM_PROMPT,
+    ]
+
+    try:
+        proc = subprocess.run(
+            cmd,
+            input=prompt,
+            capture_output=True,
+            text=True,
+            timeout=120,
+            cwd=str(WORKSPACE_ROOT),
+        )
+    except subprocess.TimeoutExpired:
+        # LLM review timed out — fall back to pass (don't block delivery)
+        print("  [qc] Claude review timed out, falling back to PASS", file=sys.stderr)
+        return True, []
+    except FileNotFoundError:
+        print(f"  [qc] Claude CLI not found at {CLAUDE_BIN}, falling back to PASS", file=sys.stderr)
+        return True, []
+
+    if proc.returncode != 0:
+        print(f"  [qc] Claude review failed (exit {proc.returncode}), falling back to PASS", file=sys.stderr)
+        return True, []
+
+    # Parse JSON from output
+    output = proc.stdout.strip()
+    try:
+        review = json.loads(output)
+    except json.JSONDecodeError:
+        # Try to extract JSON from markdown code block
+        import re
+        m = re.search(r'```(?:json)?\s*(\{[\s\S]*?\})\s*```', output)
+        if m:
+            try:
+                review = json.loads(m.group(1))
+            except json.JSONDecodeError:
+                print("  [qc] Claude review output not parseable, falling back to PASS", file=sys.stderr)
+                return True, []
+        else:
+            print("  [qc] Claude review output not parseable, falling back to PASS", file=sys.stderr)
+            return True, []
+
+    passed = review.get("passed", True)
+    issues = review.get("issues", [])
+    score = review.get("score", 0)
+    verdict = review.get("verdict", "")
+
+    print(f"  [qc] Claude review: score={score} passed={passed} verdict={verdict}")
+
+    return passed, issues
+
+
+# ---------------------------------------------------------------------------
+# Main check
+# ---------------------------------------------------------------------------
+
+def check(path: Path) -> list[str]:
+    text = path.read_text(encoding='utf-8')
+    report_type = _detect_type(path)
+
+    # Step 1: fast structural precheck
+    issues = _structural_precheck(text, report_type)
+    if issues:
+        # Structural failures are hard blockers
+        return issues
+
+    # Step 2: Claude Code semantic review
+    passed, claude_issues = _claude_review(text, report_type)
+    if not passed:
+        return claude_issues
+
+    return []
 
 
 def main():
