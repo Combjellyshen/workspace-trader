@@ -232,39 +232,38 @@ def generate_pdf(md_path: Path, pdf_path: Path) -> bool:
 
 
 def archive_to_memory(task_type: str, date: str, report_path: str) -> bool:
-    """Archive the report to memory via memory_manager.py save_reports.
+    """Archive the report to the memory/reviews/ directory.
+
+    Copies the final report as a review log for future memory queries.
+    This is NOT the same as save_reports (which fetches broker research).
 
     Returns True on success, False on failure (non-fatal).
     """
-    if not MEMORY_MANAGER.exists():
-        print(f"  [deliver] WARNING: memory_manager.py not found", file=sys.stderr)
+    rp = Path(report_path)
+    if not rp.exists():
+        print(f"  [deliver] Cannot archive — report not found: {report_path}",
+              file=sys.stderr)
         return False
 
+    reviews_dir = WORKSPACE / "memory" / "reviews"
+    reviews_dir.mkdir(parents=True, exist_ok=True)
+
+    # Determine archive filename
     category_info = MEMORY_CATEGORIES.get(task_type)
-    if not category_info:
-        print(f"  [deliver] No memory category for task type '{task_type}'",
-              file=sys.stderr)
-        return False
+    if category_info:
+        _, name_template = category_info
+        archive_name = name_template.replace("{date}", date) + ".md"
+    else:
+        archive_name = f"{date}-{task_type}.md"
 
-    category, name_template = category_info
-    name = name_template.replace("{date}", date)
-
+    dest = reviews_dir / archive_name
     try:
-        proc = subprocess.run(
-            [sys.executable, str(MEMORY_MANAGER), "save_reports", category, name],
-            capture_output=True, text=True, timeout=30,
-            cwd=str(WORKSPACE),
-        )
-    except subprocess.TimeoutExpired:
-        print(f"  [deliver] Memory archive timed out (30s)", file=sys.stderr)
+        dest.write_text(rp.read_text(encoding="utf-8"), encoding="utf-8")
+        print(f"  [deliver] Archived to {dest}")
+        return True
+    except OSError as e:
+        print(f"  [deliver] Archive failed: {e}", file=sys.stderr)
         return False
-
-    if proc.returncode != 0:
-        print(f"  [deliver] Memory archive error: {proc.stderr[:200]}",
-              file=sys.stderr)
-        return False
-
-    return True
 
 
 def _archive_sentiment(date: str) -> bool:
