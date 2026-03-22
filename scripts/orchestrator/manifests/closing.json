@@ -1,0 +1,99 @@
+{
+  "task_type": "closing",
+  "description": "收盘复盘数据采集 (PB-2 §3)",
+  "min_coverage": 0.7,
+  "output_dir": "data/daily_inputs/{date}/",
+  "scripts": [
+    {
+      "name": "deep_data_snapshot",
+      "command": "python3 scripts/data/deep_data.py snapshot",
+      "required": true,
+      "timeout_s": 60,
+      "purpose": "收盘行情"
+    },
+    {
+      "name": "deep_data_north",
+      "command": "python3 scripts/data/deep_data.py north",
+      "required": true,
+      "timeout_s": 60,
+      "purpose": "北向资金"
+    },
+    {
+      "name": "sentiment_all",
+      "command": "python3 scripts/analysis/sentiment.py all",
+      "required": true,
+      "timeout_s": 60,
+      "purpose": "收盘情绪"
+    },
+    {
+      "name": "market_breadth",
+      "command": "python3 scripts/analysis/market_breadth.py all",
+      "required": true,
+      "timeout_s": 60,
+      "purpose": "涨跌结构"
+    },
+    {
+      "name": "cross_day_compare",
+      "command": "python3 scripts/analysis/cross_day_compare.py all",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "跨日对比"
+    },
+    {
+      "name": "tech_analysis_watchlist",
+      "command": "python3 scripts/analysis/tech_analysis.py watchlist",
+      "required": true,
+      "timeout_s": 90,
+      "purpose": "技术面收盘"
+    },
+    {
+      "name": "kline_review",
+      "command": "python3 scripts/analysis/kline_detailed_review.py all",
+      "required": true,
+      "timeout_s": 90,
+      "purpose": "详细K线收盘复盘"
+    },
+    {
+      "name": "main_force_batch",
+      "command": "python3 scripts/analysis/main_force.py batch",
+      "required": true,
+      "timeout_s": 60,
+      "purpose": "主力净流入"
+    },
+    {
+      "name": "institution_tracker",
+      "command": "python3 scripts/data/institution_tracker.py all",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "机构动向"
+    },
+    {
+      "name": "rss_categorized",
+      "command": "python3 scripts/data/rss_aggregator.py categorized",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "盘后新闻"
+    },
+    {
+      "name": "macro_monitor",
+      "command": "python3 scripts/data/macro_monitor.py all",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "宏观数据"
+    },
+    {
+      "name": "market_intel_postmarket",
+      "command": "python3 scripts/data/market_intel_pipeline.py postmarket",
+      "required": true,
+      "timeout_s": 90,
+      "purpose": "跨资产快照（含外盘/商品/汇率/利率）"
+    },
+    {
+      "name": "data_consistency_guard",
+      "command": "python3 scripts/utils/data_consistency_guard.py",
+      "required": false,
+      "timeout_s": 30,
+      "purpose": "数据一致性校验"
+    }
+  ]
+}
