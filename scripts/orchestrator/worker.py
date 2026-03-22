@@ -97,6 +97,17 @@ FLOWS: dict[str, WorkerFlow] = {
 # Worker stage dispatch
 # ---------------------------------------------------------------------------
 
+def flow_stages(task_type: str) -> list[str]:
+    """Return the ordered stage names declared for a task type's flow.
+
+    Returns an empty list if the task type has no registered flow.
+    """
+    flow = FLOWS.get(task_type)
+    if flow is None:
+        return []
+    return [step.name for step in flow.steps]
+
+
 def run_worker(task_type: str, date: str, stage: str,
                checkpoints: dict) -> dict:
     """Execute a single worker stage for the given task.
@@ -109,10 +120,21 @@ def run_worker(task_type: str, date: str, stage: str,
 
     Returns:
         Dict with at least 'output_path' key.
+
+    Raises:
+        ValueError: If stage has no handler or is not part of the task's flow.
     """
     handler = _STAGE_HANDLERS.get(stage)
     if handler is None:
         raise ValueError(f"No handler for worker stage '{stage}'")
+
+    # Validate stage belongs to this task type's declared flow
+    valid_stages = flow_stages(task_type)
+    if valid_stages and stage not in valid_stages:
+        raise ValueError(
+            f"Stage '{stage}' is not part of the '{task_type}' flow. "
+            f"Valid worker stages: {' → '.join(valid_stages)}"
+        )
 
     print(f"  [worker] Running {stage} for {task_type}/{date}")
     result = handler(task_type, date, checkpoints)

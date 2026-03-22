@@ -203,25 +203,47 @@ def dispatch(task_type: str, date: str, stage: str = "all", dry_run: bool = Fals
 
 
 def _resolve_stages(stage: str, state: "TaskState") -> list[str]:
-    """Return ordered list of stages to execute."""
+    """Return ordered list of stages to execute.
+
+    For "all" and "worker" modes the stages are filtered through the task
+    type's WorkerFlow so that only declared stages are scheduled (e.g.
+    premarket has no 'discuss' step and will skip it).
+    """
+    from scripts.orchestrator.worker import flow_stages
+
+    task_type = state.task_type
+    valid_worker = flow_stages(task_type) or WORKER_STAGES
+
     if stage == "all":
-        # Resume from first incomplete stage
+        # Resume from first incomplete stage, but only include worker
+        # stages that exist in this task type's flow.
         first = state.next_stage()
         if first is None:
             return []
-        idx = STAGES.index(first)
-        return STAGES[idx:]
+        result = []
+        for s in STAGES:
+            if STAGES.index(s) < STAGES.index(first):
+                continue
+            if s in WORKER_STAGES and s not in valid_worker:
+                continue
+            result.append(s)
+        return result
     if stage == "worker":
-        # Run all worker sub-stages in order, skipping already completed
-        return [s for s in WORKER_STAGES if s not in state.checkpoints]
+        return [s for s in valid_worker if s not in state.checkpoints]
     # Single named stage
     return [stage]
 
 
 def _print_plan(task_type: str, stages: list[str]):
     """Show what would run without executing."""
+    from scripts.orchestrator.worker import flow_stages
+
     print(f"[plan] Task type: {task_type}")
     print(f"[plan] Stages to execute: {' → '.join(stages)}")
+
+    valid_worker = flow_stages(task_type)
+    if valid_worker:
+        print(f"[plan] Worker flow: {' → '.join(valid_worker)}")
 
     manifest_path = WORKSPACE / "scripts" / "orchestrator" / "manifests" / f"{task_type}.json"
     if manifest_path.exists():

@@ -3,11 +3,12 @@
 Delivery pipeline — quality check, PDF generation, Telegram send,
 memory archival, and state update.
 
-Current implementation: scaffolded with clear function signatures.
-Real delivery integration will be added in Phase 4.
+Quality check and PDF generation are real; Telegram send and memory
+archival remain explicit no-ops until their integrations land.
 """
 
 import json
+import subprocess
 import sys
 from dataclasses import dataclass
 from datetime import datetime
@@ -16,6 +17,8 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 WORKSPACE = Path(__file__).resolve().parents[2]
+QUALITY_CHECK_SCRIPT = WORKSPACE / "scripts" / "reporting" / "report_quality_check.py"
+MD_TO_PDF_SCRIPT = WORKSPACE / "scripts" / "reporting" / "md_to_pdf.py"
 
 
 @dataclass
@@ -71,19 +74,15 @@ def run_delivery(task_type: str, date: str, checkpoints: dict) -> dict:
 
     Steps:
         1. Locate final report from worker checkpoints
-        2. Run quality check
+        2. Run quality check (real — calls report_quality_check.py)
         3. Copy to canonical report path
-        4. Generate PDF (scaffold)
-        5. Send via Telegram (scaffold)
-        6. Archive to memory (scaffold)
+        4. Generate PDF (real — calls md_to_pdf.py)
+        5. Send via Telegram (not yet implemented)
+        6. Archive to memory (not yet implemented)
 
-    Args:
-        task_type: Task type name.
-        date: Task date (YYYY-MM-DD).
-        checkpoints: Completed stage checkpoints from TaskState.
-
-    Returns:
-        Dict with delivery result fields.
+    Semantics: ``delivered`` is True only when local report + PDF succeed.
+    ``telegram_sent`` and ``memory_archived`` are always False until their
+    integrations land; their status is surfaced honestly in the result.
     """
     result = DeliveryResult(
         task_type=task_type,
@@ -91,7 +90,7 @@ def run_delivery(task_type: str, date: str, checkpoints: dict) -> dict:
         timestamp=_now_iso(),
     )
 
-    # 1. Find the final report
+    # 1. Find the final report ------------------------------------------------
     revise_cp = checkpoints.get("revise", {})
     write_cp = checkpoints.get("write", {})
     final_path = revise_cp.get("output_path") or write_cp.get("output_path", "")
@@ -101,17 +100,22 @@ def run_delivery(task_type: str, date: str, checkpoints: dict) -> dict:
         print(f"  [deliver] ERROR: {result.error}", file=sys.stderr)
         return result.to_dict()
 
-    # 2. Quality check (scaffold — calls real quality check in Phase 4)
-    result.quality_passed = quality_check(final_path, task_type)
+    # 2. Quality check (real) --------------------------------------------------
+    qc_ok, qc_issues = quality_check(final_path, task_type)
+    result.quality_passed = qc_ok
 
-    if not result.quality_passed:
-        result.error = "Quality check failed — delivery aborted"
-        print(f"  [deliver] Delivery aborted: quality check failed", file=sys.stderr)
+    if not qc_ok:
+        result.error = (
+            f"Quality check failed ({len(qc_issues)} issues) — delivery aborted"
+        )
+        print(f"  [deliver] {result.error}", file=sys.stderr)
+        for issue in qc_issues[:5]:
+            print(f"    • {issue}", file=sys.stderr)
         result.delivered = False
         result.timestamp = _now_iso()
         return result.to_dict()
 
-    # 3. Copy to canonical path
+    # 3. Copy to canonical path ------------------------------------------------
     report_dest = _report_path(task_type, date)
     report_dest.parent.mkdir(parents=True, exist_ok=True)
     report_dest.write_text(
@@ -121,46 +125,101 @@ def run_delivery(task_type: str, date: str, checkpoints: dict) -> dict:
     result.report_path = str(report_dest)
     print(f"  [deliver] Report saved to {report_dest}")
 
-    if not report_dest.exists():
-        result.error = "Final report not found after copy"
-        result.delivered = False
-        result.timestamp = _now_iso()
-        return result.to_dict()
+    # 4. PDF generation (real) -------------------------------------------------
+    pdf_path = report_dest.with_suffix(".pdf")
+    pdf_ok = generate_pdf(report_dest, pdf_path)
+    if pdf_ok:
+        result.pdf_path = str(pdf_path)
+        print(f"  [deliver] PDF saved to {pdf_path}")
+    else:
+        print(f"  [deliver] PDF generation failed — report still delivered as markdown",
+              file=sys.stderr)
 
-    # 4. PDF generation (scaffold)
-    result.pdf_path = ""  # filled in Phase 4
+    # 5. Telegram delivery (not yet implemented) -------------------------------
+    telegram_sent = False
+    print(f"  [deliver] Telegram send: not yet implemented")
 
-    # 5. Telegram delivery (scaffold)
-    print(f"  [deliver] Telegram send: not yet implemented (Phase 4)")
+    # 6. Memory archival (not yet implemented) ---------------------------------
+    result.memory_archived = False
+    print(f"  [deliver] Memory archive: not yet implemented")
 
-    # 6. Memory archival (scaffold)
-    result.memory_archived = False  # filled in Phase 4
-    print(f"  [deliver] Memory archive: not yet implemented (Phase 4)")
-
+    # Delivered = local report + PDF succeeded; downstream channels are separate
     result.delivered = True
     result.timestamp = _now_iso()
+    if not telegram_sent or not result.memory_archived:
+        pending = []
+        if not telegram_sent:
+            pending.append("telegram")
+        if not result.memory_archived:
+            pending.append("memory_archive")
+        result.error = f"Delivered locally but pending: {', '.join(pending)}"
+
     return result.to_dict()
 
 
-def quality_check(report_path: str, task_type: str) -> bool:
-    """Run quality validation on a report.
+def quality_check(report_path: str, task_type: str) -> tuple[bool, list[str]]:
+    """Run quality validation on a report via report_quality_check.py.
 
-    Scaffold: checks that the file exists and has non-trivial content.
-    Phase 4 will integrate scripts/reporting/report_quality_check.py.
+    Returns:
+        (passed, issues) — passed is True when zero issues found.
     """
     path = Path(report_path)
     if not path.exists():
-        print(f"  [deliver] Quality check FAIL: file not found", file=sys.stderr)
-        return False
+        return False, [f"File not found: {report_path}"]
 
-    content = path.read_text(encoding="utf-8")
-    if len(content.strip()) < 50:
-        print(f"  [deliver] Quality check FAIL: content too short ({len(content)} chars)",
+    if not QUALITY_CHECK_SCRIPT.exists():
+        print(f"  [deliver] WARNING: quality check script not found at "
+              f"{QUALITY_CHECK_SCRIPT}, falling back to basic check", file=sys.stderr)
+        content = path.read_text(encoding="utf-8")
+        if len(content.strip()) < 50:
+            return False, [f"Content too short ({len(content)} chars)"]
+        return True, []
+
+    try:
+        proc = subprocess.run(
+            [sys.executable, str(QUALITY_CHECK_SCRIPT), str(path)],
+            capture_output=True, text=True, timeout=30,
+            cwd=str(WORKSPACE),
+        )
+    except subprocess.TimeoutExpired:
+        return False, ["Quality check timed out (30s)"]
+
+    # Parse issues from stdout (one per line after the PASSED/FAILED header)
+    lines = [l.strip() for l in proc.stdout.splitlines() if l.strip()]
+    issues = [l for l in lines if l not in ("PASSED", "FAILED")]
+
+    passed = proc.returncode == 0
+    label = "PASSED" if passed else "FAILED"
+    print(f"  [deliver] Quality check {label} ({len(issues)} issues)")
+    return passed, issues
+
+
+def generate_pdf(md_path: Path, pdf_path: Path) -> bool:
+    """Generate PDF from markdown via md_to_pdf.py.
+
+    Returns True on success, False on failure (non-fatal).
+    """
+    if not MD_TO_PDF_SCRIPT.exists():
+        print(f"  [deliver] WARNING: md_to_pdf.py not found, skipping PDF",
               file=sys.stderr)
         return False
 
-    print(f"  [deliver] Quality check passed ({len(content)} chars)")
-    return True
+    try:
+        proc = subprocess.run(
+            [sys.executable, str(MD_TO_PDF_SCRIPT), str(md_path), str(pdf_path)],
+            capture_output=True, text=True, timeout=60,
+            cwd=str(WORKSPACE),
+        )
+    except subprocess.TimeoutExpired:
+        print(f"  [deliver] PDF generation timed out (60s)", file=sys.stderr)
+        return False
+
+    if proc.returncode != 0:
+        print(f"  [deliver] PDF generation error: {proc.stderr[:200]}",
+              file=sys.stderr)
+        return False
+
+    return pdf_path.exists()
 
 
 def _now_iso() -> str:
