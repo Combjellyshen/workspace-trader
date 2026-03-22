@@ -38,6 +38,7 @@ import os
 import sys
 import gzip
 import shutil
+import tempfile
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from pathlib import Path
@@ -54,6 +55,41 @@ SH_TZ = ZoneInfo('Asia/Shanghai')
 # Ensure directories
 for d in [REPORTS_DIR, SIGNALS_DIR, REVIEWS_DIR, SENTIMENT_DIR, STOCKS_DIR]:
     d.mkdir(parents=True, exist_ok=True)
+
+
+def _atomic_write_json(filepath, data):
+    """Write JSON atomically: write to temp file, then os.replace() into place."""
+    filepath = Path(filepath)
+    fd, tmp_path = tempfile.mkstemp(dir=filepath.parent, suffix='.tmp')
+    try:
+        with os.fdopen(fd, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        os.replace(tmp_path, filepath)
+    except BaseException:
+        # Clean up temp file on any failure
+        try:
+            os.unlink(tmp_path)
+        except OSError:
+            pass
+        raise
+
+
+def _atomic_write_gzip(src_path, gz_path):
+    """Gzip a file atomically: write to temp .gz, then os.replace() into place."""
+    gz_path = Path(gz_path)
+    fd, tmp_path = tempfile.mkstemp(dir=gz_path.parent, suffix='.tmp.gz')
+    try:
+        os.close(fd)
+        with open(src_path, 'rb') as f_in:
+            with gzip.open(tmp_path, 'wb') as f_out:
+                shutil.copyfileobj(f_in, f_out)
+        os.replace(tmp_path, gz_path)
+    except BaseException:
+        try:
+            os.unlink(tmp_path)
+        except OSError:
+            pass
+        raise
 
 
 def now_shanghai():
@@ -79,16 +115,13 @@ def save_reports():
     date = today_str()
 
     latest = rr.latest_reports(days=1, page_size=50)
-    with open(month_dir / f'{date}_stock.json', 'w', encoding='utf-8') as f:
-        json.dump(latest, f, ensure_ascii=False, indent=2)
+    _atomic_write_json(month_dir / f'{date}_stock.json', latest)
 
     industry = rr.industry_reports(days=1, page_size=30)
-    with open(month_dir / f'{date}_industry.json', 'w', encoding='utf-8') as f:
-        json.dump(industry, f, ensure_ascii=False, indent=2)
+    _atomic_write_json(month_dir / f'{date}_industry.json', industry)
 
     strategy = rr.strategy_reports(days=1, page_size=30)
-    with open(month_dir / f'{date}_strategy.json', 'w', encoding='utf-8') as f:
-        json.dump(strategy, f, ensure_ascii=False, indent=2)
+    _atomic_write_json(month_dir / f'{date}_strategy.json', strategy)
 
     print(json.dumps({
         'action': 'save_reports',
@@ -123,8 +156,7 @@ def save_signals(signals_data=None):
 
     existing.extend(signals_data)
 
-    with open(filepath, 'w', encoding='utf-8') as f:
-        json.dump(existing, f, ensure_ascii=False, indent=2)
+    _atomic_write_json(filepath, existing)
 
     print(json.dumps({
         'action': 'save_signals',
@@ -154,8 +186,7 @@ def save_sentiment(sentiment_data=None):
     }
     existing.append(snapshot)
 
-    with open(filepath, 'w', encoding='utf-8') as f:
-        json.dump(existing, f, ensure_ascii=False, indent=2)
+    _atomic_write_json(filepath, existing)
 
     print(json.dumps({
         'action': 'save_sentiment',
@@ -176,25 +207,19 @@ def compress_old(months=6):
         if month_dir.is_dir() and month_dir.name < cutoff_month:
             for f in month_dir.iterdir():
                 if f.suffix == '.json':
-                    with open(f, 'rb') as f_in:
-                        with gzip.open(str(f) + '.gz', 'wb') as f_out:
-                            shutil.copyfileobj(f_in, f_out)
+                    _atomic_write_gzip(f, str(f) + '.gz')
                     f.unlink()
                     compressed += 1
 
     for f in sorted(SIGNALS_DIR.iterdir()):
         if f.suffix == '.json' and f.stem < cutoff.strftime('%Y-%m-%d'):
-            with open(f, 'rb') as f_in:
-                with gzip.open(str(f) + '.gz', 'wb') as f_out:
-                    shutil.copyfileobj(f_in, f_out)
+            _atomic_write_gzip(f, str(f) + '.gz')
             f.unlink()
             compressed += 1
 
     for f in sorted(SENTIMENT_DIR.iterdir()):
         if f.suffix == '.json' and f.stem < cutoff.strftime('%Y-%m-%d'):
-            with open(f, 'rb') as f_in:
-                with gzip.open(str(f) + '.gz', 'wb') as f_out:
-                    shutil.copyfileobj(f_in, f_out)
+            _atomic_write_gzip(f, str(f) + '.gz')
             f.unlink()
             compressed += 1
 
@@ -311,8 +336,7 @@ def update_state(new_state=None):
     existing.update(new_state)
     existing['last_updated'] = datetime.now(SH_TZ).isoformat()
 
-    with open(STATE_FILE, 'w', encoding='utf-8') as f:
-        json.dump(existing, f, ensure_ascii=False, indent=2)
+    _atomic_write_json(STATE_FILE, existing)
 
     print(json.dumps({'action': 'update_state', 'state': existing}, ensure_ascii=False, indent=2))
 
@@ -358,8 +382,7 @@ def _load_stock(code):
 def _save_stock(code, data):
     """保存股票档案"""
     filepath = STOCKS_DIR / f'{code}.json'
-    with open(filepath, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+    _atomic_write_json(filepath, data)
 
 
 def _deep_merge(base, patch):
@@ -534,8 +557,7 @@ def add_stock(code, name, stock_type='stock'):
         'notes': '',
     }
 
-    with open(filepath, 'w', encoding='utf-8') as f:
-        json.dump(template, f, ensure_ascii=False, indent=2)
+    _atomic_write_json(filepath, template)
 
     print(json.dumps({'action': 'add_stock', 'code': code, 'name': name,
                       'path': str(filepath)}, ensure_ascii=False, indent=2))
