@@ -138,6 +138,9 @@ class TaskState:
 # Dispatch logic
 # ---------------------------------------------------------------------------
 
+WORKER_STAGES = ["normalize", "discuss", "write", "review", "revise"]
+
+
 def dispatch(task_type: str, date: str, stage: str = "all", dry_run: bool = False):
     """Run a task through its pipeline stages."""
     from scripts.orchestrator.collect import run_collection
@@ -146,25 +149,21 @@ def dispatch(task_type: str, date: str, stage: str = "all", dry_run: bool = Fals
 
     state = TaskState(task_type, date)
 
-    if stage == "all":
-        target_stage = state.next_stage()
-    else:
-        target_stage = stage
+    stages_to_run = _resolve_stages(stage, state)
 
-    if target_stage is None:
+    if not stages_to_run:
         print(f"[dispatcher] Task {task_type}/{date} already completed.")
         return state
 
-    print(f"[dispatcher] task={task_type} date={date} stage={target_stage} dry_run={dry_run}")
+    print(f"[dispatcher] task={task_type} date={date} stage={stage} "
+          f"stages={' → '.join(stages_to_run)} dry_run={dry_run}")
 
     if dry_run:
-        print(f"[dispatcher] DRY RUN — would execute from stage '{target_stage}'")
-        _print_plan(task_type, target_stage, stage == "all")
+        print(f"[dispatcher] DRY RUN — would execute stages: {' → '.join(stages_to_run)}")
+        _print_plan(task_type, stages_to_run)
         return state
 
     state.mark_started()
-
-    stages_to_run = _resolve_stages(target_stage, run_all=(stage == "all"))
 
     for s in stages_to_run:
         state.current_stage = s
@@ -176,7 +175,7 @@ def dispatch(task_type: str, date: str, stage: str = "all", dry_run: bool = Fals
                 result = run_collection(task_type, date)
                 state.checkpoint(s, {"manifest_path": result.get("manifest_path", ""),
                                      "coverage": result.get("coverage_ratio", 0)})
-            elif s in ("normalize", "discuss", "write", "review", "revise"):
+            elif s in WORKER_STAGES:
                 result = run_worker(task_type, date, s, state.checkpoints)
                 state.checkpoint(s, {"output_path": result.get("output_path", "")})
             elif s == "deliver":
@@ -189,22 +188,38 @@ def dispatch(task_type: str, date: str, stage: str = "all", dry_run: bool = Fals
             print(f"[dispatcher] FAILED at stage '{s}': {exc}", file=sys.stderr)
             raise
 
-    state.mark_completed()
-    print(f"\n[dispatcher] Task {task_type}/{date} completed successfully.")
+    # Mark completed only if every pipeline stage has a checkpoint
+    if all(s in state.checkpoints for s in STAGES):
+        state.mark_completed()
+        print(f"\n[dispatcher] Task {task_type}/{date} completed successfully.")
+    else:
+        state.status = "in_progress"
+        state.current_stage = None
+        state.save()
+        done = ", ".join(state.completed_stages())
+        print(f"\n[dispatcher] Partial run finished. Completed stages: {done}")
+
     return state
 
 
-def _resolve_stages(from_stage: str, run_all: bool) -> list[str]:
+def _resolve_stages(stage: str, state: "TaskState") -> list[str]:
     """Return ordered list of stages to execute."""
-    idx = STAGES.index(from_stage)
-    if run_all:
+    if stage == "all":
+        # Resume from first incomplete stage
+        first = state.next_stage()
+        if first is None:
+            return []
+        idx = STAGES.index(first)
         return STAGES[idx:]
-    return [from_stage]
+    if stage == "worker":
+        # Run all worker sub-stages in order, skipping already completed
+        return [s for s in WORKER_STAGES if s not in state.checkpoints]
+    # Single named stage
+    return [stage]
 
 
-def _print_plan(task_type: str, from_stage: str, run_all: bool):
+def _print_plan(task_type: str, stages: list[str]):
     """Show what would run without executing."""
-    stages = _resolve_stages(from_stage, run_all)
     print(f"[plan] Task type: {task_type}")
     print(f"[plan] Stages to execute: {' → '.join(stages)}")
 

@@ -131,23 +131,55 @@ def _normalize(task_type: str, date: str, checkpoints: dict) -> StepResult:
     and produces a unified normalized JSON for downstream stages.
     """
     manifest_path = checkpoints.get("collect", {}).get("manifest_path", "")
-    if not manifest_path or not Path(manifest_path).exists():
+    if not manifest_path:
         return StepResult(
             step_name="normalize",
             status="error",
-            error="No collection manifest found — run collect stage first",
+            error="No collection manifest path in checkpoints — run collect stage first",
             timestamp=_now_iso(),
         )
+
+    mp = Path(manifest_path)
+    if not mp.exists():
+        return StepResult(
+            step_name="normalize",
+            status="error",
+            error=f"Collection manifest file not found: {manifest_path}",
+            timestamp=_now_iso(),
+        )
+
+    try:
+        with open(mp, encoding="utf-8") as f:
+            collection_manifest = json.load(f)
+    except (json.JSONDecodeError, OSError) as exc:
+        return StepResult(
+            step_name="normalize",
+            status="error",
+            error=f"Cannot read collection manifest: {exc}",
+            timestamp=_now_iso(),
+        )
+
+    # Build artifact map from manifest script results
+    artifacts: dict[str, dict] = {}
+    for script in collection_manifest.get("scripts", []):
+        name = script.get("name", "")
+        output_file = script.get("output_file", "")
+        artifacts[name] = {
+            "status": script.get("status", "unknown"),
+            "output_file": output_file,
+            "output_lines": script.get("output_lines", 0),
+            "available": bool(output_file and Path(output_file).exists()),
+        }
 
     output_dir = WORKSPACE / "data" / "worker" / task_type / date
     output_dir.mkdir(parents=True, exist_ok=True)
     output_path = output_dir / "normalized.json"
 
-    # Scaffold: write a stub normalized file pointing to the manifest
     normalized = {
         "task_type": task_type,
         "date": date,
         "source_manifest": manifest_path,
+        "artifacts": artifacts,
         "sections": {},
         "generated_at": _now_iso(),
     }

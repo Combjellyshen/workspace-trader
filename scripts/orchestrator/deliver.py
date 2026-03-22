@@ -104,6 +104,13 @@ def run_delivery(task_type: str, date: str, checkpoints: dict) -> dict:
     # 2. Quality check (scaffold — calls real quality check in Phase 4)
     result.quality_passed = quality_check(final_path, task_type)
 
+    if not result.quality_passed:
+        result.error = "Quality check failed — delivery aborted"
+        print(f"  [deliver] Delivery aborted: quality check failed", file=sys.stderr)
+        result.delivered = False
+        result.timestamp = _now_iso()
+        return result.to_dict()
+
     # 3. Copy to canonical path
     report_dest = _report_path(task_type, date)
     report_dest.parent.mkdir(parents=True, exist_ok=True)
@@ -113,6 +120,12 @@ def run_delivery(task_type: str, date: str, checkpoints: dict) -> dict:
     )
     result.report_path = str(report_dest)
     print(f"  [deliver] Report saved to {report_dest}")
+
+    if not report_dest.exists():
+        result.error = "Final report not found after copy"
+        result.delivered = False
+        result.timestamp = _now_iso()
+        return result.to_dict()
 
     # 4. PDF generation (scaffold)
     result.pdf_path = ""  # filled in Phase 4

@@ -29,7 +29,9 @@ class ScriptResult:
     status: str  # "ok" | "error" | "timeout" | "skipped"
     duration_s: float = 0.0
     error: str = ""
+    stderr_snippet: str = ""
     output_lines: int = 0
+    output_file: str = ""
 
 
 @dataclass
@@ -87,6 +89,8 @@ def run_collection(task_type: str, date: str) -> dict:
         sr = ScriptResult(name=name, command=command, required=required, status="ok")
         t0 = time.monotonic()
 
+        artifact_path = output_dir / f"{name}.txt"
+
         try:
             proc = subprocess.run(
                 command,
@@ -98,13 +102,21 @@ def run_collection(task_type: str, date: str) -> dict:
             )
             sr.duration_s = round(time.monotonic() - t0, 2)
 
+            # Capture stderr snippet when present
+            if proc.stderr:
+                sr.stderr_snippet = proc.stderr[:500]
+
             if proc.returncode != 0:
                 sr.status = "error"
                 sr.error = (proc.stderr or "")[:500]
                 result.errors.append(f"{name}: exit {proc.returncode}")
                 print(f"  [collect] FAIL {name}: exit {proc.returncode}", file=sys.stderr)
             else:
-                sr.output_lines = len((proc.stdout or "").splitlines())
+                stdout = proc.stdout or ""
+                sr.output_lines = len(stdout.splitlines())
+                # Save stdout to artifact file
+                artifact_path.write_text(stdout, encoding="utf-8")
+                sr.output_file = str(artifact_path)
                 if required:
                     required_ok += 1
                 print(f"  [collect] OK   {name} ({sr.duration_s}s, {sr.output_lines} lines)")
