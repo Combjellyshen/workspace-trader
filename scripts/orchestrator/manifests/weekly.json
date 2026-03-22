@@ -7,8 +7,8 @@
     {
       "name": "market_cache_save",
       "command": "python3 scripts/data/market_cache.py save_market",
-      "required": true,
-      "timeout_s": 90,
+      "required": false,
+      "timeout_s": 120,
       "purpose": "市场缓存快照"
     },
     {
@@ -21,15 +21,15 @@
     {
       "name": "deep_data_industry",
       "command": "python3 scripts/data/deep_data.py industry",
-      "required": true,
-      "timeout_s": 60,
+      "required": false,
+      "timeout_s": 120,
       "purpose": "行业板块数据"
     },
     {
       "name": "deep_data_concept",
       "command": "python3 scripts/data/deep_data.py concept",
       "required": false,
-      "timeout_s": 60,
+      "timeout_s": 120,
       "purpose": "概念板块数据"
     },
     {
@@ -43,7 +43,7 @@
       "name": "deep_data_hot",
       "command": "python3 scripts/data/deep_data.py hot",
       "required": false,
-      "timeout_s": 60,
+      "timeout_s": 120,
       "purpose": "热门股票"
     },
     {
