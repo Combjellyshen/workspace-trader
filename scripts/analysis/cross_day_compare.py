@@ -16,6 +16,7 @@ import sys
 import os
 from datetime import datetime, timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 _HERE = Path(__file__).resolve().parents[2]
 import sys  # noqa: E402
@@ -33,14 +34,14 @@ SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def today_str():
-    return datetime.now().strftime('%Y-%m-%d')
+    return datetime.now(ZoneInfo("Asia/Shanghai")).strftime('%Y-%m-%d')
 
 
 def _load_snapshot(date_str):
     """加载某日快照"""
     f = SNAPSHOT_DIR / f'{date_str}.json'
     if f.exists():
-        with open(f) as fp:
+        with open(f, encoding='utf-8') as fp:
             return json.load(fp)
     return None
 
@@ -50,7 +51,7 @@ def save_snapshot(data, date_str=None):
     if not date_str:
         date_str = today_str()
     f = SNAPSHOT_DIR / f'{date_str}.json'
-    with open(f, 'w') as fp:
+    with open(f, 'w', encoding='utf-8') as fp:
         json.dump(data, fp, ensure_ascii=False, indent=2)
     return str(f)
 
@@ -67,7 +68,7 @@ def _get_prev_trading_day(date_str=None):
 
 def flow_delta():
     """资金流向边际变化"""
-    result = {'analysis_time': datetime.now().isoformat()}
+    result = {'analysis_time': datetime.now(ZoneInfo("Asia/Shanghai")).isoformat()}
     
     # 获取当前数据
     sys.path.insert(0, str(WORKSPACE / 'scripts'))
@@ -153,7 +154,7 @@ def flow_delta():
 
 def sentiment_delta():
     """情绪面变化"""
-    result = {'analysis_time': datetime.now().isoformat()}
+    result = {'analysis_time': datetime.now(ZoneInfo("Asia/Shanghai")).isoformat()}
     
     sys.path.insert(0, str(WORKSPACE / 'scripts'))
     from scripts.analysis import sentiment as sm

@@ -15,6 +15,7 @@ import sys
 import urllib.request
 from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 # ============================================================
 # 路径
@@ -156,7 +157,7 @@ def error_output(module, error, **extra):
         "status": "error",
         "module": module,
         "error": str(error)[:200],
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "timestamp": datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M:%S"),
     }
     payload.update(extra)
     json_output(payload)

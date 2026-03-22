@@ -16,6 +16,7 @@ import sys
 import json
 import time
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -42,12 +43,12 @@ def get_industries():
 
 def scan_sector(sector_name: str):
     """扫描某行业板块：成分股 + 财务筛选"""
-    result = {"sector": sector_name, "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M")}
+    result = {"sector": sector_name, "timestamp": datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M")}
     
     # 1. 获取板块历史行情（近期涨跌）
     try:
         df_hist = ak.stock_board_industry_hist_em(
-            symbol=sector_name, period="日k", start_date="20260101", end_date=datetime.now().strftime("%Y%m%d"), adjust=""
+            symbol=sector_name, period="日k", start_date="20260101", end_date=datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y%m%d"), adjust=""
         )
         if not df_hist.empty:
             latest = df_hist.iloc[-1]
@@ -142,7 +143,7 @@ def screen_market(min_roe=15, min_profit_growth=15, max_debt=65, top_n=50):
             "min_profit_growth": min_profit_growth,
             "max_debt_ratio": max_debt,
         },
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "timestamp": datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M"),
     }
     
     try:
@@ -210,9 +211,10 @@ def screen_market(min_roe=15, min_profit_growth=15, max_debt=65, top_n=50):
                             "revenue_growth": round(rev_growth, 2),
                             "profit_growth": round(profit_growth, 2),
                         })
-                    except:
+                    except Exception as e:
+                        print(f"screen_market item error: {e}", file=sys.stderr)
                         continue
-                
+
                 if len(data) < 50:
                     break
                     
@@ -249,7 +251,7 @@ def get_valuation(code: str):
             return {"error": "无数据"}
         return {
             "code": code,
-            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
+            "timestamp": datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M"),
             "data": df.to_dict('records'),
         }
     except Exception as e:
@@ -264,7 +266,7 @@ def get_growth(code: str):
             return {"error": "无数据"}
         return {
             "code": code,
-            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
+            "timestamp": datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M"),
             "data": df.to_dict('records'),
         }
     except Exception as e:
@@ -283,7 +285,7 @@ def get_pe_history():
         latest = df.iloc[-1]
         
         # 计算历史分位（近5年）
-        five_yr_cutoff = (datetime.now() - timedelta(days=5*365)).date()
+        five_yr_cutoff = (datetime.now(ZoneInfo("Asia/Shanghai")) - timedelta(days=5*365)).date()
         five_yr = df[pd.to_datetime(df["日期"]).dt.date >= five_yr_cutoff]
         pe_col = "滚动市盈率"
         if pe_col in five_yr.columns:
@@ -297,7 +299,7 @@ def get_pe_history():
             percentile = None
         
         result = {
-            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
+            "timestamp": datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M"),
             "latest_date": str(latest["日期"]),
             "index_value": float(latest["指数"]) if latest["指数"] else None,
             "pe_ttm": float(latest["滚动市盈率"]) if latest["滚动市盈率"] else None,
@@ -330,7 +332,7 @@ def analyze_watchlist():
     sectors = watchlist.get("sectors", {})
     if not sectors:
         return {
-            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
+            "timestamp": datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M"),
             "watchlist_stocks": 0,
             "results": [],
             "note": "长线观察池为空"
@@ -377,7 +379,7 @@ def analyze_watchlist():
             time.sleep(0.5)
 
     return {
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "timestamp": datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M"),
         "watchlist_stocks": len(results),
         "results": results,
     }

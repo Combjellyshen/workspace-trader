@@ -21,6 +21,7 @@ import warnings
 import time
 from datetime import datetime, timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 warnings.filterwarnings('ignore')
 
@@ -50,7 +51,7 @@ def load_cache():
     cache_dir = WORKSPACE_ROOT / 'data' / 'market_cache'
     if not cache_dir.exists():
         return None
-    today = datetime.now()
+    today = datetime.now(ZoneInfo("Asia/Shanghai"))
     for i in range(5):
         date_str = (today - timedelta(days=i)).strftime('%Y-%m-%d')
         cache_file = cache_dir / f'{date_str}.json'
@@ -79,7 +80,7 @@ PATTERNS = {
 # ─────────────────────────────────────────────
 
 def is_trading_day():
-    weekday = datetime.now().weekday()
+    weekday = datetime.now(ZoneInfo("Asia/Shanghai")).weekday()
     return weekday < 5  # 0=周一 4=周五
 
 
@@ -938,11 +939,11 @@ def cmd_scan(sector=None):
     from pathlib import Path as _Path
 
     CACHE_DIR = WORKSPACE_ROOT / 'data' / 'market_cache'
-    is_weekday = datetime.now().weekday() < 5
+    is_weekday = datetime.now(ZoneInfo("Asia/Shanghai")).weekday() < 5
 
     # 1. 读缓存（最近5天）
     cache_data = None
-    today = datetime.now()
+    today = datetime.now(ZoneInfo("Asia/Shanghai"))
     for i in range(5):
         date_str = (today - timedelta(days=i)).strftime('%Y-%m-%d')
         f = CACHE_DIR / f'{date_str}-market.json'
@@ -1077,7 +1078,7 @@ def cmd_scan(sector=None):
         reverse=True
     )
     output = {
-        "scan_date": datetime.now().strftime('%Y-%m-%d'),
+        "scan_date": datetime.now(ZoneInfo("Asia/Shanghai")).strftime('%Y-%m-%d'),
         "total_candidates": len(sorted_c),
         "results": results[:20]
     }

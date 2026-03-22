@@ -79,15 +79,15 @@ def save_reports():
     date = today_str()
 
     latest = rr.latest_reports(days=1, page_size=50)
-    with open(month_dir / f'{date}_stock.json', 'w') as f:
+    with open(month_dir / f'{date}_stock.json', 'w', encoding='utf-8') as f:
         json.dump(latest, f, ensure_ascii=False, indent=2)
 
     industry = rr.industry_reports(days=1, page_size=30)
-    with open(month_dir / f'{date}_industry.json', 'w') as f:
+    with open(month_dir / f'{date}_industry.json', 'w', encoding='utf-8') as f:
         json.dump(industry, f, ensure_ascii=False, indent=2)
 
     strategy = rr.strategy_reports(days=1, page_size=30)
-    with open(month_dir / f'{date}_strategy.json', 'w') as f:
+    with open(month_dir / f'{date}_strategy.json', 'w', encoding='utf-8') as f:
         json.dump(strategy, f, ensure_ascii=False, indent=2)
 
     print(json.dumps({
@@ -109,7 +109,7 @@ def save_signals(signals_data=None):
 
     existing = []
     if filepath.exists():
-        with open(filepath) as f:
+        with open(filepath, encoding='utf-8') as f:
             existing = json.load(f)
 
     if signals_data is None:
@@ -123,7 +123,7 @@ def save_signals(signals_data=None):
 
     existing.extend(signals_data)
 
-    with open(filepath, 'w') as f:
+    with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(existing, f, ensure_ascii=False, indent=2)
 
     print(json.dumps({
@@ -141,7 +141,7 @@ def save_sentiment(sentiment_data=None):
 
     existing = []
     if filepath.exists():
-        with open(filepath) as f:
+        with open(filepath, encoding='utf-8') as f:
             existing = json.load(f)
 
     if sentiment_data is None:
@@ -149,12 +149,12 @@ def save_sentiment(sentiment_data=None):
         sentiment_data = sm.all_sentiment()
 
     snapshot = {
-        'timestamp': datetime.now().isoformat(),
+        'timestamp': datetime.now(SH_TZ).isoformat(),
         'data': sentiment_data,
     }
     existing.append(snapshot)
 
-    with open(filepath, 'w') as f:
+    with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(existing, f, ensure_ascii=False, indent=2)
 
     print(json.dumps({
@@ -168,7 +168,7 @@ def save_sentiment(sentiment_data=None):
 
 def compress_old(months=6):
     """压缩超过N个月的数据为 .gz"""
-    cutoff = datetime.now() - timedelta(days=months * 30)
+    cutoff = datetime.now(SH_TZ) - timedelta(days=months * 30)
     cutoff_month = cutoff.strftime('%Y-%m')
     compressed = 0
 
@@ -218,7 +218,7 @@ def query_reports(code, months=6):
             if not f.name.endswith('_stock.json'):
                 continue
             try:
-                with open(f) as fp:
+                with open(f, encoding='utf-8') as fp:
                     data = json.load(fp)
                 for r in data.get('reports', []):
                     if r.get('stock_code') == code:
@@ -250,13 +250,13 @@ def query_reports(code, months=6):
 
 def query_signals(days=7):
     """查近N天关键信号"""
-    cutoff = datetime.now() - timedelta(days=days)
+    cutoff = datetime.now(SH_TZ) - timedelta(days=days)
     results = {}
 
     for f in sorted(SIGNALS_DIR.iterdir()):
         if f.suffix == '.json' and f.stem >= cutoff.strftime('%Y-%m-%d'):
             try:
-                with open(f) as fp:
+                with open(f, encoding='utf-8') as fp:
                     results[f.stem] = json.load(fp)
             except (json.JSONDecodeError, IOError):
                 pass
@@ -266,7 +266,7 @@ def query_signals(days=7):
 
 def query_reviews(days=7):
     """查近N天复盘"""
-    cutoff = datetime.now() - timedelta(days=days)
+    cutoff = datetime.now(SH_TZ) - timedelta(days=days)
     results = {}
 
     for f in sorted(REVIEWS_DIR.iterdir()):
@@ -282,7 +282,7 @@ def query_reviews(days=7):
 def status():
     """查看状态追踪"""
     if STATE_FILE.exists():
-        with open(STATE_FILE) as f:
+        with open(STATE_FILE, encoding='utf-8') as f:
             data = json.load(f)
     else:
         data = {
@@ -305,13 +305,13 @@ def update_state(new_state=None):
 
     existing = {}
     if STATE_FILE.exists():
-        with open(STATE_FILE) as f:
+        with open(STATE_FILE, encoding='utf-8') as f:
             existing = json.load(f)
 
     existing.update(new_state)
-    existing['last_updated'] = datetime.now().isoformat()
+    existing['last_updated'] = datetime.now(SH_TZ).isoformat()
 
-    with open(STATE_FILE, 'w') as f:
+    with open(STATE_FILE, 'w', encoding='utf-8') as f:
         json.dump(existing, f, ensure_ascii=False, indent=2)
 
     print(json.dumps({'action': 'update_state', 'state': existing}, ensure_ascii=False, indent=2))

@@ -14,39 +14,56 @@
 import json
 import sys
 import math
+from pathlib import Path
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
+
+WORKSPACE_ROOT = Path(__file__).resolve().parents[2]
+if str(WORKSPACE_ROOT) not in sys.path:
+    sys.path.insert(0, str(WORKSPACE_ROOT))
 
 
 def _load_kline(code, days=120):
-    """通过 akshare 加载K线；兼容指数、股票、ETF"""
+    """通过 akshare 加载K线；兼容指数、股票、ETF，并做简单重试/回退"""
     import akshare as ak
-    end = datetime.now().strftime('%Y%m%d')
-    start = (datetime.now() - timedelta(days=days + 30)).strftime('%Y%m%d')
-    
-    if code.startswith('sh') or code.startswith('sz'):
-        # 指数
-        symbol = code[2:]
-        df = ak.stock_zh_index_daily_em(symbol=symbol)
-        if df is not None and not df.empty:
-            df = df.rename(columns={'date': '日期', 'open': '开盘', 'close': '收盘', 
-                                     'high': '最高', 'low': '最低', 'volume': '成交量'})
-            df = df.tail(days)
-    else:
-        # ETF优先走ETF接口
-        if code.startswith(('5', '15', '16', '56', '58')):
-            try:
-                df = ak.fund_etf_hist_em(symbol=code, period='daily', start_date=start, end_date=end, adjust='qfq')
-            except Exception:
+    end = datetime.now(ZoneInfo("Asia/Shanghai")).strftime('%Y%m%d')
+    start = (datetime.now(ZoneInfo("Asia/Shanghai")) - timedelta(days=days + 30)).strftime('%Y%m%d')
+
+    last_error = None
+    for attempt in range(2):
+        try:
+            if code.startswith('sh') or code.startswith('sz'):
+                symbol = code[2:]
+                df = ak.stock_zh_index_daily_em(symbol=symbol)
+                if df is not None and not df.empty:
+                    df = df.rename(columns={'date': '日期', 'open': '开盘', 'close': '收盘', 
+                                             'high': '最高', 'low': '最低', 'volume': '成交量'})
+                    return df.tail(days)
+            else:
                 df = None
-        else:
-            df = None
-        if df is None or df.empty:
-            df = ak.stock_zh_a_hist(symbol=code, period="daily",
-                                     start_date=start, end_date=end, adjust="qfq")
-    
-    if df is None or df.empty:
-        return None
-    return df
+                if code.startswith(('5', '15', '16', '56', '58')):
+                    try:
+                        df = ak.fund_etf_hist_em(symbol=code, period='daily', start_date=start, end_date=end, adjust='qfq')
+                    except Exception as e:
+                        last_error = e
+                        df = None
+                if df is None or df.empty:
+                    try:
+                        df = ak.stock_zh_a_hist(symbol=code, period='daily', start_date=start, end_date=end, adjust='qfq')
+                    except Exception as e:
+                        last_error = e
+                        df = None
+                if df is not None and not df.empty:
+                    return df
+        except Exception as e:
+            last_error = e
+        if attempt == 0:
+            import time
+            time.sleep(1.0)
+
+    if last_error:
+        raise last_error
+    return None
 
 
 def calc_ema(data, period):
@@ -275,7 +292,7 @@ def detect_patterns(closes, highs, lows, volumes):
 
 def analyze_single(code, is_index=False):
     """单只股票/指数技术分析"""
-    result = {'code': code, 'analysis_time': datetime.now().isoformat()}
+    result = {'code': code, 'analysis_time': datetime.now(ZoneInfo("Asia/Shanghai")).isoformat()}
     
     try:
         df = _load_kline(code)

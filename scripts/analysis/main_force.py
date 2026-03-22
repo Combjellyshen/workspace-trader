@@ -16,6 +16,7 @@ import sys
 import re
 from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 _HERE = Path(__file__).resolve().parents[2]
 if str(_HERE) not in sys.path:
@@ -46,7 +47,7 @@ def stock_money_flow(code):
            f'secid={secid}&fields1=f1,f2,f3&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61,f62,f63&'
            f'klt=1&lmt=0&ut=b2884a393a59ad64002292a3e90d46a5')
     
-    result = {'code': code, 'timestamp': datetime.now().isoformat()}
+    result = {'code': code, 'timestamp': datetime.now(ZoneInfo("Asia/Shanghai")).isoformat()}
     
     try:
         raw = _get(url)
@@ -130,7 +131,7 @@ def tick_analysis(code):
     """分时成交明细 — 大单识别"""
     secid = _market_prefix(code)
     
-    result = {'code': code, 'timestamp': datetime.now().isoformat()}
+    result = {'code': code, 'timestamp': datetime.now(ZoneInfo("Asia/Shanghai")).isoformat()}
     
     # 通过东财获取当日大单成交
     url = (f'https://push2ex.eastmoney.com/getStockFFlow?'
@@ -178,7 +179,7 @@ def chip_distribution(code):
     """筹码分布 — 获利比例 + 集中度"""
     secid = _market_prefix(code)
     
-    result = {'code': code, 'timestamp': datetime.now().isoformat()}
+    result = {'code': code, 'timestamp': datetime.now(ZoneInfo("Asia/Shanghai")).isoformat()}
     
     # 东财筹码分布接口
     url = (f'https://push2his.eastmoney.com/api/qt/stock/fflow/chip/get?'
@@ -210,7 +211,7 @@ def chip_distribution(code):
 # ============================================================
 def holder_analysis(code):
     """十大流通股东 + 机构持仓变动 (datacenter API)"""
-    result = {'code': code, 'timestamp': datetime.now().isoformat()}
+    result = {'code': code, 'timestamp': datetime.now(ZoneInfo("Asia/Shanghai")).isoformat()}
     
     suffix = 'SH' if code.startswith('6') or code.startswith('5') else 'SZ'
     
@@ -305,7 +306,7 @@ def full_analysis(code):
     """综合主力意图分析"""
     result = {
         'code': code,
-        'analysis_time': datetime.now().isoformat(),
+        'analysis_time': datetime.now(ZoneInfo("Asia/Shanghai")).isoformat(),
     }
     
     result['money_flow'] = stock_money_flow(code)

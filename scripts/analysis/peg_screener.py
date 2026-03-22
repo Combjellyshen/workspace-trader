@@ -23,6 +23,7 @@ import json
 import time
 import os
 from datetime import datetime
+from zoneinfo import ZoneInfo
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -52,7 +53,8 @@ def calc_peg(pe, profit_growth):
         if pe <= 0 or g <= 0 or g > 80:  # 负PE无意义；增速>80%不可持续
             return None
         return round(pe / g, 3)
-    except:
+    except Exception as e:
+        print(f"calc_peg error: {e}", file=sys.stderr)
         return None
 
 
@@ -76,7 +78,7 @@ def screen_by_peg(max_peg=1.0, min_roe=10.0, top_n=50):
     """全市场PEG筛选 - 从东财批量数据API获取（超时则返回提示）"""
     result = {
         "criteria": {"max_peg": max_peg, "min_roe": min_roe},
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "timestamp": datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M"),
         "candidates": [],
     }
 
@@ -143,7 +145,8 @@ def screen_by_peg(max_peg=1.0, min_roe=10.0, top_n=50):
                         "peg": peg,
                         "peg_rating": peg_rating(peg),
                     })
-                except:
+                except Exception as e:
+                    print(f"screen_by_peg item error: {e}", file=sys.stderr)
                     continue
 
             if len(data) < 50:
@@ -178,7 +181,7 @@ def screen_by_peg(max_peg=1.0, min_roe=10.0, top_n=50):
 
 def calc_single_stock_peg(ak_code: str):
     """单股PEG计算（AKShare估值比较接口，含同行横向对比）"""
-    result = {"code": ak_code, "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M")}
+    result = {"code": ak_code, "timestamp": datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M")}
     
     try:
         df_val = ak.stock_zh_valuation_comparison_em(symbol=ak_code)
@@ -280,7 +283,7 @@ def analyze_watchlist_peg():
         time.sleep(0.5)
 
     return {
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "timestamp": datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M"),
         "analyzed_count": len(results),
         "skipped": skipped,
         "results": results,
@@ -291,7 +294,7 @@ def sector_peg_rank(sector_name: str):
     """指定行业的 PEG 排名"""
     result = {
         "sector": sector_name,
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "timestamp": datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M"),
     }
 
     try:

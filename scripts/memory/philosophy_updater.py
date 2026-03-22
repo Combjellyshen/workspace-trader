@@ -18,6 +18,7 @@ import sys
 import json
 import os
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -30,7 +31,7 @@ os.makedirs(KNOWLEDGE_DIR, exist_ok=True)
 def collect_latest():
     """抓取最新机构观点和研究报告"""
     result = {
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "timestamp": datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M"),
         "sources": {}
     }
 
@@ -51,8 +52,8 @@ def collect_latest():
         import akshare as ak
         import pandas as pd
         # 取近30天调研
-        end = datetime.now().strftime("%Y%m%d")
-        start = (datetime.now() - timedelta(days=30)).strftime("%Y%m%d")
+        end = datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y%m%d")
+        start = (datetime.now(ZoneInfo("Asia/Shanghai")) - timedelta(days=30)).strftime("%Y%m%d")
         df = ak.stock_em_institute_survey(start_date=start, end_date=end)
         if not df.empty:
             # 按股票统计调研次数
@@ -111,7 +112,7 @@ def check_framework_match():
     from datetime import timedelta
 
     result = {
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "timestamp": datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M"),
         "signals": {},
         "framework_score": {},
         "overall_bias": ""
@@ -120,7 +121,7 @@ def check_framework_match():
     # === 信号1：大盘PE分位 ===
     try:
         df_pe = ak.stock_index_pe_lg()
-        five_yr_cutoff = (datetime.now() - timedelta(days=5*365)).date()
+        five_yr_cutoff = (datetime.now(ZoneInfo("Asia/Shanghai")) - timedelta(days=5*365)).date()
         import pandas as pd
         five_yr = df_pe[pd.to_datetime(df_pe["日期"]).dt.date >= five_yr_cutoff]
         pe_col = "滚动市盈率"
@@ -188,7 +189,7 @@ def generate_weekly_summary():
 
     summary = {
         "report_type": "weekly_philosophy_update",
-        "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "generated_at": datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M"),
         "market_framework_check": framework,
         "new_data_collected": collected,
         "questions_for_analysis": [
@@ -201,7 +202,7 @@ def generate_weekly_summary():
     }
 
     # 保存到knowledge目录
-    date_str = datetime.now().strftime("%Y-%m-%d")
+    date_str = datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d")
     out_path = os.path.join(KNOWLEDGE_DIR, f"weekly_{date_str}.json")
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(summary, f, ensure_ascii=False, indent=2, default=str)

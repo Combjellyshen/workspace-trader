@@ -18,6 +18,7 @@ import time
 import traceback
 from datetime import datetime, timedelta
 from collections import defaultdict
+from zoneinfo import ZoneInfo
 
 # UTF-8 stdout
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -307,8 +308,8 @@ def _fetch_kline(code: str, days: int):
 
     # 方案3: stock_zh_a_hist (可能被封，作为备用)
     try:
-        end_date = datetime.now().strftime('%Y%m%d')
-        start_date = (datetime.now() - timedelta(days=days + 10)).strftime('%Y%m%d')
+        end_date = datetime.now(ZoneInfo("Asia/Shanghai")).strftime('%Y%m%d')
+        start_date = (datetime.now(ZoneInfo("Asia/Shanghai")) - timedelta(days=days + 10)).strftime('%Y%m%d')
         df = ak.stock_zh_a_hist(symbol=code, period='daily', start_date=start_date, end_date=end_date, adjust='qfq')
         if df is not None and len(df) > 0:
             # 标准化列名
@@ -754,7 +755,7 @@ def cmd_batch():
         })
 
     output = {
-        'batch_time': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'batch_time': datetime.now(ZoneInfo("Asia/Shanghai")).strftime('%Y-%m-%d %H:%M:%S'),
         'total': len(results),
         'data': results,
         'signal': 'batch_complete',

@@ -16,6 +16,7 @@ import re
 import time
 from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import requests
 
@@ -178,7 +179,7 @@ def _fallback_limit_pool(direction: str):
 def market_breadth():
     """全市场涨跌家数统计"""
     result = {
-        'timestamp': datetime.now().isoformat(),
+        'timestamp': datetime.now(ZoneInfo("Asia/Shanghai")).isoformat(),
     }
 
     try:
@@ -281,7 +282,7 @@ def limit_up_detail():
            'ut=7eea3edcaed734bea9telerik&dession=&'
            'sort=fbt:asc&Ession=')
 
-    result = {'timestamp': datetime.now().isoformat()}
+    result = {'timestamp': datetime.now(ZoneInfo("Asia/Shanghai")).isoformat()}
 
     try:
         raw = _get(url)
@@ -383,7 +384,7 @@ def limit_down_detail():
     url = ('https://push2ex.eastmoney.com/getTopicDTPool?'
            'ut=7eea3edcaed734bea9telerik&dession=&Ession=')
 
-    result = {'timestamp': datetime.now().isoformat()}
+    result = {'timestamp': datetime.now(ZoneInfo("Asia/Shanghai")).isoformat()}
 
     try:
         raw = _get(url)
@@ -444,7 +445,7 @@ def broken_board():
     url = ('https://push2ex.eastmoney.com/getTopicZBPool?'
            'ut=7eea3edcaed734bea9telerik&dession=&Ession=')
     
-    result = {'timestamp': datetime.now().isoformat()}
+    result = {'timestamp': datetime.now(ZoneInfo("Asia/Shanghai")).isoformat()}
     
     try:
         raw = _get(url)
@@ -479,7 +480,7 @@ def broken_board():
 def full_analysis():
     """全维度涨跌停 + 市场宽度分析"""
     result = {
-        'analysis_time': datetime.now().isoformat(),
+        'analysis_time': datetime.now(ZoneInfo("Asia/Shanghai")).isoformat(),
     }
     
     result.update(market_breadth())

@@ -429,7 +429,7 @@ def main():
     elif cmd == 'load' or cmd == 'load_market':
         data = load_cache()
         if data:
-            print(f"日期: {data.get('date')}, 全市场股票数: {len(data.get('market_spot', []))}")
+            print(f"日期: {data.get('date')}, 全市场股票数: {len(data.get('market_snapshot', []))}")
         else:
             print("无缓存")
     elif cmd == 'load_stocks':

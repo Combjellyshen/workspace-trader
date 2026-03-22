@@ -20,7 +20,8 @@ from scripts.utils.common import load_config, load_watchlist, WORKSPACE_ROOT  # 
 def init_pro():
     try:
         token = load_config().get('tushare_token', '')
-    except:
+    except Exception as e:
+        print(f"load_config failed, falling back to env: {e}", file=sys.stderr)
         token = os.environ.get('TUSHARE_TOKEN', '')
     if not token:
         print(json.dumps({"error": "未配置 Tushare Token"}))
