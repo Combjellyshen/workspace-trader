@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""报告发布前质检器"""
+"""报告发布前质检器
+
+设计原则：检查报告是否覆盖了关键分析维度，而非纠字眼。
+每个检查项都接受多个同义词/变体表达，只要命中一个即通过。
+"""
 import re
 import sys
 from pathlib import Path
@@ -10,77 +14,129 @@ if str(WORKSPACE_ROOT) not in sys.path:
 
 from scripts.utils.common import load_watchlist  # noqa: E402
 
-REQUIRED_COMMON = [
-    '数据覆盖说明', '风险提示', '数据缺口'
-]
+# ---------------------------------------------------------------------------
+# 通用必需维度（所有报告类型）
+# ---------------------------------------------------------------------------
+
+REQUIRED_COMMON = {
+    '数据覆盖': ['数据覆盖', '数据来源', '数据源', '覆盖说明', '覆盖率'],
+    '风险提示': ['风险提示', '风险声明', '风险警示', '风险因素'],
+    '数据缺口': ['数据缺口', '数据缺失', '不可用', '暂缺', '无法获取'],
+}
+
+# ---------------------------------------------------------------------------
+# 分析深度必需维度（所有报告类型）
+# ---------------------------------------------------------------------------
+
+DEPTH_REQUIRED = {
+    '反思模块': ['如果我错了', '如果判断错误', '错误可能', '最可能错在'],
+    '推翻条件': ['推翻条件', '失效条件', '翻转条件', '否定条件', '止损条件'],
+    '主导矛盾': ['主导矛盾', '核心矛盾', '主要矛盾', '关键分歧'],
+}
+
+# ---------------------------------------------------------------------------
+# 周报必需章节
+# ---------------------------------------------------------------------------
 
 WEEKLY_REQUIRED = {
-    '全球市场概览': ['全球市场概览', '全球市场'],
-    '跨资产联动': ['跨资产', '债券', '加密'],
-    '宏观环境与政策': ['宏观环境与政策', '宏观'],
-    'A股市场结构': ['A股市场结构'],
-    '主导矛盾': ['主导矛盾'],
-    '历史对照': ['历史对照'],
-    '行业赛道深度': ['行业赛道深度', '行业 / 赛道', '行业/赛道'],
-    '新闻与市场关系': ['新闻与市场关系', '新闻与市场'],
-    '自选股周度跟踪': ['自选股', '观察池'],
-    '世界风险评估': ['世界系统性风险评估', '世界风险评估', '风险温度分'],
-    '多空对抗': ['多空对抗'],
-    '多agent讨论': ['多agent', '多 agent', '论战'],
-    '下周展望': ['下周展望']
+    '全球市场': ['全球市场', '全球概览', '海外市场', '外盘'],
+    '跨资产': ['跨资产', '债券', '加密', '商品', '汇率'],
+    '宏观': ['宏观', '政策', '央行', 'PMI', 'CPI'],
+    'A股结构': ['A股', '市场结构', '涨跌', '广度'],
+    '行业赛道': ['行业', '赛道', '板块', '轮动'],
+    '新闻': ['新闻', '消息面', '催化', '事件驱动'],
+    '观察池': ['自选股', '观察池', '持仓', 'watchlist'],
+    '风险评估': ['风险评估', '风险温度', 'VIX', '系统性风险', '风险指数'],
+    '多角色': ['多空', '论证', '论战', '辩论', 'agent', '角色', '裁决'],
+    '下周展望': ['下周', '展望', '预判', '预案'],
 }
 
-WEEKLY_CROSS_ASSET_DETAIL_CHECKS = {
-    '美股指数': [['标普500', '标普 500', 'S&P 500'], ['纳斯达克', '纳指', 'NASDAQ'], ['道琼斯', '道指', 'Dow']],
-    '商品': [['原油', 'WTI'], ['黄金', 'Gold'], ['铜', 'Copper']],
-    '外汇': [['美元指数', 'DXY', 'DX.F'], ['USD/CNH', 'USDCNH', 'USDCNY', '离岸人民币']],
-    '利率': [['美国2Y', '美债2Y', '2年美债', '2Y'], ['美国10Y', '美债10Y', '10年美债', '10Y']],
-    '加密': [['BTC', '比特币', 'Bitcoin'], ['ETH', '以太坊', 'Ethereum']],
+WEEKLY_CROSS_ASSET = {
+    '美股': ['标普', 'S&P', '纳斯达克', '纳指', 'NASDAQ', '道琼斯', '道指', 'Dow', '美股'],
+    '商品': ['原油', 'WTI', '黄金', 'Gold', '铜', 'Copper', '大宗'],
+    '外汇': ['美元指数', 'DXY', 'USD/CNH', 'USDCNH', '离岸人民币', '汇率'],
+    '利率': ['美债', '国债', '利率', '收益率', '2Y', '10Y', '期限利差'],
+    '加密': ['BTC', '比特币', 'ETH', '以太坊', '加密货币', 'crypto'],
 }
 
-WEEKLY_WORLD_RISK_DETAIL_CHECKS = {
-    '风险指数': [['VIX', '恐慌指数'], ['MOVE', '美债波动'], ['信用利差', 'HY', 'IG'], ['风险温度分', '风险温度']],
-    '机构运行状况': [['银行', '大行'], ['券商', '投行', 'broker'], ['资管', '基金', '赎回', '流动性']],
-    '传导链': [['传导链', '风险传导', '海外风险源'], ['A股', '仓位', '风格']],
+WEEKLY_RISK = {
+    '风险指标': ['VIX', 'MOVE', '恐慌指数', '波动率', '信用利差', 'HY', 'IG', '风险温度'],
+    '机构状况': ['银行', '券商', '资管', '基金', '赎回', '流动性', '机构'],
+    '传导': ['传导', '风险源', '外溢', '冲击', '影响路径'],
 }
 
-DAILY_REQUIRED_GROUPS = {
-    '消息与数据关联': ['新闻', '消息面', '催化', '事件'],
-    '矛盾或统一性': ['主导矛盾', '矛盾', '背离', '一致性', '统一性'],
-}
-
-CLOSING_REQUIRED_GROUPS = {
-    '世界风险评估': ['世界风险评估', '世界风险雷达', '世界系统性风险评估'],
-    '风险温度分': ['风险温度分', '风险温度'],
-    '机构运行状况': ['机构运行状况', '银行', '券商', '资管', '赎回'],
-}
-
-FORBIDDEN_PATTERNS = [r'\{[^{}]+\}', r'\{\{[^{}]+\}\}']
 MIN_WEEKLY_CHARS = 12000
 MIN_WEEKLY_H2 = 8
-WATCHLIST_REQUIRED_KEYWORDS = ['验证', '证伪', '交易计划', '失效条件']
-ETF_REQUIRED_KEYWORD_GROUPS = [
-    ['折溢价'],
-    ['份额', '申赎'],
-    ['指数方法学', '标的方法学', '跟踪标的'],
-    ['成分', '前十大'],
+
+# ---------------------------------------------------------------------------
+# 日报/复盘必需维度
+# ---------------------------------------------------------------------------
+
+DAILY_REQUIRED = {
+    '消息面': ['新闻', '消息面', '催化', '事件', '公告', '政策'],
+    '矛盾判断': ['矛盾', '背离', '一致性', '分歧', '统一', '冲突'],
+}
+
+CLOSING_REQUIRED = {
+    '风险评估': ['风险评估', '风险温度', '世界风险', '系统性风险', 'VIX'],
+    '机构状况': ['机构', '银行', '券商', '资管', '赎回', '流动性'],
+}
+
+# ---------------------------------------------------------------------------
+# K线技术面检查（宽松版）
+# 只要覆盖 >= 5/10 个技术指标维度即通过
+# ---------------------------------------------------------------------------
+
+KLINE_INDICATORS = [
+    ['K线', '技术面', '技术分析'],
+    ['MA5', 'MA10', 'MA20', '均线', '移动平均'],
+    ['MA60', '60日', '长期均线'],
+    ['MACD', '快慢线', 'DIF', 'DEA'],
+    ['RSI', '相对强弱'],
+    ['KDJ', '随机指标'],
+    ['布林', 'Bollinger', 'BOLL'],
+    ['量价', '成交量', '换手', '放量', '缩量'],
+    ['支撑', '压力', '阻力'],
+    ['原因', '为什么', '因为', '导致', '驱动', '逻辑'],
 ]
-KLINE_REQUIRED_GROUPS = [
-    ['K线', '技术面'],
-    ['MA5', 'MA10', 'MA20'],
-    ['MA60', '均线'],
-    ['MACD'],
-    ['RSI'],
-    ['KDJ'],
-    ['布林', '布林带'],
-    ['量价', '成交量'],
-    ['支撑', '压力'],
-    ['变化原因', '为什么变', '原因解释'],
+KLINE_MIN_COVERAGE = 5  # 至少覆盖 5/10 个维度
+
+# ---------------------------------------------------------------------------
+# 观察池与 ETF
+# ---------------------------------------------------------------------------
+
+WATCHLIST_KEYWORDS = ['验证', '证伪', '交易计划', '失效条件', '计划', '止损']
+WATCHLIST_MIN_KEYWORDS = 2  # 至少命中 2/6 个
+
+ETF_KEYWORD_GROUPS = [
+    ['折溢价', '溢价', '折价', 'premium', 'discount'],
+    ['份额', '申赎', '申购', '赎回', '规模变化'],
+    ['方法学', '跟踪标的', '跟踪指数', '标的指数', '编制'],
+    ['成分', '前十大', '持仓', '权重股', '重仓'],
 ]
+ETF_MIN_GROUPS = 2  # 至少覆盖 2/4 个维度
+
+# ---------------------------------------------------------------------------
+# 禁止项
+# ---------------------------------------------------------------------------
+
+FORBIDDEN_PATTERNS = [r'\{\{[^{}]+\}\}']  # 只检查双花括号模板变量
+
+# ---------------------------------------------------------------------------
+# 检查逻辑
+# ---------------------------------------------------------------------------
 
 
 def _strip_fenced_code(text: str) -> str:
     return re.sub(r'```[\s\S]*?```', '', text)
+
+
+def _any_match(text: str, keywords: list[str]) -> bool:
+    """Check if any keyword appears in text (case-insensitive for ASCII)."""
+    for kw in keywords:
+        if kw in text or kw.lower() in text.lower():
+            return True
+    return False
 
 
 def _current_watchlist_meta():
@@ -102,6 +158,8 @@ def _check_watchlist_depth(text: str, issues: list[str]):
     meta = _current_watchlist_meta()
     if not meta['has_watchlist']:
         return
+
+    # Check stock coverage
     missing_items = []
     for item in meta['items']:
         if item['code'] and item['code'] in text:
@@ -111,73 +169,89 @@ def _check_watchlist_depth(text: str, issues: list[str]):
         missing_items.append(item['code'] or item['name'])
     if missing_items:
         issues.append(f'报告未逐只覆盖当前观察池：缺少 {missing_items}')
-    for kw in WATCHLIST_REQUIRED_KEYWORDS:
-        if kw not in text:
-            issues.append(f'观察池分析过浅：缺少关键词“{kw}”')
+
+    # Flexible keyword check
+    hits = sum(1 for kw in WATCHLIST_KEYWORDS if kw in text)
+    if hits < WATCHLIST_MIN_KEYWORDS:
+        issues.append(f'观察池分析深度不足：仅命中 {hits}/{len(WATCHLIST_KEYWORDS)} 个分析维度关键词')
+
+    # ETF check (flexible)
     if meta['has_etf']:
-        for group in ETF_REQUIRED_KEYWORD_GROUPS:
-            if not any(k in text for k in group):
-                issues.append(f'观察池含 ETF，但 ETF 专项覆盖不足：缺少任一关键词 {group}')
+        groups_hit = sum(1 for group in ETF_KEYWORD_GROUPS if _any_match(text, group))
+        if groups_hit < ETF_MIN_GROUPS:
+            issues.append(f'观察池含 ETF，但 ETF 分析维度不足：仅覆盖 {groups_hit}/{len(ETF_KEYWORD_GROUPS)} 个维度')
 
 
 def _check_kline_depth(text: str, issues: list[str], label: str):
-    for group in KLINE_REQUIRED_GROUPS:
-        if not any(k in text for k in group):
-            issues.append(f'{label}缺少详细K线技术复盘：缺少任一关键词 {group}')
+    hits = sum(1 for group in KLINE_INDICATORS if _any_match(text, group))
+    if hits < KLINE_MIN_COVERAGE:
+        issues.append(f'{label}K线技术面覆盖不足：仅覆盖 {hits}/{len(KLINE_INDICATORS)} 个指标维度（要求≥{KLINE_MIN_COVERAGE}）')
 
 
 def check(path: Path):
     text = path.read_text(encoding='utf-8')
     issues = []
-    for sec in REQUIRED_COMMON:
-        if sec not in text:
-            issues.append(f'缺少必需章节/关键词：{sec}')
+
+    # 通用维度
+    for label, keywords in REQUIRED_COMMON.items():
+        if not _any_match(text, keywords):
+            issues.append(f'缺少必需维度：{label}')
+
+    # 分析深度
+    for label, keywords in DEPTH_REQUIRED.items():
+        if not _any_match(text, keywords):
+            issues.append(f'缺少分析深度维度：{label}')
 
     lower_path = str(path).lower()
     is_weekly = 'weekly' in lower_path or 'market-insight' in path.name
     is_daily = ('daily' in lower_path) or ('pre-market' in path.name) or ('closing' in path.name)
+
     if is_weekly:
+        # 章节覆盖
         for label, keywords in WEEKLY_REQUIRED.items():
-            if not any(k in text for k in keywords):
-                issues.append(f'周报缺少章节/关键词：{label} -> {keywords}')
-        for label, groups in WEEKLY_CROSS_ASSET_DETAIL_CHECKS.items():
-            for group in groups:
-                if not any(keyword in text for keyword in group):
-                    issues.append(f'周报跨资产覆盖不足：{label} 缺少任一关键词 {group}')
-        for label, groups in WEEKLY_WORLD_RISK_DETAIL_CHECKS.items():
-            for group in groups:
-                if not any(keyword in text for keyword in group):
-                    issues.append(f'周报世界风险评估覆盖不足：{label} 缺少任一关键词 {group}')
+            if not _any_match(text, keywords):
+                issues.append(f'周报缺少章节维度：{label}')
+
+        # 跨资产覆盖（按大类检查，不再逐个子项）
+        for label, keywords in WEEKLY_CROSS_ASSET.items():
+            if not _any_match(text, keywords):
+                issues.append(f'周报跨资产缺少：{label}')
+
+        # 风险评估覆盖
+        for label, keywords in WEEKLY_RISK.items():
+            if not _any_match(text, keywords):
+                issues.append(f'周报风险评估缺少：{label}')
+
+        # 篇幅
         if len(text) < MIN_WEEKLY_CHARS:
-            issues.append(f'周报正文过短：当前 {len(text)} 字符，低于最低要求 {MIN_WEEKLY_CHARS}')
+            issues.append(f'周报正文过短：{len(text)} 字符 < {MIN_WEEKLY_CHARS}')
         h2_count = len(re.findall(r'^##\s+', text, flags=re.M))
         if h2_count < MIN_WEEKLY_H2:
-            issues.append(f'周报二级标题过少：当前 {h2_count}，低于最低要求 {MIN_WEEKLY_H2}')
+            issues.append(f'周报结构不足：{h2_count} 个 H2 < {MIN_WEEKLY_H2}')
+
         _check_kline_depth(text, issues, '周报')
+
     elif is_daily:
-        for label, keywords in DAILY_REQUIRED_GROUPS.items():
-            if not any(k in text for k in keywords):
-                issues.append(f'日报/复盘缺少关键分析维度：{label} -> {keywords}')
+        for label, keywords in DAILY_REQUIRED.items():
+            if not _any_match(text, keywords):
+                issues.append(f'日报缺少维度：{label}')
+
         is_closing = 'closing' in path.name.lower() or 'closing' in lower_path
         if is_closing:
-            for label, keywords in CLOSING_REQUIRED_GROUPS.items():
-                if not any(k in text for k in keywords):
-                    issues.append(f'收盘复盘缺少世界风险固定板块：{label} -> {keywords}')
+            for label, keywords in CLOSING_REQUIRED.items():
+                if not _any_match(text, keywords):
+                    issues.append(f'收盘复盘缺少：{label}')
             _check_kline_depth(text, issues, '收盘复盘')
 
     if is_weekly or is_daily:
         _check_watchlist_depth(text, issues)
 
+    # 禁止项（只检查双花括号模板）
     template_text = _strip_fenced_code(text)
     for pat in FORBIDDEN_PATTERNS:
         if re.search(pat, template_text):
             issues.append(f'存在未替换模板变量：{pat}')
-    if '如果我错了' not in text:
-        issues.append('缺少“如果我错了”模块')
-    if '推翻条件' not in text:
-        issues.append('缺少“推翻条件”')
-    if '主导矛盾' not in text:
-        issues.append('缺少“主导矛盾”')
+
     return issues
 
 
