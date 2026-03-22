@@ -71,7 +71,6 @@ def run_claude(
     cmd = [
         CLAUDE_BIN,
         "-p",
-        "--bare",  # skip hooks, LSP, plugin sync — saves ~100MB + 2-3s startup
         "--dangerously-skip-permissions",
         f"--max-budget-usd={max_budget_usd}",
         f"--output-format={output_format}",
