@@ -50,7 +50,7 @@
       "name": "market_breadth",
       "command": "python3 scripts/analysis/market_breadth.py all",
       "required": true,
-      "timeout_s": 60,
+      "timeout_s": 120,
       "purpose": "涨跌家数/广度指标"
     },
     {
@@ -64,21 +64,21 @@
       "name": "macro_deep",
       "command": "python3 scripts/data/macro_deep.py all",
       "required": true,
-      "timeout_s": 120,
+      "timeout_s": 150,
       "purpose": "宏观深度评分"
     },
     {
       "name": "macro_monitor",
       "command": "python3 scripts/data/macro_monitor.py all",
       "required": false,
-      "timeout_s": 90,
+      "timeout_s": 120,
       "purpose": "宏观先行指标"
     },
     {
       "name": "market_intel_weekly",
       "command": "python3 scripts/data/market_intel_pipeline.py weekly",
       "required": true,
-      "timeout_s": 120,
+      "timeout_s": 150,
       "purpose": "跨资产周度快照"
     },
     {

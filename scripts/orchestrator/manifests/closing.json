@@ -22,14 +22,14 @@
       "name": "sentiment_all",
       "command": "python3 scripts/analysis/sentiment.py all",
       "required": true,
-      "timeout_s": 60,
+      "timeout_s": 90,
       "purpose": "收盘情绪"
     },
     {
       "name": "market_breadth",
       "command": "python3 scripts/analysis/market_breadth.py all",
       "required": true,
-      "timeout_s": 60,
+      "timeout_s": 120,
       "purpose": "涨跌结构"
     },
     {
@@ -57,14 +57,14 @@
       "name": "main_force_batch",
       "command": "python3 scripts/analysis/main_force.py batch",
       "required": true,
-      "timeout_s": 60,
+      "timeout_s": 90,
       "purpose": "主力净流入"
     },
     {
       "name": "institution_tracker",
       "command": "python3 scripts/data/institution_tracker.py all",
       "required": false,
-      "timeout_s": 60,
+      "timeout_s": 90,
       "purpose": "机构动向"
     },
     {
@@ -78,21 +78,21 @@
       "name": "macro_monitor",
       "command": "python3 scripts/data/macro_monitor.py all",
       "required": false,
-      "timeout_s": 60,
+      "timeout_s": 120,
       "purpose": "宏观数据"
     },
     {
       "name": "market_intel_postmarket",
       "command": "python3 scripts/data/market_intel_pipeline.py postmarket",
       "required": true,
-      "timeout_s": 90,
+      "timeout_s": 150,
       "purpose": "跨资产快照（含外盘/商品/汇率/利率）"
     },
     {
       "name": "data_consistency_guard",
       "command": "python3 scripts/utils/data_consistency_guard.py",
       "required": false,
-      "timeout_s": 30,
+      "timeout_s": 60,
       "purpose": "数据一致性校验"
     }
   ]

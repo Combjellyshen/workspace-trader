@@ -8,7 +8,7 @@
       "name": "philosophy_collect",
       "command": "python3 scripts/memory/philosophy_updater.py collect",
       "required": true,
-      "timeout_s": 90,
+      "timeout_s": 180,
       "purpose": "哲学框架数据采集"
     },
     {
@@ -29,7 +29,7 @@
       "name": "macro_summary",
       "command": "python3 scripts/data/macro_deep.py summary",
       "required": false,
-      "timeout_s": 90,
+      "timeout_s": 150,
       "purpose": "宏观环境摘要"
     },
     {

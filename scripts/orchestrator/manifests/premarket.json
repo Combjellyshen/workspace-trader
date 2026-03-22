@@ -29,14 +29,14 @@
       "name": "sentiment_all",
       "command": "python3 scripts/analysis/sentiment.py all",
       "required": true,
-      "timeout_s": 60,
+      "timeout_s": 90,
       "purpose": "多维情绪面"
     },
     {
       "name": "market_breadth",
       "command": "python3 scripts/analysis/market_breadth.py all",
       "required": true,
-      "timeout_s": 60,
+      "timeout_s": 120,
       "purpose": "涨跌家数/强弱"
     },
     {
@@ -71,21 +71,21 @@
       "name": "main_force_batch",
       "command": "python3 scripts/analysis/main_force.py batch",
       "required": true,
-      "timeout_s": 60,
+      "timeout_s": 90,
       "purpose": "主力资金方向"
     },
     {
       "name": "institution_tracker",
       "command": "python3 scripts/data/institution_tracker.py all",
       "required": false,
-      "timeout_s": 60,
+      "timeout_s": 90,
       "purpose": "机构持仓变化"
     },
     {
       "name": "macro_monitor",
       "command": "python3 scripts/data/macro_monitor.py all",
       "required": false,
-      "timeout_s": 60,
+      "timeout_s": 120,
       "purpose": "宏观先行指标"
     }
   ]

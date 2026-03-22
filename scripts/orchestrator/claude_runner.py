@@ -89,12 +89,13 @@ def run_claude(
     if allowed_tools:
         cmd.extend(["--allowedTools", ",".join(allowed_tools)])
 
-    # Prompt goes last as positional argument
-    cmd.append(prompt)
+    # Pass prompt via stdin to avoid shell argument length limits.
+    # Claude Code reads from stdin when no positional prompt is given.
 
     try:
         proc = subprocess.run(
             cmd,
+            input=prompt,
             capture_output=True,
             text=True,
             timeout=timeout_seconds,
@@ -119,6 +120,16 @@ def run_claude(
             output=proc.stdout,
             error=proc.stderr[:2000] if proc.stderr else f"Exit code {proc.returncode}",
             exit_code=proc.returncode,
+        )
+
+    # Detect known error patterns that exit 0 but aren't real output
+    stdout = proc.stdout.strip()
+    if stdout.startswith("Error:") or stdout.startswith("error:"):
+        return ClaudeResult(
+            success=False,
+            output=stdout,
+            error=f"Claude CLI returned error in stdout: {stdout[:300]}",
+            exit_code=0,
         )
 
     return ClaudeResult(
