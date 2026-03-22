@@ -39,6 +39,7 @@ import sys
 import gzip
 import shutil
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parents[2] / 'memory'
@@ -48,18 +49,23 @@ REVIEWS_DIR = BASE / 'reviews'
 SENTIMENT_DIR = BASE / 'sentiment'
 STOCKS_DIR = BASE / 'stocks'
 STATE_FILE = BASE / 'state.json'
+SH_TZ = ZoneInfo('Asia/Shanghai')
 
 # Ensure directories
 for d in [REPORTS_DIR, SIGNALS_DIR, REVIEWS_DIR, SENTIMENT_DIR, STOCKS_DIR]:
     d.mkdir(parents=True, exist_ok=True)
 
 
+def now_shanghai():
+    return datetime.now(SH_TZ)
+
+
 def today_str():
-    return datetime.now().strftime('%Y-%m-%d')
+    return now_shanghai().strftime('%Y-%m-%d')
 
 
 def month_str():
-    return datetime.now().strftime('%Y-%m')
+    return now_shanghai().strftime('%Y-%m')
 
 
 # ─── Save Operations ───

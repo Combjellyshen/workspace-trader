@@ -13,6 +13,7 @@ import json
 import os
 import glob
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 _HERE = Path(__file__).resolve().parents[2]
@@ -25,8 +26,26 @@ from scripts.utils.common import safe_float, load_watchlist, WORKSPACE_ROOT  # n
 WORKSPACE = WORKSPACE_ROOT
 WATCHLIST_PATH = WORKSPACE / "watchlist.json"
 INTRADAY_DIR = WORKSPACE / "data" / "intraday"
+SH_TZ = ZoneInfo("Asia/Shanghai")
 
 # ─── 工具函数 ────────────────────────────────────────────────────────────────
+
+def now_shanghai() -> datetime:
+    return datetime.now(SH_TZ)
+
+
+def warn(msg: str):
+    print(f"[intraday_alert] {msg}", file=sys.stderr)
+
+
+def infer_market(code: str) -> str:
+    code = str(code)
+    if code.startswith(("6", "9")):
+        return "sh"
+    if code.startswith(("8", "4")):
+        return "bj"
+    return "sz"
+
 
 def pick_col(columns, exact_names=None, contains=None, exclude=None):
     """按优先级挑列，优先精确匹配，避免把振幅/5分钟涨跌幅误当成涨跌幅。"""
@@ -137,7 +156,7 @@ def check_price_alerts(watchlist):
                 })
 
     except Exception as e:
-        err_str = str(e)
+        warn(f"price alerts fallback to placeholders: {e}")
         # 非交易时间或接口问题
         for s in watchlist:
             stocks_snapshot.append({
@@ -220,6 +239,7 @@ def check_index_alerts():
             sh_snapshot["status"] = "market_closed"
 
     except Exception as e:
+        warn(f"index alerts unavailable: {e}")
         sh_snapshot["status"] = "market_closed"
 
     return alerts, sh_snapshot
@@ -294,6 +314,7 @@ def check_north_flow():
             north_status = "unavailable"
 
     except Exception as e:
+        warn(f"north flow unavailable: {e}")
         north_status = "unavailable"
 
     return alerts, north_flow_yi, north_status
@@ -320,10 +341,7 @@ def check_main_flow(watchlist, stocks_snapshot):
             name = stock["name"]
 
             # 判断市场
-            if code.startswith("6"):
-                market = "sh"
-            else:
-                market = "sz"
+            market = infer_market(code)
 
             try:
                 df = ak.stock_individual_fund_flow(stock=code, market=market)
@@ -384,13 +402,13 @@ def check_main_flow(watchlist, stocks_snapshot):
                             "signal": "出货"
                         })
 
-            except Exception:
+            except Exception as e:
+                warn(f"main flow unavailable for {code}: {e}")
                 # 单只股票失败，跳过继续
                 continue
 
     except Exception as e:
-        # akshare 导入失败等
-        pass
+        warn(f"main flow checks unavailable: {e}")
 
     return alerts
 
@@ -404,7 +422,7 @@ def check_snapshot_diff(stocks_snapshot):
     """
     alerts = []
 
-    today_str = datetime.now().strftime("%Y-%m-%d")
+    today_str = now_shanghai().strftime("%Y-%m-%d")
     pattern = str(INTRADAY_DIR / f"{today_str}-*.json")
     files = sorted(glob.glob(pattern))
 
@@ -453,8 +471,8 @@ def check_snapshot_diff(stocks_snapshot):
                         "action_hint": "资金方向反转，需重新评估"
                     })
 
-    except Exception:
-        pass
+    except Exception as e:
+        warn(f"snapshot diff unavailable: {e}")
 
     return alerts
 
@@ -502,7 +520,7 @@ def gen_summary(alerts, alert_score, sh_snapshot, stocks_snapshot, north_flow_yi
 # ─── check 主逻辑 ────────────────────────────────────────────────────────────
 
 def run_check():
-    now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
+    now_str = now_shanghai().strftime("%Y-%m-%d %H:%M")
     watchlist = load_watchlist()
 
     if not watchlist:
@@ -571,7 +589,7 @@ def run_snapshot():
     result = run_check()
 
     INTRADAY_DIR.mkdir(parents=True, exist_ok=True)
-    ts = datetime.now().strftime("%Y-%m-%d-%H%M")
+    ts = now_shanghai().strftime("%Y-%m-%d-%H%M")
     out_path = INTRADAY_DIR / f"{ts}.json"
 
     with open(out_path, "w", encoding="utf-8") as f:
