@@ -234,3 +234,63 @@ def build_memory_context(date: str) -> str:
             sections.append(f"## {label}\n查询超时\n")
 
     return "\n".join(sections)
+
+
+def build_watchlist_context() -> str:
+    """Build watchlist context from longterm_watchlist.json.
+
+    Returns a structured block listing all stocks/ETFs in the observation pool,
+    with explicit ETF marking so the report writer knows which items need
+    the ETF 10-item deep checklist (折溢价, 份额/申赎, 指数方法学, etc.).
+    """
+    # Use same source as QC (report_quality_check.py → load_watchlist('watchlist.json'))
+    watchlist_path = WORKSPACE / "watchlist.json"
+    if not watchlist_path.exists():
+        return "# 当前观察池\n\n当前观察池为空。\n"
+
+    try:
+        import json as _json
+        with open(watchlist_path, encoding="utf-8") as f:
+            data = _json.load(f)
+    except (OSError, _json.JSONDecodeError):
+        return "# 当前观察池\n\n观察池文件读取失败。\n"
+
+    stocks = data.get("stocks", [])
+    if not stocks:
+        return "# 当前观察池\n\n当前观察池为空。无需覆盖个股/ETF 分析。\n"
+
+    lines = ["# 当前观察池\n"]
+    has_etf = False
+    for item in stocks:
+        if isinstance(item, dict):
+            code = str(item.get("code", ""))
+            name = str(item.get("name", ""))
+            ptype = str(item.get("type", "")).lower()
+        else:
+            code = str(item)
+            name = ""
+            ptype = ""
+
+        is_etf = (
+            ptype == "etf"
+            or code.startswith(("5", "15", "16", "56", "58"))
+            or "etf" in name.lower()
+        )
+
+        tag = " **[ETF]**" if is_etf else ""
+        lines.append(f"- {code} {name}{tag}")
+        if is_etf:
+            has_etf = True
+
+    if has_etf:
+        lines.append("")
+        lines.append(
+            "**⚠️ 观察池含 ETF 标的。报告中必须对每只 ETF 覆盖以下关键词/分析维度：**\n"
+            "1. 折溢价\n"
+            "2. 份额 或 申赎\n"
+            "3. 指数方法学 或 标的方法学 或 跟踪标的\n"
+            "4. 成分 或 前十大\n"
+            "缺少任一项将导致质检不通过。"
+        )
+
+    return "\n".join(lines) + "\n"

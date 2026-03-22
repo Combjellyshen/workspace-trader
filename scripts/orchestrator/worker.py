@@ -21,6 +21,7 @@ from zoneinfo import ZoneInfo
 from scripts.orchestrator.claude_runner import (
     build_data_context,
     build_memory_context,
+    build_watchlist_context,
     load_prompt_template,
     run_claude,
 )
@@ -313,8 +314,11 @@ def _discuss(task_type: str, date: str, checkpoints: dict) -> StepResult:
             error=str(e), timestamp=_now_iso(),
         )
 
+    watchlist_context = build_watchlist_context()
+
     prompt = (
         f"任务类型: {task_type}\n日期: {date}\n\n"
+        f"{watchlist_context}\n\n"
         f"{memory_context}\n\n"
         f"{data_context}\n\n"
         f"请基于以上数据，按照系统提示中的角色设定和输出格式完成多角色讨论。"
@@ -412,9 +416,14 @@ def _write(task_type: str, date: str, checkpoints: dict) -> StepResult:
             except OSError:
                 pass
 
+    # Build watchlist context so Claude knows which stocks/ETFs to cover
+    watchlist_context = build_watchlist_context()
+
     prompt_parts = [
         f"任务类型: {task_type}",
         f"日期: {date}",
+        "",
+        watchlist_context,
         "",
         memory_context,
         "",
