@@ -182,7 +182,7 @@ def build_data_context(artifact_map: dict[str, dict], date: str) -> str:
         status = info.get("status", "unknown")
         output_file = info.get("output_file", "")
 
-        if status != "ok" or not output_file:
+        if status not in ("ok", "reused") or not output_file:
             sections.append(f"## {name}\n状态: {status}（数据不可用）\n")
             continue
 
