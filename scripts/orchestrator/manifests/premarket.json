@@ -35,8 +35,8 @@
     {
       "name": "market_breadth",
       "command": "python3 scripts/analysis/market_breadth.py all",
-      "required": true,
-      "timeout_s": 120,
+      "required": false,
+      "timeout_s": 180,
       "purpose": "涨跌家数/强弱"
     },
     {
