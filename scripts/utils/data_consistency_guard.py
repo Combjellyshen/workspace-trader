@@ -11,7 +11,6 @@
   python3 scripts/utils/data_consistency_guard.py --json
 """
 import json
-import math
 import sys
 from pathlib import Path
 
@@ -20,7 +19,10 @@ if str(WORKSPACE) not in sys.path:
     sys.path.insert(0, str(WORKSPACE))
 
 from scripts.utils.common import safe_float, WORKSPACE_ROOT  # noqa: E402
-from scripts.data import deep_data  # type: ignore
+try:
+    from scripts.data import deep_data  # type: ignore
+except ImportError:
+    deep_data = None  # type: ignore
 from scripts.analysis import intraday_alert  # type: ignore
 
 
@@ -44,6 +46,10 @@ def compare_watchlist():
         return result
 
     intraday = intraday_alert.run_check()
+    if deep_data is None:
+        result['status'] = 'no_data'
+        result['note'] = 'scripts.data.deep_data 模块不可用，跳过跨源一致性校验。'
+        return result
     deep = deep_data.full_snapshot()
 
     intraday_snapshot = intraday.get('snapshot', {})
@@ -137,8 +143,9 @@ def main():
         print(f"recommended_source={out['recommended_source']}")
         if not out['issues']:
             print('一致性检查通过')
-        for issue in out['issues']:
-            print(f"[{issue['level']}] {issue['code']} {issue['type']}: {issue['detail']}")
+        else:
+            for issue in out['issues']:
+                print(f"[{issue['level']}] {issue['code']} {issue['type']}: {issue['detail']}")
 
 
 if __name__ == '__main__':

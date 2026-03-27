@@ -218,14 +218,21 @@ def calc_single_stock_peg(ak_code: str):
         ind_peg = industry_median.get("PEG")
         
         # PEG评价
-        peg_val = float(peg) if peg and str(peg) not in ['nan', 'None'] else None
-        
-        result["peg"] = round(peg_val, 3) if peg_val else None
+        def _to_float(v):
+            try:
+                f = float(v)
+                return None if (f != f) else f  # NaN check
+            except (ValueError, TypeError):
+                return None
+
+        peg_val = _to_float(peg)
+
+        result["peg"] = round(peg_val, 3) if peg_val is not None else None
         result["peg_rating"] = peg_rating(peg_val)
-        result["pe_ttm"] = round(float(pe_ttm), 2) if pe_ttm else None
-        result["pe_26e"] = round(float(pe_26e), 2) if pe_26e else None
-        result["pb_mrq"] = round(float(pb), 2) if pb else None
-        result["industry_median_peg"] = round(float(ind_peg), 3) if ind_peg and str(ind_peg) not in ['nan','None'] else None
+        result["pe_ttm"] = round(_to_float(pe_ttm), 2) if _to_float(pe_ttm) is not None else None
+        result["pe_26e"] = round(_to_float(pe_26e), 2) if _to_float(pe_26e) is not None else None
+        result["pb_mrq"] = round(_to_float(pb), 2) if _to_float(pb) is not None else None
+        result["industry_median_peg"] = round(_to_float(ind_peg), 3) if _to_float(ind_peg) is not None else None
         
         # 是否低于行业中值
         if peg_val and result["industry_median_peg"]:
