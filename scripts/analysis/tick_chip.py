@@ -55,7 +55,7 @@ def fetch_ticks(code: str, pos: int = -5000) -> list:
     """
     market = get_market(code)
     url = (
-        f"https://push2.eastmoney.com/api/qt/stock/details/get"
+        f"http://push2.eastmoney.com/api/qt/stock/details/get"
         f"?fields1=f1,f2,f3,f4"
         f"&fields2=f51,f52,f53,f54,f55"
         f"&fltt=2&pos={pos}"

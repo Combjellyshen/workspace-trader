@@ -1,0 +1,7 @@
+{
+  "telegram_group": "YOUR_TELEGRAM_GROUP_ID",
+  "chat_id": "telegram:YOUR_TELEGRAM_GROUP_ID",
+  "agent_id": "trade",
+  "workspace_id": "workspace-trader",
+  "workdir": "/path/to/workspace-trader"
+}

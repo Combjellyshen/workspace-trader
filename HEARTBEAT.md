@@ -1,8 +1,9 @@
 # HEARTBEAT.md
 
-## Default rule for this workspace
+## 心跳唤醒规则
 
-- On heartbeat wake-up, first check whether there is a pending **user-visible update**.
-- If a task finished but the user may not have received the reply, send a short proactive update instead of `HEARTBEAT_OK`.
-- If there is meaningful progress, blockage, or a result the user should know, send that update.
-- Only reply `HEARTBEAT_OK` when there is truly nothing to report.
+1. **检查待发更新**：先检查是否有已完成但用户未收到的任务结果（报告/PDF/异动提醒）。若有，发送简短更新。
+2. **交易时段感知**：交易日 09:15–15:30 期间的唤醒，优先检查盘中异动和数据更新状态。
+3. **静默时段**：Asia/Shanghai 22:00–07:00 期间保持静默，只回复 `HEARTBEAT_OK`。
+4. **无待办则安静**：没有待发结果或进展，直接回复 `HEARTBEAT_OK`。
+5. **不主动修改配置**：心跳唤醒时不主动编辑 workspace 配置文件或 PHILOSOPHY.md。

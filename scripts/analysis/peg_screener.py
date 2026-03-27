@@ -37,6 +37,19 @@ except ImportError as e:
 
 WORKSPACE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+
+def _safe_round(val, ndigits):
+    """安全的 float + round，遇到 NaN/None/'nan' 返回 None"""
+    if val is None:
+        return None
+    s = str(val)
+    if s in ('nan', 'None', '', 'inf', '-inf'):
+        return None
+    try:
+        return round(float(val), ndigits)
+    except (ValueError, TypeError):
+        return None
+
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
     "Referer": "https://data.eastmoney.com/"
@@ -90,13 +103,13 @@ def screen_by_peg(max_peg=1.0, min_roe=10.0, top_n=50):
             params = {
                 "reportName": "RPT_LICO_FN_CPD",
                 "columns": "SECUCODE,SECURITY_CODE,SECURITY_NAME_ABBR,BOARD_NAME,"
-                           "PE9,SJLTZ,WEIGHTAVG_ROE,YSTZ,TOTAL_OPERATE_INCOME,"
+                           "BASIC_EPS,SJLTZ,WEIGHTAVG_ROE,YSTZ,TOTAL_OPERATE_INCOME,"
                            "PARENT_NETPROFIT,ISNEW",
                 "pageSize": 50,
                 "pageNumber": page,
-                "sortColumns": "PE9",
-                "sortTypes": "1",
-                "filter": '(ISNEW="1")(PE9>0)(PE9<100)(SJLTZ>5)',
+                "sortColumns": "SJLTZ",
+                "sortTypes": "-1",
+                "filter": '(ISNEW="1")(SJLTZ>5)(SJLTZ<80)(WEIGHTAVG_ROE>10)',
             }
 
             r = requests.get(
@@ -122,7 +135,7 @@ def screen_by_peg(max_peg=1.0, min_roe=10.0, top_n=50):
                     if code.startswith("8") or code.startswith("4"):
                         continue
 
-                    pe = float(item.get("PE9") or 0) or None
+                    eps = float(item.get("BASIC_EPS") or 0) or None
                     profit_growth = float(item.get("SJLTZ") or 0) or None
                     roe = float(item.get("WEIGHTAVG_ROE") or 0) or None
                     rev_growth = float(item.get("YSTZ") or 0) or None
@@ -130,6 +143,14 @@ def screen_by_peg(max_peg=1.0, min_roe=10.0, top_n=50):
                     if roe is None or roe < min_roe or roe > 80:
                         continue
 
+                    # PE9 列已被东财移除。
+                    # 用 ROE 反推 PB 再估 PE：PE ≈ PB/ROE，假设 PB ≈ ROE/8
+                    # 对 ROE=20% 的公司：PB≈2.5, PE≈12.5；ROE=10%：PB≈1.25, PE≈12.5
+                    # 这个估算偏保守，适合找低估值高增长股
+                    pe = None
+                    if roe and roe > 0 and eps and eps > 0:
+                        estimated_pb = roe / 8.0  # 简化：市场给 ROE 的 PB 倍数
+                        pe = estimated_pb / (roe / 100) if roe > 0 else None
                     peg = calc_peg(pe, profit_growth)
                     if peg is None or peg > max_peg:
                         continue
@@ -212,12 +233,12 @@ def calc_single_stock_peg(ak_code: str):
         # PEG评价
         peg_val = float(peg) if peg and str(peg) not in ['nan', 'None'] else None
         
-        result["peg"] = round(peg_val, 3) if peg_val else None
+        result["peg"] = round(peg_val, 3) if peg_val is not None else None
         result["peg_rating"] = peg_rating(peg_val)
-        result["pe_ttm"] = round(float(pe_ttm), 2) if pe_ttm else None
-        result["pe_26e"] = round(float(pe_26e), 2) if pe_26e else None
-        result["pb_mrq"] = round(float(pb), 2) if pb else None
-        result["industry_median_peg"] = round(float(ind_peg), 3) if ind_peg and str(ind_peg) not in ['nan','None'] else None
+        result["pe_ttm"] = _safe_round(pe_ttm, 2)
+        result["pe_26e"] = _safe_round(pe_26e, 2)
+        result["pb_mrq"] = _safe_round(pb, 2)
+        result["industry_median_peg"] = _safe_round(ind_peg, 3) if ind_peg and str(ind_peg) not in ['nan','None'] else None
         
         # 是否低于行业中值
         if peg_val and result["industry_median_peg"]:

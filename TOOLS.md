@@ -19,8 +19,3 @@
 ## 记忆操作
 - 详见 `MEMORY_SYSTEM.md` §6
 
-## Claude Code 调用
-- 单任务：`claude：` / `claude:`
-- Agent Teams：`claude-team：` / `claude-team:`
-- 查询：`claude列表`、`claude状态 latest`、`claude查看 latest`、`claude停止 latest`
-- 底层 skill：`claude-prefix-dispatch`

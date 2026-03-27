@@ -29,8 +29,17 @@ except ImportError as e:
 
 
 def get_industries():
-    """获取所有行业板块列表（东财）"""
+    """获取所有行业板块列表（东财）— 优先 HTTP push2，fallback akshare"""
     try:
+        from scripts.utils.common import fetch_industry_flow
+        ind_data = fetch_industry_flow(top=200)
+        if ind_data:
+            return {
+                "source": "HTTP push2 行业板块",
+                "count": len(ind_data),
+                "industries": [{"板块名称": d["行业名称"], "板块代码": d.get("板块代码", "")} for d in ind_data]
+            }
+        # fallback
         df = ak.stock_board_industry_name_em()
         return {
             "source": "东财行业板块",

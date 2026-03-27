@@ -43,7 +43,11 @@ from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from pathlib import Path
 
-BASE = Path(__file__).resolve().parents[2] / 'memory'
+_WORKSPACE_ROOT = Path(__file__).resolve().parents[2]
+if str(_WORKSPACE_ROOT) not in sys.path:
+    sys.path.insert(0, str(_WORKSPACE_ROOT))
+
+BASE = _WORKSPACE_ROOT / 'memory'
 REPORTS_DIR = BASE / 'reports'
 SIGNALS_DIR = BASE / 'signals'
 REVIEWS_DIR = BASE / 'reviews'

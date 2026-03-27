@@ -340,29 +340,67 @@ def _etf_bundle(code: str):
     except Exception as e:
         result['pricing_error'] = str(e)[:160]
 
+    # ETF K-line: Sina JSON → fund_etf_hist_em → fund_etf_hist_sina
+    closes = None
+    amounts = None
+
     try:
-        hist = ak.fund_etf_hist_em(symbol=code, period='daily', start_date='20240101', end_date=datetime.now(ZoneInfo("Asia/Shanghai")).strftime('%Y%m%d'), adjust='qfq')
-        if hist is not None and len(hist) > 0:
-            hist = hist.tail(120).reset_index(drop=True)
-            closes = [float(x) for x in hist['收盘'].tolist()]
-            amounts = [float(x) for x in hist['成交额'].tolist()] if '成交额' in hist.columns else []
-            def ret(days):
-                if len(closes) <= days:
-                    return None
-                return _safe_round((closes[-1] / closes[-days-1] - 1) * 100, 2)
-            high_20 = max(closes[-20:]) if len(closes) >= 20 else max(closes)
-            result['market_stats'] = {
-                'sample_days': len(hist),
-                'latest_close': closes[-1],
-                'ret_1d_pct': ret(1),
-                'ret_5d_pct': ret(5),
-                'ret_20d_pct': ret(20),
-                'ret_60d_pct': ret(60),
-                'drawdown_from_20d_high_pct': _safe_round((closes[-1] / high_20 - 1) * 100, 2),
-                'avg_amount_20d_yi': _safe_round(sum(amounts[-20:]) / min(20, len(amounts)) / 1e8, 2) if amounts else None,
-            }
-    except Exception as e:
-        result['market_stats_error'] = str(e)[:160]
+        from scripts.utils.common import http_get, SINA_HEADERS
+        sina_sym = ('sh' if code.startswith(('5', '11')) else 'sz') + code
+        url = (f'https://money.finance.sina.com.cn/quotes_service/api/json_v2.php/'
+               f'CN_MarketData.getKLineData?symbol={sina_sym}&scale=240&ma=no&datalen=130')
+        raw = http_get(url, headers=SINA_HEADERS, timeout=10)
+        rows = json.loads(raw)
+        if rows:
+            closes = [float(r['close']) for r in rows][-120:]
+    except Exception:
+        pass
+
+    if not closes and ak is not None:
+        from datetime import timedelta as _td
+        end = datetime.now(ZoneInfo('Asia/Shanghai')).strftime('%Y%m%d')
+        start = (datetime.now(ZoneInfo('Asia/Shanghai')) - _td(days=180)).strftime('%Y%m%d')
+        try:
+            df_em = ak.fund_etf_hist_em(symbol=code, period='daily', start_date=start, end_date=end, adjust='qfq')
+            if df_em is not None and len(df_em) >= 10:
+                closes = [float(v) for v in df_em['收盘'].tolist()][-120:]
+                if '成交额' in df_em.columns:
+                    amounts = [float(v) for v in df_em['成交额'].tolist()][-120:]
+        except Exception:
+            pass
+
+    if not closes and ak is not None:
+        try:
+            prefix = 'sh' if code.startswith(('5', '11')) else 'sz'
+            df_sina = ak.fund_etf_hist_sina(symbol=f'{prefix}{code}')
+            if df_sina is not None and len(df_sina) >= 10:
+                closes = [float(v) for v in df_sina['close'].tolist()][-120:]
+                if 'amount' in df_sina.columns:
+                    amounts = [float(v) for v in df_sina['amount'].tolist()][-120:]
+        except Exception:
+            pass
+
+    if closes:
+        def ret(days):
+            if len(closes) <= days:
+                return None
+            return _safe_round((closes[-1] / closes[-days-1] - 1) * 100, 2)
+        high_20 = max(closes[-20:]) if len(closes) >= 20 else max(closes)
+        avg_amt = None
+        if amounts and len(amounts) >= 20:
+            avg_amt = _safe_round(sum(amounts[-20:]) / 20 / 1e8, 2)
+        result['market_stats'] = {
+            'sample_days': len(closes),
+            'latest_close': closes[-1],
+            'ret_1d_pct': ret(1),
+            'ret_5d_pct': ret(5),
+            'ret_20d_pct': ret(20),
+            'ret_60d_pct': ret(60),
+            'drawdown_from_20d_high_pct': _safe_round((closes[-1] / high_20 - 1) * 100, 2),
+            'avg_amount_20d_yi': avg_amt,
+        }
+    else:
+        result['market_stats_error'] = 'K-line unavailable from all sources (Sina/EM/Sina-hist)'
 
     if 'local_deep_data' not in result:
         chip = _run_tick_chip_cli(code, 'chip')
@@ -521,6 +559,9 @@ def _derive_trade_plan_stock(memory_data: dict, tech: dict, verdict: dict):
 
     buy_low = support or lower
     buy_high = latest if latest and buy_low and latest >= buy_low else resistance or upper
+    # 保证 low <= high
+    if buy_low is not None and buy_high is not None and buy_low > buy_high:
+        buy_low, buy_high = buy_high, buy_low
     stop_loss = None
     if buy_low:
         stop_loss = _safe_round(buy_low * 0.97, 3)
@@ -579,12 +620,16 @@ def _derive_trade_plan_etf(bundle: dict, tech: dict, memory_data: dict):
     build_low = _safe_round(support or nav or mkt, 3)
     build_candidates = [safe_float(x, None) for x in [resistance, mkt, nav] if safe_float(x, None) is not None]
     build_high_raw = max(build_candidates) if build_candidates else None
+    build_high = _safe_round(build_high_raw, 3)
+    # 保证 low <= high
+    if build_low is not None and build_high is not None and build_low > build_high:
+        build_low, build_high = build_high, build_low
 
     return {
         'current_bias': '主题观察 / 等消息与资金一致',
         'build_zone': {
             'low': build_low,
-            'high': _safe_round(build_high_raw, 3),
+            'high': build_high,
         },
         'position_cap': '主题 ETF 单品种 10%~15%',
         'stop_loss': _safe_round((support or mkt or nav or 0) * 0.96, 3) if (support or mkt or nav) else None,
@@ -872,26 +917,41 @@ def build_watchlist_deep_dive(target_code: str | None = None, condensed: bool = 
 
     market_ctx = _load_market_context()
 
-    items = []
+    # Prepare work items
+    work = []
     for raw in watchlist:
         item = raw if isinstance(raw, dict) else {'code': str(raw), 'name': '', 'type': 'stock'}
         code = item.get('code', '')
         if not code:
             continue
         ptype = (item.get('type') or ('etf' if code.startswith(('5', '15', '16', '56', '58')) else 'stock')).lower()
+        work.append((item, code, ptype))
+
+    # Analyze items concurrently
+    import concurrent.futures
+
+    def _analyze_one(args):
+        item, code, ptype = args
         try:
             if ptype == 'etf':
-                items.append(_analyze_etf(item, market_ctx))
+                return _analyze_etf(item, market_ctx)
             else:
-                items.append(_analyze_stock(item, market_ctx))
+                return _analyze_stock(item, market_ctx)
         except Exception as e:
-            items.append({
+            return {
                 'code': code,
                 'name': item.get('name', ''),
                 'type': ptype,
                 'error': str(e)[:200],
                 'generated_at': _now(),
-            })
+            }
+
+    items = []
+    if len(work) <= 1:
+        items = [_analyze_one(w) for w in work]
+    else:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=min(len(work), 4)) as pool:
+            items = list(pool.map(_analyze_one, work))
 
     result = {
         'generated_at': _now(),

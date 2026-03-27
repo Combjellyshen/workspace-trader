@@ -1,52 +1,74 @@
-# DATA_SOURCES.md — 数据源与调用优先级
+# DATA_SOURCES.md - 数据源与调用优先级
 
 > **职责边界**：本文件只记录数据源、可用性与调用优先级；不承担分析流程、人格规则或报告格式要求。
 >
-> 最后更新：2026-03-11
+> 最后更新：2026-03-14
 
 ## 一、调用优先级总则
-- **A 股数据**：本地 `scripts/*` > AkShare > Tushare
-- **美股/海外**：MCP FMP > MCP yfinance > Alpha Vantage > edgartools
-- **美国宏观**：FRED > FMP economics > US Fiscal Data
-- **系统风险**：Hedge Fund Monitor
-- **跨资产映射**：FMP（indexes / forex）> Stooq（commodities / crypto / DAX / DXY 补位）> Yahoo fallback；统一入口 `scripts/data/market_intel_pipeline.py`
-- **消息面**：`scripts/data/rss_aggregator.py` + FMP news + yfinance news 交叉验证
-- **技术指标**：A 股优先本地脚本；海外优先 FMP，其次 Alpha Vantage
-- 主接口失败时，自动切换备用接口；仍失败则明确写“数据暂不可得”
+
+> **核心原则：Skills/MCP 优先 → 自有脚本补充 → 网络搜索兜底**
+
+### 第一优先：Skills + MCP
+- **A 股数据**：`akshare-stock` skill > `tushare-finance` skill > 本地 `scripts/*`
+- **美股/海外**：MCP FMP > MCP yfinance > `alpha-vantage` skill > `edgartools` skill
+- **美国宏观**：`fred-economic-data` skill > MCP FMP economics > `usfiscaldata` skill
+- **系统风险**：`hedgefundmonitor` skill
+- **技术指标**：MCP FMP technical-indicators > `alpha-vantage` skill > 本地脚本
+- **消息面**：MCP FMP news + MCP yfinance news > 本地 `rss_aggregator.py`
+- **数据分析**：`polars` skill（大数据集）> `statistical-analysis` skill > `exploratory-data-analysis` skill
+- **可视化**：`plotly` skill > matplotlib（本地）
+- **文档转换**：`markitdown` skill
+- **研报生成**：`market-research-reports` skill
+
+### 第二优先：自有脚本补充
+- 当 skill/MCP 不覆盖或失败时，回退到本地 `scripts/*`
+- **跨资产映射**：`scripts/data/market_intel_pipeline.py`（FMP > Stooq > Yahoo fallback）
+- **情绪面**：`scripts/analysis/sentiment.py`（同花顺/东财/百度，skill 无替代）
+- **市场广度**：`scripts/analysis/market_breadth.py`（skill 无替代）
+- **筹码/主力**：`scripts/analysis/tick_chip.py` + `main_force.py`（skill 无替代）
+- **中国宏观**：`scripts/data/macro_deep.py` + `macro_monitor.py`（skill 无替代）
+
+### 第三优先：网络搜索兜底
+- Brave Search / Tavily（`tavily-web-search-for-openclaw` skill）
+- `parallel-web` skill（若已配 key）
+- 直接网页抓取
+
+### 降级规则
+- 主接口失败时，自动按优先级切换下一层；仍失败则明确写"数据暂不可得"
 
 ## 二、A 股核心数据
 | 数据类型 | 主接口 | 备用接口 | 说明 |
 |---|---|---|---|
 | 实时行情 | `scripts/data/market_cache.py` + AkShare | Tushare `pro.daily()` | 免费、快 |
 | 历史 K 线 | AkShare `stock_zh_a_hist()` | Tushare `pro.daily()` | 支持前/后复权 |
-| 板块行情 | `scripts/data/market_cache.py` + AkShare 板块接口 | — | 行业+概念 |
+| 板块行情 | `scripts/data/market_cache.py` + AkShare 板块接口 | - | 行业+概念 |
 | 个股/行业资金流 | `scripts/data/deep_data.py` | AkShare 资金流接口 | 大单/超大单净流入 |
-| 龙虎榜 | `scripts/data/deep_data.py` + AkShare | — | 异动席位追踪 |
-| 北向资金 | `scripts/data/institution_tracker.py` + Tushare `pro.moneyflow_hsgt()` | — | 每日+个股维度 |
+| 龙虎榜 | `scripts/data/deep_data.py` + AkShare | - | 异动席位追踪 |
+| 北向资金 | `scripts/data/institution_tracker.py` + Tushare `pro.moneyflow_hsgt()` | - | 每日+个股维度 |
 | 财务报表 | `scripts/data/stock_profile.py` + AkShare | Tushare 三表接口 | 三表+关键指标 |
 | 财务指标 | AkShare 财务分析指标 | Tushare `pro.fina_indicator()` | ROE/毛利率/现金流 |
-| 估值分位 | `scripts/data/stock_valuation_history.py` | — | PE/PB/PS 分位 |
-| 技术分析 | `scripts/analysis/tech_analysis.py` | — | MACD/RSI/均线/布林 |
-| 筹码/主力 | `scripts/analysis/tick_chip.py` + `scripts/analysis/main_force.py` | — | 大单与筹码行为 |
-| 市场广度 | `scripts/analysis/market_breadth.py` | — | 涨跌比/新高新低 |
-| 情绪面 | `scripts/analysis/sentiment.py` | — | 情绪综合评分 |
+| 估值分位 | `scripts/data/stock_valuation_history.py` | - | PE/PB/PS 分位 |
+| 技术分析 | `scripts/analysis/tech_analysis.py` | - | MACD/RSI/均线/布林 |
+| 筹码/主力 | `scripts/analysis/tick_chip.py` + `scripts/analysis/main_force.py` | - | 大单与筹码行为 |
+| 市场广度 | `scripts/analysis/market_breadth.py` | - | 涨跌比/新高新低 |
+| 情绪面 | `scripts/analysis/sentiment.py` | - | 情绪综合评分 |
 
 ## 三、海外与跨资产数据
 | 数据类型 | 主接口 | 备用接口 | 说明 |
 |---|---|---|---|
 | 美股实时行情 | MCP `yfinance.get_quote` | MCP FMP quotes | 快速快查 |
-| 美股历史数据 | MCP `yfinance.get_historical` | Alpha Vantage / FMP charts | — |
+| 美股历史数据 | MCP `yfinance.get_historical` | Alpha Vantage / FMP charts | - |
 | 美股财务报表 | MCP FMP statements | MCP yfinance / edgartools | FMP 最全 |
 | 公司档案 | MCP FMP company | MCP yfinance | 主营/高管/公司信息 |
-| 分析师评级 | MCP FMP analyst | — | 目标价/评级共识 |
-| DCF 估值 | MCP FMP dcf | — | 自动折现模型 |
-| 内部交易 | MCP FMP insider-trades | edgartools Form 4 | — |
-| 机构持仓 | MCP FMP institutional | edgartools 13F | — |
+| 分析师评级 | MCP FMP analyst | - | 目标价/评级共识 |
+| DCF 估值 | MCP FMP dcf | - | 自动折现模型 |
+| 内部交易 | MCP FMP insider-trades | edgartools Form 4 | - |
+| 机构持仓 | MCP FMP institutional | edgartools 13F | - |
 | SEC 文件 | MCP FMP sec-filings | edgartools | 深度监管文件 |
-| ETF/基金 | MCP FMP etf-funds | Tushare 基金接口 | — |
+| ETF/基金 | MCP FMP etf-funds | Tushare 基金接口 | - |
 | 技术指标 | MCP FMP technical-indicators | Alpha Vantage | 海外优先 FMP |
 | 财经新闻 | MCP FMP news + yfinance news | Alpha Vantage NEWS_SENTIMENT | 三源交叉 |
-| 财经日历 | MCP FMP calendar | — | 财报/分红/IPO |
+| 财经日历 | MCP FMP calendar | - | 财报/分红/IPO |
 | 指数（美股/港股/日股） | MCP FMP indexes | Stooq / Yahoo fallback | 跨资产映射主链 |
 | 欧股 DAX | Stooq CSV | Yahoo fallback | FMP 当前存在权限缺口时优先 Stooq |
 | 商品（原油/黄金/铜） | Stooq historical table | Yahoo fallback | 当前稳定性优于 Yahoo |
@@ -59,9 +81,9 @@
 |---|---|---|---|
 | 中国宏观 | `scripts/data/macro_deep.py` + `scripts/data/macro_monitor.py` | Tushare 宏观接口 | PMI/利率/社融 |
 | 美国宏观 | FRED | MCP FMP economics | GDP/CPI/失业/利率 |
-| 美国财政 | US Fiscal Data | — | 国债/财政收支 |
-| 全球人口/经济 | Data Commons | — | 人口/GDP/失业 |
-| 对冲基金与系统风险 | Hedge Fund Monitor | — | 杠杆/回购/Form PF |
+| 美国财政 | US Fiscal Data | - | 国债/财政收支 |
+| 全球人口/经济 | Data Commons | - | 人口/GDP/失业 |
+| 对冲基金与系统风险 | Hedge Fund Monitor | - | 杠杆/回购/Form PF |
 | 国债收益率 | FRED | US Fiscal Data / Alpha Vantage | 每日更新 |
 
 ## 五、MCP Server 状态（当前记录）
@@ -86,6 +108,10 @@
 | `deep_data.py north` | 沪深港通近10天 |
 | `deep_data.py hot` | 同花顺热度（**每天限2次**） |
 | `deep_data.py quote <codes>` | 任意股票/指数实时行情 |
+| `watchlist_deep_dive.py all` | 自选池深度分析包（产品分流 / 财务 / 估值 / 资金 / 催化 / 交易计划） |
+| `watchlist_deep_dive.py summary` | 自选池周报/日报摘要（组合视角 + 每只标的强弱点） |
+| `kline_detailed_review.py all` | 详细K线技术复盘（指数+观察池，含MA/RSI/KDJ/MACD/量价/变化原因） |
+| `kline_detailed_review.py code <code>` | 单只标的K线详细解释 |
 
 ### 券商研报
 

@@ -23,7 +23,8 @@
 3. `PHILOSOPHY.md`
 4. 当天 `memory/YYYY-MM-DD.md`（若存在）
 5. `DATA_SOURCES.md`
-6. 若任务涉及自选股或观察池，再执行 `python3 scripts/memory/memory_manager.py list_stocks`
+6. `PLAYBOOKS.md`（至少读取 PB 编号和触发条件，确保知道每种任务的执行方式）
+7. 若任务涉及自选股或观察池，再执行 `python3 scripts/memory/memory_manager.py list_stocks`
 
 ## 2.1 USER.md 禁止写入自选信息
 - `USER.md` 只记录稳定的用户画像、风险偏好、语言与输出偏好。
@@ -58,7 +59,36 @@
 - 风险提示
 - 如果我错了
 
-## 8. 任务结束必须汇报
+## 8. 任务关键词 → 命令硬绑定
+
+以下关键词出现在用户消息中时，**必须执行对应命令，禁止用自己的方式替代**：
+
+| 用户说 | 你必须执行 | 禁止做的 |
+|--------|-----------|---------|
+| "选股"/"完整选股"/"跑选股"/"长线选股"/"短线选股" | `python3 scripts/orchestrator/dispatcher.py scout` | 禁止手动拼凑脚本替代 |
+| "收盘复盘"/"收盘分析" | `python3 scripts/orchestrator/dispatcher.py closing` | 禁止跳过 dispatcher |
+| "周报" | `python3 scripts/orchestrator/dispatcher.py weekly` | 禁止跳过 dispatcher |
+| "哲学更新" | `python3 scripts/orchestrator/dispatcher.py philosophy` | 禁止跳过 dispatcher |
+
+**执行流程：**
+1. 直接运行命令，不要先问用户"你要哪种"——dispatcher 内部会处理所有变体
+2. 等 dispatcher 退出后才发报告
+3. 预计耗时 15-20 分钟，在 TG 告知用户"正在执行，预计 15-20 分钟"
+
+**如果 dispatcher 失败：**
+1. 报告哪个阶段失败、具体错误
+2. 问用户是否接受中间结果
+3. 禁止自己悄悄降级为手工分析然后假装是完整流程
+
+## 9. dispatcher 管道执行纪律
+当使用 `dispatcher.py` 执行任务（closing/scout/weekly 等）时：
+- **必须等 dispatcher 进程退出（状态变为 completed 或 failed）后，才可向用户/Telegram 发送最终报告**
+- 中间阶段的 TG 通知（如 "write done 4/7"）是进度提示，不是完成信号
+- 如果 dispatcher 卡住或超时，先报告"管道未完成"，由用户决定是否接受中间结果
+- 禁止在 dispatcher 仍在运行时，自行组装报告发送给用户并标记为"完整流程结果"
+- 如果需要基于不完整数据给结论，必须在标题和开头标注"⚠️ 管道未完成，以下为中间结果"
+
+## 9. 任务结束必须汇报
 每次任务完成后，必须显式给出：
 - ✅ 做了什么
 - ❌ 没做到什么

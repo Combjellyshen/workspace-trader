@@ -222,7 +222,14 @@ def fetch_profit_forecast_ths(code, timeout=15):
 def get_stock_name(code):
     """获取股票名称"""
     try:
-        # 尝试从实时行情获取
+        # 优先 HTTP push2
+        from scripts.utils.common import fetch_a_stock_spot
+        spot = fetch_a_stock_spot(top=5000)
+        if spot:
+            for s in spot:
+                if s.get('代码') == code:
+                    return s.get('名称', code)
+        # fallback akshare
         df = ak.stock_zh_a_spot_em()
         row = df[df['代码'] == code]
         if not row.empty:

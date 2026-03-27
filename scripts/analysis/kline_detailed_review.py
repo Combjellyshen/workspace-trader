@@ -185,6 +185,31 @@ def _load_series(code):
             df = ak.stock_zh_index_daily(symbol=code).tail(160).reset_index(drop=True)
             if df is not None and not df.empty:
                 df = df.rename(columns={'date': '日期', 'open': '开盘', 'close': '收盘', 'high': '最高', 'low': '最低', 'volume': '成交量'})
+                # If latest bar is before today, try to append today's realtime data
+                today_str = datetime.now(ZoneInfo("Asia/Shanghai")).strftime('%Y-%m-%d')
+                latest_date = str(df['日期'].iloc[-1])[:10]
+                if latest_date < today_str:
+                    try:
+                        spot = ak.stock_zh_index_spot_em()
+                        prefix = code[:2]
+                        spot_code = prefix + code[2:]
+                        row = spot[spot['代码'] == spot_code]
+                        if row.empty:
+                            row = spot[spot['代码'] == code]
+                        if not row.empty:
+                            r = row.iloc[0]
+                            import pandas as pd
+                            new_row = pd.DataFrame([{
+                                '日期': today_str,
+                                '开盘': float(r.get('今开', 0)),
+                                '收盘': float(r.get('最新价', 0)),
+                                '最高': float(r.get('最高', 0)),
+                                '最低': float(r.get('最低', 0)),
+                                '成交量': float(r.get('成交量', 0)),
+                            }])
+                            df = pd.concat([df, new_row], ignore_index=True)
+                    except Exception:
+                        pass  # realtime supplement failed, continue with daily data
         except Exception:
             df = None
 
@@ -196,6 +221,17 @@ def _load_series(code):
                 df = ak.fund_etf_hist_em(symbol=code, period='daily', start_date=start, end_date=end, adjust='qfq')
             else:
                 df = ak.stock_zh_a_hist(symbol=code, period='daily', start_date=start, end_date=end, adjust='qfq')
+        except Exception:
+            df = None
+
+    # ETF fallback: fund_etf_hist_sina
+    if (df is None or len(df) < 10) and ak is not None and code.startswith(('5', '15', '16', '56', '58')):
+        try:
+            prefix = 'sh' if code.startswith(('5', '11')) else 'sz'
+            df = ak.fund_etf_hist_sina(symbol=f'{prefix}{code}')
+            if df is not None and not df.empty:
+                df = df.rename(columns={'date': '日期', 'open': '开盘', 'close': '收盘',
+                                         'high': '最高', 'low': '最低', 'volume': '成交量', 'amount': '成交额'})
         except Exception:
             df = None
 

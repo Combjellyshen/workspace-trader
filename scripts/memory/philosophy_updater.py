@@ -71,13 +71,22 @@ def collect_latest():
 
     # 3. 最新行业基金配置变化（机构持仓风向）
     try:
-        import akshare as ak
-        df = ak.stock_fund_flow_industry(symbol="近1月")
-        if not df.empty:
+        from scripts.utils.common import fetch_industry_flow
+        ind_data = fetch_industry_flow(top=100)
+        if ind_data:
             result["sources"]["industry_fund_flow_1m"] = {
-                "count": len(df),
-                "top10_inflow": df.nlargest(10, df.columns[2] if len(df.columns) > 2 else df.columns[-1]).to_dict('records')
+                "source": "HTTP push2",
+                "count": len(ind_data),
+                "top10_inflow": ind_data[:10]
             }
+        else:
+            import akshare as ak
+            df = ak.stock_fund_flow_industry(symbol="近1月")
+            if not df.empty:
+                result["sources"]["industry_fund_flow_1m"] = {
+                    "count": len(df),
+                    "top10_inflow": df.nlargest(10, df.columns[2] if len(df.columns) > 2 else df.columns[-1]).to_dict('records')
+                }
     except Exception as e:
         result["sources"]["fund_flow_error"] = str(e)[:80]
 
@@ -157,13 +166,17 @@ def check_framework_match():
 
     # === 信号3：行业资金流方向 ===
     try:
-        df_flow = ak.stock_fund_flow_industry(symbol="即时")
-        if not df_flow.empty:
-            # 取净流入最多的行业
-            num_cols = df_flow.select_dtypes(include=['float64', 'int64']).columns
-            if len(num_cols) > 0:
-                top_inflow = df_flow.nlargest(3, num_cols[0])
-                result["signals"]["top_inflow_sectors"] = top_inflow.iloc[:, :3].to_dict('records')
+        from scripts.utils.common import fetch_industry_flow
+        ind_data = fetch_industry_flow(top=10)
+        if ind_data:
+            result["signals"]["top_inflow_sectors"] = ind_data[:3]
+        else:
+            df_flow = ak.stock_fund_flow_industry(symbol="即时")
+            if not df_flow.empty:
+                num_cols = df_flow.select_dtypes(include=['float64', 'int64']).columns
+                if len(num_cols) > 0:
+                    top_inflow = df_flow.nlargest(3, num_cols[0])
+                    result["signals"]["top_inflow_sectors"] = top_inflow.iloc[:, :3].to_dict('records')
     except Exception as e:
         result["signals"]["fund_flow_error"] = str(e)[:60]
 

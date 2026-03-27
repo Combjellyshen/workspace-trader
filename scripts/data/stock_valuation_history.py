@@ -140,7 +140,10 @@ def batch_analyze():
     if os.path.exists(wl_path):
         with open(wl_path) as f:
             wl = json.load(f)
-        for code in wl:
+        # 支持两种格式: list 或 {"stocks": list}
+        stock_list = wl if isinstance(wl, list) else wl.get("stocks", [])
+        for item in stock_list:
+            code = item.get("code", item) if isinstance(item, dict) else str(item)
             if len(code) == 6 and not code.startswith("5"):  # 排除ETF
                 prefix = "SH" if code.startswith("6") else "SZ"
                 codes.append((f"{prefix}{code}", "短线自选", code))

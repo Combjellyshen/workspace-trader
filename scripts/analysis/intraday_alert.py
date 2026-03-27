@@ -40,11 +40,23 @@ def warn(msg: str):
 
 def infer_market(code: str) -> str:
     code = str(code)
-    if code.startswith(("6", "9")):
+    if code.startswith(("6", "9", "5")):
         return "sh"
     if code.startswith(("8", "4")):
         return "bj"
     return "sz"
+
+
+def is_etf(item: dict) -> bool:
+    """判断 watchlist 条目是否为 ETF"""
+    ptype = (item.get("type") or "").lower()
+    code = str(item.get("code", ""))
+    name = item.get("name", "")
+    return (
+        ptype == "etf"
+        or code.startswith(("51", "56", "58", "15", "16"))
+        or "etf" in name.lower()
+    )
 
 
 def pick_col(columns, exact_names=None, contains=None, exclude=None):
@@ -65,6 +77,76 @@ def pick_col(columns, exact_names=None, contains=None, exclude=None):
     return None
 
 
+# ─── ETF 数据获取 ─────────────────────────────────────────────────────────
+
+_etf_daily_cache = None
+
+
+def _fetch_etf_daily():
+    """
+    获取 ETF 日度数据（fund_etf_fund_daily_em），返回 {code: {...}} 字典。
+    含净值、市价、增长率、折价率。同一次 check 内缓存，避免重复调用。
+    """
+    global _etf_daily_cache
+    if _etf_daily_cache is not None:
+        return _etf_daily_cache
+
+    _etf_daily_cache = {}
+    try:
+        import akshare as ak
+        df = ak.fund_etf_fund_daily_em()
+        if df is None or df.empty:
+            return _etf_daily_cache
+
+        code_col = pick_col(df.columns, exact_names=["基金代码"], contains=["代码"])
+        if not code_col:
+            return _etf_daily_cache
+
+        # 列名含日期前缀，动态适配
+        # 注意：有两组净值列（最新日期 + 前一日期），用于计算 T-1 收盘价
+        nav_cols = sorted([c for c in df.columns if '单位净值' in c], reverse=True)
+        nav_col = nav_cols[0] if nav_cols else None       # 最新净值（T-1 日）
+        prev_nav_col = nav_cols[1] if len(nav_cols) > 1 else None  # 前一日净值（T-2 日）
+        discount_col = None
+        price_col = None
+        for col in df.columns:
+            if "折价率" in col:
+                discount_col = col
+            elif col == "市价":
+                price_col = col
+
+        for _, row in df.iterrows():
+            code = str(row[code_col]).zfill(6)
+            nav = safe_float(row.get(nav_col, 0)) if nav_col else 0.0
+            prev_nav = safe_float(row.get(prev_nav_col, 0)) if prev_nav_col else 0.0
+            discount_raw = str(row.get(discount_col, "0")) if discount_col else "0"
+            discount_pct = safe_float(discount_raw.replace("%", ""))
+            market_price = safe_float(row.get(price_col, 0)) if price_col else 0.0
+
+            # ── 关键修复：用市价 vs 最新净值算今日真实涨跌幅 ──
+            # fund_etf_fund_daily_em 的"增长率"是 T-1 净值 vs T-2 净值（昨天的变化），
+            # 不是今天的。真正的今日涨跌幅应为：市价 vs T-1 日净值（近似昨收）。
+            if nav > 0 and market_price > 0:
+                change_pct = round((market_price - nav) / nav * 100, 2)
+            elif prev_nav > 0 and nav > 0:
+                # fallback：如果市价不可用，用 T-1 vs T-2 净值（即"增长率"列的含义）
+                change_pct = round((nav - prev_nav) / prev_nav * 100, 2)
+            else:
+                change_pct = 0.0
+
+            _etf_daily_cache[code] = {
+                "nav": nav,
+                "market_price": market_price,
+                "change_pct": change_pct,
+                "discount_pct": discount_pct,
+                "nav_date": nav_col.split('-单位净值')[0] if nav_col and '-单位净值' in nav_col else "",
+            }
+    except Exception as e:
+        warn(f"ETF daily data unavailable: {e}")
+
+    return _etf_daily_cache
+
+
 # ─── 维度1：自选股价格异动 ───────────────────────────────────────────────────
 
 def check_price_alerts(watchlist):
@@ -76,13 +158,20 @@ def check_price_alerts(watchlist):
     stocks_snapshot = []
 
     try:
-        import akshare as ak
-        df = ak.stock_zh_a_spot_em()
+        # 优先使用 HTTP push2（绕过 HTTPS 封锁），fallback 到 akshare
+        from scripts.utils.common import fetch_a_stock_spot
+        spot_data = fetch_a_stock_spot(top=5000)
+        if spot_data:
+            import pandas as pd
+            df = pd.DataFrame(spot_data)
+        else:
+            import akshare as ak
+            df = ak.stock_zh_a_spot_em()
 
         # 建立自选股 code → name 映射
         watchlist_codes = {s["code"]: s["name"] for s in watchlist}
 
-        # 精确适配列名，避免误用“振幅”“5分钟涨跌幅”“60日涨跌幅”等字段
+        # 精确适配列名
         code_col = pick_col(df.columns, exact_names=["代码", "证券代码"], contains=["代码"])
         name_col = pick_col(df.columns, exact_names=["名称", "证券简称"], contains=["名称"])
         pct_col = pick_col(df.columns, exact_names=["涨跌幅"], contains=["涨跌", "幅"], exclude=["5分钟", "3日", "5日", "10日", "20日", "60日", "年初", "振幅"])
@@ -143,29 +232,90 @@ def check_price_alerts(watchlist):
                     "action_hint": "关注量能是否配合" if pct > 0 else "关注是否跌破支撑位"
                 })
 
-        # 补全未出现在行情中的自选股
+        # 补全未出现在 A 股行情中的自选股（含 ETF）
         returned_codes = {s["code"] for s in stocks_snapshot}
+        missing = [s for s in watchlist if s["code"] not in returned_codes]
+
+        if missing:
+            etf_data = _fetch_etf_daily()
+            for s in missing:
+                code = s["code"]
+                if code in etf_data:
+                    ed = etf_data[code]
+                    price = ed["market_price"]
+                    pct = ed["change_pct"]
+                    snap = {
+                        "code": code,
+                        "name": s["name"],
+                        "price": price,
+                        "change_pct": round(pct, 2),
+                        "main_flow_yi": 0.0,
+                        "is_etf": True,
+                        "nav": ed["nav"],
+                        "discount_pct": ed["discount_pct"],
+                    }
+                    stocks_snapshot.append(snap)
+
+                    # ETF 也按同样的涨跌幅阈值触发价格异动
+                    level = None
+                    detail = ""
+                    if pct > 5:
+                        level = "red"
+                        detail = f"ETF涨幅 +{pct:.1f}%，强势拉升"
+                    elif pct > 3:
+                        level = "yellow"
+                        detail = f"ETF涨幅 +{pct:.1f}%，涨势明显"
+                    elif pct < -5:
+                        level = "red"
+                        detail = f"ETF跌幅 {pct:.1f}%，大幅下跌"
+                    elif pct < -3:
+                        level = "yellow"
+                        detail = f"ETF跌幅 {pct:.1f}%，跌势明显"
+
+                    if level:
+                        alerts.append({
+                            "type": "price",
+                            "code": code,
+                            "name": s["name"],
+                            "level": level,
+                            "detail": detail,
+                            "action_hint": "关注量能是否配合" if pct > 0 else "关注是否跌破支撑位"
+                        })
+                else:
+                    stocks_snapshot.append({
+                        "code": code,
+                        "name": s["name"],
+                        "price": 0.0,
+                        "change_pct": 0.0,
+                        "main_flow_yi": 0.0
+                    })
+
+    except Exception as e:
+        warn(f"price alerts fallback to placeholders: {e}")
+        # A 股接口失败，仍尝试为 ETF 拉取真实数据
+        etf_data = _fetch_etf_daily()
         for s in watchlist:
-            if s["code"] not in returned_codes:
+            code = s["code"]
+            if is_etf(s) and code in etf_data:
+                ed = etf_data[code]
                 stocks_snapshot.append({
-                    "code": s["code"],
+                    "code": code,
+                    "name": s["name"],
+                    "price": ed["market_price"],
+                    "change_pct": round(ed["change_pct"], 2),
+                    "main_flow_yi": 0.0,
+                    "is_etf": True,
+                    "nav": ed["nav"],
+                    "discount_pct": ed["discount_pct"],
+                })
+            else:
+                stocks_snapshot.append({
+                    "code": code,
                     "name": s["name"],
                     "price": 0.0,
                     "change_pct": 0.0,
                     "main_flow_yi": 0.0
                 })
-
-    except Exception as e:
-        warn(f"price alerts fallback to placeholders: {e}")
-        # 非交易时间或接口问题
-        for s in watchlist:
-            stocks_snapshot.append({
-                "code": s["code"],
-                "name": s["name"],
-                "price": 0.0,
-                "change_pct": 0.0,
-                "main_flow_yi": 0.0
-            })
 
     return alerts, stocks_snapshot
 
@@ -181,11 +331,33 @@ def check_index_alerts():
     sh_snapshot = {"price": 0.0, "change_pct": 0.0, "status": "ok"}
 
     try:
-        import akshare as ak
+        # 优先使用 HTTP push2 获取指数
+        from scripts.utils.common import fetch_index_spot
+        idx_data = fetch_index_spot()
+        sh_found = False
+        if idx_data:
+            for ix in idx_data:
+                if ix.get('代码') == '000001':
+                    pct = ix.get('涨跌幅', 0)
+                    price = ix.get('最新价', 0)
+                    sh_snapshot = {"price": round(price, 2), "change_pct": round(pct, 2), "status": "ok"}
+                    sh_found = True
+                    if pct < -2.5:
+                        alerts.append({"type": "index", "code": "000001", "name": "上证指数", "level": "red",
+                                       "detail": f"沪指大跌 {pct:.2f}%，市场恐慌", "action_hint": "考虑降低仓位，等待企稳"})
+                    elif pct < -1.5:
+                        alerts.append({"type": "index", "code": "000001", "name": "上证指数", "level": "yellow",
+                                       "detail": f"沪指下跌 {pct:.2f}%，注意风险", "action_hint": "关注是否跌破关键支撑"})
+                    elif pct > 2.0:
+                        alerts.append({"type": "index", "code": "000001", "name": "上证指数", "level": "yellow",
+                                       "detail": f"沪指大涨 +{pct:.2f}%，关注追高风险", "action_hint": "强势信号，但注意高位风险"})
+                    break
+        if sh_found:
+            return alerts, sh_snapshot
 
-        # 尝试获取指数行情
+        # fallback: akshare
+        import akshare as ak
         df = ak.stock_zh_index_spot_em(symbol="上证系列指数")
-        # 列名适配
         code_col = None
         pct_col = None
         price_col = None
@@ -259,59 +431,51 @@ def check_north_flow():
     try:
         import akshare as ak
 
-        # 尝试获取北向资金
-        df = ak.stock_em_hsgt_north_net_flow_in(symbol="沪深港通")
+        # 获取北向资金汇总（沪股通+深股通）
+        df = ak.stock_hsgt_fund_flow_summary_em()
         if df is None or df.empty:
             north_status = "unavailable"
             return alerts, north_flow_yi, north_status
 
-        # 取最新一行
-        latest = df.iloc[-1]
-        # 列名适配：找数值列
-        val = None
-        for col in df.columns:
-            if col not in ("日期", "date", "Date"):
-                try:
-                    val = float(latest[col])
-                    break
-                except (TypeError, ValueError):
-                    continue
-
-        if val is not None:
-            # 单位可能是亿或元，做量级判断
-            if abs(val) > 1e8:
-                val = val / 1e8  # 转换为亿
-            north_flow_yi = round(val, 2)
-
-            if north_flow_yi < -150:
-                alerts.append({
-                    "type": "north_flow",
-                    "code": "",
-                    "name": "北向资金",
-                    "level": "red",
-                    "detail": f"北向净流出 {abs(north_flow_yi):.1f}亿，外资大幅撤退",
-                    "action_hint": "外资大幅出逃，谨慎"
-                })
-            elif north_flow_yi < -80:
-                alerts.append({
-                    "type": "north_flow",
-                    "code": "",
-                    "name": "北向资金",
-                    "level": "yellow",
-                    "detail": f"北向净流出 {abs(north_flow_yi):.1f}亿，外资持续流出",
-                    "action_hint": "关注外资动向"
-                })
-            elif north_flow_yi > 80:
-                alerts.append({
-                    "type": "north_flow",
-                    "code": "",
-                    "name": "北向资金",
-                    "level": "yellow",
-                    "detail": f"北向净流入 +{north_flow_yi:.1f}亿，外资积极布局",
-                    "action_hint": "外资净流入偏强，偏多信号"
-                })
-        else:
+        # 合并沪股通+深股通的成交净买额
+        north_rows = df[df['资金方向'] == '北向']
+        if north_rows.empty:
             north_status = "unavailable"
+            return alerts, north_flow_yi, north_status
+
+        val = safe_float(north_rows['成交净买额'].sum())
+        # 单位为亿
+        if abs(val) > 1e4:
+            val = val / 1e8
+        north_flow_yi = round(val, 2)
+
+        if north_flow_yi < -150:
+            alerts.append({
+                "type": "north_flow",
+                "code": "",
+                "name": "北向资金",
+                "level": "red",
+                "detail": f"北向净流出 {abs(north_flow_yi):.1f}亿，外资大幅撤退",
+                "action_hint": "外资大幅出逃，谨慎"
+            })
+        elif north_flow_yi < -80:
+            alerts.append({
+                "type": "north_flow",
+                "code": "",
+                "name": "北向资金",
+                "level": "yellow",
+                "detail": f"北向净流出 {abs(north_flow_yi):.1f}亿，外资持续流出",
+                "action_hint": "关注外资动向"
+            })
+        elif north_flow_yi > 80:
+            alerts.append({
+                "type": "north_flow",
+                "code": "",
+                "name": "北向资金",
+                "level": "yellow",
+                "detail": f"北向净流入 +{north_flow_yi:.1f}亿，外资积极布局",
+                "action_hint": "外资净流入偏强，偏多信号"
+            })
 
     except Exception as e:
         warn(f"north flow unavailable: {e}")
@@ -340,6 +504,10 @@ def check_main_flow(watchlist, stocks_snapshot):
             code = stock["code"]
             name = stock["name"]
 
+            # ETF 跳过主力资金（由 check_etf_alerts 维度处理）
+            if is_etf(stock):
+                continue
+
             # 判断市场
             market = infer_market(code)
 
@@ -348,46 +516,56 @@ def check_main_flow(watchlist, stocks_snapshot):
                 if df is None or df.empty:
                     continue
 
-                # 取最新一行（今日）
-                latest = df.iloc[-1]
-
-                # 列名适配：找主力净流入列
+                # 列名适配
+                date_col = None
                 main_col = None
                 for col in df.columns:
-                    if "主力" in col and "净" in col:
+                    if "日期" in col or col.lower() == "date":
+                        date_col = col
+                    if main_col is None and "主力" in col and "净" in col:
                         main_col = col
-                        break
-                    elif "主力净流入" in col:
+                    elif main_col is None and "主力净流入" in col:
                         main_col = col
-                        break
-
                 if main_col is None:
-                    # 尝试找"净额"相关列
                     for col in df.columns:
                         if "净额" in col or "净流入" in col:
                             main_col = col
                             break
 
-                if main_col:
-                    val = safe_float(latest.get(main_col, 0))
-                    # akshare stock_individual_fund_flow 净额列单位为元，统一转换为亿
-                    # 若值绝对值 > 1000（明显不像亿），则按元转换；否则已是亿
-                    if abs(val) > 1000:
-                        val = val / 1e8
-                    main_flow_yi = round(val, 4)
+                if not main_col:
+                    continue
 
-                    # 更新 snapshot
-                    if code in snap_map:
-                        snap_map[code]["main_flow_yi"] = main_flow_yi
+                # ── 关键修复：校验最后一行的日期是否为今天 ──
+                latest = df.iloc[-1]
+                today_str = now_shanghai().strftime("%Y-%m-%d")
+                is_today = False
+                data_date = ""
 
-                    # 异动判断（5000万 = 0.5亿）
+                if date_col:
+                    data_date = str(latest.get(date_col, ""))[:10]
+                    is_today = data_date == today_str
+
+                val = safe_float(latest.get(main_col, 0))
+                if abs(val) > 1000:
+                    val = val / 1e8
+                main_flow_yi = round(val, 4)
+
+                # 更新 snapshot（标注数据日期）
+                if code in snap_map:
+                    snap_map[code]["main_flow_yi"] = main_flow_yi
+                    snap_map[code]["main_flow_date"] = data_date
+                    snap_map[code]["main_flow_is_today"] = is_today
+
+                # 异动判断（5000万 = 0.5亿）
+                # 仅今日数据触发异动；非今日数据降级为 info 级别，不计入 alert_score
+                if is_today:
                     if main_flow_yi > 0.5:
                         alerts.append({
                             "type": "main_flow",
                             "code": code,
                             "name": name,
                             "level": "yellow",
-                            "detail": f"主力净流入 +{main_flow_yi:.2f}亿",
+                            "detail": f"主力净流入 +{main_flow_yi:.2f}亿（今日盘中）",
                             "action_hint": "主力吸筹信号",
                             "signal": "吸筹"
                         })
@@ -397,10 +575,15 @@ def check_main_flow(watchlist, stocks_snapshot):
                             "code": code,
                             "name": name,
                             "level": "yellow",
-                            "detail": f"主力净流出 {main_flow_yi:.2f}亿",
+                            "detail": f"主力净流出 {main_flow_yi:.2f}亿（今日盘中）",
                             "action_hint": "主力出货信号，注意风险",
                             "signal": "出货"
                         })
+                else:
+                    # 非今日数据：记录但不触发异动（避免旧快照误报）
+                    if abs(main_flow_yi) > 0.5:
+                        warn(f"{code} 主力资金数据为 {data_date}（非今日），"
+                             f"净额 {main_flow_yi:.2f}亿，不计入盘中异动")
 
             except Exception as e:
                 warn(f"main flow unavailable for {code}: {e}")
@@ -409,6 +592,67 @@ def check_main_flow(watchlist, stocks_snapshot):
 
     except Exception as e:
         warn(f"main flow checks unavailable: {e}")
+
+    return alerts
+
+
+# ─── 维度4b：ETF 折溢价异动 ──────────────────────────────────────────────────
+
+# 阈值：主题型 ETF 折溢价波动相对大，1.5% 已算显著
+ETF_DISCOUNT_YELLOW = 1.5   # 折/溢价绝对值 ≥ 1.5% → yellow
+ETF_DISCOUNT_RED = 3.0      # 折/溢价绝对值 ≥ 3.0% → red
+
+
+def check_etf_alerts(watchlist, stocks_snapshot):
+    """
+    对 watchlist 中的 ETF 检测折溢价异动。
+    利用 _fetch_etf_daily() 缓存数据，同时回填 snapshot 中的折溢价字段。
+    返回 alerts
+    """
+    alerts = []
+    etf_items = [s for s in watchlist if is_etf(s)]
+    if not etf_items:
+        return alerts
+
+    etf_data = _fetch_etf_daily()
+    snap_map = {s["code"]: s for s in stocks_snapshot}
+
+    for item in etf_items:
+        code = item["code"]
+        name = item["name"]
+        ed = etf_data.get(code)
+        if not ed:
+            continue
+
+        discount = ed["discount_pct"]
+
+        # 回填 snapshot
+        if code in snap_map:
+            snap_map[code]["discount_pct"] = discount
+            snap_map[code]["nav"] = ed["nav"]
+
+        # 折溢价异动判断
+        abs_disc = abs(discount)
+        if abs_disc >= ETF_DISCOUNT_RED:
+            direction = "溢价" if discount > 0 else "折价"
+            alerts.append({
+                "type": "etf_discount",
+                "code": code,
+                "name": name,
+                "level": "red",
+                "detail": f"ETF{direction} {abs_disc:.2f}%，净值{ed['nav']:.4f} vs 市价{ed['market_price']:.4f}",
+                "action_hint": f"{'高溢价追高风险大' if discount > 0 else '深度折价，关注赎回压力'}",
+            })
+        elif abs_disc >= ETF_DISCOUNT_YELLOW:
+            direction = "溢价" if discount > 0 else "折价"
+            alerts.append({
+                "type": "etf_discount",
+                "code": code,
+                "name": name,
+                "level": "yellow",
+                "detail": f"ETF{direction} {abs_disc:.2f}%，净值{ed['nav']:.4f} vs 市价{ed['market_price']:.4f}",
+                "action_hint": f"{'溢价偏高，注意回落风险' if discount > 0 else '折价偏大，观察是否企稳'}",
+            })
 
     return alerts
 
@@ -499,7 +743,7 @@ def gen_summary(alerts, alert_score, sh_snapshot, stocks_snapshot, north_flow_yi
 
     parts = []
     for a in alerts:
-        if a["type"] in ("price", "main_flow"):
+        if a["type"] in ("price", "main_flow", "etf_discount"):
             name = a.get("name", a.get("code", ""))
             parts.append(f"{name}{a['detail']}")
         elif a["type"] == "index":
@@ -520,6 +764,9 @@ def gen_summary(alerts, alert_score, sh_snapshot, stocks_snapshot, north_flow_yi
 # ─── check 主逻辑 ────────────────────────────────────────────────────────────
 
 def run_check():
+    global _etf_daily_cache
+    _etf_daily_cache = None  # 每次 check 重置缓存
+
     now_str = now_shanghai().strftime("%Y-%m-%d %H:%M")
     watchlist = load_watchlist()
 
@@ -552,9 +799,13 @@ def run_check():
     north_alerts, north_flow_yi, north_status = check_north_flow()
     all_alerts.extend(north_alerts)
 
-    # 维度4：主力资金（原地更新 stocks_snapshot 里的 main_flow_yi）
+    # 维度4：主力资金（原地更新 stocks_snapshot 里的 main_flow_yi，跳过 ETF）
     flow_alerts = check_main_flow(watchlist, stocks_snapshot)
     all_alerts.extend(flow_alerts)
+
+    # 维度4b：ETF 折溢价（原地回填 snapshot 中的 discount_pct/nav）
+    etf_alerts = check_etf_alerts(watchlist, stocks_snapshot)
+    all_alerts.extend(etf_alerts)
 
     # 维度5：快照对比
     diff_alerts = check_snapshot_diff(stocks_snapshot)

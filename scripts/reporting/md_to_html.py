@@ -5,7 +5,7 @@ import markdown
 
 def md_to_html(md_path, html_path):
     import re
-    with open(md_path, 'r') as f:
+    with open(md_path, 'r', encoding='utf-8') as f:
         md_text = f.read()
 
     # Step 1: 确保非表格行后紧跟表格时补一个空行（Markdown要求表格前有空行）
@@ -43,9 +43,12 @@ def md_to_html(md_path, html_path):
 </style>
 </head><body>{html_body}</body></html>"""
     
-    with open(html_path, 'w') as f:
+    with open(html_path, 'w', encoding='utf-8') as f:
         f.write(html)
     print(f"OK → {html_path}")
 
 if __name__ == '__main__':
+    if len(sys.argv) < 3:
+        print(f"用法: {sys.argv[0]} <input.md> <output.html>", file=sys.stderr)
+        sys.exit(1)
     md_to_html(sys.argv[1], sys.argv[2])

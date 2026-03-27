@@ -65,7 +65,7 @@ def company_profile(code):
         
         # 实时估值数据
         secid = ('1.' if code.startswith('6') or code.startswith('5') else '0.') + code
-        val_url = (f'https://push2.eastmoney.com/api/qt/stock/get?'
+        val_url = (f'http://push2.eastmoney.com/api/qt/stock/get?'
                    f'secid={secid}&fields=f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f14,'
                    f'f15,f16,f17,f18,f20,f21,f23,f24,f25,f43,f44,f45,f46,f47,f48,f49,f50,'
                    f'f55,f57,f58,f60,f62,f84,f85,f92,f105,f115,f116,f117,f162,f163,f164,f167,f168,f169,f170')

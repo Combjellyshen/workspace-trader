@@ -96,68 +96,66 @@ def cmd_save():
 
     errors = []
 
-    # 1. 行业资金流（近5日）
+    # 1. 行业资金流
     print("[1/4] 获取行业资金流...")
     try:
-        df_industry = ak.stock_fund_flow_industry(symbol="近5日")
-        if df_industry is not None and not df_industry.empty:
-            # 按主力净流入降序排列
-            flow_col = None
-            for c in df_industry.columns:
-                if '主力净流入' in c and '占比' not in c:
-                    flow_col = c
-                    break
-            if flow_col:
-                try:
-                    df_industry[flow_col] = pd.to_numeric(df_industry[flow_col], errors='coerce')
-                    df_industry = df_industry.sort_values(flow_col, ascending=False)
-                except Exception:
-                    pass
-            result['industry_flow'] = _df_to_list(df_industry)
-            print(f"  ✅ 行业资金流: {len(result['industry_flow'])} 条")
+        from scripts.utils.common import fetch_industry_flow
+        ind_data = fetch_industry_flow(top=100)
+        if ind_data:
+            result['industry_flow'] = ind_data
+            print(f"  ✅ 行业资金流 (HTTP push2): {len(ind_data)} 条")
         else:
-            print("  ⚠️ 行业资金流返回空数据")
+            # fallback akshare
+            df_industry = ak.stock_fund_flow_industry(symbol="近5日")
+            if df_industry is not None and not df_industry.empty:
+                result['industry_flow'] = _df_to_list(df_industry)
+                print(f"  ✅ 行业资金流 (akshare): {len(result['industry_flow'])} 条")
+            else:
+                print("  ⚠️ 行业资金流返回空数据")
     except Exception as e:
         errors.append(f"行业资金流: {e}")
         print(f"  ❌ 行业资金流失败: {e}")
 
-    # 2. 概念资金流（近5日，取前30）
+    # 2. 概念资金流
     print("[2/4] 获取概念资金流...")
     try:
-        df_concept = ak.stock_fund_flow_concept(symbol="近5日")
-        if df_concept is not None and not df_concept.empty:
-            flow_col = None
-            for c in df_concept.columns:
-                if '主力净流入' in c and '占比' not in c:
-                    flow_col = c
-                    break
-            if flow_col:
-                try:
-                    df_concept[flow_col] = pd.to_numeric(df_concept[flow_col], errors='coerce')
-                    df_concept = df_concept.sort_values(flow_col, ascending=False)
-                except Exception:
-                    pass
-            result['concept_flow'] = _df_to_list(df_concept, max_rows=30)
-            print(f"  ✅ 概念资金流: {len(result['concept_flow'])} 条（取前30）")
+        from scripts.utils.common import fetch_concept_flow
+        con_data = fetch_concept_flow(top=30)
+        if con_data:
+            result['concept_flow'] = con_data
+            print(f"  ✅ 概念资金流 (HTTP push2): {len(con_data)} 条")
         else:
-            print("  ⚠️ 概念资金流返回空数据")
+            df_concept = ak.stock_fund_flow_concept(symbol="近5日")
+            if df_concept is not None and not df_concept.empty:
+                result['concept_flow'] = _df_to_list(df_concept, max_rows=30)
+                print(f"  ✅ 概念资金流 (akshare): {len(result['concept_flow'])} 条")
+            else:
+                print("  ⚠️ 概念资金流返回空数据")
     except Exception as e:
         errors.append(f"概念资金流: {e}")
         print(f"  ❌ 概念资金流失败: {e}")
 
-    # 3. 全市场行情快照（关键字段）
+    # 3. 全市场行情快照
     print("[3/4] 获取全市场行情快照...")
     try:
-        df_spot = ak.stock_zh_a_spot_em()
-        if df_spot is not None and not df_spot.empty:
-            keep_cols = ['代码', '名称', '涨跌幅', '成交额', '市盈率-动态', '市净率']
-            available_cols = [c for c in keep_cols if c in df_spot.columns]
-            df_spot_slim = df_spot[available_cols]
-            result['market_snapshot_count'] = len(df_spot_slim)
-            result['market_snapshot'] = _df_to_list(df_spot_slim)
-            print(f"  ✅ 全市场快照: {result['market_snapshot_count']} 只股票，字段: {available_cols}")
+        from scripts.utils.common import fetch_a_stock_spot
+        spot_data = fetch_a_stock_spot(top=5000)
+        if spot_data:
+            result['market_snapshot_count'] = len(spot_data)
+            result['market_snapshot'] = spot_data
+            print(f"  ✅ 全市场快照 (HTTP push2): {result['market_snapshot_count']} 只股票")
         else:
-            print("  ⚠️ 全市场行情返回空数据")
+            # fallback akshare
+            df_spot = ak.stock_zh_a_spot_em()
+            if df_spot is not None and not df_spot.empty:
+                keep_cols = ['代码', '名称', '涨跌幅', '成交额', '市盈率-动态', '市净率']
+                available_cols = [c for c in keep_cols if c in df_spot.columns]
+                df_spot_slim = df_spot[available_cols]
+                result['market_snapshot_count'] = len(df_spot_slim)
+                result['market_snapshot'] = _df_to_list(df_spot_slim)
+                print(f"  ✅ 全市场快照 (akshare): {result['market_snapshot_count']} 只股票")
+            else:
+                print("  ⚠️ 全市场行情返回空数据")
     except Exception as e:
         errors.append(f"全市场快照: {e}")
         print(f"  ❌ 全市场快照失败: {e}")

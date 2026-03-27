@@ -11,7 +11,6 @@
   python3 scripts/utils/data_consistency_guard.py --json
 """
 import json
-import math
 import sys
 from pathlib import Path
 
@@ -20,8 +19,16 @@ if str(WORKSPACE) not in sys.path:
     sys.path.insert(0, str(WORKSPACE))
 
 from scripts.utils.common import safe_float, WORKSPACE_ROOT  # noqa: E402
-from scripts.data import deep_data  # type: ignore
-from scripts.analysis import intraday_alert  # type: ignore
+
+try:
+    from scripts.data import deep_data  # type: ignore
+except ImportError:
+    deep_data = None
+
+try:
+    from scripts.analysis import intraday_alert  # type: ignore
+except ImportError:
+    intraday_alert = None
 
 
 def compare_watchlist():
@@ -43,10 +50,22 @@ def compare_watchlist():
         result['note'] = 'watchlist 为空，跳过跨源一致性校验。'
         return result
 
+    if deep_data is None or intraday_alert is None:
+        result['status'] = 'error'
+        missing = []
+        if deep_data is None:
+            missing.append('scripts.data.deep_data')
+        if intraday_alert is None:
+            missing.append('scripts.analysis.intraday_alert')
+        result['note'] = f"依赖模块缺失: {', '.join(missing)}，无法执行跨源校验。"
+        return result
+
     intraday = intraday_alert.run_check()
     deep = deep_data.full_snapshot()
 
-    intra_map = {s.get('code'): s for s in intraday.get('snapshot', {}).get('stocks', [])}
+    intraday_snapshot = intraday.get('snapshot', {})
+    market_closed = intraday_snapshot.get('sh_index', {}).get('status') == 'market_closed'
+    intra_map = {s.get('code'): s for s in intraday_snapshot.get('stocks', [])}
     deep_map = {}
     for s in deep.get('watchlist_realtime', []):
         code = str(s.get('code', ''))[-6:]
@@ -69,6 +88,12 @@ def compare_watchlist():
         intra_price = safe_float(isnap.get('price'))
         intra_pct = safe_float(isnap.get('change_pct'))
 
+        intraday_placeholder = (
+            market_closed and intra_price == 0 and intra_pct == 0
+        ) or (
+            intra_price == 0 and abs(intra_pct) < 0.01 and deep_price > 0
+        )
+
         if deep_pre > 0:
             calc_pct = round((deep_price - deep_pre) / deep_pre * 100, 2)
             if abs(calc_pct - deep_pct) > 0.5:
@@ -78,6 +103,15 @@ def compare_watchlist():
                     'type': 'deep_data_internal_mismatch',
                     'detail': f'deep_data 内部不自洽: 价格推导 {calc_pct:+.2f}% vs 提供值 {deep_pct:+.2f}%'
                 })
+
+        if intraday_placeholder:
+            result['issues'].append({
+                'level': 'warning',
+                'code': code,
+                'type': 'intraday_placeholder',
+                'detail': 'intraday 返回的是非交易时段/占位值(0,0)，已跳过与 deep_data 的硬冲突判定'
+            })
+            continue
 
         if abs(deep_price - intra_price) > max(0.03, deep_price * 0.003):
             result['issues'].append({

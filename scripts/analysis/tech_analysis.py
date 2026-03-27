@@ -24,46 +24,100 @@ if str(WORKSPACE_ROOT) not in sys.path:
 
 
 def _load_kline(code, days=120):
-    """通过 akshare 加载K线；兼容指数、股票、ETF，并做简单重试/回退"""
-    import akshare as ak
-    end = datetime.now(ZoneInfo("Asia/Shanghai")).strftime('%Y%m%d')
-    start = (datetime.now(ZoneInfo("Asia/Shanghai")) - timedelta(days=days + 30)).strftime('%Y%m%d')
+    """加载K线数据；优先 Sina（快速、海外可用），回退 tushare（个股）"""
+    from scripts.utils.common import http_get, SINA_HEADERS
 
-    last_error = None
-    for attempt in range(2):
+    # Sina kline API — 支持指数/股票/ETF，无需认证
+    sina_symbol = _sina_symbol(code)
+    try:
+        url = (f'https://money.finance.sina.com.cn/quotes_service/api/json_v2.php/'
+               f'CN_MarketData.getKLineData?symbol={sina_symbol}&scale=240'
+               f'&ma=no&datalen={days + 10}')
+        raw = http_get(url, headers=SINA_HEADERS, timeout=10)
+        import json as _json
+        rows = _json.loads(raw)
+        if rows:
+            import pandas as pd
+            df = pd.DataFrame(rows)
+            df = df.rename(columns={'day': '日期', 'open': '开盘', 'close': '收盘',
+                                     'high': '最高', 'low': '最低', 'volume': '成交量'})
+            for col in ['开盘', '收盘', '最高', '最低']:
+                df[col] = df[col].astype(float)
+            df['成交量'] = df['成交量'].astype(float)
+            return df.tail(days)
+    except Exception:
+        pass
+
+    # ETF fallback — fund_etf_hist_em（东财）→ fund_etf_hist_sina（新浪备线）
+    if code.startswith(('5', '15', '16', '56', '58')):
+        import pandas as pd
         try:
-            if code.startswith('sh') or code.startswith('sz'):
-                symbol = code[2:]
-                df = ak.stock_zh_index_daily_em(symbol=symbol)
-                if df is not None and not df.empty:
-                    df = df.rename(columns={'date': '日期', 'open': '开盘', 'close': '收盘', 
-                                             'high': '最高', 'low': '最低', 'volume': '成交量'})
-                    return df.tail(days)
-            else:
-                df = None
-                if code.startswith(('5', '15', '16', '56', '58')):
-                    try:
-                        df = ak.fund_etf_hist_em(symbol=code, period='daily', start_date=start, end_date=end, adjust='qfq')
-                    except Exception as e:
-                        last_error = e
-                        df = None
-                if df is None or df.empty:
-                    try:
-                        df = ak.stock_zh_a_hist(symbol=code, period='daily', start_date=start, end_date=end, adjust='qfq')
-                    except Exception as e:
-                        last_error = e
-                        df = None
-                if df is not None and not df.empty:
-                    return df
-        except Exception as e:
-            last_error = e
-        if attempt == 0:
-            import time
-            time.sleep(1.0)
+            import akshare as ak
+            end = datetime.now(ZoneInfo("Asia/Shanghai")).strftime('%Y%m%d')
+            start = (datetime.now(ZoneInfo("Asia/Shanghai")) - timedelta(days=days + 30)).strftime('%Y%m%d')
+            df = ak.fund_etf_hist_em(symbol=code, period='daily', start_date=start, end_date=end, adjust='qfq')
+            if df is not None and len(df) >= 10:
+                for col in ['开盘', '收盘', '最高', '最低']:
+                    if col in df.columns:
+                        df[col] = df[col].astype(float)
+                if '成交量' in df.columns:
+                    df['成交量'] = df['成交量'].astype(float)
+                return df.tail(days)
+        except Exception:
+            pass
 
-    if last_error:
-        raise last_error
+        try:
+            import akshare as ak
+            prefix = 'sh' if code.startswith(('5', '11')) else 'sz'
+            df = ak.fund_etf_hist_sina(symbol=f'{prefix}{code}')
+            if df is not None and len(df) >= 10:
+                df = df.rename(columns={'date': '日期', 'open': '开盘', 'close': '收盘',
+                                         'high': '最高', 'low': '最低', 'volume': '成交量'})
+                for col in ['开盘', '收盘', '最高', '最低']:
+                    if col in df.columns:
+                        df[col] = df[col].astype(float)
+                if '成交量' in df.columns:
+                    df['成交量'] = df['成交量'].astype(float)
+                return df.tail(days)
+        except Exception:
+            pass
+
+        return None
+
+    # Tushare fallback — 仅个股有效，ETF/指数权限不足
+    if not code.startswith(('sh', 'sz')):
+        try:
+            from scripts.data.tushare_data import init_pro
+            pro = init_pro()
+            end = datetime.now(ZoneInfo("Asia/Shanghai")).strftime('%Y%m%d')
+            start = (datetime.now(ZoneInfo("Asia/Shanghai")) - timedelta(days=days + 30)).strftime('%Y%m%d')
+            ts_code = _ts_code(code)
+            df = pro.daily(ts_code=ts_code, start_date=start, end_date=end)
+            if df is not None and len(df) > 0:
+                df = df.sort_values('trade_date').reset_index(drop=True)
+                df = df.rename(columns={'trade_date': '日期', 'open': '开盘', 'close': '收盘',
+                                         'high': '最高', 'low': '最低', 'vol': '成交量'})
+                return df.tail(days)
+        except Exception:
+            pass
+
     return None
+
+
+def _sina_symbol(code):
+    """转换股票代码为新浪格式（sh/sz 前缀）"""
+    if code.startswith(('sh', 'sz')):
+        return code
+    if code.startswith(('6', '5', '9', '11')):
+        return f'sh{code}'
+    return f'sz{code}'
+
+
+def _ts_code(code):
+    """转换股票代码为 tushare 格式（.SH/.SZ 后缀）"""
+    if code.startswith(('6', '5', '9', '11')):
+        return f'{code}.SH'
+    return f'{code}.SZ'
 
 
 def calc_ema(data, period):

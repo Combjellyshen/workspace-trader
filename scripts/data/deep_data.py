@@ -98,10 +98,8 @@ def stock_money_flow_top(num=30):
 # ============================================================
 # 4. 龙虎榜 — 东方财富 datacenter-web
 # ============================================================
-def dragon_tiger(trade_date=None):
-    """龙虎榜数据"""
-    if not trade_date:
-        trade_date = datetime.now().strftime('%Y-%m-%d')
+def _fetch_dragon_tiger_for_date(trade_date):
+    """Fetch dragon tiger list for a specific date. Returns list or empty list."""
     url = f"https://datacenter-web.eastmoney.com/api/data/v1/get?reportName=RPT_DAILYBILLBOARD_DETAILSNEW&columns=ALL&filter=(TRADE_DATE='{trade_date}')&pageSize=50&sortColumns=BILLBOARD_DEAL_AMT&sortTypes=-1"
     raw = _get(url, EM_HEADERS)
     data = json.loads(raw)
@@ -120,8 +118,28 @@ def dragon_tiger(trade_date=None):
             'net': round(((item.get('BILLBOARD_BUY_AMT') or 0) - (item.get('BILLBOARD_SELL_AMT') or 0)) / 1e8, 2),
             'reason': item.get('EXPLAIN', ''),
             'accum_amount': item.get('DEAL_AMOUNT_RATIO', 0),
+            'trade_date': trade_date,
         })
     return results
+
+
+def dragon_tiger(trade_date=None):
+    """龙虎榜数据。当日数据通常在18:00后才发布，若当日为空则自动回退到上一交易日。"""
+    if not trade_date:
+        trade_date = datetime.now().strftime('%Y-%m-%d')
+    results = _fetch_dragon_tiger_for_date(trade_date)
+    if results:
+        return results
+    # Today's data not yet available — try previous trading days
+    from datetime import timedelta
+    dt = datetime.strptime(trade_date, '%Y-%m-%d')
+    for offset in range(1, 4):
+        prev = (dt - timedelta(days=offset)).strftime('%Y-%m-%d')
+        results = _fetch_dragon_tiger_for_date(prev)
+        if results:
+            print(f'[dragon_tiger] 当日({trade_date})数据暂未发布，回退到{prev}', file=sys.stderr)
+            return results
+    return []
 
 
 # ============================================================
@@ -181,6 +199,80 @@ def ths_hot_ranking(trade_date=None):
         }
     except Exception as e:
         return {"error": str(e)}
+
+
+# ============================================================
+# 7. ETF折溢价 & 份额 — akshare fund_etf_spot_em
+# ============================================================
+def etf_premium_shares(codes=None):
+    """ETF折溢价、估算净值、份额数据。快速接口（<10s），无需拉全市场。"""
+    if codes is None:
+        stocks = load_watchlist()
+        codes = [s['code'] if isinstance(s, dict) else s for s in stocks
+                 if (s['code'] if isinstance(s, dict) else s).startswith(('5', '15', '16', '56', '58'))]
+    if not codes:
+        return {"error": "无ETF代码"}
+
+    results = []
+    for code in codes:
+        etf = {'code': code}
+
+        # 1) 实时价格 — Sina（快）
+        try:
+            prefix = 'sh' if code.startswith(('5', '11')) else 'sz'
+            raw = _get(f'http://hq.sinajs.cn/list={prefix}{code}', SINA_HEADERS, encoding='gbk')
+            fields = raw.split('"')[1].split(',') if '"' in raw else []
+            if len(fields) > 30:
+                etf['name'] = fields[0]
+                etf['price'] = float(fields[3] or 0)
+                etf['pre_close'] = float(fields[2] or 0)
+                etf['pct_chg'] = round((etf['price'] - etf['pre_close']) / etf['pre_close'] * 100, 2) if etf['pre_close'] > 0 else 0
+                etf['volume'] = float(fields[8] or 0)
+                etf['amount'] = float(fields[9] or 0)
+                etf['date'] = fields[30]
+        except Exception:
+            pass
+
+        # 2) 估算净值 + T-1净值 — 天天基金 JSONP
+        try:
+            raw = _get(f'https://fundgz.1234567.com.cn/js/{code}.js', timeout=8)
+            data_str = raw[raw.index('(') + 1:raw.rindex(')')]
+            nav = json.loads(data_str)
+            etf['nav_date'] = nav.get('jzrq', '')
+            etf['nav'] = float(nav.get('dwjz', 0))  # T-1 单位净值
+            etf['nav_est'] = float(nav.get('gsz', 0))  # 实时估算净值
+            etf['nav_est_chg'] = nav.get('gszzl', '')  # 估算涨跌幅
+            etf['nav_est_time'] = nav.get('gztime', '')
+            # 折溢价 = (市价 - 估算净值) / 估算净值 * 100
+            price = etf.get('price', 0)
+            nav_est = etf['nav_est']
+            if price > 0 and nav_est > 0:
+                etf['premium_pct'] = round((price - nav_est) / nav_est * 100, 2)
+                etf['premium_label'] = '溢价' if etf['premium_pct'] > 0 else ('折价' if etf['premium_pct'] < 0 else '平价')
+        except Exception:
+            pass
+
+        # 3) 份额 — push2 市值数据（快速）
+        try:
+            secid = f'1.{code}' if code.startswith(('5', '11')) else f'0.{code}'
+            raw = _get(f'http://push2.eastmoney.com/api/qt/stock/get?'
+                       f'ut=fa5fd1943c7b386f172d6893dbfba10b'
+                       f'&fields=f116,f117,f43,f47,f48&secid={secid}')
+            d = json.loads(raw)
+            data = d.get('data', {})
+            if data:
+                market_cap = data.get('f116', 0) or 0  # 流通市值(元)
+                price_raw = data.get('f43', 0) or 0      # 价格(×1000)
+                if market_cap and price_raw:
+                    price_yuan = price_raw / 1000
+                    etf['market_cap'] = market_cap
+                    etf['shares_est'] = round(market_cap / price_yuan) if price_yuan > 0 else 0
+        except Exception:
+            pass
+
+        results.append(etf)
+
+    return {'etf_data': results, 'timestamp': datetime.now().isoformat()}
 
 
 # ============================================================
@@ -264,11 +356,14 @@ if __name__ == '__main__':
     elif cmd == "hot":
         date = sys.argv[2] if len(sys.argv) > 2 else None
         data = ths_hot_ranking(date)
+    elif cmd == "etf":
+        codes = sys.argv[2:] if len(sys.argv) > 2 else None
+        data = etf_premium_shares(codes)
     elif cmd == "quote":
         codes = sys.argv[2:]
         data = realtime_quotes(codes)
     else:
-        print(f"Usage: {sys.argv[0]} [snapshot|industry|concept|stock_flow|dragon|north|hot|quote <codes...>]", file=sys.stderr)
+        print(f"Usage: {sys.argv[0]} [snapshot|industry|concept|stock_flow|dragon|north|hot|etf [codes...]|quote <codes...>]", file=sys.stderr)
         sys.exit(1)
 
     print(json.dumps(data, ensure_ascii=False, indent=2, default=str))
