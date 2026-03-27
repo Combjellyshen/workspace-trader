@@ -30,11 +30,15 @@ SH_TZ = ZoneInfo("Asia/Shanghai")
 # Dynamic per task type: weekly tasks get a longer window so weekend runs
 # can reuse Friday's data; daily tasks use a tighter window.
 REUSE_MAX_AGE_H_BY_TYPE: dict[str, int] = {
-    "weekly": 72,   # 3 days — covers weekends
+    "weekly": 72,     # 3 days — covers weekends
+    "closing": 2,     # 2 hours — closing 必须用收盘后新数据，不能复用盘前
+    "scout": 4,       # 4 hours — 选股需要较新数据
+    "premarket": 12,  # 12 hours — 盘前可以复用昨天收盘的
 }
 REUSE_MAX_AGE_H_DEFAULT = 12
-# Non-required scripts get a shorter timeout to fail fast
-NON_REQUIRED_TIMEOUT_CAP = 45
+# Non-required scripts get a shorter timeout to fail fast,
+# but must still be long enough for data-fetching scripts (API/scraping).
+NON_REQUIRED_TIMEOUT_CAP = 180
 
 
 @dataclass
@@ -60,6 +64,7 @@ class CollectionResult:
     started_at: str = ""
     completed_at: str = ""
     errors: list[str] = field(default_factory=list)
+    status: str = "ok"
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -151,7 +156,7 @@ def run_collection(task_type: str, date: str) -> dict:
         name = spec["name"]
         command = spec["command"]
         required = spec.get("required", False)
-        timeout_s = spec.get("timeout_s", 60)
+        timeout_s = spec.get("timeout_s") or spec.get("timeout") or 60
 
         # Cap non-required timeouts to fail fast
         if not required and timeout_s > NON_REQUIRED_TIMEOUT_CAP:
@@ -246,6 +251,9 @@ def run_collection(task_type: str, date: str) -> dict:
     failed = sum(1 for s in result.scripts if s.status in ("error", "timeout"))
 
     if result.coverage_ratio < min_coverage:
+        result.status = "error"
+        result.errors.append(
+            f"Coverage {result.coverage_ratio:.0%} below minimum {min_coverage:.0%}")
         print(f"  [collect] WARNING: coverage {result.coverage_ratio:.0%} < "
               f"minimum {min_coverage:.0%} — task degraded", file=sys.stderr)
 

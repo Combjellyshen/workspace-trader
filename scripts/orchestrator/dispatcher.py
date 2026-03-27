@@ -12,6 +12,7 @@ Stages: collect → normalize → discuss → write → review → revise → de
 import argparse
 import json
 import os
+import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -22,12 +23,14 @@ STATE_DIR = WORKSPACE / ".state" / "tasks"
 
 STAGES = ["collect", "normalize", "discuss", "write", "review", "revise", "deliver"]
 
+_NOTIFY_STATUSES = {"done", "failed", "skipped"}
+
 VALID_TASK_TYPES = [
     "premarket",
     "closing",
-    "intraday",
     "weekly",
     "philosophy",
+    "scout",
 ]
 
 
@@ -104,6 +107,9 @@ class TaskState:
             **result,
         }
         self.save()
+        _notify_stage(self.task_type, self.date, stage, "done",
+                      note=result.get("note", ""),
+                      completed=len(self.completed_stages()))
 
     def record_error(self, stage: str, error: str):
         self.errors.append({
@@ -114,6 +120,8 @@ class TaskState:
         self.status = "failed"
         self.current_stage = stage
         self.save()
+        _notify_stage(self.task_type, self.date, stage, "failed",
+                      note=error[:200])
 
     def mark_completed(self):
         self.status = "completed"
@@ -132,6 +140,40 @@ class TaskState:
             if stage not in completed:
                 return stage
         return None
+
+
+# ---------------------------------------------------------------------------
+# Telegram progress notification
+# ---------------------------------------------------------------------------
+
+def _notify_stage(task_type: str, date: str, stage: str, status: str,
+                  note: str = "", completed: int = 0) -> None:
+    """Best-effort Telegram notification on stage transitions."""
+    if status not in _NOTIFY_STATUSES:
+        return
+    tg_notify = Path(__file__).resolve().parent / "tg_notify.py"
+    if not tg_notify.exists():
+        return
+    try:
+        # Compute total expected stages for this task type
+        from scripts.orchestrator.worker import flow_stages
+        valid_worker = flow_stages(task_type) or WORKER_STAGES
+        total = len([s for s in STAGES if s not in WORKER_STAGES or s in valid_worker])
+
+        cmd = [
+            sys.executable, str(tg_notify),
+            "--task-type", task_type,
+            "--date", date,
+            "--stage", stage,
+            "--status", status,
+            "--total-stages", str(total),
+            "--completed-stages", str(completed),
+        ]
+        if note:
+            cmd.extend(["--note", note[:200]])
+        subprocess.Popen(cmd, cwd=WORKSPACE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception:
+        pass
 
 
 # ---------------------------------------------------------------------------
@@ -173,13 +215,19 @@ def dispatch(task_type: str, date: str, stage: str = "all", dry_run: bool = Fals
         try:
             if s == "collect":
                 result = run_collection(task_type, date)
+                if result.get("status") == "error":
+                    raise RuntimeError(result.get("error", f"{s} stage failed"))
                 state.checkpoint(s, {"manifest_path": result.get("manifest_path", ""),
                                      "coverage": result.get("coverage_ratio", 0)})
             elif s in WORKER_STAGES:
                 result = run_worker(task_type, date, s, state.checkpoints)
+                if result.get("status") == "error":
+                    raise RuntimeError(result.get("error", f"{s} stage failed"))
                 state.checkpoint(s, {"output_path": result.get("output_path", "")})
             elif s == "deliver":
                 result = run_delivery(task_type, date, state.checkpoints)
+                if result.get("error") and not result.get("delivered", False):
+                    raise RuntimeError(result.get("error"))
                 state.checkpoint(s, {"delivered": result.get("delivered", False)})
             else:
                 raise ValueError(f"Unknown stage: {s}")
@@ -188,8 +236,14 @@ def dispatch(task_type: str, date: str, stage: str = "all", dry_run: bool = Fals
             print(f"[dispatcher] FAILED at stage '{s}': {exc}", file=sys.stderr)
             raise
 
-    # Mark completed only if every pipeline stage has a checkpoint
-    if all(s in state.checkpoints for s in STAGES):
+    # Mark completed if every *expected* stage for this task type has a checkpoint.
+    # Build the effective stage list the same way _resolve_stages() does:
+    # start with STAGES, drop worker stages not in this task type's flow.
+    from scripts.orchestrator.worker import flow_stages
+    valid_worker = flow_stages(task_type) or WORKER_STAGES
+    expected = [s for s in STAGES if s not in WORKER_STAGES or s in valid_worker]
+
+    if state.status != "failed" and all(s in state.checkpoints for s in expected):
         state.mark_completed()
         print(f"\n[dispatcher] Task {task_type}/{date} completed successfully.")
     else:
@@ -197,7 +251,8 @@ def dispatch(task_type: str, date: str, stage: str = "all", dry_run: bool = Fals
         state.current_stage = None
         state.save()
         done = ", ".join(state.completed_stages())
-        print(f"\n[dispatcher] Partial run finished. Completed stages: {done}")
+        missing = ", ".join(s for s in expected if s not in state.checkpoints)
+        print(f"\n[dispatcher] Partial run finished. Completed: {done}  Missing: {missing}")
 
     return state
 

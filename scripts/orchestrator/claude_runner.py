@@ -23,6 +23,37 @@ from typing import Any
 CLAUDE_BIN = "/home/bot/.local/bin/claude"
 WORKSPACE = Path(__file__).resolve().parents[2]
 PROMPTS_DIR = Path(__file__).resolve().parent / "prompts"
+MODEL_ROUTING_PATH = WORKSPACE / "config" / "model_routing.json"
+
+_model_routing_cache = None
+
+
+def resolve_model(stage: str, task_type: str = "", explicit_model: str = "") -> str:
+    """按阶段名+任务类型解析模型。
+
+    查找优先级：
+      1. explicit_model（显式传入）
+      2. stage_models["{task_type}.{stage}"]（任务特定覆盖）
+      3. stage_models["{stage}"]（通用默认）
+      4. ""（系统默认 = opus）
+    """
+    if explicit_model:
+        return explicit_model
+    global _model_routing_cache
+    if _model_routing_cache is None:
+        try:
+            _model_routing_cache = json.loads(MODEL_ROUTING_PATH.read_text(encoding="utf-8"))
+        except (FileNotFoundError, json.JSONDecodeError):
+            _model_routing_cache = {}
+    stage_models = _model_routing_cache.get("stage_models", {})
+    # 优先查 task_type.stage（如 "premarket.write"），再查通用 stage
+    # null 在 JSON 中表示"显式使用系统默认(opus)"，区别于 key 不存在（=fallback 到通用）
+    _SENTINEL = object()
+    if task_type:
+        specific = stage_models.get(f"{task_type}.{stage}", _SENTINEL)
+        if specific is not _SENTINEL:
+            return specific or ""  # null → "" → opus
+    return stage_models.get(stage) or ""
 
 
 @dataclass
@@ -52,6 +83,7 @@ def run_claude(
     model: str = "",
     output_format: str = "text",
     allowed_tools: list[str] | None = None,
+    bare: bool = False,
 ) -> ClaudeResult:
     """Invoke Claude Code in non-interactive print mode.
 
@@ -64,6 +96,7 @@ def run_claude(
         model: Model override (empty = default).
         output_format: "text" or "json".
         allowed_tools: Restrict available tools (e.g. ["Read", "Bash(python3:*)"]).
+        bare: If True, use --bare to skip hooks/plugins/LSP (avoids interference).
 
     Returns:
         ClaudeResult with output text or error.
@@ -71,10 +104,15 @@ def run_claude(
     cmd = [
         CLAUDE_BIN,
         "-p",
-        "--dangerously-skip-permissions",
+        "--permission-mode",
+        "bypassPermissions",
+        "--no-session-persistence",  # 防止复用交互式会话导致输出丢失
         f"--max-budget-usd={max_budget_usd}",
         f"--output-format={output_format}",
     ]
+
+    if bare:
+        cmd.append("--bare")
 
     if system_prompt:
         cmd.extend(["--system-prompt", system_prompt])
@@ -161,7 +199,8 @@ def load_prompt_template(template_name: str) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def build_data_context(artifact_map: dict[str, dict], date: str) -> str:
+def build_data_context(artifact_map: dict[str, dict], date: str,
+                       max_per_artifact: int = 15000) -> str:
     """Build a data context block from normalized artifacts.
 
     Reads each available artifact file and concatenates them into a
@@ -170,6 +209,8 @@ def build_data_context(artifact_map: dict[str, dict], date: str) -> str:
     Args:
         artifact_map: Dict from normalized.json "artifacts" field.
         date: Task date for reference.
+        max_per_artifact: Max chars per artifact (default 15000 for write,
+            use smaller values like 5000 for discuss to stay under token budget).
 
     Returns:
         Formatted data context string.
@@ -192,9 +233,8 @@ def build_data_context(artifact_map: dict[str, dict], date: str) -> str:
 
         try:
             content = fpath.read_text(encoding="utf-8")
-            # Truncate very large outputs to keep prompt manageable
-            if len(content) > 15000:
-                content = content[:15000] + "\n\n... (截断，原文过长)\n"
+            if len(content) > max_per_artifact:
+                content = content[:max_per_artifact] + "\n\n... (截断，原文过长)\n"
             sections.append(f"## {name}\n```\n{content}\n```\n")
         except Exception as e:
             sections.append(f"## {name}\n读取失败: {e}\n")

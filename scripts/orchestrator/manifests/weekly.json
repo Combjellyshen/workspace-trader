@@ -77,8 +77,8 @@
     {
       "name": "market_intel_weekly",
       "command": "python3 scripts/data/market_intel_pipeline.py weekly",
-      "required": true,
-      "timeout_s": 150,
+      "required": false,
+      "timeout_s": 240,
       "purpose": "跨资产周度快照"
     },
     {
@@ -129,6 +129,27 @@
       "required": false,
       "timeout_s": 90,
       "purpose": "机构持仓变化"
+    },
+    {
+      "name": "etf_premium",
+      "command": "python3 scripts/data/deep_data.py etf",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "ETF折溢价/份额（自选池ETF）"
+    },
+    {
+      "name": "valuation_batch",
+      "command": "python3 scripts/data/stock_valuation_history.py batch",
+      "required": false,
+      "timeout_s": 120,
+      "purpose": "自选股估值分位（PE/PB历史百分位）"
+    },
+    {
+      "name": "kline_review",
+      "command": "python3 scripts/analysis/kline_detailed_review.py all",
+      "required": false,
+      "timeout_s": 120,
+      "purpose": "K线技术分析（MACD/RSI/KDJ/布林）"
     },
     {
       "name": "data_consistency_guard",

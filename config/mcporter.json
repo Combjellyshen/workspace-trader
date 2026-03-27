@@ -6,7 +6,11 @@
       "env": {}
     },
     "fmp": {
-      "url": "http://127.0.0.1:18900/mcp"
+      "command": "aigroup-fmp-mcp",
+      "args": [],
+      "env": {
+        "FMP_API_KEY": "tYDS5WmA0Aa5RZx8YcTVuSXZv4nJIAPM"
+      }
     }
   }
 }

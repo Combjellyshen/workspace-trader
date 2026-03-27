@@ -33,16 +33,16 @@ from bs4 import BeautifulSoup
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0 Safari/537.36"
 }
-TIMEOUT = 15
-STOOQ_TIMEOUT = 6
-MCP_TIMEOUT = 60
-MCP_RETRIES = 2
+TIMEOUT = 8
+STOOQ_TIMEOUT = 5
+MCP_TIMEOUT = 15
+MCP_RETRIES = 1
 YAHOO_RANGE = "3mo"
 YAHOO_INTERVAL = "1d"
 YAHOO_BATCH_CHUNK = 2
-YAHOO_BATCH_DELAY_SEC = 0.8
-YAHOO_DIRECT_DELAY_SEC = 1.2
-YAHOO_PRELOAD_ENABLED = False
+YAHOO_BATCH_DELAY_SEC = 0.5
+YAHOO_DIRECT_DELAY_SEC = 0.3
+YAHOO_PRELOAD_ENABLED = True
 FMP_LOOKBACK_DAYS = 90
 WORKSPACE_ROOT = Path(__file__).resolve().parents[2]
 MCPORTER_CONFIG = WORKSPACE_ROOT / "config" / "mcporter.json"
@@ -53,6 +53,7 @@ FMP_TOOLSET_BY_TOOL = {
 }
 ENABLED_FMP_TOOLSETS: set[str] = set()
 LAST_YAHOO_DIRECT_TS = 0.0
+_FMP_SERVER_DEAD = False  # FMP MCP server configured via stdio (aigroup-fmp-mcp)
 
 ASSET_MAP = {
     "global_indexes": [
@@ -61,15 +62,15 @@ ASSET_MAP = {
         {"name": "道琼斯", "symbol": "^DJI", "source": "fmp_index", "unit": "points", "yahoo_symbol": "^DJI", "stooq_symbol": "^dji"},
         {"name": "恒生指数", "symbol": "^HSI", "source": "fmp_index", "unit": "points", "yahoo_symbol": "^HSI", "stooq_symbol": "^hsi"},
         {"name": "日经225", "symbol": "^N225", "source": "fmp_index", "unit": "points", "yahoo_symbol": "^N225", "stooq_symbol": "^nkx"},
-        {"name": "德国DAX", "symbol": "^GDAXI", "source": "investing_html", "unit": "points", "investing_url": "https://www.investing.com/indices/germany-30-historical-data"},
+        {"name": "德国DAX", "symbol": "^GDAXI", "source": "yahoo", "unit": "points"},
     ],
     "commodities": [
-        {"name": "WTI原油", "symbol": "CL=F", "source": "investing_html", "unit": "USD/bbl", "investing_url": "https://www.investing.com/commodities/crude-oil-historical-data"},
-        {"name": "黄金", "symbol": "GC=F", "source": "investing_html", "unit": "USD/oz", "investing_url": "https://www.investing.com/commodities/gold-historical-data"},
-        {"name": "铜", "symbol": "HG=F", "source": "investing_html", "unit": "USD/lb", "investing_url": "https://www.investing.com/commodities/copper-historical-data"},
+        {"name": "WTI原油", "symbol": "CL=F", "source": "yahoo", "unit": "USD/bbl"},
+        {"name": "黄金", "symbol": "GC=F", "source": "yahoo", "unit": "USD/oz"},
+        {"name": "铜", "symbol": "HG=F", "source": "yahoo", "unit": "USD/lb"},
     ],
     "fx_rates": [
-        {"name": "美元指数", "symbol": "DX-Y.NYB", "source": "investing_html", "unit": "index", "investing_url": "https://www.investing.com/currencies/us-dollar-index-historical-data"},
+        {"name": "美元指数", "symbol": "DX-Y.NYB", "source": "yahoo", "unit": "index"},
         {
             "name": "USD/CNH",
             "symbol": "USDCNH",
@@ -172,6 +173,9 @@ def _get_yahoo_symbols_for_asset(asset: Dict[str, Any]) -> Tuple[Optional[str], 
 
 
 def _enable_fmp_toolset(toolset: str) -> None:
+    global _FMP_SERVER_DEAD
+    if _FMP_SERVER_DEAD:
+        raise RuntimeError("FMP MCP server unreachable (skipped)")
     if toolset in ENABLED_FMP_TOOLSETS:
         return
     cmd = [
@@ -185,13 +189,23 @@ def _enable_fmp_toolset(toolset: str) -> None:
         "--config",
         str(MCPORTER_CONFIG),
     ]
-    proc = subprocess.run(cmd, capture_output=True, text=True, timeout=MCP_TIMEOUT)
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=MCP_TIMEOUT)
+    except subprocess.TimeoutExpired:
+        _FMP_SERVER_DEAD = True
+        raise RuntimeError("FMP MCP server timed out during toolset enable")
+    output = (proc.stderr or proc.stdout or "").strip()
     if proc.returncode != 0:
-        raise RuntimeError((proc.stderr or proc.stdout or f"启用 FMP toolset 失败: {toolset}").strip())
+        if "ECONNREFUSED" in output or "offline" in output:
+            _FMP_SERVER_DEAD = True
+        raise RuntimeError(output or f"启用 FMP toolset 失败: {toolset}")
     ENABLED_FMP_TOOLSETS.add(toolset)
 
 
 def call_mcp_tool(server_tool: str, args: Dict[str, Any]) -> Any:
+    global _FMP_SERVER_DEAD
+    if _FMP_SERVER_DEAD:
+        raise RuntimeError("FMP MCP server unreachable (skipped after prior failure)")
     if not MCPORTER_CONFIG.exists():
         raise RuntimeError(f"mcporter config 不存在: {MCPORTER_CONFIG}")
 
@@ -235,6 +249,10 @@ def call_mcp_tool(server_tool: str, args: Dict[str, Any]) -> Any:
                 raise RuntimeError(f"mcporter 返回非 JSON: {server_tool}; {stdout[:300]}") from e
         except Exception as e:
             last_error = e
+            # If server is unreachable, mark it dead to skip all subsequent FMP calls
+            if "ECONNREFUSED" in str(e) or "offline" in str(e):
+                _FMP_SERVER_DEAD = True
+                break
             if attempt < MCP_RETRIES:
                 time.sleep(1.2 * attempt)
                 continue
@@ -955,6 +973,10 @@ def build_snapshot() -> Dict[str, Any]:
                             "source": "Investing.com HTML",
                             "error": str(investing_err),
                         }
+                    if not item.get("ok") and asset.get("yahoo_symbol"):
+                        yahoo_item = _fetch_with_yahoo_fallback(asset, yahoo_payload_by_symbol, yahoo_batch_error)
+                        if yahoo_item.get("ok"):
+                            item = yahoo_item
                     row = {
                         "name": asset["name"],
                         "symbol": asset["symbol"],

@@ -82,11 +82,39 @@
       "purpose": "宏观数据"
     },
     {
+      "name": "macro_north_margin",
+      "command": "python3 scripts/data/macro_north_margin.py",
+      "required": true,
+      "timeout_s": 60,
+      "purpose": "VIX/DXY/US10Y/黄金/原油+北向+融资余额（Yahoo Finance直连）"
+    },
+    {
       "name": "market_intel_postmarket",
       "command": "python3 scripts/data/market_intel_pipeline.py postmarket",
-      "required": true,
-      "timeout_s": 150,
+      "required": false,
+      "timeout_s": 120,
       "purpose": "跨资产快照（含外盘/商品/汇率/利率）"
+    },
+    {
+      "name": "research_strategy",
+      "command": "python3 scripts/data/research_reports.py strategy",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "卖方策略纪要（原盘前独有）"
+    },
+    {
+      "name": "watchlist_deep_dive",
+      "command": "python3 scripts/analysis/watchlist_deep_dive.py summary",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "自选池深度摘要（原盘前独有）"
+    },
+    {
+      "name": "etf_premium",
+      "command": "python3 scripts/data/deep_data.py etf",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "ETF折溢价/份额（自选池ETF）"
     },
     {
       "name": "data_consistency_guard",

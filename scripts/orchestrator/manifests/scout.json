@@ -1,0 +1,84 @@
+{
+  "task_type": "scout",
+  "description": "A股多维遴选：全市场扫描 → 五维评分 → 深度验证 → Claude 辩论 → 遴选报告",
+  "min_coverage": 0.6,
+  "scripts": [
+    {
+      "name": "market_cache_save",
+      "command": "python3 scripts/data/market_cache.py save",
+      "required": true,
+      "timeout_s": 300,
+      "description": "全市场快照（行情+行业资金流+概念资金流+北向）"
+    },
+    {
+      "name": "deep_data_industry",
+      "command": "python3 scripts/data/deep_data.py industry",
+      "required": false,
+      "timeout_s": 60,
+      "description": "行业板块实时数据"
+    },
+    {
+      "name": "deep_data_concept",
+      "command": "python3 scripts/data/deep_data.py concept",
+      "required": false,
+      "timeout_s": 60,
+      "description": "概念板块实时数据"
+    },
+    {
+      "name": "deep_data_hot",
+      "command": "python3 scripts/data/deep_data.py hot",
+      "required": false,
+      "timeout_s": 60,
+      "description": "热门个股"
+    },
+    {
+      "name": "rss_categorized",
+      "command": "python3 scripts/data/rss_aggregator.py categorized",
+      "required": false,
+      "timeout_s": 60,
+      "description": "新闻催化剂分类"
+    },
+    {
+      "name": "sentiment_all",
+      "command": "python3 scripts/analysis/sentiment.py all",
+      "required": false,
+      "timeout_s": 60,
+      "description": "情绪面多维分析"
+    },
+    {
+      "name": "research_strategy",
+      "command": "python3 scripts/data/research_reports.py strategy",
+      "required": false,
+      "timeout_s": 60,
+      "description": "券商策略观点"
+    },
+    {
+      "name": "market_breadth",
+      "command": "python3 scripts/analysis/market_breadth.py all",
+      "required": false,
+      "timeout_s": 120,
+      "description": "涨跌广度+涨停梯队"
+    },
+    {
+      "name": "peg_screener",
+      "command": "python3 scripts/analysis/peg_screener.py screen 1.0 10",
+      "required": false,
+      "timeout_s": 120,
+      "description": "PEG 价值预筛（TOP 50）"
+    },
+    {
+      "name": "macro_north_margin",
+      "command": "python3 scripts/data/macro_north_margin.py",
+      "required": false,
+      "timeout_s": 60,
+      "description": "宏观指标(VIX/DXY/US10Y/黄金/原油) + 北向资金 + 融资余额"
+    },
+    {
+      "name": "stock_scout_quick",
+      "command": "python3 scripts/analysis/stock_scout.py quick",
+      "required": false,
+      "timeout_s": 120,
+      "description": "多维遴选快速扫描（Stage 1-2，不含深度验证和 Claude 推理）"
+    }
+  ]
+}
