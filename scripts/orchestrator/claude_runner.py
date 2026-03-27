@@ -129,7 +129,7 @@ def run_claude(
             # Empty list = disable all tools (pure text generation, lowest memory)
             cmd.extend(["--tools", ""])
         else:
-            cmd.extend(["--allowedTools", ",".join(allowed_tools)])
+            cmd.extend(["--tools", ",".join(allowed_tools)])
 
     # Pass prompt via stdin to avoid shell argument length limits.
     # Claude Code reads from stdin when no positional prompt is given.
