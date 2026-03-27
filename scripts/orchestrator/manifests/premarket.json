@@ -1,0 +1,99 @@
+{
+  "task_type": "premarket",
+  "description": "盘前分析数据采集 (PB-1 §3)",
+  "min_coverage": 0.7,
+  "output_dir": "data/daily_inputs/{date}/",
+  "scripts": [
+    {
+      "name": "deep_data_snapshot",
+      "command": "python3 scripts/data/deep_data.py snapshot",
+      "required": true,
+      "timeout_s": 60,
+      "purpose": "主要指数实时行情"
+    },
+    {
+      "name": "rss_categorized",
+      "command": "python3 scripts/data/rss_aggregator.py categorized",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "财经新闻分类"
+    },
+    {
+      "name": "research_strategy",
+      "command": "python3 scripts/data/research_reports.py strategy",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "卖方策略纪要"
+    },
+    {
+      "name": "sentiment_all",
+      "command": "python3 scripts/analysis/sentiment.py all",
+      "required": true,
+      "timeout_s": 90,
+      "purpose": "多维情绪面"
+    },
+    {
+      "name": "market_breadth",
+      "command": "python3 scripts/analysis/market_breadth.py all",
+      "required": false,
+      "timeout_s": 180,
+      "purpose": "涨跌家数/强弱"
+    },
+    {
+      "name": "cross_day_compare",
+      "command": "python3 scripts/analysis/cross_day_compare.py all",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "跨日数据比较"
+    },
+    {
+      "name": "watchlist_deep_dive",
+      "command": "python3 scripts/analysis/watchlist_deep_dive.py summary",
+      "required": true,
+      "timeout_s": 120,
+      "purpose": "自选池深度摘要"
+    },
+    {
+      "name": "tech_analysis_watchlist",
+      "command": "python3 scripts/analysis/tech_analysis.py watchlist",
+      "required": true,
+      "timeout_s": 90,
+      "purpose": "自选股技术面"
+    },
+    {
+      "name": "kline_review",
+      "command": "python3 scripts/analysis/kline_detailed_review.py all",
+      "required": true,
+      "timeout_s": 90,
+      "purpose": "详细K线技术复盘"
+    },
+    {
+      "name": "main_force_batch",
+      "command": "python3 scripts/analysis/main_force.py batch",
+      "required": true,
+      "timeout_s": 90,
+      "purpose": "主力资金方向"
+    },
+    {
+      "name": "institution_tracker",
+      "command": "python3 scripts/data/institution_tracker.py all",
+      "required": false,
+      "timeout_s": 90,
+      "purpose": "机构持仓变化"
+    },
+    {
+      "name": "macro_monitor",
+      "command": "python3 scripts/data/macro_monitor.py all",
+      "required": false,
+      "timeout_s": 120,
+      "purpose": "宏观先行指标"
+    },
+    {
+      "name": "etf_premium",
+      "command": "python3 scripts/data/deep_data.py etf",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "ETF折溢价/份额（自选池ETF）"
+    }
+  ]
+}

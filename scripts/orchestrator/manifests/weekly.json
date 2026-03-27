@@ -1,0 +1,155 @@
+{
+  "task_type": "weekly",
+  "description": "周报数据采集 (PB-4 §2 + cron 19项)",
+  "min_coverage": 0.6,
+  "output_dir": "data/weekly_inputs/{date}/",
+  "scripts": [
+    {
+      "name": "market_cache_save",
+      "command": "python3 scripts/data/market_cache.py save_market",
+      "required": false,
+      "timeout_s": 120,
+      "purpose": "市场缓存快照"
+    },
+    {
+      "name": "deep_data_snapshot",
+      "command": "python3 scripts/data/deep_data.py snapshot",
+      "required": true,
+      "timeout_s": 60,
+      "purpose": "主要指数行情"
+    },
+    {
+      "name": "deep_data_industry",
+      "command": "python3 scripts/data/deep_data.py industry",
+      "required": false,
+      "timeout_s": 120,
+      "purpose": "行业板块数据"
+    },
+    {
+      "name": "deep_data_concept",
+      "command": "python3 scripts/data/deep_data.py concept",
+      "required": false,
+      "timeout_s": 120,
+      "purpose": "概念板块数据"
+    },
+    {
+      "name": "deep_data_north",
+      "command": "python3 scripts/data/deep_data.py north",
+      "required": true,
+      "timeout_s": 60,
+      "purpose": "北向资金"
+    },
+    {
+      "name": "deep_data_hot",
+      "command": "python3 scripts/data/deep_data.py hot",
+      "required": false,
+      "timeout_s": 120,
+      "purpose": "热门股票"
+    },
+    {
+      "name": "market_breadth",
+      "command": "python3 scripts/analysis/market_breadth.py all",
+      "required": false,
+      "timeout_s": 180,
+      "purpose": "涨跌家数/广度指标"
+    },
+    {
+      "name": "sentiment_30d",
+      "command": "python3 scripts/analysis/sentiment.py all 30",
+      "required": true,
+      "timeout_s": 90,
+      "purpose": "30日情绪面"
+    },
+    {
+      "name": "macro_deep",
+      "command": "python3 scripts/data/macro_deep.py all",
+      "required": true,
+      "timeout_s": 150,
+      "purpose": "宏观深度评分"
+    },
+    {
+      "name": "macro_monitor",
+      "command": "python3 scripts/data/macro_monitor.py all",
+      "required": false,
+      "timeout_s": 120,
+      "purpose": "宏观先行指标"
+    },
+    {
+      "name": "market_intel_weekly",
+      "command": "python3 scripts/data/market_intel_pipeline.py weekly",
+      "required": true,
+      "timeout_s": 150,
+      "purpose": "跨资产周度快照"
+    },
+    {
+      "name": "event_calendar",
+      "command": "python3 scripts/data/event_calendar_builder.py",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "下周经济事件日历"
+    },
+    {
+      "name": "market_regime",
+      "command": "python3 scripts/analysis/market_regime_detector.py",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "市场体制分类"
+    },
+    {
+      "name": "watchlist_context",
+      "command": "python3 scripts/memory/watchlist_context_builder.py",
+      "required": true,
+      "timeout_s": 60,
+      "purpose": "自选股上下文"
+    },
+    {
+      "name": "research_strategy",
+      "command": "python3 scripts/data/research_reports.py strategy",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "卖方策略纪要"
+    },
+    {
+      "name": "research_industry",
+      "command": "python3 scripts/data/research_reports.py industry",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "卖方行业报告"
+    },
+    {
+      "name": "rss_all",
+      "command": "python3 scripts/data/rss_aggregator.py all",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "全量新闻聚合"
+    },
+    {
+      "name": "institution_tracker",
+      "command": "python3 scripts/data/institution_tracker.py all",
+      "required": false,
+      "timeout_s": 90,
+      "purpose": "机构持仓变化"
+    },
+    {
+      "name": "etf_premium",
+      "command": "python3 scripts/data/deep_data.py etf",
+      "required": false,
+      "timeout_s": 60,
+      "purpose": "ETF折溢价/份额（自选池ETF）"
+    },
+    {
+      "name": "valuation_batch",
+      "command": "python3 scripts/data/stock_valuation_history.py batch",
+      "required": false,
+      "timeout_s": 120,
+      "purpose": "自选股估值分位（PE/PB历史百分位）"
+    },
+    {
+      "name": "data_consistency_guard",
+      "command": "python3 scripts/utils/data_consistency_guard.py",
+      "required": true,
+      "timeout_s": 60,
+      "purpose": "数据一致性校验"
+    }
+  ]
+}

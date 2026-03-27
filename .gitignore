@@ -1,0 +1,28 @@
+node_modules/
+__pycache__/
+*.pyc
+
+# 敏感配置
+config.json
+config/claude_dispatch.json
+USER.md
+.env
+
+# 运行产物
+.tmp/
+tmp/
+data/
+reports/
+logs/
+*.pdf
+
+# 记忆系统
+memory/
+
+# 内部状态
+.state/
+.openclaw/
+.serena/
+
+# 杂项
+package-lock.json

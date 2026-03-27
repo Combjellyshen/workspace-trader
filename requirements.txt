@@ -1,0 +1,13 @@
+# Python dependencies for workspace-trader
+# Conservative first pass: only include packages directly referenced by current scripts.
+
+akshare
+feedparser
+markdown
+numpy
+openpyxl
+pandas
+Pillow
+requests
+tushare
+beautifulsoup4

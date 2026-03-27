@@ -1,0 +1,5 @@
+{
+  "tushare_token": "YOUR_TUSHARE_TOKEN",
+  "alphavantage_api_key": "YOUR_ALPHAVANTAGE_API_KEY",
+  "fred_api_key": "YOUR_FRED_API_KEY"
+}

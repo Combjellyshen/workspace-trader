@@ -1,0 +1,62 @@
+{
+  "_note": "模型路由配置。查找优先级：{task_type}.{stage} → {stage} → 系统默认(opus)。null = opus。",
+
+  "stage_models": {
+
+    "_section": "═══ 通用默认（所有任务类型共享） ═══",
+    "discuss_r1":     "sonnet",
+    "discuss_r2":     null,
+    "discuss_r3":     null,
+    "write":          null,
+    "review":         "sonnet",
+    "revise":         "sonnet",
+    "scout_reason":   null,
+
+    "_section_premarket": "═══ 盘前分析（PB-1）：无 discuss，write 需要深度 ═══",
+    "premarket.write":    null,
+    "premarket.review":   "sonnet",
+    "premarket.revise":   "sonnet",
+
+    "_section_closing": "═══ 收盘复盘（PB-2）：discuss 重要，write 需要深度 ═══",
+    "closing.discuss_r1": "sonnet",
+    "closing.discuss_r2": null,
+    "closing.discuss_r3": null,
+    "closing.write":      null,
+    "closing.review":     "sonnet",
+    "closing.revise":     "sonnet",
+
+    "_section_weekly": "═══ 周报（PB-4）：最长最重，write 必须 opus，discuss 也重要 ═══",
+    "weekly.discuss_r1":  "sonnet",
+    "weekly.discuss_r2":  null,
+    "weekly.discuss_r3":  null,
+    "weekly.write":       null,
+    "weekly.review":      "sonnet",
+    "weekly.revise":      null,
+
+    "_section_philosophy": "═══ 哲学周更新（PB-5）：轻量任务，全 sonnet ═══",
+    "philosophy.write":   "sonnet",
+    "philosophy.review":  "sonnet",
+    "philosophy.revise":  "sonnet",
+
+    "_section_scout": "═══ 选股遴选（PB-6）：discuss 按通用，传导推理需要 opus ═══",
+    "scout.discuss_r1":   "sonnet",
+    "scout.discuss_r2":   null,
+    "scout.discuss_r3":   null,
+    "scout.write":        "sonnet",
+    "scout.review":       "sonnet",
+    "scout.revise":       "sonnet"
+  },
+
+  "fallback": "sonnet",
+
+  "_rationale": {
+    "discuss_r1": "独立角色分析，按模板输出 JSON，sonnet 足够",
+    "discuss_r2": "交叉质疑需要发现矛盾和盲点，opus",
+    "discuss_r3": "最终裁决和行动建议，opus",
+    "write": "默认 opus；philosophy/scout 降为 sonnet（不需要极致写作质量）",
+    "review": "对照清单打分，所有任务类型都用 sonnet",
+    "revise": "按反馈修改已有文稿；周报例外用 opus（篇幅长、修改复杂）",
+    "philosophy": "哲学周更新整体轻量（验证框架、更新 PHILOSOPHY.md），全 sonnet",
+    "scout": "选股报告结构固定，写作要求低于日报/周报，大部分用 sonnet"
+  }
+}
